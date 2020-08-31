@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
         public GameObject item;
         public GameObject itemSlot;
     }
+    public Recipes recipes;
 
     [Header("UI Panels")]
     // panels to show at certain states
@@ -71,16 +72,7 @@ public class InventoryManager : MonoBehaviour
         OPEN_RECIPE,
         ADDED_ITEM,
     }
-        
-
-    public enum Recipe
-    {
-        SUPER_DUPER_CRYSTAL,
-        ITEM1,
-        ITEM2,
-        ITEM3
-    }
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -240,26 +232,28 @@ public class InventoryManager : MonoBehaviour
     public void Craft(string recipe)
     {
         UpdateValues();
-        if (madeRecipe(recipe))
+
+        // make new item and put into inventory
+        Item i1 = item1.GetComponent<Item>();
+        Item i2 = item2.GetComponent<Item>();
+        Item i3 = item3.GetComponent<Item>();
+
+        int capricornValue = getCapricorn(i1) + getCapricorn(i2) + getCapricorn(i3);
+        int aquariusValue = getAquarius(i1) + getAquarius(i2) + getAquarius(i3);
+        int piscesValue = getPisces(i1) + getPisces(i2) + getPisces(i3);
+        int ariesValue = getAries(i1) + getAries(i2) + getAries(i3);
+        int taurusValue = getTaurus(i1) + getTaurus(i2) + getTaurus(i3);
+        int geminiValue = getGemini(i1) + getGemini(i2) + getGemini(i3);
+        int cancerValue = getCancer(i1) + getCancer(i2) + getCancer(i3);
+        int leoValue = getLeo(i1) + getLeo(i2) + getLeo(i3);
+        int virgoValue = getVirgo(i1) + getVirgo(i2) + getVirgo(i3);
+        int libraValue = getLibra(i1) + getLibra(i2) + getLibra(i3);
+        int scorpioValue = getScorpio(i1) + getScorpio(i2) + getScorpio(i3);
+        int sagittariusValue = getSagittarius(i1) + getSagittarius(i2) + getSagittarius(i3);
+
+        if (recipes.CheckRecipe(recipe, capricornValue, aquariusValue, piscesValue, ariesValue, taurusValue, geminiValue, 
+            cancerValue, leoValue, virgoValue, libraValue, scorpioValue, sagittariusValue))
         {
-            // make new item and put into inventory
-            Item i1 = item1.GetComponent<Item>();
-            Item i2 = item2.GetComponent<Item>();
-            Item i3 = item3.GetComponent<Item>();
-
-            int capricornValue = getCapricorn(i1) + getCapricorn(i2) + getCapricorn(i3);
-            int aquariusValue = getAquarius(i1) + getAquarius(i2) + getAquarius(i3);
-            int piscesValue = getPisces(i1) + getPisces(i2) + getPisces(i3);
-            int ariesValue = getAries(i1) + getAries(i2) + getAries(i3);
-            int taurusValue = getTaurus(i1) + getTaurus(i2) + getTaurus(i3);
-            int geminiValue = getGemini(i1) + getGemini(i2) + getGemini(i3);
-            int cancerValue = getCancer(i1) + getCancer(i2) + getCancer(i3);
-            int leoValue = getLeo(i1) + getLeo(i2) + getLeo(i3);
-            int virgoValue = getVirgo(i1) + getVirgo(i2) + getVirgo(i3);
-            int libraValue = getLibra(i1) + getLibra(i2) + getLibra(i3);
-            int scorpioValue = getScorpio(i1) + getScorpio(i2) + getScorpio(i3);
-            int sagittariusValue = getSagittarius(i1) + getSagittarius(i2) + getSagittarius(i3);
-
             Item myItem = Instantiate(item);
 
             var afterSpace = true;
@@ -536,30 +530,7 @@ public class InventoryManager : MonoBehaviour
     {
         return item.sagittarius;
     }
-
-    bool madeRecipe(string recipe)
-    {
-        if (recipe.Equals(Recipe.SUPER_DUPER_CRYSTAL.ToString()))
-        {
-            Debug.Log("mixing up super duper crystal");
-            return true;
-        }
-        if (recipe.Equals(Recipe.ITEM1.ToString()))
-        {
-            Debug.Log("mixing up item1");
-            return true;
-        }
-        if (recipe.Equals(Recipe.ITEM2.ToString()))
-        {
-
-        }
-        if (recipe.Equals(Recipe.ITEM3.ToString()))
-        {
-
-        }
-        return false;
-    }
-
+    
     public void Undo()
     {
         if (lastAction.Count > 0)
