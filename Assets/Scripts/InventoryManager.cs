@@ -71,6 +71,7 @@ public class InventoryManager : MonoBehaviour
     {
         OPEN_RECIPE,
         ADDED_ITEM,
+        OPEN_ITEM,
     }
     
     // Start is called before the first frame update
@@ -140,60 +141,25 @@ public class InventoryManager : MonoBehaviour
     public void OpenRecipe(string recipe)
     {
         recipePanel.SetActive(false);
+        // set the last action in your stack
+        Action action = new Action();
+        action.actionTaken = ActionTaken.OPEN_RECIPE;
+
+        lastAction.Push(action);
         craftPanel.SetActive(true);
     }
-
+    
     public void Open(GameObject obj)
     {
         // open up inventory in recipe mixer
         inventoryPanel.gameObject.SetActive(true);
-        // redraw the inventory panel
-        foreach (Transform child in inventoryContent.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
-        
-        // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
-        int rowCount = 0;
-        for (int i = 0; i < gameObject.transform.childCount; i++)
-        {
-            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-            if (myItem.available && (obj.GetComponent<Item>().title == "Free" ||
-                myItem.title == obj.GetComponent<Item>().title))
-            {
-                rowCount++;
-            }
-        }
 
-        int row = 0;
-        int column = 0;
-        inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil(rowCount / 5) * 105 + 120f));
-        for (int i=0; i < gameObject.transform.childCount; i++) {
-            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-            if (myItem.available && (obj.GetComponent<Item>().title == "Free" ||
-                myItem.title == obj.GetComponent<Item>().title))
-            {
-                //list.Add(myItem.gameObject);
-                Item newItem = Instantiate(myItem);
-                //myItem.available = true;
-                newItem.originalRef = myItem;
-                newItem.GetComponent<Button>().onClick.AddListener(
-                    delegate {
-                        Select(newItem.gameObject, obj);
-                        UpdateValues();
-                    });
-                newItem.gameObject.transform.parent = inventoryContent.transform;
-                // now move where it displays
-                column++;
-                if (column % 5 == 1)
-                {
-                    row++;
-                    column = 1;
-                }
-                newItem.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-                newItem.gameObject.transform.localPosition = new Vector2((column*105f)-50f, -(row * 105f)+45f);
-            }
-        }
+        showFilteredInventory(obj);
+        // set the last action in your stack
+        Action action = new Action();
+        action.actionTaken = ActionTaken.OPEN_ITEM;
+        
+        lastAction.Push(action);
     }
 
     public void Select(GameObject item, GameObject itemSlot)
@@ -221,6 +187,7 @@ public class InventoryManager : MonoBehaviour
             Action action = new Action();
             action.item = item;
             action.itemSlot = itemSlot;
+            action.actionTaken = ActionTaken.ADDED_ITEM;
 
             lastAction.Push(action);
 
@@ -276,7 +243,6 @@ public class InventoryManager : MonoBehaviour
                     afterSpace = false;
                 }
             }
-            Debug.Log(formattedTitle);
 
             myItem.title = formattedTitle;
             myItem.capricorn = capricornValue;
@@ -309,7 +275,6 @@ public class InventoryManager : MonoBehaviour
         }
 
         // clear the last actions
-        //lastAction = new Stack<Action>();
         lastAction.Clear();
     }
 
@@ -390,9 +355,63 @@ public class InventoryManager : MonoBehaviour
             item2.GetComponent<Item>().count.text = "";
             item3.GetComponent<Item>().count.text = "";
 
+            lastAction.Clear();
             craftPanel.SetActive(false);
         }
+        inventoryPanel.SetActive(false);
         recipePanel.SetActive(true);
+    }
+
+    void showFilteredInventory(GameObject obj)
+    {
+        // redraw the inventory panel
+        foreach (Transform child in inventoryContent.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+
+        // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
+        int rowCount = 0;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
+            if (myItem.available && (obj.GetComponent<Item>().title == "Free" ||
+                myItem.title == obj.GetComponent<Item>().title))
+            {
+                rowCount++;
+            }
+        }
+
+        int row = 0;
+        int column = 0;
+        inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil(rowCount / 5) * 105 + 120f));
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
+            if (myItem.available && (obj.GetComponent<Item>().title == "Free" ||
+                myItem.title == obj.GetComponent<Item>().title))
+            {
+                //list.Add(myItem.gameObject);
+                Item newItem = Instantiate(myItem);
+                //myItem.available = true;
+                newItem.originalRef = myItem;
+                newItem.GetComponent<Button>().onClick.AddListener(
+                    delegate {
+                        Select(newItem.gameObject, obj);
+                        UpdateValues();
+                    });
+                newItem.gameObject.transform.parent = inventoryContent.transform;
+                // now move where it displays
+                column++;
+                if (column % 5 == 1)
+                {
+                    row++;
+                    column = 1;
+                }
+                newItem.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+                newItem.gameObject.transform.localPosition = new Vector2((column * 105f) - 50f, -(row * 105f) + 45f);
+            }
+        }
     }
 
     void setValues(Item item)
@@ -536,22 +555,48 @@ public class InventoryManager : MonoBehaviour
         if (lastAction.Count > 0)
         {
             Action thisAction = lastAction.Pop();
+
             if (thisAction.actionTaken.Equals(ActionTaken.OPEN_RECIPE))
             {
-                
+                craftPanel.SetActive(false);
+                recipePanel.SetActive(true);
             }
             if (thisAction.actionTaken.Equals(ActionTaken.ADDED_ITEM))
             {
-                //thisAction.item
-                //thisAction.itemSlot
+                for (int i = 0; i < thisAction.itemSlot.transform.childCount; i++)
+                {
+                    Transform t = thisAction.itemSlot.transform.GetChild(i);
+                    Item itemChild = t.gameObject.GetComponent<Item>();
+                    
+                    if (itemChild != null)
+                    {
+                        if (thisAction.item.GetComponent<Item>().Equals(itemChild))
+                        {
+                            itemChild.originalRef.GetComponent<Item>().available = true;
+                            Destroy(itemChild.gameObject);
+                        }
+                    }
+                }
+                // then open inventory with the last touched slot
+                inventoryPanel.gameObject.SetActive(true);
+                showFilteredInventory(thisAction.itemSlot);
+            }
+            if (thisAction.actionTaken.Equals(ActionTaken.OPEN_ITEM))
+            {
+                inventoryPanel.SetActive(false);
             }
         }
+        UpdateValues();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("escape"))
+        {
+            Debug.Log("undo!");
+            Undo();
+        }
     }
 }
