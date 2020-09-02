@@ -2698,7 +2698,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &275059983
 Transform:
   m_ObjectHideFlags: 0
@@ -3333,12 +3333,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557576}
-        m_MethodName: 
+      - m_Target: {fileID: 1969557577}
+        m_MethodName: Undo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5288,16 +5288,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 560677313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_PointAction: {fileID: 6262497027998996708, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_MoveAction: {fileID: 6240144101556317443, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_SubmitAction: {fileID: 8734016157474575804, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_CancelAction: {fileID: 5767536465646486309, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_LeftClickAction: {fileID: -1024596234207783777, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_MiddleClickAction: {fileID: -7375550784415882058, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_RightClickAction: {fileID: -5557266401817565350, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_ScrollWheelAction: {fileID: -5448964948563935780, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 2250484795683169211, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 8996901343066965030, guid: 6a6f691aa2d295a44a57cc9464691acc,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &560677315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6646,7 +6665,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1969557577}
-        m_MethodName: Open
+        m_MethodName: OpenItem
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 773392058}
@@ -9241,7 +9260,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1969557577}
-        m_MethodName: Open
+        m_MethodName: OpenItem
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1057546618}
@@ -12513,7 +12532,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1969557577}
-        m_MethodName: Open
+        m_MethodName: OpenItem
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1427359896}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -149,7 +150,7 @@ public class InventoryManager : MonoBehaviour
         craftPanel.SetActive(true);
     }
     
-    public void Open(GameObject obj)
+    public void OpenItem(GameObject obj)
     {
         // open up inventory in recipe mixer
         inventoryPanel.gameObject.SetActive(true);
@@ -593,7 +594,7 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("escape"))
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Debug.Log("undo!");
             Undo();
