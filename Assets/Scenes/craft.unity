@@ -164,7 +164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &13746821
 GameObject:
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: OpenRecipe
         m_Mode: 5
         m_Arguments:
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: Craft
         m_Mode: 5
         m_Arguments:
@@ -2554,7 +2554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: BackToRecipes
         m_Mode: 1
         m_Arguments:
@@ -2950,6 +2950,84 @@ Transform:
   m_Father: {fileID: 1642071884}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &295276680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 295276682}
+  - component: {fileID: 295276681}
+  m_Layer: 0
+  m_Name: CraftingManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &295276681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295276680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3282c4f0d4701c84ca29ca9658b2cb24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipes: {fileID: 12380724}
+  inventoryManager: {fileID: 1969557577}
+  recipePanel: {fileID: 2032983257}
+  craftPanel: {fileID: 1222493309}
+  resultPanel: {fileID: 1996149631}
+  item: {fileID: 890069596}
+  item1: {fileID: 1427359896}
+  item2: {fileID: 1057546618}
+  item3: {fileID: 773392058}
+  inventoryPanel: {fileID: 111475431}
+  inventoryContent: {fileID: 1600410915}
+  capricornValueText: {fileID: 1493256112}
+  capricornRequiredText: {fileID: 2106193606}
+  aquariusValueText: {fileID: 1768270014}
+  aquariusRequiredText: {fileID: 199651099}
+  piscesValueText: {fileID: 1803985367}
+  piscesRequiredText: {fileID: 577702921}
+  ariesValueText: {fileID: 1424129776}
+  ariesRequiredText: {fileID: 2001130240}
+  taurusValueText: {fileID: 1109567608}
+  taurusRequiredText: {fileID: 1235598828}
+  geminiValueText: {fileID: 560514711}
+  geminiRequiredText: {fileID: 1723867844}
+  cancerValueText: {fileID: 1825865436}
+  cancerRequiredText: {fileID: 1714467030}
+  leoValueText: {fileID: 1630719126}
+  leoRequiredText: {fileID: 957670468}
+  virgoValueText: {fileID: 1897843251}
+  virgoRequiredText: {fileID: 1806002456}
+  libraValueText: {fileID: 1896852196}
+  libraRequiredText: {fileID: 1140212251}
+  scorpioValueText: {fileID: 1043358661}
+  scorpioRequiredText: {fileID: 223145662}
+  sagittariusValueText: {fileID: 1803688765}
+  sagittariusRequiredText: {fileID: 65865140}
+--- !u!4 &295276682
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295276680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295443861
 GameObject:
   m_ObjectHideFlags: 0
@@ -3333,7 +3411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: Undo
         m_Mode: 1
         m_Arguments:
@@ -6071,7 +6149,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: BackToRecipes
         m_Mode: 1
         m_Arguments:
@@ -6664,7 +6742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: OpenItem
         m_Mode: 2
         m_Arguments:
@@ -8061,7 +8139,7 @@ Transform:
   - {fileID: 476693294}
   - {fileID: 275059983}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887081803
 GameObject:
@@ -8224,7 +8302,7 @@ PrefabInstance:
     - target: {fileID: 5369712333036943636, guid: 590cfb79452f1c54b96a11de129e34e6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5369712333036943636, guid: 590cfb79452f1c54b96a11de129e34e6,
         type: 3}
@@ -9259,7 +9337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: OpenItem
         m_Mode: 2
         m_Arguments:
@@ -12531,7 +12609,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
+      - m_Target: {fileID: 295276681}
         m_MethodName: OpenItem
         m_Mode: 2
         m_Arguments:
@@ -52061,30 +52139,6 @@ MonoBehaviour:
   item3: {fileID: 773392058}
   inventoryPanel: {fileID: 111475431}
   inventoryContent: {fileID: 1600410915}
-  capricornValueText: {fileID: 1493256112}
-  capricornRequiredText: {fileID: 2106193606}
-  aquariusValueText: {fileID: 1768270014}
-  aquariusRequiredText: {fileID: 199651099}
-  piscesValueText: {fileID: 1803985367}
-  piscesRequiredText: {fileID: 577702921}
-  ariesValueText: {fileID: 1424129776}
-  ariesRequiredText: {fileID: 2001130240}
-  taurusValueText: {fileID: 1109567608}
-  taurusRequiredText: {fileID: 1235598828}
-  geminiValueText: {fileID: 560514711}
-  geminiRequiredText: {fileID: 1723867844}
-  cancerValueText: {fileID: 1825865436}
-  cancerRequiredText: {fileID: 1714467030}
-  leoValueText: {fileID: 1630719126}
-  leoRequiredText: {fileID: 957670468}
-  virgoValueText: {fileID: 1897843251}
-  virgoRequiredText: {fileID: 1806002456}
-  libraValueText: {fileID: 1896852196}
-  libraRequiredText: {fileID: 1140212251}
-  scorpioValueText: {fileID: 1043358661}
-  scorpioRequiredText: {fileID: 223145662}
-  sagittariusValueText: {fileID: 1803688765}
-  sagittariusRequiredText: {fileID: 65865140}
 --- !u!4 &1969557578
 Transform:
   m_ObjectHideFlags: 0

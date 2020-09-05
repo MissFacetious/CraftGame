@@ -72,6 +72,7 @@
     <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Manager.cs" />
     <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Witch_Manager.cs" />
     <Compile Include="Assets\Scripts\Apple.cs" />
+    <Compile Include="Assets\Scripts\CraftingManager.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
