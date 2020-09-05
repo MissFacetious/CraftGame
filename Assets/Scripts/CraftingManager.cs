@@ -264,7 +264,7 @@ public class CraftingManager : MonoBehaviour
 
             resultPanel.SetActive(false);
         }
-        if (craftPanel.activeInHierarchy)
+        else if (craftPanel.activeInHierarchy)
         {
             // if this came from pressing back
             // reset any values in Item1/Item2/Item3
@@ -302,8 +302,15 @@ public class CraftingManager : MonoBehaviour
             lastAction.Clear();
             craftPanel.SetActive(false);
         }
-        inventoryPanel.SetActive(false);
-        recipePanel.SetActive(true);
+        else if (recipePanel.activeInHierarchy)
+        {
+            recipePanel.SetActive(false);
+        }
+        else
+        {
+            inventoryPanel.SetActive(false);
+            recipePanel.SetActive(true);
+        }
     }
 
     void showFilteredInventory(GameObject obj)
@@ -537,9 +544,12 @@ public class CraftingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        {
+            BackToRecipes();
+        }
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            Debug.Log("undo!");
             Undo();
         }
     }

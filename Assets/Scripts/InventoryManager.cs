@@ -97,88 +97,66 @@ public class InventoryManager : MonoBehaviour
             myItem.gameObject.transform.parent = gameObject.transform;
         }
     }
+
+    public void OpenRecipes(string recipe)
+    {
+      //  recipePanel.SetActive(true);
+        
+    }
+
     public void OpenRecipe(string recipe)
     {
+        // remove any panels for crafting
+        inventoryPanel.SetActive(false);
+        craftPanel.SetActive(false);
+        resultPanel.SetActive(false);
+        //  recipePanel.SetActive(false);
+        //  craftPanel.SetActive(true);
+    }
+
+    public void ShowInventory()
+    {
+        // remove any panels for crafting
         recipePanel.SetActive(false);
-        craftPanel.SetActive(true);
-    }
-    
-    public void OpenItem(GameObject obj)
-    {
-        // open up inventory in recipe mixer
-        inventoryPanel.gameObject.SetActive(true);
-
-        showFilteredInventory(obj);
-    }
-
-    public void Select(GameObject item, GameObject itemSlot)
-    {
-        if (item.GetComponent<Item>().available)
+        craftPanel.SetActive(false);
+        resultPanel.SetActive(false);
+            
+        if (inventoryPanel.activeInHierarchy)
         {
-            // show the item in the slot if not already there...
-            // show the count of the item in the slot
-            //itemSlot.GetComponent<Item>().image = item.GetComponent<Item>().image;
-            string countStr = itemSlot.GetComponent<Item>().count.text;
-            // update the mixing values
-            int.TryParse(countStr, out int count);
-            count++;
-            itemSlot.GetComponent<Item>().count.text = count.ToString();
-
-            // mark inventory item unavailable
-            //item.GetComponent<Item>().available = false;
-            item.GetComponent<Item>().originalRef.available = false;
-            // move item into slot
-            item.transform.parent = itemSlot.transform;
-            // make the item disapear from the render
-            item.transform.localPosition = new Vector2(-500f, 0f);
-
-            // close the inventory panel
-            inventoryPanel.gameObject.SetActive(false);
+            inventoryPanel.SetActive(false);
         }
-    }
-
-    void showFilteredInventory(GameObject obj)
-    {
-        // redraw the inventory panel
-        foreach (Transform child in inventoryContent.transform)
+        else
         {
-            GameObject.Destroy(child.gameObject);
-        }
-
-        // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
-        int rowCount = 0;
-        for (int i = 0; i < gameObject.transform.childCount; i++)
-        {
-            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-            if (myItem.available && (obj.GetComponent<Item>().title == "Free" ||
-                myItem.title == obj.GetComponent<Item>().title))
+            inventoryPanel.SetActive(true);
+        
+            // redraw the inventory panel
+            foreach (Transform child in inventoryContent.transform)
             {
+                GameObject.Destroy(child.gameObject);
+            }
+
+            // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
+            int rowCount = 0;
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
                 rowCount++;
             }
-        }
 
-        int row = 0;
-        int column = 0;
-        inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil(rowCount / 5) * 105 + 120f));
-        for (int i = 0; i < gameObject.transform.childCount; i++)
-        {
-            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-            if (myItem.available && (obj.GetComponent<Item>().title == "Free" ||
-                myItem.title == obj.GetComponent<Item>().title))
+            int row = 0;
+            int column = 0;
+            inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil(rowCount / 7) * 105 + 120f));
+            for (int i = 0; i < gameObject.transform.childCount; i++)
             {
-                //list.Add(myItem.gameObject);
+                Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
                 Item newItem = Instantiate(myItem);
-                //myItem.available = true;
+            
                 newItem.originalRef = myItem;
-                newItem.GetComponent<Button>().onClick.AddListener(
-                    delegate {
-                        Select(newItem.gameObject, obj);
-
-                    });
+            
                 newItem.gameObject.transform.parent = inventoryContent.transform;
                 // now move where it displays
                 column++;
-                if (column % 5 == 1)
+                if (column % 7 == 1)
                 {
                     row++;
                     column = 1;
@@ -192,6 +170,9 @@ public class InventoryManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            ShowInventory();
+        }
     }
 }
