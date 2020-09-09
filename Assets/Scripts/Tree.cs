@@ -1,53 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Interactable))]
 public class Tree : MonoBehaviour
 {
-    public bool showButton;
     public GameObject Box;
     public GameObject Sphere;
 
     [SerializeField]
-    private bool hasItemsToDrop;
+    private bool hasItemsToDrop = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        showButton = false;
-        hasItemsToDrop = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (showButton)
-        {
-            Box.SetActive(true);
-            if (Keyboard.current.aKey.wasPressedThisFrame)
-            {
-                //Destroy(GetComponent<Collider>());
-                //showButton = false;
-                //// create a shower of other items
-                //for (int i = 0; i < 10; i++) {
-                //    GameObject branch = Instantiate(Sphere, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity) as GameObject;
-                //}
-            }
-        }
-        else
-        {
-            Box.SetActive(false);
+        // Register interaction event.
+        Interactable i = GetComponent<Interactable>();
+        if (i != null) {
+            i.OnInteraction.AddListener(OnInteract);
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    public void OnInteract()
     {
-        
-    }
-
-    public void Interaction()
-    {
+        Debug.Log(name + "'s interaction method");
         ShowerItems();
     }
 
@@ -55,12 +30,11 @@ public class Tree : MonoBehaviour
     {
         if (hasItemsToDrop)
         {
-            //showButton = false;
-            //for (int i = 0; i < objectPool.Count; i++)
-            //{
-            //    GameObject obj = objectPool.
-            //}
-
+            GameObject branch;
+            for (int i = 0; i < 10; i++)
+            {
+                branch = Instantiate(Sphere, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+            }
             hasItemsToDrop = false;
         }
     }

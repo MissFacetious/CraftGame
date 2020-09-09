@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5486598430859411694}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Tree
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,9 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ea8402076025ed4ea9a27abc3741a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactRadius: 3
   showButton: 0
   Box: {fileID: 5486598431402580436}
   Sphere: {fileID: 0}
+  hasItemsToDrop: 0
 --- !u!1 &5486598431402580436
 GameObject:
   m_ObjectHideFlags: 0
