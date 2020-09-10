@@ -7,9 +7,7 @@ using TMPro;
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI brachesCount;
-   
-    public int branches = 0;
+    public Canvas playerCanvas;
     public float rotationSmoothing = 0.05f;
     public float rotationSmoothingVelocity;
     public float speed = 10;
@@ -25,12 +23,24 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
+    private TextMeshProUGUI brachesCount;
+    private int branches = 0;
+
     private void Awake()
     {
         if (playerCamera == null)
         {
             Debug.LogError("Camera not found.");
         }
+        if (playerCanvas == null)
+        {
+            Debug.LogError("Canvas not found.");
+        }
+        else
+        {
+            brachesCount = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        }
+        
     }
 
     // Start is called before the first frame update
@@ -40,6 +50,8 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<Interactor>();
         cameraController = playerCamera.GetComponent<CameraController>();
+        // change sprite controller on start
+        OnControlsChanged();
     }
 
     private void OnControlsChanged()

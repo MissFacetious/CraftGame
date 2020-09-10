@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour
 {
     public Interactable focus;
+    public Button button;
 
     [SerializeField]
     public static Sprite interactSprites;
@@ -15,16 +17,17 @@ public class Interactor : MonoBehaviour
     public float rayLength = 2.5f;
 
     [SerializeField]
-    private GameObject buttonPrompt;
+    //private GameObject buttonPrompt;
     private List<Interactable> focusList;
     private RaycastHit hitInfo;
     private bool hitDetected;
+    private float aboveCharacter = 150f;
 
     private void Awake()
     {
-        if (buttonPrompt == null)
+        if (button == null)
         {
-            Debug.LogError("Button prompt not assigned.");
+            Debug.LogError("Button not assigned.");
         }
 
         // Preload input-specific prompts
@@ -49,7 +52,7 @@ public class Interactor : MonoBehaviour
     {
         // TODO (aoyeola): Do we still need to check for many interactables at once?
         focusList = new List<Interactable>();
-        buttonPrompt.SetActive(false);
+        button.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -83,7 +86,7 @@ public class Interactor : MonoBehaviour
         {
             focus.OnUnfocused();
             focus = null;
-            buttonPrompt.SetActive(false);
+            button.gameObject.SetActive(false);
         }
     }
 
@@ -100,16 +103,20 @@ public class Interactor : MonoBehaviour
             focus = newFocus;
             focus.OnFocused(transform);
         }
+        
+        button.gameObject.SetActive(true);
+        // show the sprite on the canvas in the right position
 
-        buttonPrompt.SetActive(true);
+        Vector3 buttonPosition = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        button.transform.position = new Vector3(buttonPosition.x, buttonPosition.y+aboveCharacter, 0f);
     }
 
     public void UpdateIconSprite(string deviceName)
     {
         if (interactSpriteDict.TryGetValue(deviceName, out Sprite deviceIcon))
         {
-            SpriteRenderer renderer = buttonPrompt.GetComponentInChildren<SpriteRenderer>();
-            renderer.sprite = deviceIcon;
+            Image image = button.GetComponent<Image>();
+            image.sprite = deviceIcon;
         }
     }
 
