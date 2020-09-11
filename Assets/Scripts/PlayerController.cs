@@ -80,6 +80,15 @@ public class PlayerController : MonoBehaviour
         interactor.PerformInteraction();
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Branch"))
+        {
+            branches++;
+            Destroy(other.gameObject);
+        }
+    }
+
     void FixedUpdate()
     {
         //Vector3 movement = new Vector3(movementX, 0.0f, movementY);

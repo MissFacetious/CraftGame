@@ -796,6 +796,11 @@ PrefabInstance:
       propertyPath: interactRadius
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5486598430859411694, guid: ba7ef6e29fdd3d3489bd26bd7b693197,
+        type: 3}
+      propertyPath: hasItemsToDrop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5486598430859411695, guid: ba7ef6e29fdd3d3489bd26bd7b693197,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1218,7 +1223,7 @@ MonoBehaviour:
   focus: {fileID: 0}
   button: {fileID: 1007896459}
   rayLength: 3
-  buttonPrompt: {fileID: 1753319765}
+  focusList: []
 --- !u!1 &1683695701 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5486598430859411667, guid: ba7ef6e29fdd3d3489bd26bd7b693197,
@@ -1265,6 +1270,11 @@ PrefabInstance:
       propertyPath: Sphere
       value: 
       objectReference: {fileID: 441947098}
+    - target: {fileID: 5486598430859411694, guid: ba7ef6e29fdd3d3489bd26bd7b693197,
+        type: 3}
+      propertyPath: hasItemsToDrop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5486598430859411695, guid: ba7ef6e29fdd3d3489bd26bd7b693197,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1322,12 +1332,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba7ef6e29fdd3d3489bd26bd7b693197, type: 3}
---- !u!1 &1753319765 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1943749374880240379, guid: 19232d747a34d034fbcc27c4d388ae08,
-    type: 3}
-  m_PrefabInstance: {fileID: 1943749376364927918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1753319766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1943749374880240376, guid: 19232d747a34d034fbcc27c4d388ae08,
@@ -1901,6 +1905,11 @@ PrefabInstance:
       propertyPath: Sphere
       value: 
       objectReference: {fileID: 441947098}
+    - target: {fileID: 5486598430859411694, guid: ba7ef6e29fdd3d3489bd26bd7b693197,
+        type: 3}
+      propertyPath: hasItemsToDrop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5486598430859411695, guid: ba7ef6e29fdd3d3489bd26bd7b693197,
         type: 3}
       propertyPath: m_LocalPosition.x
