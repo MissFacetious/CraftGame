@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/3rd Party/BigRookGames/Nature Pack/Materials.meta
 guid: 976681b1d63abb64a8c8f8d80ee9563a
+=======
+guid: d824a7c2b777a5e43aebe2b20c74e58a
+>>>>>>> master:Assets/Resources/Input.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

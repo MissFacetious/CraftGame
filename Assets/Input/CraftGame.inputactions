@@ -18,13 +18,21 @@
                     "type": "Value",
                     "id": "b5038534-ce70-4a34-a387-ce058fc60465",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "InvertVector2(invertX=false,invertY=false)",
                     "interactions": ""
                 },
                 {
                     "name": "Fire",
                     "type": "Button",
                     "id": "bfe92862-f336-44f8-9521-dfd07671147b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "274a9808-be7a-42aa-9fe9-d2601a5b62b8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -179,7 +187,7 @@
                     "id": "8c8e490b-c610-4785-884f-f04217b23ca4",
                     "path": "<Pointer>/delta",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2",
                     "groups": ";Keyboard&Mouse;Touch",
                     "action": "Look",
                     "isComposite": false,
@@ -248,6 +256,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be06dc81-fcbd-4d4a-9465-98537ade61a7",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "996ff7d1-720c-4f3b-a6b8-c38b4fba9d7e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,38 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Interactable))]
 public class Tree : MonoBehaviour
 {
-    public bool showButton;
     public GameObject Box;
     public GameObject Sphere;
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField]
+    private bool hasItemsToDrop = true;
+
+    private void Awake()
     {
-        showButton = false;
+        // Register interaction event.
+        Interactable i = GetComponent<Interactable>();
+        if (i != null) {
+            i.OnInteraction.AddListener(OnInteract);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnInteract()
     {
-        if (showButton)
+        Debug.Log(name + "'s interaction method");
+        ShowerItems();
+    }
+
+    private void ShowerItems()
+    {
+        if (hasItemsToDrop)
         {
-            Box.SetActive(true);
-            if (Keyboard.current.aKey.wasPressedThisFrame)
+            GameObject branch;
+            for (int i = 0; i < 10; i++)
             {
-                Destroy(GetComponent<Collider>());
-                showButton = false;
-                // create a shower of other items
-                for (int i = 0; i < 10; i++) {
-                    GameObject branch = Instantiate(Sphere, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity) as GameObject;
-                }
+                branch = Instantiate(Sphere, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+            
             }
-        }
-        else
-        {
-            Box.SetActive(false);
+            hasItemsToDrop = false;
         }
     }
 }

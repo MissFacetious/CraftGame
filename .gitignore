@@ -6,4 +6,4 @@ Logs/*
 Build/*
 .vs/*
 Media/*
-
+Assembly-CSharp.csproj
