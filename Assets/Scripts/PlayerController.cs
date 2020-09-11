@@ -7,9 +7,7 @@ using TMPro;
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
-    public TextMeshProUGUI brachesCount;
-   
-    public int branches = 0;
+    public Canvas playerCanvas;
     public float rotationSmoothing = 0.05f;
     public float rotationSmoothingVelocity;
     public float speed = 10;
@@ -25,12 +23,24 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
+    private TextMeshProUGUI appleCount;
+    private int apples = 0;
+
     private void Awake()
     {
         if (playerCamera == null)
         {
             Debug.LogError("Camera not found.");
         }
+        if (playerCanvas == null)
+        {
+            Debug.LogError("Canvas not found.");
+        }
+        else
+        {
+            appleCount = playerCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        }
+        
     }
 
     // Start is called before the first frame update
@@ -40,6 +50,8 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<Interactor>();
         cameraController = playerCamera.GetComponent<CameraController>();
+        // change sprite controller on start
+        OnControlsChanged();
     }
 
     private void OnControlsChanged()
@@ -68,6 +80,16 @@ public class PlayerController : MonoBehaviour
         interactor.PerformInteraction();
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Apple"))
+        {
+            apples++;
+            appleCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + apples;
+            Destroy(other.gameObject);
+        }
+    }
+
     void FixedUpdate()
     {
         //Vector3 movement = new Vector3(movementX, 0.0f, movementY);
@@ -77,8 +99,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //brachesCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + branches;
-        
         if (canMove)
         {
             Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
