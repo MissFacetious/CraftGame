@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
-    private TextMeshProUGUI brachesCount;
-    private int branches = 0;
+    private TextMeshProUGUI appleCount;
+    private int apples = 0;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            brachesCount = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            appleCount = playerCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         }
         
     }
@@ -82,9 +82,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Branch"))
+        if (other.gameObject.CompareTag("Apple"))
         {
-            branches++;
+            apples++;
+            appleCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + apples;
             Destroy(other.gameObject);
         }
     }
@@ -98,8 +99,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //brachesCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + branches;
-        
         if (canMove)
         {
             Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
