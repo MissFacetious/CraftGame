@@ -84,9 +84,19 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Apple"))
         {
-            apples++;
-            appleCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + apples;
-            Destroy(other.gameObject);
+            Apple apple = other.gameObject.GetComponent<Apple>();
+
+            if (apple != null)
+            {
+                Debug.Log("apple");
+                apple.Collect(gameObject);
+                apples++;
+                appleCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + apples;
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 
