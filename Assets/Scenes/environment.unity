@@ -3379,6 +3379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCanvas: {fileID: 1879215591}
+  animator: {fileID: 1967086166}
   rotationSmoothing: 0.1
   rotationSmoothingVelocity: 0
   speed: 6

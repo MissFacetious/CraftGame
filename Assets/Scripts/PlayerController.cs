@@ -8,6 +8,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     public Canvas playerCanvas;
+    public Animator animator;
     public float rotationSmoothing = 0.05f;
     public float rotationSmoothingVelocity;
     public float speed = 10;
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
+        animator.SetBool("walking", true);
     }
 
     private void OnLook(InputValue lookValue)
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
     private void OnInteract(InputValue interactValue)
     {
         interactor.PerformInteraction();
+        animator.SetBool("walking", false);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -121,6 +124,10 @@ public class PlayerController : MonoBehaviour
                 Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
                 transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                animator.SetBool("walking", false);
             }
         }        
     }
