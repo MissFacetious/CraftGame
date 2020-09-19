@@ -4602,25 +4602,25 @@ Transform:
   m_Father: {fileID: 1419931214}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1967086166
-Animation:
+--- !u!95 &1967086166
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967086164}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 587c2e636f322dd4fa16d145e164a9d9, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 587c2e636f322dd4fa16d145e164a9d9, type: 3}
-  - {fileID: 7400000, guid: a55398ab16fe29a468c9b78ff01ac95d, type: 3}
-  - {fileID: 7400000, guid: 6daa96c3815f0bd46ac7cf1e2ad84025, type: 3}
-  - {fileID: 7400000, guid: d04b94e1251c85447be2ea41362d2b05, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b233824da92d17540a9d82d5918b073a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1984986960
 GameObject:
   m_ObjectHideFlags: 0
