@@ -92,6 +92,9 @@ public class PlayerController : MonoBehaviour
             if (apple != null)
             {
                 Debug.Log("apple");
+                // kick off collection animations
+                // this animation seems to slow down the game
+                animator.SetTrigger("collect");
                 apple.Collect(gameObject);
                 apples++;
                 appleCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + apples;
