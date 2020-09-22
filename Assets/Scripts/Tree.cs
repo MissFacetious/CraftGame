@@ -30,10 +30,10 @@ public class Tree : MonoBehaviour
     {
         if (hasItemsToDrop)
         {
-            GameObject branch;
+            GameObject apple;
             for (int i = 0; i < 10; i++)
             {
-                branch = Instantiate(Sphere, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+                apple = Instantiate(Sphere, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
             
             }
             hasItemsToDrop = false;
