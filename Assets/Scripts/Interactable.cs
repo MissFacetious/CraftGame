@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField]
     public UnityEvent OnInteraction;
 
     public bool isReady { get; private set; }
