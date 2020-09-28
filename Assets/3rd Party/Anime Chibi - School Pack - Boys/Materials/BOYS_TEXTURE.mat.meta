@@ -1,6 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<< HEAD:Assets/3rd Party/Anime Chibi - School Pack - Boys/Materials/BOYS_TEXTURE.mat.meta
 guid: 5a1af593fd6e970468cab43e83f398e2
 NativeFormatImporter:
+=======
+guid: 7d7820abad934b747ae1797c3aa82197
+folderAsset: yes
+DefaultImporter:
+>>>>>>> c4f538675b3839dda93053df642834f1174858ee:Assets/Fungus/Scripts/Commands/Collection.meta
+=======
+guid: 95dce23cf7cb0d44084bea1b920aab30
+NativeFormatImporter:
+>>>>>>> c4f538675b3839dda93053df642834f1174858ee
   externalObjects: {}
   mainObjectFileID: 0
   userData: 
