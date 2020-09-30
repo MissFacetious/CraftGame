@@ -67,10 +67,12 @@ public class RecipeManager : MonoBehaviour
     public void ShowRecipeItems()
     {
         // slot1 and slot2 ch;ange
-        Recipes.RecipeEnum[] items = recipes.getItemsInRecipe(currentRecipe);
-        item1.GetComponent<Item>().setItem(items[0]);
-        item2.GetComponent<Item>().setItem(items[1]);
-        item3.GetComponent<Item>().setItem(items[2]);
+        Debug.Log(currentRecipe);
+        Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(currentRecipe);
+        Debug.Log(items[0].type);
+        item1.GetComponent<Item>().setItem(items[0].type);
+        item2.GetComponent<Item>().setItem(items[1].type);
+        item3.GetComponent<Item>().setItem(items[2].type);
     }
 
     public void setCurrentRecipe(Recipes.RecipeEnum type)

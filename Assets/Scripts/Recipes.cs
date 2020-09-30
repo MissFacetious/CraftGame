@@ -16,49 +16,81 @@ public class Recipes : MonoBehaviour
         TEA_LEAF,
         APPLEBLOSSOM_TEA,
     }
-    
-    public RecipeEnum[] getItemsInRecipe(RecipeEnum recipe)
+
+    public class RecipeTypeCount
     {
-        RecipeEnum[] items = new RecipeEnum[3];
-        RecipeEnum item1 = Recipes.RecipeEnum.NONE;
-        RecipeEnum item2 = Recipes.RecipeEnum.NONE;
-        RecipeEnum item3 = Recipes.RecipeEnum.NONE;
+        public Recipes.RecipeEnum type;
+        public int count;
+    }
+
+    public RecipeTypeCount[] getItemsInRecipe(RecipeEnum recipe)
+    {
+        RecipeTypeCount[] items = new RecipeTypeCount[3];
+        RecipeTypeCount typeCount1 = new RecipeTypeCount();
+        RecipeTypeCount typeCount2 = new RecipeTypeCount();
+        RecipeTypeCount typeCount3 = new RecipeTypeCount();
+        RecipeEnum type1 = Recipes.RecipeEnum.NONE;
+        RecipeEnum type2 = Recipes.RecipeEnum.NONE;
+        RecipeEnum type3 = Recipes.RecipeEnum.NONE;
+        int count1 = 1;
+        int count2 = 1;
+        int count3 = 1;
         if (recipe == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
         {
-            item1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
-            item2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
-            item3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
+            type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
+            type2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
+            type3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
+            count1 = 1;
+            count2 = 2;
+            count3 = 2;
             Debug.Log("in rainbow refractor");
-            Debug.Log(item1);
-            Debug.Log(item2);
-            Debug.Log(item3);
         }
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
-            item1 = Recipes.RecipeEnum.GOLDEN_APPLE;
-            item2 = Recipes.RecipeEnum.LOFTY_LEMON;
-            item3 = Recipes.RecipeEnum.TEA_LEAF;
+            type1 = Recipes.RecipeEnum.GOLDEN_APPLE;
+            type2 = Recipes.RecipeEnum.LOFTY_LEMON;
+            type3 = Recipes.RecipeEnum.TEA_LEAF;
+            count1 = 10;
+            count2 = 25;
+            count3 = 2;
         }
-        items[0] = item1;
-        items[1] = item2;
-        items[2] = item3;
+
+        typeCount1.type = type1;
+        typeCount2.type = type2;
+        typeCount3.type = type3;
+        typeCount1.count = count1;
+        typeCount2.count = count2;
+        typeCount3.count = count3;
+        items[0] = typeCount1;
+        items[1] = typeCount2;
+        items[2] = typeCount3;
         return items;
     }
 
     public bool CheckRecipe(RecipeEnum recipe, Item slot1, Item slot2, Item slot3)
     {
-        RecipeEnum[] items = getItemsInRecipe(recipe);
+        RecipeTypeCount[] items = getItemsInRecipe(recipe);
 
-        Debug.Log(items[0]);
-        Debug.Log(slot1);
-        Debug.Log(items[1]);
-        Debug.Log(slot2);
-        Debug.Log(items[2]);
-        Debug.Log(slot3);
+        Debug.Log(items[0].type);
+        Debug.Log(slot1.type);
+        Debug.Log(items[1].type);
+        Debug.Log(slot2.type);
+        Debug.Log(items[2].type);
+        Debug.Log(slot3.type);
 
-        if (items[0] == slot1.type && items[1] == slot2.type && items[2] == slot3.type)
+        Debug.Log(items[0].count);
+        Debug.Log(slot1.count);
+        Debug.Log(items[1].count);
+        Debug.Log(slot2.count);
+        Debug.Log(items[2].count);
+        Debug.Log(slot3.count);
+
+        if (items[0].type == slot1.type && items[1].type == slot2.type && items[2].type == slot3.type)
         {
-            return true;
+            if (items[0].count <= slot1.count && items[1].count <= slot2.count && items[2].count <= slot3.count)
+            {
+                return true;
+            }
         }
         return false;
     }

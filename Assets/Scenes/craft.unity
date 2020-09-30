@@ -1207,7 +1207,7 @@ GameObject:
   - component: {fileID: 105541184}
   - component: {fileID: 105541183}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3168,30 +3168,6 @@ MonoBehaviour:
   item3: {fileID: 773392058}
   inventoryPanel: {fileID: 111475431}
   inventoryContent: {fileID: 1600410915}
-  capricornValueText: {fileID: 1493256112}
-  capricornRequiredText: {fileID: 2106193606}
-  aquariusValueText: {fileID: 1768270014}
-  aquariusRequiredText: {fileID: 199651099}
-  piscesValueText: {fileID: 1803985367}
-  piscesRequiredText: {fileID: 577702921}
-  ariesValueText: {fileID: 1424129776}
-  ariesRequiredText: {fileID: 2001130240}
-  taurusValueText: {fileID: 1109567608}
-  taurusRequiredText: {fileID: 1235598828}
-  geminiValueText: {fileID: 560514711}
-  geminiRequiredText: {fileID: 1723867844}
-  cancerValueText: {fileID: 1825865436}
-  cancerRequiredText: {fileID: 1714467030}
-  leoValueText: {fileID: 1630719126}
-  leoRequiredText: {fileID: 957670468}
-  virgoValueText: {fileID: 1897843251}
-  virgoRequiredText: {fileID: 1806002456}
-  libraValueText: {fileID: 1896852196}
-  libraRequiredText: {fileID: 1140212251}
-  scorpioValueText: {fileID: 1043358661}
-  scorpioRequiredText: {fileID: 223145662}
-  sagittariusValueText: {fileID: 1803688765}
-  sagittariusRequiredText: {fileID: 65865140}
 --- !u!4 &295276682
 Transform:
   m_ObjectHideFlags: 0
@@ -7419,23 +7395,12 @@ MonoBehaviour:
   type: 0
   title: 
   image: {fileID: 0}
-  count: {fileID: 1689315283}
+  count: 0
+  displayCount: {fileID: 1689315283}
   displayText: {fileID: 1307086810}
   displayImage: {fileID: 759170506}
   available: 0
   originalRef: {fileID: 0}
-  capricorn: 0
-  aquarius: 0
-  pisces: 0
-  aries: 0
-  taurus: 0
-  gemini: 0
-  cancer: 0
-  leo: 0
-  virgo: 0
-  libra: 0
-  scorpio: 0
-  sagittarius: 0
 --- !u!4 &773798595
 Transform:
   m_ObjectHideFlags: 0
@@ -9886,23 +9851,12 @@ MonoBehaviour:
   type: 0
   title: 
   image: {fileID: 0}
-  count: {fileID: 1786770866}
+  count: 0
+  displayCount: {fileID: 1786770866}
   displayText: {fileID: 2028060879}
   displayImage: {fileID: 763771303}
   available: 0
   originalRef: {fileID: 0}
-  capricorn: 0
-  aquarius: 0
-  pisces: 0
-  aries: 0
-  taurus: 0
-  gemini: 0
-  cancer: 0
-  leo: 0
-  virgo: 0
-  libra: 0
-  scorpio: 0
-  sagittarius: 0
 --- !u!1 &1064971818
 GameObject:
   m_ObjectHideFlags: 0
@@ -10896,7 +10850,7 @@ GameObject:
   - component: {fileID: 1149289171}
   - component: {fileID: 1149289170}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12406,7 +12360,7 @@ GameObject:
   - component: {fileID: 1307086811}
   - component: {fileID: 1307086810}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13504,23 +13458,12 @@ MonoBehaviour:
   type: 0
   title: 
   image: {fileID: 0}
-  count: {fileID: 105541183}
+  count: 0
+  displayCount: {fileID: 105541183}
   displayText: {fileID: 1149289170}
   displayImage: {fileID: 1285021494}
   available: 0
   originalRef: {fileID: 0}
-  capricorn: 0
-  aquarius: 0
-  pisces: 0
-  aries: 0
-  taurus: 0
-  gemini: 0
-  cancer: 0
-  leo: 0
-  virgo: 0
-  libra: 0
-  scorpio: 0
-  sagittarius: 0
 --- !u!1 &1448793336
 GameObject:
   m_ObjectHideFlags: 0
@@ -45176,7 +45119,7 @@ GameObject:
   - component: {fileID: 1689315284}
   - component: {fileID: 1689315283}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46468,7 +46411,7 @@ GameObject:
   - component: {fileID: 1786770867}
   - component: {fileID: 1786770866}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: count
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53972,7 +53915,7 @@ GameObject:
   - component: {fileID: 2028060880}
   - component: {fileID: 2028060879}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,8 +9,8 @@ public class Item : MonoBehaviour
     public Recipes.RecipeEnum type;
     public string title;
     public Sprite image;
-    
-    public TextMeshProUGUI count;
+    public int count;
+    public TextMeshProUGUI displayCount;
     public TextMeshProUGUI displayText;
     public Image displayImage;
     public bool available;
@@ -79,6 +79,10 @@ public class Item : MonoBehaviour
         if (displayImage != null)
         {
             displayImage.sprite = image;
+        }
+        if (displayCount != null && count > 0)
+        {
+            displayCount.text = count.ToString();
         }
     }
 }

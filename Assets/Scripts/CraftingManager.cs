@@ -34,11 +34,13 @@ public class CraftingManager : MonoBehaviour
             // show the item in the slot if not already there...
             // show the count of the item in the slot
             //itemSlot.GetComponent<Item>().image = item.GetComponent<Item>().image;
-            string countStr = itemSlot.GetComponent<Item>().count.text;
+            //string countStr = itemSlot.GetComponent<Item>().count.text;
             // update the mixing values
-            int.TryParse(countStr, out int count);
+            //int.TryParse(countStr, out int count);
+            int count = itemSlot.GetComponent<Item>().count;
             count++;
-            itemSlot.GetComponent<Item>().count.text = count.ToString();
+            itemSlot.GetComponent<Item>().count = count;
+            //itemSlot.GetComponent<Item>().count.text = count.ToString();
 
             // mark inventory item unavailable
             //item.GetComponent<Item>().available = false;
@@ -111,9 +113,9 @@ public class CraftingManager : MonoBehaviour
                 Destroy(itemChild3.gameObject);
             }
         }
-        item1.GetComponent<Item>().count.text = "";
-        item2.GetComponent<Item>().count.text = "";
-        item3.GetComponent<Item>().count.text = "";
+        item1.GetComponent<Item>().count = 0;
+        item2.GetComponent<Item>().count = 0;
+        item3.GetComponent<Item>().count = 0;
     }
 
     public void ShowFilteredInventory(GameObject obj)
