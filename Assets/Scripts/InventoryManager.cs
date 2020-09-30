@@ -15,9 +15,6 @@ public class InventoryManager : MonoBehaviour
     public GameObject craftPanel;
     public GameObject resultPanel;
 
-    [Header("Recipe Panel")]
-    // things in the recipe panel
-
     [Header("Crafting Panel")]
     // items in the mix panel
     public Item item;
@@ -38,81 +35,51 @@ public class InventoryManager : MonoBehaviour
     void Start()
     {
         Item myItem1 = Instantiate(item);
-        myItem1.title = "Rainbow Stardust";
-        myItem1.aquarius = 9;
-        myItem1.capricorn = 3;
+        myItem1.setItem(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
         myItem1.gameObject.transform.parent = gameObject.transform;
         Item myItem2 = Instantiate(item);
-        myItem2.title = "Red Gemstone";
-        myItem2.scorpio = 2;
-        myItem2.capricorn = 3;
+        myItem2.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE);
+
         myItem2.gameObject.transform.parent = gameObject.transform;
         Item myItem3 = Instantiate(item);
-        myItem3.title = "Red Gemstone";
-        myItem3.scorpio = 3;
-        myItem3.capricorn = 3;
+        myItem3.setItem(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
+        
         myItem3.gameObject.transform.parent = gameObject.transform;
         Item myItem4 = Instantiate(item);
-        myItem4.title = "Red Gemstone";
-        myItem4.scorpio = 2;
-        myItem4.capricorn = 4;
+        myItem4.setItem(Recipes.RecipeEnum.TEA_LEAF);
+        
         myItem4.gameObject.transform.parent = gameObject.transform;
         Item myItem5 = Instantiate(item);
-        myItem5.title = "Rainbow Stardust";
-        myItem5.aquarius = 8;
-        myItem5.capricorn = 3;
-        myItem5.aquarius = 1;
+        myItem5.setItem(Recipes.RecipeEnum.SAKURA_BLOSSOMS);
+
         myItem5.gameObject.transform.parent = gameObject.transform;
         Item myItem6 = Instantiate(item);
-        myItem6.title = "Orange Brush";
-        myItem6.aquarius = 8;
-        myItem6.capricorn = 3;
-        myItem6.aquarius = 1;
+        myItem6.setItem(Recipes.RecipeEnum.SAKURA_BLOSSOMS);
+
         myItem6.gameObject.transform.parent = gameObject.transform;
         Item myItem7 = Instantiate(item);
-        myItem7.title = "Rainbow Stardust";
-        myItem7.scorpio = 8;
-        myItem7.capricorn = 3;
+        myItem7.setItem(Recipes.RecipeEnum.SAKURA_BLOSSOMS);
+
         myItem7.gameObject.transform.parent = gameObject.transform;
         Item myItem8 = Instantiate(item);
-        myItem8.title = "Orange Brush";
-        myItem8.aquarius = 8;
-        myItem8.capricorn = 3;
-        myItem8.aquarius = 1;
+        myItem8.setItem(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
+
         myItem8.gameObject.transform.parent = gameObject.transform;
         Item myItem9 = Instantiate(item);
-        myItem9.title = "Glorious Arrow";
-        myItem9.aquarius = 8;
-        myItem9.capricorn = 3;
-        myItem9.aquarius = 1;
+        myItem9.setItem(Recipes.RecipeEnum.LOFTY_LEMON);
+        
         myItem9.gameObject.transform.parent = gameObject.transform;
 
-        for (int i=0; i < 150; i++)
+        for (int i=0; i < 50; i++)
         {
             Item myItem = Instantiate(item);
-            myItem.title = "Glorious Arrow";
-            myItem.aquarius = 8;
-            myItem.capricorn = 3;
-            myItem.aquarius = 1;
+            myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP);
+           
             myItem.gameObject.transform.parent = gameObject.transform;
         }
     }
 
-    public void OpenRecipes(string recipe)
-    {
-      //  recipePanel.SetActive(true);
-        
-    }
 
-    public void OpenRecipe(string recipe)
-    {
-        // remove any panels for crafting
-        inventoryPanel.SetActive(false);
-        craftPanel.SetActive(false);
-        resultPanel.SetActive(false);
-        //  recipePanel.SetActive(false);
-        //  craftPanel.SetActive(true);
-    }
 
     public void ShowInventory()
     {
@@ -150,7 +117,7 @@ public class InventoryManager : MonoBehaviour
             {
                 Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
                 Item newItem = Instantiate(myItem);
-            
+                newItem.setItem(myItem.type);
                 newItem.originalRef = myItem;
             
                 newItem.gameObject.transform.parent = inventoryContent.transform;

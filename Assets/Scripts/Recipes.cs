@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Recipes : MonoBehaviour
 {
-    public enum Recipe
+    public enum RecipeEnum
     {
+        MIRROR_CELESTINE,
+        RAINBOW_DEWDROP,
+        SAKURA_BLOSSOMS,
+        RAINBOW_REFRACTOR,
+        GOLDEN_APPLE,
+        LOFTY_LEMON,
+        TEA_LEAF,
+        APPLEBLOSSOM_TEA,
         SUPER_DUPER_CRYSTAL,
         ITEM1,
         ITEM2,
@@ -18,7 +26,7 @@ public class Recipes : MonoBehaviour
         int cancerValue, int leoValue, int virgoValue, 
         int libraValue, int scorpioValue, int sagittariusValue)
     {
-        if (recipe.Equals(Recipes.Recipe.SUPER_DUPER_CRYSTAL.ToString()))
+        if (recipe.Equals(Recipes.RecipeEnum.SUPER_DUPER_CRYSTAL.ToString()))
         {
             if (capricornValue >= 10 && aquariusValue >= 10)
             {
@@ -27,16 +35,24 @@ public class Recipes : MonoBehaviour
             }
             return false;
         }
-        if (recipe.Equals(Recipes.Recipe.ITEM1.ToString()))
+        if (recipe.Equals(Recipes.RecipeEnum.ITEM1.ToString()))
         {
             Debug.Log("mixing up item1");
             return true;
         }
-        if (recipe.Equals(Recipes.Recipe.ITEM2.ToString()))
+        if (recipe.Equals(Recipes.RecipeEnum.ITEM2.ToString()))
         {
 
         }
-        if (recipe.Equals(Recipes.Recipe.ITEM3.ToString()))
+        if (recipe.Equals(Recipes.RecipeEnum.ITEM3.ToString()))
+        {
+
+        }
+        if (recipe.Equals(Recipes.RecipeEnum.RAINBOW_REFRACTOR.ToString()))
+        {
+
+        }
+        if (recipe.Equals(Recipes.RecipeEnum.APPLEBLOSSOM_TEA.ToString()))
         {
 
         }

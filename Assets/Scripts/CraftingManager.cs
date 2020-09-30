@@ -14,6 +14,7 @@ public class CraftingManager : MonoBehaviour
         public GameObject itemSlot;
     }
     public Recipes recipes;
+    public RecipeManager recipeManager;
     public InventoryManager inventoryManager;
 
     [Header("UI Panels")]
@@ -82,7 +83,7 @@ public class CraftingManager : MonoBehaviour
         
     }
 
-    public void OpenRecipe(string recipe)
+    public void OpenRecipe(Recipes.RecipeEnum type)
     {
         recipePanel.SetActive(false);
         // set the last action in your stack
@@ -91,6 +92,8 @@ public class CraftingManager : MonoBehaviour
 
         lastAction.Push(action);
         craftPanel.SetActive(true);
+
+        // open type recipe
     }
     
     public void OpenItem(GameObject obj)
@@ -310,6 +313,7 @@ public class CraftingManager : MonoBehaviour
         {
             inventoryPanel.SetActive(false);
             recipePanel.SetActive(true);
+            recipeManager.ShowRecipes();
         }
     }
 
@@ -344,6 +348,7 @@ public class CraftingManager : MonoBehaviour
             {
                 //list.Add(myItem.gameObject);
                 Item newItem = Instantiate(myItem);
+                newItem.setItem(myItem.type);
                 //myItem.available = true;
                 newItem.originalRef = myItem;
                 newItem.GetComponent<Button>().onClick.AddListener(
