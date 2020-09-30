@@ -5,17 +5,16 @@ using UnityEngine.UI;
 
 public class RecipeManager : MonoBehaviour
 {
-    // public InventoryManager inventoryManager;
-    // public CraftingManager craftingManager;
+    [Header("Recipe Panel")]
+    // items in the recipes panel
     public GameObject recipeContent;
     public PanelManager panelManager;
     public Recipe recipe;
+    public Recipes recipes;
     public Recipes.RecipeEnum currentRecipe;
-    
-
-    //[Header("Recipe Panel")]
-    // things in the recipe panel
-
+    public GameObject item1;
+    public GameObject item2;
+    public GameObject item3;
 
     void Start()
     {
@@ -63,6 +62,15 @@ public class RecipeManager : MonoBehaviour
             newRecipe.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             newRecipe.gameObject.transform.localPosition = new Vector2((column * 255f) - 125f, -(row * 255f) + 120f);
         }
+    }
+
+    public void ShowRecipeItems()
+    {
+        // slot1 and slot2 ch;ange
+        Recipes.RecipeEnum[] items = recipes.getItemsInRecipe(currentRecipe);
+        item1.GetComponent<Item>().setItem(items[0]);
+        item2.GetComponent<Item>().setItem(items[1]);
+        item3.GetComponent<Item>().setItem(items[2]);
     }
 
     public void setCurrentRecipe(Recipes.RecipeEnum type)

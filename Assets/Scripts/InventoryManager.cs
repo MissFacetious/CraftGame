@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
 {
     public Recipes recipes;
 
-    [Header("Crafting Panel")]
+    [Header("Inventory Panel")]
     // items in the mix panel
     public Item item;
     public GameObject item1;
@@ -17,13 +17,6 @@ public class InventoryManager : MonoBehaviour
     public GameObject item3;
     public GameObject inventoryPanel;
     public GameObject inventoryContent;
-
-    public enum ActionTaken
-    {
-        OPEN_RECIPE,
-        ADDED_ITEM,
-        OPEN_ITEM,
-    }
     
     // Start is called before the first frame update
     void Start()

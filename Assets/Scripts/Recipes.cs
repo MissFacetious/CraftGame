@@ -6,6 +6,7 @@ public class Recipes : MonoBehaviour
 {
     public enum RecipeEnum
     {
+        NONE,
         MIRROR_CELESTINE,
         RAINBOW_DEWDROP,
         SAKURA_BLOSSOMS,
@@ -14,50 +15,49 @@ public class Recipes : MonoBehaviour
         LOFTY_LEMON,
         TEA_LEAF,
         APPLEBLOSSOM_TEA,
-        SUPER_DUPER_CRYSTAL,
-        ITEM1,
-        ITEM2,
-        ITEM3
     }
     
-    public bool CheckRecipe(RecipeEnum recipe, 
-        int capricornValue, int aquariusValue, int piscesValue,
-        int ariesValue, int taurusValue, int geminiValue,
-        int cancerValue, int leoValue, int virgoValue, 
-        int libraValue, int scorpioValue, int sagittariusValue)
+    public RecipeEnum[] getItemsInRecipe(RecipeEnum recipe)
     {
-        if (recipe.Equals(Recipes.RecipeEnum.SUPER_DUPER_CRYSTAL.ToString()))
-        {
-            if (capricornValue >= 10 && aquariusValue >= 10)
-            {
-                Debug.Log("mixing up super duper crystal");
-                return true;
-            }
-            return false;
-        }
-        if (recipe == Recipes.RecipeEnum.ITEM1)
-        {
-            Debug.Log("mixing up item1");
-            return true;
-        }
-        if (recipe == Recipes.RecipeEnum.ITEM2)
-        {
-            Debug.Log("mixing up item1");
-            return true;
-        }
-        if (recipe == Recipes.RecipeEnum.ITEM3)
-        {
-            Debug.Log("mixing up item1");
-            return true;
-        }
+        RecipeEnum[] items = new RecipeEnum[3];
+        RecipeEnum item1 = Recipes.RecipeEnum.NONE;
+        RecipeEnum item2 = Recipes.RecipeEnum.NONE;
+        RecipeEnum item3 = Recipes.RecipeEnum.NONE;
         if (recipe == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
         {
-            Debug.Log("mixing up rainbow refractor");
-            return true;
+            item1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
+            item2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
+            item3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
+            Debug.Log("in rainbow refractor");
+            Debug.Log(item1);
+            Debug.Log(item2);
+            Debug.Log(item3);
         }
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
-            Debug.Log("mixing up appleblossom tea");
+            item1 = Recipes.RecipeEnum.GOLDEN_APPLE;
+            item2 = Recipes.RecipeEnum.LOFTY_LEMON;
+            item3 = Recipes.RecipeEnum.TEA_LEAF;
+        }
+        items[0] = item1;
+        items[1] = item2;
+        items[2] = item3;
+        return items;
+    }
+
+    public bool CheckRecipe(RecipeEnum recipe, Item slot1, Item slot2, Item slot3)
+    {
+        RecipeEnum[] items = getItemsInRecipe(recipe);
+
+        Debug.Log(items[0]);
+        Debug.Log(slot1);
+        Debug.Log(items[1]);
+        Debug.Log(slot2);
+        Debug.Log(items[2]);
+        Debug.Log(slot3);
+
+        if (items[0] == slot1.type && items[1] == slot2.type && items[2] == slot3.type)
+        {
             return true;
         }
         return false;

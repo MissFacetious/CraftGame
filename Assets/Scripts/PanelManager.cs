@@ -33,10 +33,7 @@ public class PanelManager : MonoBehaviour
     public RecipeManager recipeManager;
     public CraftingManager craftingManager;
 
-   
-
     Stack<Action> lastAction = new Stack<Action>();
-
 
     public void ShowInventoryPanel()
     {
@@ -97,6 +94,7 @@ public class PanelManager : MonoBehaviour
 
         // open type recipe
         recipeManager.setCurrentRecipe(type);
+        recipeManager.ShowRecipeItems();
     }
 
     public void OpenItemPanel(GameObject obj)
@@ -181,7 +179,7 @@ public class PanelManager : MonoBehaviour
                 inventoryPanel.SetActive(false);
             }
         }
-        craftingManager.UpdateValues();
+        //craftingManager.UpdateValues();
     }
 
     // Update is called once per frame

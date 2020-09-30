@@ -16,21 +16,6 @@ public class Item : MonoBehaviour
     public bool available;
     public Item originalRef;
 
-    public int capricorn;
-    public int aquarius;
-    public int pisces;
-    public int aries;
-    public int taurus;
-    public int gemini;
-    public int cancer;
-    public int leo;
-    public int virgo;
-    public int libra;
-    public int scorpio;
-    public int sagittarius;
-
-
-
     // Start is called before the first frame update
     void Start()
     {
