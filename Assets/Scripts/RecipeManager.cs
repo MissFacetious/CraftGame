@@ -5,17 +5,13 @@ using UnityEngine.UI;
 
 public class RecipeManager : MonoBehaviour
 {
-    public InventoryManager inventoryManager;
-    public CraftingManager craftingManager;
+    // public InventoryManager inventoryManager;
+    // public CraftingManager craftingManager;
     public GameObject recipeContent;
+    public PanelManager panelManager;
     public Recipe recipe;
-
-    [Header("UI Panels")]
-    // panels to show at certain states
-    public GameObject recipePanel;
-    public GameObject craftPanel;
-    public GameObject resultPanel;
-    public GameObject inventoryPanel;
+    public Recipes.RecipeEnum currentRecipe;
+    
 
     //[Header("Recipe Panel")]
     // things in the recipe panel
@@ -53,8 +49,8 @@ public class RecipeManager : MonoBehaviour
             newRecipe.originalRef = myRecipe;
             newRecipe.GetComponent<Button>().onClick.AddListener(
                     delegate {
-                        OpenRecipe();
-                        craftingManager.OpenRecipe(newRecipe.type);
+                        currentRecipe = myRecipe.type;
+                        panelManager.OpenRecipePanel(myRecipe.type);
                     });
             newRecipe.gameObject.transform.parent = recipeContent.transform;
             // now move where it displays
@@ -69,20 +65,13 @@ public class RecipeManager : MonoBehaviour
         }
     }
 
-    public void OpenRecipe()
+    public void setCurrentRecipe(Recipes.RecipeEnum type)
     {
-        // remove any panels for crafting
-        inventoryPanel.SetActive(false);
-        recipePanel.SetActive(false);
-        craftPanel.SetActive(true);
-        resultPanel.SetActive(false);
-        //  recipePanel.SetActive(false);
-        //  craftPanel.SetActive(true);
+        currentRecipe = type;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Recipes.RecipeEnum getCurrentRecipe()
     {
-        
+        return currentRecipe;
     }
 }

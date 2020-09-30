@@ -7,24 +7,12 @@ using UnityEngine.InputSystem;
 
 public class CraftingManager : MonoBehaviour
 {
-    public class Action
-    {
-        public ActionTaken actionTaken;
-        public GameObject item;
-        public GameObject itemSlot;
-    }
+
     public Recipes recipes;
     public RecipeManager recipeManager;
     public InventoryManager inventoryManager;
-
-    [Header("UI Panels")]
-    // panels to show at certain states
-    public GameObject recipePanel;
-    public GameObject craftPanel;
-    public GameObject resultPanel;
-
-    [Header("Recipe Panel")]
-    // things in the recipe panel
+    public PanelManager panelManager;
+    public Button mixButton;
 
     [Header("Crafting Panel")]
     // items in the mix panel
@@ -60,57 +48,19 @@ public class CraftingManager : MonoBehaviour
     public TextMeshProUGUI sagittariusValueText;
     public TextMeshProUGUI sagittariusRequiredText;
 
-    [Header("Results Panel")]
-    // items in the result panel
-
-
-    Stack<Action> lastAction = new Stack<Action>();
 
     // zodiac bonus
 
 
 
-    public enum ActionTaken
-    {
-        OPEN_RECIPE,
-        ADDED_ITEM,
-        OPEN_ITEM,
-    }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    public void OpenRecipe(Recipes.RecipeEnum type)
-    {
-        recipePanel.SetActive(false);
-        // set the last action in your stack
-        Action action = new Action();
-        action.actionTaken = ActionTaken.OPEN_RECIPE;
-
-        lastAction.Push(action);
-        craftPanel.SetActive(true);
-
-        // open type recipe
-    }
-    
-    public void OpenItem(GameObject obj)
-    {
-        // open up inventory in recipe mixer
-        inventoryPanel.gameObject.SetActive(true);
-
-        showFilteredInventory(obj);
-        // set the last action in your stack
-        Action action = new Action();
-        action.actionTaken = ActionTaken.OPEN_ITEM;
-        
-        lastAction.Push(action);
-    }
-
     public void Select(GameObject item, GameObject itemSlot)
     {
+        mixButton.GetComponent<Button>().onClick.AddListener(
+            delegate {
+                panelManager.CraftPanel(recipeManager.getCurrentRecipe());
+            });
+
         if (item.GetComponent<Item>().available)
         {
             // show the item in the slot if not already there...
@@ -129,22 +79,12 @@ public class CraftingManager : MonoBehaviour
             item.transform.parent = itemSlot.transform;
             // make the item disapear from the render
             item.transform.localPosition = new Vector2(-500f, 0f);
-
-            // set the last action in your stack
-            Action action = new Action();
-            action.item = item;
-            action.itemSlot = itemSlot;
-            action.actionTaken = ActionTaken.ADDED_ITEM;
-
-            lastAction.Push(action);
-
-            // close the inventory panel
-            inventoryPanel.gameObject.SetActive(false);
         }
-    }   
+    }
 
-    public void Craft(string recipe)
+    public bool Craft(Recipes.RecipeEnum type)
     {
+        Debug.Log("craft");
         UpdateValues();
 
         // make new item and put into inventory
@@ -165,14 +105,14 @@ public class CraftingManager : MonoBehaviour
         int scorpioValue = getScorpio(i1) + getScorpio(i2) + getScorpio(i3);
         int sagittariusValue = getSagittarius(i1) + getSagittarius(i2) + getSagittarius(i3);
 
-        if (recipes.CheckRecipe(recipe, capricornValue, aquariusValue, piscesValue, ariesValue, taurusValue, geminiValue, 
+        if (recipes.CheckRecipe(type, capricornValue, aquariusValue, piscesValue, ariesValue, taurusValue, geminiValue,
             cancerValue, leoValue, virgoValue, libraValue, scorpioValue, sagittariusValue))
         {
             Item myItem = Instantiate(item);
-
+            /*
             var afterSpace = true;
             string formattedTitle = "";
-            for (int i=0; i < recipe.Length; i++)
+            for (int i = 0; i < recipe.Length; i++)
             {
                 if (recipe[i].ToString().Equals("_"))
                 {
@@ -190,8 +130,9 @@ public class CraftingManager : MonoBehaviour
                     afterSpace = false;
                 }
             }
-
-            myItem.title = formattedTitle;
+            */
+            //myItem.title = formattedTitle;
+            myItem.type = type;
             myItem.capricorn = capricornValue;
             myItem.aquarius = aquariusValue;
             myItem.pisces = piscesValue;
@@ -210,114 +151,52 @@ public class CraftingManager : MonoBehaviour
             // move new object into success panel view
             myItem.gameObject.transform.parent = inventoryManager.gameObject.transform;
             myItem.gameObject.transform.localPosition = Vector2.zero;
-
-            // show success panel
-            resultPanel.SetActive(true);
-            craftPanel.SetActive(false);
-
+            Debug.Log("success!");
+            return true;
         }
-        else
-        {
-            // show failure panel
-        }
-
-        // clear the last actions
-        lastAction.Clear();
+        return false;
     }
 
-    public void BackToRecipes()
+    public void DestroyRecipePanel()
     {
-        if (resultPanel.activeInHierarchy)
+        // if this came from mixing
+        // destroy the original inventory objects that were mixed
+        for (int i1 = 0; i1 < item1.transform.childCount; i1++)
         {
-            // if this came from mixing
-            // destroy the original inventory objects that were mixed
-            for (int i1 = 0; i1 < item1.transform.childCount; i1++)
+            Transform t1 = item1.transform.GetChild(i1);
+            Item itemChild1 = t1.gameObject.GetComponent<Item>();
+            if (itemChild1 != null)
             {
-                Transform t1 = item1.transform.GetChild(i1);
-                Item itemChild1 = t1.gameObject.GetComponent<Item>();
-                if (itemChild1 != null)
-                {
-                    Destroy(itemChild1.originalRef.gameObject);
-                    Destroy(itemChild1.gameObject);
-                }
+                Destroy(itemChild1.originalRef.gameObject);
+                Destroy(itemChild1.gameObject);
             }
-            for (int i2 = 0; i2 < item2.transform.childCount; i2++)
-            {
-                Transform t2 = item2.transform.GetChild(i2);
-                Item itemChild2 = t2.gameObject.GetComponent<Item>();
-                if (itemChild2 != null)
-                {
-                    Destroy(itemChild2.originalRef.gameObject);
-                    Destroy(itemChild2.gameObject);
-                }
-            }
-            for (int i3 = 0; i3 < item3.transform.childCount; i3++)
-            {
-                Transform t3 = item3.transform.GetChild(i3);
-                Item itemChild3 = t3.gameObject.GetComponent<Item>();
-                if (itemChild3 != null)
-                {
-                    Destroy(itemChild3.originalRef.gameObject);
-                    Destroy(itemChild3.gameObject);
-                }
-            }
-            item1.GetComponent<Item>().count.text = "";
-            item2.GetComponent<Item>().count.text = "";
-            item3.GetComponent<Item>().count.text = "";
-
-            resultPanel.SetActive(false);
         }
-        else if (craftPanel.activeInHierarchy)
+        for (int i2 = 0; i2 < item2.transform.childCount; i2++)
         {
-            // if this came from pressing back
-            // reset any values in Item1/Item2/Item3
-            for (int i1 = 0; i1 < item1.transform.childCount; i1++)
+            Transform t2 = item2.transform.GetChild(i2);
+            Item itemChild2 = t2.gameObject.GetComponent<Item>();
+            if (itemChild2 != null)
             {
-                Transform t1 = item1.transform.GetChild(i1);
-                Item itemChild1 = t1.gameObject.GetComponent<Item>();
-                if (itemChild1 != null)
-                {
-                    itemChild1.originalRef.GetComponent<Item>().available = true;
-                }
+                Destroy(itemChild2.originalRef.gameObject);
+                Destroy(itemChild2.gameObject);
             }
-            for (int i2 = 0; i2 < item2.transform.childCount; i2++)
-            {
-                Transform t2 = item2.transform.GetChild(i2);
-                Item itemChild2 = t2.gameObject.GetComponent<Item>();
-                if (itemChild2 != null)
-                {
-                    itemChild2.originalRef.GetComponent<Item>().available = true;
-                }
-            }
-            for (int i3 = 0; i3 < item3.transform.childCount; i3++)
-            {
-                Transform t3 = item3.transform.GetChild(i3);
-                Item itemChild3 = t3.gameObject.GetComponent<Item>();
-                if (itemChild3 != null)
-                {
-                    itemChild3.originalRef.GetComponent<Item>().available = true;
-                }
-            }
-            item1.GetComponent<Item>().count.text = "";
-            item2.GetComponent<Item>().count.text = "";
-            item3.GetComponent<Item>().count.text = "";
-
-            lastAction.Clear();
-            craftPanel.SetActive(false);
         }
-        else if (recipePanel.activeInHierarchy)
+        for (int i3 = 0; i3 < item3.transform.childCount; i3++)
         {
-            recipePanel.SetActive(false);
+            Transform t3 = item3.transform.GetChild(i3);
+            Item itemChild3 = t3.gameObject.GetComponent<Item>();
+            if (itemChild3 != null)
+            {
+                Destroy(itemChild3.originalRef.gameObject);
+                Destroy(itemChild3.gameObject);
+            }
         }
-        else
-        {
-            inventoryPanel.SetActive(false);
-            recipePanel.SetActive(true);
-            recipeManager.ShowRecipes();
-        }
+        item1.GetComponent<Item>().count.text = "";
+        item2.GetComponent<Item>().count.text = "";
+        item3.GetComponent<Item>().count.text = "";
     }
 
-    void showFilteredInventory(GameObject obj)
+    public void ShowFilteredInventory(GameObject obj)
     {
         // redraw the inventory panel
         foreach (Transform child in inventoryContent.transform)
@@ -353,7 +232,7 @@ public class CraftingManager : MonoBehaviour
                 newItem.originalRef = myItem;
                 newItem.GetComponent<Button>().onClick.AddListener(
                     delegate {
-                        Select(newItem.gameObject, obj);
+                        panelManager.SelectItemPanel(newItem.gameObject, obj);
                         UpdateValues();
                     });
                 newItem.gameObject.transform.parent = inventoryContent.transform;
@@ -420,7 +299,7 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    void UpdateValues()
+    public void UpdateValues()
     {
         Item i1 = item1.GetComponent<Item>();
         Item i2 = item2.GetComponent<Item>();
@@ -504,58 +383,5 @@ public class CraftingManager : MonoBehaviour
     int getSagittarius(Item item)
     {
         return item.sagittarius;
-    }
-    
-    public void Undo()
-    {
-        if (lastAction.Count > 0)
-        {
-            Action thisAction = lastAction.Pop();
-
-            if (thisAction.actionTaken.Equals(ActionTaken.OPEN_RECIPE))
-            {
-                craftPanel.SetActive(false);
-                recipePanel.SetActive(true);
-            }
-            if (thisAction.actionTaken.Equals(ActionTaken.ADDED_ITEM))
-            {
-                for (int i = 0; i < thisAction.itemSlot.transform.childCount; i++)
-                {
-                    Transform t = thisAction.itemSlot.transform.GetChild(i);
-                    Item itemChild = t.gameObject.GetComponent<Item>();
-                    
-                    if (itemChild != null)
-                    {
-                        if (thisAction.item.GetComponent<Item>().Equals(itemChild))
-                        {
-                            itemChild.originalRef.GetComponent<Item>().available = true;
-                            Destroy(itemChild.gameObject);
-                        }
-                    }
-                }
-                // then open inventory with the last touched slot
-                inventoryPanel.gameObject.SetActive(true);
-                showFilteredInventory(thisAction.itemSlot);
-            }
-            if (thisAction.actionTaken.Equals(ActionTaken.OPEN_ITEM))
-            {
-                inventoryPanel.SetActive(false);
-            }
-        }
-        UpdateValues();
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            BackToRecipes();
-        }
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Undo();
-        }
     }
 }

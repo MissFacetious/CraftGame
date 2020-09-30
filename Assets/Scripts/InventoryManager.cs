@@ -9,12 +9,6 @@ public class InventoryManager : MonoBehaviour
 {
     public Recipes recipes;
 
-    [Header("UI Panels")]
-    // panels to show at certain states
-    public GameObject recipePanel;
-    public GameObject craftPanel;
-    public GameObject resultPanel;
-
     [Header("Crafting Panel")]
     // items in the mix panel
     public Item item;
@@ -78,68 +72,43 @@ public class InventoryManager : MonoBehaviour
             myItem.gameObject.transform.parent = gameObject.transform;
         }
     }
-
-
-
+    
     public void ShowInventory()
     {
-        // remove any panels for crafting
-        recipePanel.SetActive(false);
-        craftPanel.SetActive(false);
-        resultPanel.SetActive(false);
-            
-        if (inventoryPanel.activeInHierarchy)
+        // redraw the inventory panel
+        foreach (Transform child in inventoryContent.transform)
         {
-            inventoryPanel.SetActive(false);
+            GameObject.Destroy(child.gameObject);
         }
-        else
+
+        // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
+        int rowCount = 0;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            inventoryPanel.SetActive(true);
-        
-            // redraw the inventory panel
-            foreach (Transform child in inventoryContent.transform)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-
-            // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
-            int rowCount = 0;
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-                rowCount++;
-            }
-
-            int row = 0;
-            int column = 0;
-            inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil(rowCount / 7) * 105 + 120f));
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-                Item newItem = Instantiate(myItem);
-                newItem.setItem(myItem.type);
-                newItem.originalRef = myItem;
-            
-                newItem.gameObject.transform.parent = inventoryContent.transform;
-                // now move where it displays
-                column++;
-                if (column % 7 == 1)
-                {
-                    row++;
-                    column = 1;
-                }
-                newItem.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-                newItem.gameObject.transform.localPosition = new Vector2((column * 105f) - 50f, -(row * 105f) + 45f);
-            }
+            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
+            rowCount++;
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        int row = 0;
+        int column = 0;
+        inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil(rowCount / 7) * 105 + 120f));
+        for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            ShowInventory();
+            Item myItem = gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
+            Item newItem = Instantiate(myItem);
+            newItem.setItem(myItem.type);
+            newItem.originalRef = myItem;
+
+            newItem.gameObject.transform.parent = inventoryContent.transform;
+            // now move where it displays
+            column++;
+            if (column % 7 == 1)
+            {
+                row++;
+                column = 1;
+            }
+            newItem.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+            newItem.gameObject.transform.localPosition = new Vector2((column * 105f) - 50f, -(row * 105f) + 45f);
         }
     }
 }

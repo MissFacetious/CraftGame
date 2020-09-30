@@ -164,7 +164,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &13746821
 GameObject:
@@ -394,7 +394,7 @@ RectTransform:
   m_Father: {fileID: 673853836}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.051407218}
+  m_AnchorMin: {x: 0, y: 0.05140721}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -661,6 +661,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &58191488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 58191490}
+  - component: {fileID: 58191489}
+  m_Layer: 0
+  m_Name: PanelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &58191489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58191488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f27b99762caf5641a1e2d737f2241bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 344334951}
+  smallInventoryPanel: {fileID: 111475431}
+  recipePanel: {fileID: 2032983257}
+  craftPanel: {fileID: 1222493309}
+  resultPanel: {fileID: 1996149631}
+  inventoryManager: {fileID: 1969557577}
+  recipeManager: {fileID: 481597334}
+  craftingManager: {fileID: 295276681}
+--- !u!4 &58191490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58191488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &65865138
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +877,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 13, y: 90.00001, z: 0}
 --- !u!81 &70083189
 AudioListener:
@@ -1473,7 +1524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &145604720
 AudioSource:
@@ -1653,8 +1704,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: Craft
+      - m_Target: {fileID: 58191489}
+        m_MethodName: CraftPanel
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2678,8 +2729,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: BackToRecipes
+      - m_Target: {fileID: 58191489}
+        m_MethodName: ShowRecipesPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3106,9 +3157,8 @@ MonoBehaviour:
   recipes: {fileID: 12380724}
   recipeManager: {fileID: 481597334}
   inventoryManager: {fileID: 1969557577}
-  recipePanel: {fileID: 2032983257}
-  craftPanel: {fileID: 1222493309}
-  resultPanel: {fileID: 1996149631}
+  panelManager: {fileID: 58191489}
+  mixButton: {fileID: 169572100}
   item: {fileID: 8492021282689188734}
   item1: {fileID: 1427359896}
   item2: {fileID: 1057546618}
@@ -3151,7 +3201,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295443861
 GameObject:
@@ -3536,8 +3586,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: BackToRecipes
+      - m_Target: {fileID: 58191489}
+        m_MethodName: ShowRecipesPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4852,7 +4902,7 @@ RectTransform:
   - {fileID: 5369712332182002511}
   - {fileID: 1313430804}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4961,13 +5011,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ae5aa7dc718a74c9a933a23905c0c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 1969557577}
   recipeContent: {fileID: 77566906}
+  panelManager: {fileID: 58191489}
   recipe: {fileID: 1313430808}
-  recipePanel: {fileID: 2032983257}
-  craftPanel: {fileID: 1222493309}
-  resultPanel: {fileID: 1996149631}
-  inventoryPanel: {fileID: 344334951}
+  currentRecipe: 0
 --- !u!4 &481597335
 Transform:
   m_ObjectHideFlags: 0
@@ -4980,7 +5027,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &486626644
 GameObject:
@@ -6293,8 +6340,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: Undo
+      - m_Target: {fileID: 58191489}
+        m_MethodName: UndoPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6693,8 +6740,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: BackToRecipes
+      - m_Target: {fileID: 58191489}
+        m_MethodName: UndoPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7153,8 +7200,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: OpenItem
+      - m_Target: {fileID: 58191489}
+        m_MethodName: OpenItemPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 773392058}
@@ -8636,7 +8683,7 @@ Transform:
   - {fileID: 1503579031}
   - {fileID: 1503652415}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &887081803
 GameObject:
@@ -9619,8 +9666,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: OpenItem
+      - m_Target: {fileID: 58191489}
+        m_MethodName: OpenItemPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1057546618}
@@ -12632,6 +12679,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &1345359244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5425753451988171171, guid: 219e0e3a47f82494fa3ea4c79695fc77,
+    type: 3}
+  m_PrefabInstance: {fileID: 128681266066531051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1356523787
 GameObject:
   m_ObjectHideFlags: 0
@@ -13156,8 +13209,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295276681}
-        m_MethodName: OpenItem
+      - m_Target: {fileID: 58191489}
+        m_MethodName: OpenItemPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1427359896}
@@ -44604,8 +44657,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1969557577}
-        m_MethodName: ShowInventory
+      - m_Target: {fileID: 58191489}
+        m_MethodName: ShowInventoryPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -52969,9 +53022,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes: {fileID: 12380724}
-  recipePanel: {fileID: 2032983257}
-  craftPanel: {fileID: 1222493309}
-  resultPanel: {fileID: 1996149631}
   item: {fileID: 8492021282689188734}
   item1: {fileID: 1427359896}
   item2: {fileID: 1057546618}
@@ -52990,7 +53040,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1981104599
 GameObject:
@@ -54494,8 +54544,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 33510431}
   m_HandleRect: {fileID: 33510430}
   m_Direction: 2
-  m_Value: 1.0000013
-  m_Size: 0.9485928
+  m_Value: 0.9999987
+  m_Size: 0.9485927
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -54823,7 +54873,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1969557577}
+      objectReference: {fileID: 58191489}
+    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectItemPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1345359244}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 219e0e3a47f82494fa3ea4c79695fc77, type: 3}
 --- !u!224 &5369712332182002511 stripped
@@ -55309,11 +55384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 481597334}
+      objectReference: {fileID: 58191488}
     - target: {fileID: 5679330463920980385, guid: 17e88d9c010b4444394edc43abb4913e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenRecipe
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5679330463920980385, guid: 17e88d9c010b4444394edc43abb4913e,
         type: 3}
@@ -55436,7 +55511,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 128681266066531051}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1345359244}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 630df2e36df742d4dbcf0098f2d334e3, type: 3}

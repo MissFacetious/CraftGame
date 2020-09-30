@@ -20,7 +20,7 @@ public class Recipes : MonoBehaviour
         ITEM3
     }
     
-    public bool CheckRecipe(string recipe, 
+    public bool CheckRecipe(RecipeEnum recipe, 
         int capricornValue, int aquariusValue, int piscesValue,
         int ariesValue, int taurusValue, int geminiValue,
         int cancerValue, int leoValue, int virgoValue, 
@@ -35,26 +35,30 @@ public class Recipes : MonoBehaviour
             }
             return false;
         }
-        if (recipe.Equals(Recipes.RecipeEnum.ITEM1.ToString()))
+        if (recipe == Recipes.RecipeEnum.ITEM1)
         {
             Debug.Log("mixing up item1");
             return true;
         }
-        if (recipe.Equals(Recipes.RecipeEnum.ITEM2.ToString()))
+        if (recipe == Recipes.RecipeEnum.ITEM2)
         {
-
+            Debug.Log("mixing up item1");
+            return true;
         }
-        if (recipe.Equals(Recipes.RecipeEnum.ITEM3.ToString()))
+        if (recipe == Recipes.RecipeEnum.ITEM3)
         {
-
+            Debug.Log("mixing up item1");
+            return true;
         }
-        if (recipe.Equals(Recipes.RecipeEnum.RAINBOW_REFRACTOR.ToString()))
+        if (recipe == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
         {
-
+            Debug.Log("mixing up rainbow refractor");
+            return true;
         }
-        if (recipe.Equals(Recipes.RecipeEnum.APPLEBLOSSOM_TEA.ToString()))
+        if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
-
+            Debug.Log("mixing up appleblossom tea");
+            return true;
         }
         return false;
     }
