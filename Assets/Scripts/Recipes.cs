@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Recipes : MonoBehaviour
 {
+    public Sprite sprite;
     public enum RecipeEnum
     {
         NONE,
@@ -23,6 +26,54 @@ public class Recipes : MonoBehaviour
         public int count;
     }
 
+    public Tuple<string, Image> getItem(Recipes.RecipeEnum type)
+    {
+        GameObject obj = new GameObject();
+        Image image = obj.AddComponent<Image>();
+        string title = "";
+        if (type == Recipes.RecipeEnum.MIRROR_CELESTINE)
+        {
+            title = "Mirror Celestine";
+            image.sprite = Resources.Load<Sprite>("Icons/gem");
+        }
+        else if (type == Recipes.RecipeEnum.RAINBOW_DEWDROP)
+        {
+            title = "Rainbow Dewdrop";
+            image.sprite = Resources.Load<Sprite>("Icons/water-drop");
+        }
+        else if (type == Recipes.RecipeEnum.SAKURA_BLOSSOMS)
+        {
+            title = "Sakura Blossoms";
+            image.sprite = Resources.Load<Sprite>("Icons/cherry-blossom");
+        }
+        else if (type == Recipes.RecipeEnum.LOFTY_LEMON)
+        {
+            title = "Lofty Lemon";
+            image.sprite = Resources.Load<Sprite>("Icons/lemon");
+        }
+        else if (type == Recipes.RecipeEnum.TEA_LEAF)
+        {
+            title = "Tea Leaf";
+            image.sprite = Resources.Load<Sprite>("Icons/green-tea");
+        }
+        else if (type == Recipes.RecipeEnum.GOLDEN_APPLE)
+        {
+            title = "Golden Apple";
+            image.sprite = Resources.Load<Sprite>("Icons/apple");
+        }
+        else if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
+        {
+            title = "Rainbow Refractor";
+            image.sprite = Resources.Load<Sprite>("Icons/diaphragm");
+        }
+        else if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
+        {
+            title = "Appleblossom Tea";
+            image.sprite = Resources.Load<Sprite>("Icons/hot-cup");
+        }
+        return Tuple.Create(title, image);
+    }
+
     public RecipeTypeCount[] getItemsInRecipe(RecipeEnum recipe)
     {
         RecipeTypeCount[] items = new RecipeTypeCount[3];
@@ -40,10 +91,9 @@ public class Recipes : MonoBehaviour
             type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
             type2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
             type3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
-            count1 = 1;
-            count2 = 2;
+            count1 = 4;
+            count2 = 8;
             count3 = 2;
-            Debug.Log("in rainbow refractor");
         }
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
