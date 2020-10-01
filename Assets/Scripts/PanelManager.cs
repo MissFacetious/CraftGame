@@ -33,6 +33,7 @@ public class PanelManager : MonoBehaviour
     public RecipeManager recipeManager;
     public CraftingManager craftingManager;
 
+    public Animator mix;
     Stack<Action> lastAction = new Stack<Action>();
 
     public void ShowInventoryPanel()
@@ -127,6 +128,9 @@ public class PanelManager : MonoBehaviour
 
     public void CraftPanel(Recipes.RecipeEnum type)
     {
+        // kick off mixing animation
+        mix.SetTrigger("mix");
+        
         bool success = craftingManager.Craft(type);
         if (success)
         {

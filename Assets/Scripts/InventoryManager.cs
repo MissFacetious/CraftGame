@@ -52,12 +52,20 @@ public class InventoryManager : MonoBehaviour
         myItem8.setItem(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
 
         myItem8.gameObject.transform.parent = gameObject.transform;
+
         Item myItem9 = Instantiate(item);
         myItem9.setItem(Recipes.RecipeEnum.LOFTY_LEMON);
-        
         myItem9.gameObject.transform.parent = gameObject.transform;
 
-        for (int i=0; i < 50; i++)
+        Item myItem10 = Instantiate(item);
+        myItem10.setItem(Recipes.RecipeEnum.GOLDEN_APPLE);
+        myItem10.gameObject.transform.parent = gameObject.transform;
+
+        Item myItem11 = Instantiate(item);
+        myItem11.setItem(Recipes.RecipeEnum.GOLDEN_APPLE);
+        myItem11.gameObject.transform.parent = gameObject.transform;
+
+        for (int i=0; i < 10; i++)
         {
             Item myItem = Instantiate(item);
             myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP);

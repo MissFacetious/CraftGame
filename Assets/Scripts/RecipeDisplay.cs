@@ -17,6 +17,7 @@ public class RecipeDisplay : MonoBehaviour
     public Image image2;
     public Image image3;
     public string title;
+    public Image image;
     public RecipeManager recipeManager;
     public Recipes.RecipeEnum type;
     public int item1count;
@@ -32,21 +33,17 @@ public class RecipeDisplay : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateRecipe()
     {
         type = recipeManager.getCurrentRecipe();
-        if (displayText != null)
-        {
-            displayText.text = title;
-        }
+
         Tuple<string, Image> item = recipes.getItem(type);
+        Recipes.RecipeTypeCount[] recipeTypeCount = recipes.getItemsInRecipe(type);
         if (item != null)
         {
             title = item.Item1;
-            displayImage = item.Item2;
+            image = item.Item2;
         }
-        Recipes.RecipeTypeCount[] recipeTypeCount = recipes.getItemsInRecipe(type);
         if (recipeTypeCount.Length > 0 && recipeTypeCount[0].count > 0)
         {
             item1percent = (0.333333f * item1.count / recipeTypeCount[0].count);
@@ -57,10 +54,29 @@ public class RecipeDisplay : MonoBehaviour
             item2percent = (0.333333f * item2.count / recipeTypeCount[1].count);
             image2.GetComponent<Image>().fillAmount = item2percent;
         }
-        if (recipeTypeCount.Length > 2&& recipeTypeCount[2].count > 0)
+        if (recipeTypeCount.Length > 2 && recipeTypeCount[2].count > 0)
         {
             item3percent = (0.333333f * item3.count / recipeTypeCount[2].count);
             image3.GetComponent<Image>().fillAmount = item3percent;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        UpdateRecipe();
+        if (displayText != null)
+        {
+            displayText.text = title;
+        }
+        if (displayImage != null)
+        {
+            displayImage.sprite = image.sprite;
+        }
+
+        image1.GetComponent<Image>().fillAmount = item1percent;
+        image2.GetComponent<Image>().fillAmount = item2percent;
+        image3.GetComponent<Image>().fillAmount = item3percent;
+
     }
 }

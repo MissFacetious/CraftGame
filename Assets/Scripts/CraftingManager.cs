@@ -24,11 +24,13 @@ public class CraftingManager : MonoBehaviour
     
     public void Select(GameObject item, GameObject itemSlot)
     {
+        mixButton.onClick.RemoveAllListeners();
         mixButton.GetComponent<Button>().onClick.AddListener(
-            delegate {
-                panelManager.CraftPanel(recipeManager.getCurrentRecipe());
-            });
-
+                delegate
+                {
+                    panelManager.CraftPanel(recipeManager.getCurrentRecipe());
+                });
+        
         if (item.GetComponent<Item>().available)
         {
             // show the item in the slot if not already there...
@@ -54,9 +56,6 @@ public class CraftingManager : MonoBehaviour
 
     public bool Craft(Recipes.RecipeEnum type)
     {
-        Debug.Log("craft");
-        //UpdateValues();
-
         // make new item and put into inventory
         Item slot1 = item1.GetComponent<Item>();
         Item slot2 = item2.GetComponent<Item>();
@@ -64,15 +63,14 @@ public class CraftingManager : MonoBehaviour
         
         if (recipes.CheckRecipe(type, slot1, slot2, slot3))
         {
+            // make a new item and put into inventory!
             Item myItem = Instantiate(item);
             
             myItem.setItem(type);
             
             myItem.gameObject.transform.parent = inventoryManager.gameObject.transform;
-
-            // move new object into success panel view
-            myItem.gameObject.transform.parent = inventoryManager.gameObject.transform;
             myItem.gameObject.transform.localPosition = Vector2.zero;
+
             Debug.Log("success!");
             return true;
         }

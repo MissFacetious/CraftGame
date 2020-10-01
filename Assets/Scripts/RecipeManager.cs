@@ -28,7 +28,6 @@ public class RecipeManager : MonoBehaviour
 
     public void ShowRecipes()
     {
-        Debug.Log("show recipes");
         // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
         int rowCount = 0;
         for (int i = 0; i < gameObject.transform.childCount; i++)

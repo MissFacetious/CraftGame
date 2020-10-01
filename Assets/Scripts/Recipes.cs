@@ -6,7 +6,11 @@ using UnityEngine.UI;
 
 public class Recipes : MonoBehaviour
 {
-    public Sprite sprite;
+    // this is the file you can add recipe information to!
+    // add one recipe enum
+    // add a title and sprite
+    // add a recipe with three items with their numeric count
+    public Image image;
     public enum RecipeEnum
     {
         NONE,
@@ -20,6 +24,11 @@ public class Recipes : MonoBehaviour
         APPLEBLOSSOM_TEA,
     }
 
+    private void Start()
+    {
+        image = GetComponent<Image>();
+    }
+
     public class RecipeTypeCount
     {
         public Recipes.RecipeEnum type;
@@ -28,8 +37,6 @@ public class Recipes : MonoBehaviour
 
     public Tuple<string, Image> getItem(Recipes.RecipeEnum type)
     {
-        GameObject obj = new GameObject();
-        Image image = obj.AddComponent<Image>();
         string title = "";
         if (type == Recipes.RecipeEnum.MIRROR_CELESTINE)
         {
@@ -91,7 +98,7 @@ public class Recipes : MonoBehaviour
             type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
             type2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
             type3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
-            count1 = 4;
+            count1 = 1;
             count2 = 8;
             count3 = 2;
         }
@@ -120,20 +127,6 @@ public class Recipes : MonoBehaviour
     public bool CheckRecipe(RecipeEnum recipe, Item slot1, Item slot2, Item slot3)
     {
         RecipeTypeCount[] items = getItemsInRecipe(recipe);
-
-        Debug.Log(items[0].type);
-        Debug.Log(slot1.type);
-        Debug.Log(items[1].type);
-        Debug.Log(slot2.type);
-        Debug.Log(items[2].type);
-        Debug.Log(slot3.type);
-
-        Debug.Log(items[0].count);
-        Debug.Log(slot1.count);
-        Debug.Log(items[1].count);
-        Debug.Log(slot2.count);
-        Debug.Log(items[2].count);
-        Debug.Log(slot3.count);
 
         if (items[0].type == slot1.type && items[1].type == slot2.type && items[2].type == slot3.type)
         {
