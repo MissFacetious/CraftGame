@@ -1,27 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
-public class Item : MonoBehaviour
+public class Recipe : MonoBehaviour
 {
     public Recipes.RecipeEnum type;
-    public Recipes recipes;
     public string title;
     public Sprite image;
-    public int count;
-    public TextMeshProUGUI displayCount;
+
+    public TextMeshProUGUI count;
     public TextMeshProUGUI displayText;
     public Image displayImage;
-    public bool available;
-    public Item originalRef;
+    public Recipe originalRef;
 
     // Start is called before the first frame update
     void Start()
     {
-        available = true;
         if (displayText == null)
         {
             Debug.Log("map your text");
@@ -32,12 +28,19 @@ public class Item : MonoBehaviour
         }
     }
 
-    public void setItem(Recipes.RecipeEnum myType)
+    public void setRecipe(Recipes.RecipeEnum myType)
     {
-        Tuple<string, Image> item = recipes.getItem(myType);
-        title = item.Item1;
-        image = item.Item2.sprite;
         type = myType;
+        if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
+        {
+            title = "Rainbow Refractor";
+            image = Resources.Load<Sprite>("Icons/diaphragm");
+        }
+        else if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
+        {
+            title = "Appleblossom Tea";
+            image = Resources.Load<Sprite>("Icons/hot-cup");
+        }
     }
 
     // Update is called once per frame
@@ -50,10 +53,6 @@ public class Item : MonoBehaviour
         if (displayImage != null)
         {
             displayImage.sprite = image;
-        }
-        if (displayCount != null && count > 0)
-        {
-            displayCount.text = count.ToString();
         }
     }
 }
