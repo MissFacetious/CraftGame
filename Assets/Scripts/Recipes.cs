@@ -11,6 +11,7 @@ public class Recipes : MonoBehaviour
     // add a title and sprite
     // add a recipe with three items with their numeric count
     public Image image;
+
     public enum RecipeEnum
     {
         NONE,
@@ -75,7 +76,7 @@ public class Recipes : MonoBehaviour
         }
         else if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
-            title = "Appleblossom Tea";
+            title = "Apple Blossom Tea";
             image.sprite = Resources.Load<Sprite>("Icons/hot-cup");
         }
         return Tuple.Create(title, image);
@@ -90,17 +91,17 @@ public class Recipes : MonoBehaviour
         RecipeEnum type1 = Recipes.RecipeEnum.NONE;
         RecipeEnum type2 = Recipes.RecipeEnum.NONE;
         RecipeEnum type3 = Recipes.RecipeEnum.NONE;
-        int count1 = 1;
-        int count2 = 1;
-        int count3 = 1;
+        int count1 = 10;
+        int count2 = 10;
+        int count3 = 10;
         if (recipe == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
         {
             type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
             type2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
             type3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
-            count1 = 1;
-            count2 = 8;
-            count3 = 2;
+            count1 = 11;
+            count2 = 18;
+            count3 = 12;
         }
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
@@ -109,7 +110,7 @@ public class Recipes : MonoBehaviour
             type3 = Recipes.RecipeEnum.TEA_LEAF;
             count1 = 10;
             count2 = 25;
-            count3 = 2;
+            count3 = 12;
         }
 
         typeCount1.type = type1;

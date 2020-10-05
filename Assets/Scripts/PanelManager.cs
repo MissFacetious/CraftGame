@@ -38,6 +38,7 @@ public class PanelManager : MonoBehaviour
 
     public void ShowInventoryPanel()
     {
+        craftingManager.HideFilteredInventory();
         // remove any panels for crafting
         recipePanel.SetActive(false);
         craftPanel.SetActive(false);
@@ -45,6 +46,7 @@ public class PanelManager : MonoBehaviour
 
         if (inventoryPanel.activeInHierarchy)
         {
+            inventoryManager.HideInventory();
             inventoryPanel.SetActive(false);
         }
         else
@@ -56,6 +58,9 @@ public class PanelManager : MonoBehaviour
 
     public void ShowRecipesPanel()
     {
+        craftingManager.HideFilteredInventory();
+        inventoryManager.HideInventory();
+
         if (resultPanel.activeInHierarchy)
         {
             craftingManager.DestroyRecipePanel();
@@ -81,6 +86,9 @@ public class PanelManager : MonoBehaviour
 
     public void OpenRecipePanel(Recipes.RecipeEnum type)
     {
+        craftingManager.HideFilteredInventory();
+        inventoryManager.HideInventory();
+
         inventoryPanel.SetActive(false);
         recipePanel.SetActive(false);
         craftPanel.SetActive(true);
@@ -100,7 +108,9 @@ public class PanelManager : MonoBehaviour
 
     public void OpenItemPanel(GameObject obj)
     {
+        inventoryManager.HideInventory();
         // open up inventory in recipe mixer
+        craftingManager.HideFilteredInventory();
         smallInventoryPanel.gameObject.SetActive(true);
 
         craftingManager.ShowFilteredInventory(obj);
@@ -113,6 +123,7 @@ public class PanelManager : MonoBehaviour
 
     public void SelectItemPanel(GameObject item, GameObject itemSlot)
     {
+        inventoryManager.HideInventory();
         craftingManager.Select(item, itemSlot);
         // set the last action in your stack
         Action action = new Action();
@@ -123,11 +134,14 @@ public class PanelManager : MonoBehaviour
         lastAction.Push(action);
 
         // close the inventory panel
+        craftingManager.HideFilteredInventory();
         smallInventoryPanel.gameObject.SetActive(false);
     }
 
     public void CraftPanel(Recipes.RecipeEnum type)
     {
+        inventoryManager.HideInventory();
+        craftingManager.HideFilteredInventory();
         // kick off mixing animation
         mix.SetTrigger("mix");
         
@@ -169,7 +183,7 @@ public class PanelManager : MonoBehaviour
                     {
                         if (thisAction.item.GetComponent<Item>().Equals(itemChild))
                         {
-                            itemChild.originalRef.GetComponent<Item>().available = true;
+                            //itemChild.originalRef.GetComponent<Item>().available = true;
                             Destroy(itemChild.gameObject);
                         }
                     }
