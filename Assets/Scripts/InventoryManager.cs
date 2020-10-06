@@ -25,10 +25,18 @@ public class InventoryManager : MonoBehaviour, IComparer
         Item myItem1 = Instantiate(item);
         myItem1.setItem(Recipes.RecipeEnum.APPLEBLOSSOM_TEA, false);
         myItem1.gameObject.transform.parent = gameObject.transform;
+
         Item myItem2 = Instantiate(item);
-        myItem2.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE, false);
+        myItem2.setItem(Recipes.RecipeEnum.TEA_LEAF, false);
         myItem2.gameObject.transform.parent = gameObject.transform;
-        
+
+        for (int i = 0; i < 21; i++)
+        {
+            Item myItem = Instantiate(item);
+            myItem.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE, false);
+            myItem.gameObject.transform.parent = gameObject.transform;
+        }
+
         for (int i = 0; i < 15; i++)
         {
             Item myItem = Instantiate(item);
@@ -74,17 +82,10 @@ public class InventoryManager : MonoBehaviour, IComparer
         myItem11.setItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
         myItem11.gameObject.transform.parent = gameObject.transform;
 
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 45; i++)
         {
             Item myItem = Instantiate(item);
             myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP, false);
-            myItem.gameObject.transform.parent = gameObject.transform;
-        }
-
-        for (int i = 0; i < 21; i++)
-        {
-            Item myItem = Instantiate(item);
-            myItem.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE, false);
             myItem.gameObject.transform.parent = gameObject.transform;
         }
     }
@@ -148,7 +149,6 @@ public class InventoryManager : MonoBehaviour, IComparer
             {
                 int count = 0;
                 inventoryMap.TryGetValue(AllTypes[i], out count);
-
                 // take this one type of item and bundle it based on bundles of 10
                 // these are accurate numbers for bundle and remaider
                 int bundles = Mathf.FloorToInt(count / 10);
@@ -161,22 +161,26 @@ public class InventoryManager : MonoBehaviour, IComparer
                     Item myItem = (Item)inventoryList[k];
                     if (myItem.type == (Recipes.RecipeEnum)AllTypes[i])
                     {
-                        if (bundles > 0 && amount == 0)
+                        if (myItem.inBundle())
+                        {
+                            bundledInventoryList.Add(myItem);
+                            amount = amount + 10;
+                        }
+                        else if (bundles > 0 && amount < (10 * bundles) && amount % 10 == 0)
                         {
                             myItem.bundle = true;
                             myItem.count = 10;
                             bundledInventoryList.Add(myItem);
-                            amount++;
                         }
-                        else if (bundles > 0 && amount < 10 * bundles)
+                        else if (bundles > 0 && amount < (10 * bundles))
                         {
                             Destroy(myItem.gameObject);
-                            amount++;
                         }
                         else
                         {
                             bundledInventoryList.Add(myItem);
                         }
+                        amount++;
                     }
                 }
             }
