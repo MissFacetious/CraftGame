@@ -74,10 +74,17 @@ public class InventoryManager : MonoBehaviour, IComparer
         myItem11.setItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
         myItem11.gameObject.transform.parent = gameObject.transform;
 
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 25; i++)
         {
             Item myItem = Instantiate(item);
             myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP, false);
+            myItem.gameObject.transform.parent = gameObject.transform;
+        }
+
+        for (int i = 0; i < 21; i++)
+        {
+            Item myItem = Instantiate(item);
+            myItem.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE, false);
             myItem.gameObject.transform.parent = gameObject.transform;
         }
     }
@@ -157,6 +164,7 @@ public class InventoryManager : MonoBehaviour, IComparer
                         if (bundles > 0 && amount == 0)
                         {
                             myItem.bundle = true;
+                            myItem.count = 10;
                             bundledInventoryList.Add(myItem);
                             amount++;
                         }

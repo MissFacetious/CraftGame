@@ -15,15 +15,12 @@ public class Item : MonoBehaviour
     public TextMeshProUGUI displayCount;
     public TextMeshProUGUI displayText;
     public Image displayImage;
-   // public bool available = true;
     public bool bundle = false;
     public GameObject displayBundleImage;
-    //public Item originalRef;
 
     // Start is called before the first frame update
     void Awake()
     {
-        //available = true;
         bundle = false;
         if (displayText == null)
         {

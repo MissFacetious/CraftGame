@@ -26,17 +26,12 @@ public class CraftingManager : MonoBehaviour
     {
         mixButton.onClick.RemoveAllListeners();
         mixButton.GetComponent<Button>().onClick.AddListener(
-                delegate
-                {
-                    panelManager.CraftPanel(recipeManager.getCurrentRecipe());
-                });
+            delegate
+            {
+                panelManager.CraftPanel(recipeManager.getCurrentRecipe());
+            });
 
-        int count = itemSlot.GetComponent<Item>().count;
-        if (item.GetComponent<Item>().inBundle())
-        {
-            count = count + 10;
-        }
-        count = count + 1;
+        int count = itemSlot.GetComponent<Item>().count + item.GetComponent<Item>().count;
         itemSlot.GetComponent<Item>().count = count;
 
         // move item into slot
@@ -141,6 +136,7 @@ public class CraftingManager : MonoBehaviour
             Item myItem = (Item)inventoryList[i];
             if (myItem.type == obj.GetComponent<Item>().type)
             {
+                myItem.GetComponent<Button>().onClick.RemoveAllListeners();
                 myItem.GetComponent<Button>().onClick.AddListener(
                 delegate {
                     panelManager.SelectItemPanel(myItem.gameObject, obj);

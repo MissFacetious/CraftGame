@@ -431,14 +431,12 @@ MonoBehaviour:
   recipes: {fileID: 0}
   title: 
   image: {fileID: 0}
-  count: 0
+  count: 1
   displayCount: {fileID: 0}
   displayText: {fileID: 5545134377176693667}
   displayImage: {fileID: 6052573445225386850}
-  available: 0
   bundle: 0
   displayBundleImage: {fileID: 1845213954}
-  originalRef: {fileID: 0}
 --- !u!1 &5464479692124345993
 GameObject:
   m_ObjectHideFlags: 0
