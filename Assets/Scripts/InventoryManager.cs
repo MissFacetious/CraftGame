@@ -28,7 +28,7 @@ public class InventoryManager : MonoBehaviour, IComparer
         Item myItem2 = Instantiate(item);
         myItem2.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE, false);
         myItem2.gameObject.transform.parent = gameObject.transform;
-
+        
         for (int i = 0; i < 15; i++)
         {
             Item myItem = Instantiate(item);
@@ -78,17 +78,17 @@ public class InventoryManager : MonoBehaviour, IComparer
         {
             Item myItem = Instantiate(item);
             myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP, false);
-
             myItem.gameObject.transform.parent = gameObject.transform;
         }
     }
 
-    // Calls CaseInsensitiveComparer.Compare on the monster name string.
+    // TODO the sorter does nothing
     int IComparer.Compare(System.Object x, System.Object y)
     {
         return ((new CaseInsensitiveComparer()).Compare(((GameObject)x).name, ((GameObject)y).name));
     }
 
+    // TODO the sorter does nothing
     public GameObject[] Sort()
     {
         ArrayList array = new ArrayList();
@@ -131,52 +131,49 @@ public class InventoryManager : MonoBehaviour, IComparer
             inventoryList.Add(gameObject.transform.GetChild(i).gameObject.GetComponent<Item>());
         }
 
-        Recipes.RecipeEnum[] AllTypesTemp = new Recipes.RecipeEnum[inventoryMap.Keys.Count];
-        inventoryMap.Keys.CopyTo(AllTypesTemp, 0);
-
-        ArrayList AllTypes = new ArrayList();
-        for (int i = 0; i < AllTypesTemp.Length; i++)
+        Recipes.RecipeEnum[] AllTypes = new Recipes.RecipeEnum[inventoryMap.Keys.Count];
+        ArrayList bundledInventoryList = new ArrayList();
+        inventoryMap.Keys.CopyTo(AllTypes, 0);
+        
+        for (int i = 0; i < AllTypes.Length; i++)
         {
-            if (AllTypesTemp[i] != Recipes.RecipeEnum.NONE)
+            if (AllTypes[i] != Recipes.RecipeEnum.NONE)
             {
                 int count = 0;
-                AllTypes.Add(AllTypesTemp[i]);
-                inventoryMap.TryGetValue(AllTypesTemp[i], out count);
+                inventoryMap.TryGetValue(AllTypes[i], out count);
 
                 // take this one type of item and bundle it based on bundles of 10
                 // these are accurate numbers for bundle and remaider
                 int bundles = Mathf.FloorToInt(count / 10);
-                int remainder = count % 10;
+                //int remainder = count % 10;
 
-                // grab 10 of that type, and destroy 9, bundle 1
-                for (int j = 0; j < bundles; j++)
+                // get this type of item from
+                int amount = 0;
+                for (int k = 0; k < inventoryList.Count; k++)
                 {
-                    // get this type of item from
-                    int amount = 0;
-                    for (int k = 0; k < inventoryList.Count; k++)
+                    Item myItem = (Item)inventoryList[k];
+                    if (myItem.type == (Recipes.RecipeEnum)AllTypes[i])
                     {
-                        Item myItem = (Item)inventoryList[k];
-                        if (!myItem.inBundle() && myItem.type == (Recipes.RecipeEnum)AllTypesTemp[i])
+                        if (bundles > 0 && amount == 0)
                         {
-                            Debug.Log("found same type");
-                            if (amount == 0)
-                            {
-                                myItem.bundle = true;
-                                inventoryList[k] = myItem;
-                                amount++;
-                            }
-                            else if (amount < 10)
-                            {
-                                inventoryList.RemoveAt(k);
-                                Destroy(myItem.gameObject);
-                                amount++;
-                            }
+                            myItem.bundle = true;
+                            bundledInventoryList.Add(myItem);
+                            amount++;
+                        }
+                        else if (bundles > 0 && amount < 10 * bundles)
+                        {
+                            Destroy(myItem.gameObject);
+                            amount++;
+                        }
+                        else
+                        {
+                            bundledInventoryList.Add(myItem);
                         }
                     }
                 }
             }
         }
-        return inventoryList;
+        return bundledInventoryList;
     }
 
     public void ShowInventory()
