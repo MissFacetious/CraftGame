@@ -7,7 +7,7 @@ using TMPro;
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
-    public Canvas playerCanvas;
+    public MenuActions menuActions;
     public Animator animator;
     public float rotationSmoothing = 0.05f;
     public float rotationSmoothingVelocity;
@@ -24,24 +24,12 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
-    private TextMeshProUGUI appleCount;
-    private int apples = 0;
-
     private void Awake()
     {
         if (playerCamera == null)
         {
             Debug.LogError("Camera not found.");
         }
-        if (playerCanvas == null)
-        {
-            Debug.LogError("Canvas not found.");
-        }
-        else
-        {
-            appleCount = playerCanvas.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        }
-        
     }
 
     // Start is called before the first frame update
@@ -96,8 +84,7 @@ public class PlayerController : MonoBehaviour
                 // this animation seems to slow down the game
                 animator.SetTrigger("collect");
                 apple.Collect(gameObject);
-                apples++;
-                appleCount.GetComponent<TextMeshProUGUI>().text = "Apples Collected: " + apples;
+                menuActions.increaseCurrentCounter();
             }
             else
             {
