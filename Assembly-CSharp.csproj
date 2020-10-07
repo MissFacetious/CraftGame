@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CraftingManager.cs" />
     <Compile Include="Assets\Scripts\DialogueInteractable.cs" />
+    <Compile Include="Assets\Scripts\HighlightedSelect.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Interactor.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />

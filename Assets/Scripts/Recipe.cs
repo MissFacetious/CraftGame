@@ -38,7 +38,7 @@ public class Recipe : MonoBehaviour
         }
         else if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
-            title = "Appleblossom Tea";
+            title = "Apple Blossom Tea";
             image = Resources.Load<Sprite>("Icons/hot-cup");
         }
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.EventSystems;
 
 public class Item : MonoBehaviour
 {
@@ -17,10 +18,13 @@ public class Item : MonoBehaviour
     public Image displayImage;
     public bool bundle = false;
     public GameObject displayBundleImage;
+    private Color originalTextColor;
+    private Color buttonHighlightColor = Color.white;
 
     // Start is called before the first frame update
     void Awake()
     {
+        originalTextColor = displayText.color;
         bundle = false;
         if (displayText == null)
         {
@@ -72,6 +76,6 @@ public class Item : MonoBehaviour
         else if (displayBundleImage != null)
         {
             displayBundleImage.gameObject.SetActive(false);
-        }        
+        }    
     }
 }

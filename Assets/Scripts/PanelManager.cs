@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PanelManager : MonoBehaviour
@@ -33,7 +34,17 @@ public class PanelManager : MonoBehaviour
     public RecipeManager recipeManager;
     public CraftingManager craftingManager;
 
+    [Header("Event System")]
+    public EventSystem eventSystem;
+    public GameObject filteredInventoryContent;
+    public GameObject recipeContent;
+    public GameObject inventoryContent;
+    public GameObject slot1;
+    public GameObject okayButton;
+
+    [Header("Animator")]
     public Animator mix;
+
     Stack<Action> lastAction = new Stack<Action>();
 
     public void ShowInventoryPanel()
@@ -53,6 +64,11 @@ public class PanelManager : MonoBehaviour
         {
             inventoryPanel.SetActive(true);
             inventoryManager.ShowInventory();
+        }
+        // move event system to first item in inventory
+        if (inventoryContent.transform.childCount > 0)
+        {
+            eventSystem.SetSelectedGameObject(inventoryContent.transform.GetChild(0).gameObject);
         }
     }
 
@@ -82,6 +98,11 @@ public class PanelManager : MonoBehaviour
             recipePanel.SetActive(true);
             recipeManager.ShowRecipes();
         }
+        // move event system to first item in recipes
+        if (recipeContent.transform.childCount > 0)
+        {
+            eventSystem.SetSelectedGameObject(recipeContent.transform.GetChild(0).gameObject);
+        }
     }
 
     public void OpenRecipePanel(Recipes.RecipeEnum type)
@@ -104,6 +125,9 @@ public class PanelManager : MonoBehaviour
         // open type recipe
         recipeManager.setCurrentRecipe(type);
         recipeManager.ShowRecipeItems();
+
+        // move event system to slot item1
+        eventSystem.SetSelectedGameObject(slot1);
     }
 
     public void OpenItemPanel(GameObject obj)
@@ -119,6 +143,12 @@ public class PanelManager : MonoBehaviour
         action.actionTaken = ActionTaken.OPEN_ITEM;
 
         lastAction.Push(action);
+
+        // move event system to first item in filtered inventory
+        if (filteredInventoryContent.transform.childCount > 0)
+        {
+            eventSystem.SetSelectedGameObject(filteredInventoryContent.transform.GetChild(0).gameObject);
+        }
     }
 
     public void SelectItemPanel(GameObject item, GameObject itemSlot)
@@ -136,6 +166,9 @@ public class PanelManager : MonoBehaviour
         // close the inventory panel
         craftingManager.HideFilteredInventory();
         smallInventoryPanel.gameObject.SetActive(false);
+
+        // move event system to slot it came from
+        eventSystem.SetSelectedGameObject(itemSlot);
     }
 
     public void CraftPanel(Recipes.RecipeEnum type)
@@ -158,6 +191,9 @@ public class PanelManager : MonoBehaviour
         }
         // clear the last actions
         lastAction.Clear();
+
+        // move event system to okay button on results panel
+        eventSystem.SetSelectedGameObject(okayButton);
     }
 
     public void UndoPanel()
