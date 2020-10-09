@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 
 public class MenuActions : MonoBehaviour
 {
+    public bool title = false;
     public EventSystem eventSystem;
     public GameObject firstButton;
+    public GameObject backButton;
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
 
@@ -21,7 +23,33 @@ public class MenuActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startClock();
+        if (title)
+        {
+            showMenu();
+        }
+        else
+        {
+            startClock();
+        }
+    }
+
+    public void showMenu()
+    {
+        GetComponent<Animator>().SetBool("menu", true);
+        GetComponent<Animator>().SetBool("credits", false);
+        eventSystem.SetSelectedGameObject(firstButton);
+    }
+
+    public void startGame()
+    {
+        GetComponent<Animator>().SetBool("menu", false);
+    }
+
+    public void showCredits()
+    {
+        GetComponent<Animator>().SetBool("credits", true);
+        GetComponent<Animator>().SetBool("menu", false);
+        eventSystem.SetSelectedGameObject(backButton); 
     }
 
     public void startClock()
@@ -44,9 +72,12 @@ public class MenuActions : MonoBehaviour
 
     public void showCountdown()
     {
-        int minutes = Mathf.FloorToInt(timeLeft / 60);
-        int seconds = Mathf.CeilToInt(timeLeft % 60);
-        timer.text = minutes + ":" + seconds;
+        if (timer)
+        {
+            int minutes = Mathf.FloorToInt(timeLeft / 60);
+            int seconds = Mathf.CeilToInt(timeLeft % 60);
+            timer.text = minutes + ":" + seconds;
+        }
     }
 
     public void increaseCurrentCounter()
@@ -83,20 +114,20 @@ public class MenuActions : MonoBehaviour
 
     void Update()
     {
-        if (countdown)
+        if (!title && countdown)
         {
             timeLeft -= Time.deltaTime;
             showCountdown();
         }
-        if (Keyboard.current.iKey.wasPressedThisFrame)
+        if (!title && Keyboard.current.iKey.wasPressedThisFrame)
         {
             //ShowInventoryPanel();
         }
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (!title && Keyboard.current.rKey.wasPressedThisFrame)
         {
             //ShowRecipesPanel();
         }
-        if (Keyboard.current.mKey.wasPressedThisFrame)
+        if (!title && Keyboard.current.mKey.wasPressedThisFrame)
         {
             bool menu = GetComponent<Animator>().GetBool("menu");
             GetComponent<Animator>().SetBool("menu", !menu);
