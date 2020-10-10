@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
@@ -82,22 +80,20 @@ public class CameraController : MonoBehaviour
             cameraResetSpeed = 0.9f;
         }
 
+        #if !UNITY_EDITOR
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
+        #endif
         obstruction = target.transform;
     }
 
     private void LateUpdate()
     {
 
-        transform.LookAt(target.transform);
-        transform.rotation = Quaternion.Euler(lookVector.y, lookVector.x, 0);
-        return;
-
         UpdateCameraInput();
         UpdateCameraTracking();
-
+        //ViewObstructed();
+        
         Vector3 lookDir = lookRotation * Vector3.forward;
         Vector3 lookPosition = focusPoint - lookDir * cameraDistance;
 
@@ -110,13 +106,7 @@ public class CameraController : MonoBehaviour
 
         // camera collision - cast a box from camera to the target. If a raycast hit is detected, 
         // reposition the camera within distance to the near clipping plane
-        if (false && Physics.Raycast(focusPoint, -lookDir, out RaycastHit hit, cameraDistance))
-        {
-            lookPosition = focusPoint - lookDir * hit.distance;
-        }
-
-        // this is the wonky one
-        if (true && Physics.BoxCast(focusPoint, CameraHalf, castDirection, out RaycastHit hitinfo, lookRotation, castDistance, clippingMask))
+        if (Physics.BoxCast(focusPoint, CameraHalf, castDirection, out RaycastHit hitinfo, lookRotation, castDistance, clippingMask))
         {
             rectPosition = castFrom + castDirection * hitinfo.distance;
             lookPosition = rectPosition - rectOffset;
@@ -154,7 +144,8 @@ public class CameraController : MonoBehaviour
             }
 
             focusPoint = Vector3.Lerp(targetPosition, focusPoint, t);
-        } else
+        } 
+        else
         {
             focusPoint = targetPosition;
         }
@@ -164,7 +155,6 @@ public class CameraController : MonoBehaviour
     {
         if (canMove)
         {
-            
             CheckXAndYAxisInversion();
 
             if (ManualRotation()) {
@@ -181,7 +171,8 @@ public class CameraController : MonoBehaviour
                 }
 
                 lookRotation = Quaternion.Euler(cameraOrbitAngle);
-            } else
+            } 
+            else
             {
                 lookRotation = transform.localRotation;
             }
@@ -219,7 +210,7 @@ public class CameraController : MonoBehaviour
             lookVector.x *= -1;
         }
     }
-
+    
     private void ViewObstructed()
     {
         RaycastHit hit;
@@ -230,15 +221,16 @@ public class CameraController : MonoBehaviour
                 obstruction = hit.transform;
                 obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
 
-                if (Vector3.Distance(obstruction.position, transform.position) >= 3f && Vector3.Distance(transform.position, target.transform.position) >= 1.5f);
+                if ((Vector3.Distance(obstruction.position, transform.position) >= 3f)
+                  && ( Vector3.Distance(transform.position, target.transform.position) >= 1.5f))
                 {
-                    transform.Translate(Vector3.forward) * zoomSpeed * Time.deltaTime);
+                    transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
                 }
                 else
                 {
-                    MeshRenderer mr = obstruction.gameObject.GetComponent<MeshRenderer>();
-                    mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-                    if (Vector3.Distance(transform.position, target.transform.position < 4.5f))
+                    MeshRenderer meshRenderer = obstruction.gameObject.GetComponent<MeshRenderer>();
+                    meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+                    if (Vector3.Distance(transform.position, target.transform.position) < 4.5f)
                     {
                         transform.Translate(Vector3.back * zoomSpeed * Time.deltaTime);
                     }

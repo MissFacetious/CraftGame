@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private CameraController cameraController;
     private Interactor interactor;
     private PlayerInput playerInput;
-    private Rigidbody rb;
+    private Rigidbody rigidBody;
 
     private bool canMove = true;
     private float movementX;
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rigidBody = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<Interactor>();
         cameraController = playerCamera.GetComponent<CameraController>();
@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
         if (playerInput.devices.Count > 0)
         {
             //Debug.Log(playerInput.devices[0].name);
-            interactor.UpdateIconSprite(playerInput.devices[0].name);
+            InputDevice dev = playerInput.devices[0];
+            interactor.UpdateIconSprite(dev.name);
         }
     }
 
@@ -104,29 +105,37 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            // ++groundContact
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            // --groundContact
+        }
     }
 
     void FixedUpdate()
     {
-        //Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        //rb.AddForce(movement * speed);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (canMove)
-        {
+        {   
             Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
-            if (playerMovement.magnitude >= 0.1f)
-            {
+            if (playerMovement.magnitude >= 0.1f) {
                 float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
                 float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
-
-                transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
                 Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-                transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
+                rigidBody.MovePosition(rigidBody.position + movementDir * Time.deltaTime * speed);
+                rigidBody.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
             }
             else
             {

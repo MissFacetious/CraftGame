@@ -34,17 +34,20 @@ public class Interactor : MonoBehaviour
         Sprite PS4_sprite = Resources.Load<Sprite>("Input/PS4_Cross");
         Sprite XB1_sprite = Resources.Load<Sprite>("Input/XboxOne_A");
         Sprite KB_sprite = Resources.Load<Sprite>("Input/Keyboard_White_Space");
+        Sprite Switch_sprite = Resources.Load<Sprite>("Input/Switch_B");
 
         interactSpriteDict = new Dictionary<string, Sprite>
         {
             { "DualShock4GamepadHID", PS4_sprite },
             { "XInputControllerWindows", XB1_sprite },
+            { "SwitchProControllerHID", Switch_sprite},
             { "Keyboard", KB_sprite }
         };
 
         Assert.IsNotNull(PS4_sprite);
         Assert.IsNotNull(XB1_sprite);
         Assert.IsNotNull(KB_sprite);
+        Assert.IsNotNull(Switch_sprite);
     }
 
     // Start is called before the first frame update

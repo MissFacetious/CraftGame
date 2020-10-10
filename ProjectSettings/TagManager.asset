@@ -7,6 +7,10 @@ TagManager:
   - Tree
   - Branch
   - Interactable
+  - Apple
+  - Synty Tree
+  - Collectable
+  - Ground
   layers:
   - Default
   - TransparentFX
