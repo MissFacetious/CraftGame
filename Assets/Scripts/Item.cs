@@ -15,13 +15,13 @@ public class Item : MonoBehaviour
     public TextMeshProUGUI displayCount;
     public TextMeshProUGUI displayText;
     public Image displayImage;
-    public bool available;
-    public Item originalRef;
+    public bool bundle = false;
+    public GameObject displayBundleImage;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        available = true;
+        bundle = false;
         if (displayText == null)
         {
             Debug.Log("map your text");
@@ -30,14 +30,24 @@ public class Item : MonoBehaviour
         {
             Debug.Log("map your image");
         }
+        if (displayCount == null)
+        {
+        //    Debug.Log("map your text");
+        }
     }
 
-    public void setItem(Recipes.RecipeEnum myType)
+    public void setItem(Recipes.RecipeEnum myType, bool myBundle)
     {
         Tuple<string, Image> item = recipes.getItem(myType);
         title = item.Item1;
         image = item.Item2.sprite;
         type = myType;
+        bundle = myBundle;
+    }
+
+    public bool inBundle()
+    {
+        return bundle;
     }
 
     // Update is called once per frame
@@ -55,5 +65,13 @@ public class Item : MonoBehaviour
         {
             displayCount.text = count.ToString();
         }
+        if (bundle && displayBundleImage != null)
+        {
+            displayBundleImage.gameObject.SetActive(true);
+        }
+        else if (displayBundleImage != null)
+        {
+            displayBundleImage.gameObject.SetActive(false);
+        }        
     }
 }

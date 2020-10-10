@@ -305,7 +305,7 @@ RectTransform:
   m_Father: {fileID: 673853836}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.05140721}
+  m_AnchorMin: {x: 0, y: 0.05140716}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -3114,7 +3114,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!65 &477674356
 BoxCollider:
@@ -4574,8 +4574,8 @@ MonoBehaviour:
   displayCount: {fileID: 1689315283}
   displayText: {fileID: 1307086810}
   displayImage: {fileID: 759170506}
-  available: 0
-  originalRef: {fileID: 0}
+  bundle: 0
+  displayBundleImage: {fileID: 0}
 --- !u!4 &773798595
 Transform:
   m_ObjectHideFlags: 0
@@ -5285,7 +5285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &876705736
 Transform:
   m_ObjectHideFlags: 0
@@ -5881,8 +5881,8 @@ MonoBehaviour:
   displayCount: {fileID: 1786770866}
   displayText: {fileID: 2028060879}
   displayImage: {fileID: 763771303}
-  available: 0
-  originalRef: {fileID: 0}
+  bundle: 0
+  displayBundleImage: {fileID: 0}
 --- !u!1 &1074261661
 GameObject:
   m_ObjectHideFlags: 0
@@ -7489,12 +7489,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1345359244 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5425753451988171171, guid: 219e0e3a47f82494fa3ea4c79695fc77,
-    type: 3}
-  m_PrefabInstance: {fileID: 128681266066531051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1356523787
 GameObject:
   m_ObjectHideFlags: 0
@@ -7954,8 +7948,8 @@ MonoBehaviour:
   displayCount: {fileID: 105541183}
   displayText: {fileID: 1149289170}
   displayImage: {fileID: 1285021494}
-  available: 0
-  originalRef: {fileID: 0}
+  bundle: 0
+  displayBundleImage: {fileID: 0}
 --- !u!1 &1448793336
 GameObject:
   m_ObjectHideFlags: 0
@@ -8037,7 +8031,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1112725307}
   m_HandleRect: {fileID: 1112725306}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -45899,8 +45893,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 33510431}
   m_HandleRect: {fileID: 33510430}
   m_Direction: 2
-  m_Value: 0.9999987
-  m_Size: 0.9485927
+  m_Value: 1.0000026
+  m_Size: 0.94859284
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -46095,31 +46089,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 58191489}
-    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectItemPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5425753451988171173, guid: 219e0e3a47f82494fa3ea4c79695fc77,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1345359244}
     - target: {fileID: 8363345806238654869, guid: 219e0e3a47f82494fa3ea4c79695fc77,
         type: 3}
       propertyPath: recipes
@@ -46737,7 +46706,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 128681266066531051}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345359244}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 630df2e36df742d4dbcf0098f2d334e3, type: 3}

@@ -21,37 +21,23 @@ public class CraftingManager : MonoBehaviour
     public GameObject item3;
     public GameObject inventoryPanel;
     public GameObject inventoryContent;
-    
+
     public void Select(GameObject item, GameObject itemSlot)
     {
         mixButton.onClick.RemoveAllListeners();
         mixButton.GetComponent<Button>().onClick.AddListener(
-                delegate
-                {
-                    panelManager.CraftPanel(recipeManager.getCurrentRecipe());
-                });
-        
-        if (item.GetComponent<Item>().available)
-        {
-            // show the item in the slot if not already there...
-            // show the count of the item in the slot
-            //itemSlot.GetComponent<Item>().image = item.GetComponent<Item>().image;
-            //string countStr = itemSlot.GetComponent<Item>().count.text;
-            // update the mixing values
-            //int.TryParse(countStr, out int count);
-            int count = itemSlot.GetComponent<Item>().count;
-            count++;
-            itemSlot.GetComponent<Item>().count = count;
-            //itemSlot.GetComponent<Item>().count.text = count.ToString();
+            delegate
+            {
+                panelManager.CraftPanel(recipeManager.getCurrentRecipe());
+            });
 
-            // mark inventory item unavailable
-            //item.GetComponent<Item>().available = false;
-            item.GetComponent<Item>().originalRef.available = false;
-            // move item into slot
-            item.transform.parent = itemSlot.transform;
-            // make the item disapear from the render
-            item.transform.localPosition = new Vector2(-500f, 0f);
-        }
+        int count = itemSlot.GetComponent<Item>().count + item.GetComponent<Item>().count;
+        itemSlot.GetComponent<Item>().count = count;
+
+        // move item into slot
+        item.transform.parent = itemSlot.transform;
+        // make the item disapear from the render
+        item.transform.localPosition = new Vector2(-500f, 0f);
     }
 
     public bool Craft(Recipes.RecipeEnum type)
@@ -66,7 +52,7 @@ public class CraftingManager : MonoBehaviour
             // make a new item and put into inventory!
             Item myItem = Instantiate(item);
             
-            myItem.setItem(type);
+            myItem.setItem(type, false);
             
             myItem.gameObject.transform.parent = inventoryManager.gameObject.transform;
             myItem.gameObject.transform.localPosition = Vector2.zero;
@@ -80,15 +66,17 @@ public class CraftingManager : MonoBehaviour
     public void DestroyRecipePanel()
     {
         // if this came from mixing
-        // destroy the original inventory objects that were mixed
+        // move the original inventory objects that were mixed
+
         for (int i1 = 0; i1 < item1.transform.childCount; i1++)
         {
             Transform t1 = item1.transform.GetChild(i1);
             Item itemChild1 = t1.gameObject.GetComponent<Item>();
             if (itemChild1 != null)
             {
-                Destroy(itemChild1.originalRef.gameObject);
-                Destroy(itemChild1.gameObject);
+                // move back to where it belongs
+                //Destroy(itemChild1.gameObject);
+                itemChild1.transform.parent = inventoryManager.transform;
             }
         }
         for (int i2 = 0; i2 < item2.transform.childCount; i2++)
@@ -97,8 +85,8 @@ public class CraftingManager : MonoBehaviour
             Item itemChild2 = t2.gameObject.GetComponent<Item>();
             if (itemChild2 != null)
             {
-                Destroy(itemChild2.originalRef.gameObject);
-                Destroy(itemChild2.gameObject);
+                // move back to where it belongs
+                itemChild2.transform.parent = inventoryManager.transform;
             }
         }
         for (int i3 = 0; i3 < item3.transform.childCount; i3++)
@@ -107,10 +95,12 @@ public class CraftingManager : MonoBehaviour
             Item itemChild3 = t3.gameObject.GetComponent<Item>();
             if (itemChild3 != null)
             {
-                Destroy(itemChild3.originalRef.gameObject);
-                Destroy(itemChild3.gameObject);
+                // move back to where it belongs
+                itemChild3.transform.parent = inventoryManager.transform;
+                //Destroy(itemChild3.gameObject);
             }
         }
+        
         item1.GetComponent<Item>().count = 0;
         item2.GetComponent<Item>().count = 0;
         item3.GetComponent<Item>().count = 0;
@@ -119,40 +109,39 @@ public class CraftingManager : MonoBehaviour
     public void ShowFilteredInventory(GameObject obj)
     {
         // redraw the inventory panel
-        foreach (Transform child in inventoryContent.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-        }
+        //foreach (Transform child in inventoryContent.transform)
+        //{
+        //    GameObject.Destroy(child.gameObject);
+        //}
 
+        ArrayList inventoryList = inventoryManager.Bundlize();
+       
         // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
         int rowCount = 0;
-        for (int i = 0; i < inventoryManager.transform.childCount; i++)
+        for (int i = 0; i < inventoryList.Count; i++)
         {
-            Item myItem = inventoryManager.gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-            if (myItem.available && myItem.title == obj.GetComponent<Item>().title)
+            Item myItem = (Item)inventoryList[i];
+            //Debug.Log(myItem.inBundle());
+            if (myItem.type == obj.GetComponent<Item>().type)
             {
                 rowCount++;
             }
         }
-
+        
         int row = 0;
         int column = 0;
-        inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil(rowCount / 5) * 105 + 120f));
-        for (int i = 0; i < inventoryManager.gameObject.transform.childCount; i++)
+        inventoryContent.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Mathf.Max(340f, Mathf.Ceil((rowCount-1) / 5) * 105 + 120f));
+        for (int i = 0; i < inventoryList.Count; i++)
         {
-            Item myItem = inventoryManager.gameObject.transform.GetChild(i).gameObject.GetComponent<Item>();
-            if (myItem.available && myItem.title == obj.GetComponent<Item>().title)
+            Item myItem = (Item)inventoryList[i];
+            if (myItem.type == obj.GetComponent<Item>().type)
             {
-                //list.Add(myItem.gameObject);
-                Item newItem = Instantiate(myItem);
-                newItem.setItem(myItem.type);
-                //myItem.available = true;
-                newItem.originalRef = myItem;
-                newItem.GetComponent<Button>().onClick.AddListener(
-                    delegate {
-                        panelManager.SelectItemPanel(newItem.gameObject, obj);
-                    });
-                newItem.gameObject.transform.parent = inventoryContent.transform;
+                myItem.GetComponent<Button>().onClick.RemoveAllListeners();
+                myItem.GetComponent<Button>().onClick.AddListener(
+                delegate {
+                    panelManager.SelectItemPanel(myItem.gameObject, obj);
+                });
+                myItem.gameObject.transform.parent = inventoryContent.transform;
                 // now move where it displays
                 column++;
                 if (column % 5 == 1)
@@ -160,9 +149,18 @@ public class CraftingManager : MonoBehaviour
                     row++;
                     column = 1;
                 }
-                newItem.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
-                newItem.gameObject.transform.localPosition = new Vector2((column * 105f) - 50f, -(row * 105f) + 45f);
+                myItem.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
+                myItem.gameObject.transform.localPosition = new Vector2((column * 105f) - 50f, -(row * 105f) + 45f);
             }
+        }
+    }
+
+    public void HideFilteredInventory()
+    {
+        int size = inventoryContent.transform.childCount;
+        for (int i = 0; i < size; i++)
+        {
+            inventoryContent.transform.GetChild(0).parent = inventoryManager.transform;
         }
     }
 }
