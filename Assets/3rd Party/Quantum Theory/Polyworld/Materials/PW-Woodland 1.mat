@@ -4,12 +4,13 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: PW-Woodland 1
-  m_Shader: {fileID: 4800000, guid: 4c097e847a0b1ea4cb50af2fb83046ca, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5c85de6aa78792048b3a2b00138d9d93, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 5
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -50,5 +51,5 @@ Material:
     m_Colors:
     - _AmbientTint: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.90196085, g: 0.90196085, b: 0.90196085, a: 1}
-    - _EmissiveColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissiveColor: {r: 0.37254903, g: 0.3921569, b: 0.42352945, a: 1}
     - _ReflectionTint: {r: 1, g: 1, b: 1, a: 1}
