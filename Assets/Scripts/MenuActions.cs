@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class MenuActions : MonoBehaviour
 {
     public bool title = false;
+    public bool village = false;
     public EventSystem eventSystem;
     public GameObject firstButton;
     public GameObject backButton;
@@ -26,6 +27,10 @@ public class MenuActions : MonoBehaviour
         if (title)
         {
             showMenu();
+        }
+        else if (village)
+        {
+
         }
         else
         {
