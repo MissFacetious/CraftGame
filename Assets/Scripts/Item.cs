@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using UnityEngine.EventSystems;
 
 public class Item : MonoBehaviour
 {
@@ -72,6 +73,6 @@ public class Item : MonoBehaviour
         else if (displayBundleImage != null)
         {
             displayBundleImage.gameObject.SetActive(false);
-        }        
+        }    
     }
 }
