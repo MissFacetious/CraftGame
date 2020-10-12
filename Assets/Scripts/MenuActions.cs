@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class MenuActions : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class MenuActions : MonoBehaviour
     public void startGame()
     {
         GetComponent<Animator>().SetBool("menu", false);
+        SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
     }
 
     public void showCredits()
@@ -115,6 +117,7 @@ public class MenuActions : MonoBehaviour
         GetComponent<Animator>().SetBool("menu", false);
         eventSystem.SetSelectedGameObject(null);
         // change scene back to main menu
+        SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
     }
 
     void Update()
