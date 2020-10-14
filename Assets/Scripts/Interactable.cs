@@ -25,13 +25,13 @@ public class Interactable : MonoBehaviour
         // Use default transform if no custom is provided
         if (interactionTransform == null)
         {
-            interactionTransform = transform;
+            interactionTransform = GetComponent<Transform>();
         }
     }
 
     public void Interact()
     {
-        Debug.Log("Base interaction method.");
+        //Debug.Log("Base interaction method.");
         if (OnInteraction != null)
         {
             if (isReady) // && withinRange
@@ -58,6 +58,7 @@ public class Interactable : MonoBehaviour
         if (isFocused)
         {
             float dist = Vector3.Distance(player.position, interactionTransform.position);
+
             if (dist <= interactRadius)
             {
                 // within interactable range

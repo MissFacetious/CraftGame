@@ -67,6 +67,8 @@ public class Interactor : MonoBehaviour
             if (i != null)
             {
                 SetFocus(i);
+            } else  {
+                Debug.Log(hitInfo.transform.name);
             }
         }
         else

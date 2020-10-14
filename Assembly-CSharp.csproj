@@ -45,8 +45,9 @@
      <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Gun_Manager.cs" />
      <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Manager.cs" />
      <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Witch_Manager.cs" />
+     <Compile Include="Assets\Collectable.cs" />
+     <Compile Include="Assets\CollectableEmitter.cs" />
      <Compile Include="Assets\Input\CraftGame.cs" />
-     <Compile Include="Assets\LemonTree.cs" />
      <Compile Include="Assets\Scripts\AI\NPCAI.cs" />
      <Compile Include="Assets\Scripts\AI\VelocityReporter.cs" />
      <Compile Include="Assets\Scripts\Apple.cs" />
@@ -59,6 +60,7 @@
      <Compile Include="Assets\Scripts\Interactor.cs" />
      <Compile Include="Assets\Scripts\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
+     <Compile Include="Assets\Scripts\LemonTree.cs" />
      <Compile Include="Assets\Scripts\MenuActions.cs" />
      <Compile Include="Assets\Scripts\NPC.cs" />
      <Compile Include="Assets\Scripts\PanelManager.cs" />
