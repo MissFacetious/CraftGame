@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class BillboardFX : MonoBehaviour
 {
-    public Transform cameraTransform;
+    private Transform cameraTransform;
+
+    void Awake()
+    {
+        cameraTransform = Camera.main.transform;
+        if (cameraTransform == null)
+        {
+            Debug.LogError("Camera transform not found!");
+        }
+    }
 
     // Update is called once per frame
     void Update()

@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
 
+    private TextMeshProUGUI appleCount;
+    private int apples = 0;
+
     private void Awake()
     {
         if (playerCamera == null)
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<Interactor>();
         cameraController = playerCamera.GetComponent<CameraController>();
+
         // change sprite controller on start
         OnControlsChanged();
     }
@@ -91,19 +95,6 @@ public class PlayerController : MonoBehaviour
             {
                 Destroy(other.gameObject);
             }
-        }
-
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            // ++groundContact
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            // --groundContact
         }
     }
 
