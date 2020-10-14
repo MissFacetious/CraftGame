@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
-public class NPCAIw : MonoBehaviour
+public class NPCAI : MonoBehaviour
 {
 
     private Animator anim;
