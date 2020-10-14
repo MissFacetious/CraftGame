@@ -42,6 +42,12 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    //need this because Fungus CallMethod does not support parameters in function calls.
+    public void MakeReady()
+    {
+        isReady = true;
+    }
+
     public void SetReady(bool value)
     {
         isReady = value;
