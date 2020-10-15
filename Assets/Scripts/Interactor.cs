@@ -64,6 +64,7 @@ public class Interactor : MonoBehaviour
         if (hitDetected)
         {
             Interactable i = hitInfo.collider.GetComponent<Interactable>();
+            Debug.Log("HitDetected");
             if (i != null)
             {
                 SetFocus(i);

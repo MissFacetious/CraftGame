@@ -96,6 +96,16 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+
+        if (other.gameObject.CompareTag("Collectable"))
+        {
+            Debug.Log($"Collected {other.gameObject.name}");
+            Collectable collectable = other.gameObject.GetComponent<Collectable>();
+            if (collectable != null)
+            {
+                collectable.Collect();
+            }
+        }
     }
 
     void FixedUpdate()

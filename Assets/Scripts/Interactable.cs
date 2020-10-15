@@ -25,7 +25,7 @@ public class Interactable : MonoBehaviour
         // Use default transform if no custom is provided
         if (interactionTransform == null)
         {
-            interactionTransform = GetComponent<Transform>();
+            interactionTransform = gameObject.transform;
         }
     }
 

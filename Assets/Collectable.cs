@@ -34,7 +34,13 @@ public class Collectable : MonoBehaviour
 
     public void Collect()
     {
+        transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+        transform.localPosition = new Vector3(0f, 0.5f, 0f);
 
+        Destroy(this);
+
+        // Set inactive later if/when pooling?
+        //gameObject.SetActive(false);
     }
 
     // Update is called once per frame
