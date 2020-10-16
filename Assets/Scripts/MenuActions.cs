@@ -49,7 +49,7 @@ public class MenuActions : MonoBehaviour
     public void startGame()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("IntroScene", LoadSceneMode.Single);
     }
 
     public void showCredits()
