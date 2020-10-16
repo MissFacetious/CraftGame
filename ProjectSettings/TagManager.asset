@@ -11,6 +11,7 @@ TagManager:
   - Synty Tree
   - PanelManager
   - EventSystem
+  - InventoryManager
   layers:
   - Default
   - TransparentFX

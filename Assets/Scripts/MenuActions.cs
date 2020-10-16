@@ -25,6 +25,8 @@ public class MenuActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        getEventSystem();
+
         if (title)
         {
             showMenu();
@@ -39,11 +41,27 @@ public class MenuActions : MonoBehaviour
         }
     }
 
+
+    void getEventSystem()
+    {
+        if (GameObject.FindGameObjectWithTag("EventSystem") != null)
+        {
+            eventSystem = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<EventSystem>();
+        }
+        else
+        {
+            Debug.Log("event system is not hooked up.");
+        }
+    }
+
     public void showMenu()
     {
         GetComponent<Animator>().SetBool("menu", true);
         GetComponent<Animator>().SetBool("credits", false);
-        eventSystem.SetSelectedGameObject(firstButton);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(firstButton);
+        }
     }
 
     public void startGame()
@@ -56,7 +74,10 @@ public class MenuActions : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("credits", true);
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(backButton); 
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(backButton);
+        }
     }
 
     public void startClock()
@@ -96,14 +117,20 @@ public class MenuActions : MonoBehaviour
     public void Resume()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(null);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
         // also start input from the player controller
     }
 
     public void End()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(null);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
 
         // show ending UI
 
@@ -115,13 +142,20 @@ public class MenuActions : MonoBehaviour
     public void Quit()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(null);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
         // change scene back to main menu
         SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
     }
 
     void Update()
     {
+        if (eventSystem == null)
+        {
+            getEventSystem();
+        }
         if (!title && countdown)
         {
             timeLeft -= Time.deltaTime;
@@ -139,7 +173,7 @@ public class MenuActions : MonoBehaviour
         {
             bool menu = GetComponent<Animator>().GetBool("menu");
             GetComponent<Animator>().SetBool("menu", !menu);
-            if (menu)
+            if (menu && eventSystem != null)
             {
                 eventSystem.SetSelectedGameObject(null);
                 // also start input from the player controller
