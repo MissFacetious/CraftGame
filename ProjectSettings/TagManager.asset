@@ -8,6 +8,9 @@ TagManager:
   - Branch
   - Interactable
   - Apple
+  - Synty Tree
+  - PanelManager
+  - EventSystem
   layers:
   - Default
   - TransparentFX
