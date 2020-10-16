@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 81852807cd6ff414797a143ec62ae782,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5398,7 +5398,7 @@ GameObject:
   - component: {fileID: 345881967}
   m_Layer: 0
   m_Name: InventoryManager
-  m_TagString: Untagged
+  m_TagString: InventoryManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

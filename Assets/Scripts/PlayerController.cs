@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private Interactor interactor;
     private PlayerInput playerInput;
     private Rigidbody rb;
+    private InventoryManager inventoryManager;
 
     private bool canMove = true;
     private float movementX;
@@ -30,6 +31,10 @@ public class PlayerController : MonoBehaviour
         if (playerCamera == null)
         {
             Debug.LogError("Camera not found.");
+        }
+        if (inventoryManager == null)
+        {
+            getInventoryManager();
         }
     }
 
@@ -42,6 +47,18 @@ public class PlayerController : MonoBehaviour
         cameraController = playerCamera.GetComponent<CameraController>();
         // change sprite controller on start
         OnControlsChanged();
+    }
+
+    void getInventoryManager()
+    {
+        if (GameObject.FindGameObjectWithTag("InventoryManager") != null)
+        {
+            inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
+        }
+        else
+        {
+            Debug.Log("InventoryManager is not hooked up.");
+        }
     }
 
     private void OnControlsChanged()
@@ -86,6 +103,7 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("collect");
                 apple.Collect(gameObject);
                 menuActions.increaseCurrentCounter();
+                inventoryManager.CreateNewItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
             }
             else
             {
@@ -103,6 +121,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (inventoryManager == null)
+        {
+            getInventoryManager();
+        }
         if (canMove)
         {
             Vector3 playerMovement = new Vector3(movementX, 0f, movementY);

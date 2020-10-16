@@ -90,6 +90,19 @@ public class InventoryManager : MonoBehaviour, IComparer
         }
     }
 
+    public Item CreateNewItem(Recipes.RecipeEnum type, bool bundle)
+    {
+        // make a new item and put into inventory!
+        Item myItem = Instantiate(item);
+
+        myItem.setItem(type, bundle);
+
+        myItem.gameObject.transform.parent = gameObject.transform;
+        myItem.gameObject.transform.localPosition = Vector2.zero;
+
+        return myItem;
+    }
+
     // TODO the sorter does nothing
     int IComparer.Compare(System.Object x, System.Object y)
     {

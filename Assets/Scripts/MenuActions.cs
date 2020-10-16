@@ -152,7 +152,6 @@ public class MenuActions : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(eventSystem);
         if (eventSystem == null)
         {
             getEventSystem();
