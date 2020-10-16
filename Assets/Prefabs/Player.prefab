@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ee4a2d30cc85d43bf449cc715dc093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCanvas: {fileID: 0}
+  menuActions: {fileID: 0}
   animator: {fileID: 6028566139820530975}
   rotationSmoothing: 0.1
   rotationSmoothingVelocity: 0

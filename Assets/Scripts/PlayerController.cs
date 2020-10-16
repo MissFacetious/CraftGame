@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
@@ -119,6 +120,6 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetBool("walking", false);
             }
-        }        
+        }
     }
 }

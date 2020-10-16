@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -67,7 +66,7 @@ public class PanelManager : MonoBehaviour
         }
         // move event system to first item in inventory
         if (inventoryContent.transform.childCount > 0)
-        {
+        {   
             eventSystem.SetSelectedGameObject(inventoryContent.transform.GetChild(0).gameObject);
         }
     }
@@ -239,11 +238,11 @@ public class PanelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.iKey.wasPressedThisFrame)
         {
             ShowInventoryPanel();
         }
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
+        if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             ShowRecipesPanel();
         }
