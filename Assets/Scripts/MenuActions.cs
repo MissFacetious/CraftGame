@@ -51,6 +51,10 @@ public class MenuActions : MonoBehaviour
             Debug.Log("invoke Crafting()");
             Crafting();
         }
+        else if (sceneName == scene.credits)
+        {
+            GetComponent<Animator>().SetTrigger("endCredits");
+        }
     }
 
 
@@ -149,9 +153,6 @@ public class MenuActions : MonoBehaviour
     }
 
     public void Crafting() { 
-
-
-        
         // on start of crafting, show the menu, and when we exit out of inventory/recipe
         //GetComponent<Animator>().SetBool("menu", true);
         transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
@@ -219,6 +220,16 @@ public class MenuActions : MonoBehaviour
         SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void CreditScene()
+    {
+        SceneManager.LoadScene("CreditsScene", LoadSceneMode.Single);
+    }
+
     void Update()
     {
         if (eventSystem == null)
@@ -256,6 +267,14 @@ public class MenuActions : MonoBehaviour
                 eventSystem.SetSelectedGameObject(firstButton);
                 // also stop input from the player controller
             }
+        }
+        if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            CreditScene();
+        }
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            Quit();
         }
     }
 }
