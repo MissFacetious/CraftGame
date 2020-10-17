@@ -472,6 +472,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7696627638833203007}
+  - component: {fileID: 8031718341356205237}
   m_Layer: 0
   m_Name: Telescope 2
   m_TagString: Untagged
@@ -495,6 +496,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8031718341356205237
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7696627638833203004}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 1, y: 0, z: 0}
 --- !u!1 &7696627638920185103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1661,7 +1676,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7696627640318207180
 GameObject:
@@ -1768,6 +1783,7 @@ GameObject:
   - component: {fileID: 7696627639839653156}
   - component: {fileID: 352056510502065447}
   - component: {fileID: 494325551141187474}
+  - component: {fileID: 6480728781859279024}
   m_Layer: 0
   m_Name: SM_Primitive_Cone_05
   m_TagString: Untagged
@@ -1836,6 +1852,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &6480728781859279024
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126911237571147856}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9f855ba253e08634ca312e229b14783f, type: 3}
 --- !u!1001 &4842321589710506424
 PrefabInstance:
   m_ObjectHideFlags: 0
