@@ -10,7 +10,6 @@ public class DoNotDestroy : MonoBehaviour
     {
         string thisName = gameObject.name;
         GameObject[] objs = GameObject.FindGameObjectsWithTag(thisName);
-        Debug.Log(objs.Length);
         if (objs.Length > 1)
         {
             // this is already loaded, destory!

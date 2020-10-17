@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProceduralGatheringRev2.unity
     guid: 6616ca6f42489b44fb3aa076313e411f
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: c61cdab8b2201d54eb73c7c1d9303ac8
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 134ef7c57b4d37b4984d8d22db1ecc7e,
       type: 2}

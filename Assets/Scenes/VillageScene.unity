@@ -29500,9 +29500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf8337d9383f7b43a177dc6859c51d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 0
-  village: 1
+  sceneName: 2
   eventSystem: {fileID: 0}
+  panelManager: {fileID: 0}
   firstButton: {fileID: 1744229863072381042}
   backButton: {fileID: 0}
   counter: {fileID: 0}
@@ -30136,7 +30136,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1744229862240137542}
-        m_MethodName: End
+        m_MethodName: Inventory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
