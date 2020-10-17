@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
@@ -182,6 +184,7 @@ public class PanelManager : MonoBehaviour
         {
             // show success panel
             resultPanel.SetActive(true);
+            resultPanel.GetComponent<ResultsDisplay>().setItem(type);
             craftPanel.SetActive(false);
         }
         else
