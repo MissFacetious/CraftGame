@@ -238,17 +238,6 @@ public class PanelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.iKey.wasPressedThisFrame)
-        {
-            ShowInventoryPanel();
-        }
-        if (Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            ShowRecipesPanel();
-        }
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            UndoPanel();
-        }
+        
     }
 }
