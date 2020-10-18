@@ -8710,7 +8710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &520646734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8731,24 +8731,25 @@ MonoBehaviour:
   quadColor: 0
   PWTMat: {fileID: 2100000, guid: 70c2ee89b4a23604d9f8b4d4debbb350, type: 2}
   chunkSizes:
-  - {x: 2, y: 2}
-  - {x: 4, y: 4}
-  - {x: 8, y: 8}
-  - {x: 16, y: 16}
-  - {x: 32, y: 32}
-  - {x: 64, y: 64}
-  - {x: 128, y: 128}
-  - {x: 256, y: 256}
+  - {x: 3.90625, y: 3.90625}
+  - {x: 7.8125, y: 7.8125}
+  - {x: 15.625, y: 15.625}
+  - {x: 31.25, y: 31.25}
+  - {x: 62.5, y: 62.5}
+  - {x: 125, y: 125}
+  - {x: 250, y: 250}
+  - {x: 500, y: 500}
+  - {x: 1000, y: 1000}
   chunkIndex: 4
-  TWidth: 256
-  TLength: 256
-  THeight: 256
-  HFR: 256
-  CTR: 256
+  TWidth: 1000
+  TLength: 1000
+  THeight: 600
+  HFR: 512
+  CTR: 512
   terrainData: {fileID: 15600000, guid: 07f54707218eb8b4796b4b8005664c4d, type: 2}
   CV: 0
-  quadWidth: 1
-  quadLength: 1
+  quadWidth: 1.953125
+  quadLength: 1.953125
   quadsizeBias: 0100000002000000040000000800000010000000
   blurPasses: 1
   BaseMapMip: 0200000001000000
@@ -19757,7 +19758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1197252435
 Transform:
   m_ObjectHideFlags: 0
