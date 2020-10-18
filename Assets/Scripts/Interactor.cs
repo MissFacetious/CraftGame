@@ -16,15 +16,13 @@ public class Interactor : MonoBehaviour
     [Range(0f, 100f)]
     public float rayLength = 2.5f;
 
-    [SerializeField]
-    //private GameObject buttonPrompt;
-    private List<Interactable> focusList;
     private RaycastHit hitInfo;
     private bool hitDetected;
     private float aboveCharacter = 150f;
 
     private void Awake()
     {
+        button = Canvas.FindObjectOfType<Button>();
         if (button == null)
         {
             Debug.LogError("Button not assigned.");
@@ -53,8 +51,6 @@ public class Interactor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO (aoyeola): Do we still need to check for many interactables at once?
-        focusList = new List<Interactable>();
         button.gameObject.SetActive(false);
     }
 
@@ -64,7 +60,7 @@ public class Interactor : MonoBehaviour
         if (hitDetected)
         {
             Interactable i = hitInfo.collider.GetComponent<Interactable>();
-            Debug.Log("HitDetected");
+            //Debug.Log("HitDetected");
             if (i != null)
             {
                 SetFocus(i);
@@ -74,6 +70,10 @@ public class Interactor : MonoBehaviour
         }
         else
         {
+            if (hitInfo.collider != null)
+            {
+                Debug.Log(hitInfo.collider.name);
+            }
             RemoveFocus();
         }
     }

@@ -208,7 +208,6 @@ MonoBehaviour:
   OnInteraction:
     m_PersistentCalls:
       m_Calls: []
-  interactionTransform: {fileID: 648239610901146368}
   interactRadius: 1
 --- !u!114 &648239610350896544
 MonoBehaviour:
@@ -222,8 +221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab417ff37a0e80149ba0a3fcc3ec9104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectable: {fileID: 0}
-  collectableAmount: 2
+  collectible: {fileID: 3316160283665778311, guid: c75d60f9170fa0e4d8d16a74d2580195,
+    type: 3}
+  collectibleAmount: 3
   emitDistance: 2
 --- !u!1 &648239610901146431
 GameObject:

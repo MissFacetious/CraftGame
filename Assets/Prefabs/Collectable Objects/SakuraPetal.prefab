@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8905652811279186160}
   m_Layer: 0
   m_Name: SakuraPetal
-  m_TagString: Collectable
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

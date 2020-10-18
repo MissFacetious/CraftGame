@@ -45,14 +45,14 @@
      <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Gun_Manager.cs" />
      <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Manager.cs" />
      <Compile Include="Assets\3rd Party\ToonCharacterPack\Script\Witch_Manager.cs" />
-     <Compile Include="Assets\Collectable.cs" />
-     <Compile Include="Assets\CollectableEmitter.cs" />
      <Compile Include="Assets\Input\CraftGame.cs" />
      <Compile Include="Assets\Scripts\AI\NPCAI.cs" />
      <Compile Include="Assets\Scripts\AI\VelocityReporter.cs" />
      <Compile Include="Assets\Scripts\Apple.cs" />
      <Compile Include="Assets\Scripts\BillboardFX.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Collectible.cs" />
+     <Compile Include="Assets\Scripts\CollectibleEmitter.cs" />
      <Compile Include="Assets\Scripts\CraftingManager.cs" />
      <Compile Include="Assets\Scripts\DialogueInteractable.cs" />
      <Compile Include="Assets\Scripts\HighlightedSelect.cs" />
@@ -60,7 +60,6 @@
      <Compile Include="Assets\Scripts\Interactor.cs" />
      <Compile Include="Assets\Scripts\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
-     <Compile Include="Assets\Scripts\LemonTree.cs" />
      <Compile Include="Assets\Scripts\MenuActions.cs" />
      <Compile Include="Assets\Scripts\NPC.cs" />
      <Compile Include="Assets\Scripts\PanelManager.cs" />
@@ -694,6 +693,9 @@
     <Reference Include="Unity.CollabProxy.Editor">
         <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+        <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
@@ -702,6 +704,9 @@
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
         <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
         <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
@@ -714,12 +719,6 @@
     </Reference>
     <Reference Include="UnityEditor.UI">
         <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-        <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-        <HintPath>C:/Users/pharr/Documents/GitHub/CraftGame/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

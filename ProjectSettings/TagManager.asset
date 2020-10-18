@@ -9,8 +9,8 @@ TagManager:
   - Interactable
   - Apple
   - Synty Tree
-  - Collectable
   - Ground
+  - Collectible
   layers:
   - Default
   - TransparentFX

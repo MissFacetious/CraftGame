@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
             if (apple != null)
             {
-                Debug.Log("apple");
+                //Debug.Log("apple");
                 // kick off collection animations
                 // this animation seems to slow down the game
                 animator.SetTrigger("collect");
@@ -97,13 +97,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (other.gameObject.CompareTag("Collectable"))
+        if (other.gameObject.CompareTag("Collectible"))
         {
             Debug.Log($"Collected {other.gameObject.name}");
-            Collectable collectable = other.gameObject.GetComponent<Collectable>();
-            if (collectable != null)
+            Collectible collectible = other.gameObject.GetComponent<Collectible>();
+            if (collectible != null)
             {
-                collectable.Collect();
+                collectible.Collect(transform);
             }
         }
     }

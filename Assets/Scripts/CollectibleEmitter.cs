@@ -1,20 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Interactable))]
-public class CollectableEmitter : MonoBehaviour
+public class CollectibleEmitter : MonoBehaviour
 {
     private bool hasItemsToDrop = true;
     private bool isReady = true;
     
-    public GameObject collectable;
+    public GameObject collectible;
     
     [SerializeField]
-    private int collectableAmount = 3;
-
-    [SerializeField]
-    private float emitDistance = 5f;
+    private int collectibleAmount = 3;
 
     private void Awake()
     {
@@ -25,9 +20,9 @@ public class CollectableEmitter : MonoBehaviour
         }
         interactable.OnInteraction.AddListener(OnInteract);
 
-        if (collectable == null)
+        if (collectible == null)
         {
-            Debug.LogError("Must assign a GameObject to be emitted.");
+            Debug.LogError($"{name}: Must assign a collectible GameObject to be emitted.");
         }
     }
 
@@ -57,11 +52,14 @@ public class CollectableEmitter : MonoBehaviour
     {
          if (hasItemsToDrop)
         {
-            for (int i = 0; i < collectableAmount; i++)
+            for (int i = 0; i < collectibleAmount; i++)
             {
-                GameObject item = Instantiate(collectable, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+                GameObject item = Instantiate(collectible, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+                
                 Rigidbody rb = item.GetComponent<Rigidbody>();
-                rb.AddForce(Vector3.up * emitDistance);
+                if (rb != null) {
+                    rb.AddForce(Vector3.up * 100f);
+                }
             }
 
             hasItemsToDrop = false;

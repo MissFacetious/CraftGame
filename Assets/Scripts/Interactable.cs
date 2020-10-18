@@ -11,8 +11,7 @@ public class Interactable : MonoBehaviour
     public bool isReady { get; private set; }
     public bool withinRange { get; private set; }
 
-    [SerializeField]
-    private Transform interactionTransform;
+    private Vector3 interactionVector;
     private Transform player;
 
     [SerializeField, Range(1f, 100f)]
@@ -22,11 +21,8 @@ public class Interactable : MonoBehaviour
     private void Awake()
     {
         isReady = true;
-        // Use default transform if no custom is provided
-        if (interactionTransform == null)
-        {
-            interactionTransform = gameObject.transform;
-        }
+        // Use default transform if no custom is specified
+        interactionVector = transform.position;
     }
 
     public void Interact()
@@ -57,7 +53,7 @@ public class Interactable : MonoBehaviour
     {
         if (isFocused)
         {
-            float dist = Vector3.Distance(player.position, interactionTransform.position);
+            float dist = Vector3.Distance(player.position, interactionVector);
 
             if (dist <= interactRadius)
             {
@@ -86,6 +82,6 @@ public class Interactable : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(interactionTransform.position, interactRadius);
+        Gizmos.DrawWireSphere(interactionVector, interactRadius);
     }
 }

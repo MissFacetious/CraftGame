@@ -60,7 +60,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactionTransform: {fileID: 8644147488927773624}
+  interactionVector: {x: 0, y: 0, z: 0}
   interactRadius: 2
 --- !u!114 &8644147488927773606
 MonoBehaviour:
@@ -74,8 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab417ff37a0e80149ba0a3fcc3ec9104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectable: {fileID: 0}
-  collectableAmount: 3
+  collectible: {fileID: 6131762233143765123, guid: 1dc3a10dc8ff37448802f630f77cc26e,
+    type: 3}
+  collectibleAmount: 3
   emitDistance: 5
 --- !u!65 &8644147488927773605
 BoxCollider:

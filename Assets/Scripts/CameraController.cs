@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     // TODO (aoyeola): Unserialize private fields once ranges are finalized;
     [SerializeField]
-    public GameObject target = default;
+    public GameObject target;
     
     [HideInInspector]
     public Vector2 lookVector;
@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     
 
     [SerializeField, Range(1f, 20f)]
-    private float cameraDistance = 6f;
+    private float cameraDistance = 8f;
 
     [SerializeField, Range(1f, 25f)]
     private float cameraPanRadius = 2f;
@@ -47,7 +47,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private LayerMask clippingMask = -1;
 
-    public Transform obstruction;
+    private Transform obstruction;
     private float zoomSpeed = 2f;
 
     public Vector3 CameraHalf
@@ -62,10 +62,13 @@ public class CameraController : MonoBehaviour
         }
     }
 
-
     private void Awake()
     {
-        focusPoint = target.transform.position;
+        if (target == null)
+        {
+            Debug.LogError("Target gameobject must be set to Player!");
+        }
+
         cameraOrbitAngle = new Vector2(45f, 0f);
         lookVector = Vector2.zero;
         transform.localRotation = Quaternion.Euler(cameraOrbitAngle);
@@ -84,7 +87,12 @@ public class CameraController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         #endif
+        
+        focusPoint = target.transform.position;
         obstruction = target.transform;
+
+        // Ignore camera raycasts on Player layer
+        clippingMask = clippingMask ^ LayerMask.GetMask("Player");
     }
 
     private void LateUpdate()
