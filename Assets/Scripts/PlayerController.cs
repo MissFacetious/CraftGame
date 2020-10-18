@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
         {
             getInventoryManager();
         }
+
+        // using the Scene Name in MenuActions, 
+        // we should be able to place the character in the right spot based on 
+        // where they currently are, and where they've currently been
+
     }
 
     // Start is called before the first frame update
@@ -97,7 +102,6 @@ public class PlayerController : MonoBehaviour
 
             if (apple != null)
             {
-                Debug.Log("apple");
                 // kick off collection animations
                 // this animation seems to slow down the game
                 animator.SetTrigger("collect");

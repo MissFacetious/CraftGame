@@ -12,6 +12,11 @@ TagManager:
   - PanelManager
   - EventSystem
   - InventoryManager
+  - Rock
+  - PW - Prop
+  - PW - Building
+  - PW - Nature
+  - CraftCollider
   layers:
   - Default
   - TransparentFX
