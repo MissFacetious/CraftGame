@@ -49,14 +49,8 @@ public class CraftingManager : MonoBehaviour
         
         if (recipes.CheckRecipe(type, slot1, slot2, slot3))
         {
-            // make a new item and put into inventory!
-            Item myItem = Instantiate(item);
+            inventoryManager.CreateNewItem(type, false);
             
-            myItem.setItem(type, false);
-            
-            myItem.gameObject.transform.parent = inventoryManager.gameObject.transform;
-            myItem.gameObject.transform.localPosition = Vector2.zero;
-
             Debug.Log("success!");
             return true;
         }

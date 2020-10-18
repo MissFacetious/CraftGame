@@ -8,9 +8,20 @@ using UnityEngine.SceneManagement;
 
 public class MenuActions : MonoBehaviour
 {
-    public bool title = false;
-    public bool village = false;
+    public enum scene
+    {
+        title,
+        intro,
+        village,
+        gathering,
+        craft,
+        outro,
+        credits
+    }
+
+    public scene sceneName;
     public EventSystem eventSystem;
+    public PanelManager panelManager;
     public GameObject firstButton;
     public GameObject backButton;
     public TextMeshProUGUI counter;
@@ -25,17 +36,49 @@ public class MenuActions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (title)
+        getEventSystem();
+        getPanelManager();
+        if (sceneName == scene.title)
         {
             showMenu();
         }
-        else if (village)
+        else if (sceneName == scene.gathering)
         {
+            startClock();
+        }
+        else if (sceneName == scene.craft)
+        {
+            Debug.Log("invoke Crafting()");
+            Crafting();
+        }
+        else if (sceneName == scene.credits)
+        {
+            GetComponent<Animator>().SetTrigger("endCredits");
+        }
+    }
 
+
+    void getEventSystem()
+    {
+        if (GameObject.FindGameObjectWithTag("EventSystem") != null)
+        {
+            eventSystem = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<EventSystem>();
         }
         else
         {
-            startClock();
+            Debug.Log("event system is not hooked up.");
+        }
+    }
+
+    void getPanelManager()
+    {
+        if (GameObject.FindGameObjectWithTag("PanelManager") != null)
+        {
+            panelManager = GameObject.FindGameObjectWithTag("PanelManager").GetComponent<PanelManager>();
+        }
+        else
+        {
+            Debug.Log("PanelManager is not hooked up.");
         }
     }
 
@@ -43,20 +86,26 @@ public class MenuActions : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("menu", true);
         GetComponent<Animator>().SetBool("credits", false);
-        eventSystem.SetSelectedGameObject(firstButton);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(firstButton);
+        }
     }
 
     public void startGame()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("IntroScene", LoadSceneMode.Single);
     }
 
     public void showCredits()
     {
         GetComponent<Animator>().SetBool("credits", true);
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(backButton); 
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(backButton);
+        }
     }
 
     public void startClock()
@@ -96,50 +145,119 @@ public class MenuActions : MonoBehaviour
     public void Resume()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(null);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
         // also start input from the player controller
+    }
+
+    public void Crafting() { 
+        // on start of crafting, show the menu, and when we exit out of inventory/recipe
+        //GetComponent<Animator>().SetBool("menu", true);
+        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+    }
+
+    public void Inventory()
+    {
+        if (sceneName == scene.craft)
+        {
+            if (transform.GetChild(0).gameObject.activeInHierarchy)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
+            else
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            GetComponent<Animator>().SetBool("menu", false);
+        }
+        panelManager.ShowInventoryPanel();
+    }
+
+    public void Recipes()
+    {
+        if (sceneName == scene.craft) {
+            Debug.Log(transform.GetChild(0).name);
+            if (transform.GetChild(0).gameObject.activeInHierarchy)
+            {
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
+            else
+            {
+                transform.GetChild(0).gameObject.SetActive(true);
+            }
+         }
+        else {
+            GetComponent<Animator>().SetBool("menu", false);
+        }
+        panelManager.ShowRecipesPanel();
     }
 
     public void End()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(null);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
 
-        // show ending UI
-
-        // select default ending ui button
-        //eventSystem.SetSelectedGameObject(null);
-
+        SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
     }
 
     public void Quit()
     {
         GetComponent<Animator>().SetBool("menu", false);
-        eventSystem.SetSelectedGameObject(null);
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
         // change scene back to main menu
         SceneManager.LoadScene("TitleScene", LoadSceneMode.Single);
     }
 
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void CreditScene()
+    {
+        SceneManager.LoadScene("CreditsScene", LoadSceneMode.Single);
+    }
+
     void Update()
     {
-        if (!title && countdown)
+        if (eventSystem == null)
+        {
+            getEventSystem();
+        }
+        if (sceneName != scene.title && panelManager == null)
+        {
+            getPanelManager();
+        }
+        if (sceneName == scene.gathering && countdown)
         {
             timeLeft -= Time.deltaTime;
             showCountdown();
         }
-        if (!title && Keyboard.current.iKey.wasPressedThisFrame)
+        if ((sceneName == scene.village || sceneName == scene.gathering || sceneName == scene.craft) && Keyboard.current.iKey.wasPressedThisFrame)
         {
-            //ShowInventoryPanel();
+            Inventory();
         }
-        if (!title && Keyboard.current.rKey.wasPressedThisFrame)
+        if (sceneName == scene.craft && Keyboard.current.rKey.wasPressedThisFrame)
         {
-            //ShowRecipesPanel();
+            Recipes();
         }
-        if (!title && Keyboard.current.mKey.wasPressedThisFrame)
+        if ((sceneName == scene.village || sceneName == scene.gathering || sceneName == scene.craft) && Keyboard.current.mKey.wasPressedThisFrame)
         {
             bool menu = GetComponent<Animator>().GetBool("menu");
             GetComponent<Animator>().SetBool("menu", !menu);
-            if (menu)
+            if (menu && eventSystem != null)
             {
                 eventSystem.SetSelectedGameObject(null);
                 // also start input from the player controller
@@ -149,6 +267,14 @@ public class MenuActions : MonoBehaviour
                 eventSystem.SetSelectedGameObject(firstButton);
                 // also stop input from the player controller
             }
+        }
+        if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            CreditScene();
+        }
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            Quit();
         }
     }
 }

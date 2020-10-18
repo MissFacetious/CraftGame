@@ -26,7 +26,6 @@ public class Apple : MonoBehaviour
         // kick off collection animation
         Debug.Log("kick off animation");
         GetComponent<Animator>().SetTrigger("collect");
-
         Destroy(gameObject, 2.0f); // the 2 seconds is the length of the animation
     }
 

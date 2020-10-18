@@ -1,11 +1,14 @@
 acoustic breeze
-the main song that can play on the 3D environment
+the main song that can play on the 3D environment - gathering
 
 adventure
-a main title logo, or when the story becomes optimistic
+a main title logo, or when the story becomes optimistic - title/village
 
 littleidea
-song for crafting
+song for crafting - crafting
 
 psychedelic
-when there is conflict, or comedy
+when there is conflict, or comedy - ????
+
+pianomoment
+a great sad-ish intro! - intro

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
@@ -67,7 +68,7 @@ public class PanelManager : MonoBehaviour
         }
         // move event system to first item in inventory
         if (inventoryContent.transform.childCount > 0)
-        {
+        {   
             eventSystem.SetSelectedGameObject(inventoryContent.transform.GetChild(0).gameObject);
         }
     }
@@ -183,6 +184,7 @@ public class PanelManager : MonoBehaviour
         {
             // show success panel
             resultPanel.SetActive(true);
+            resultPanel.GetComponent<ResultsDisplay>().setItem(type);
             craftPanel.SetActive(false);
         }
         else
@@ -239,17 +241,6 @@ public class PanelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            ShowInventoryPanel();
-        }
-        if (Keyboard.current.enterKey.wasPressedThisFrame)
-        {
-            ShowRecipesPanel();
-        }
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            UndoPanel();
-        }
+        
     }
 }
