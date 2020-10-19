@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Fungus;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -201,9 +202,26 @@ public class MenuActions : MonoBehaviour
     public void End()
     {
         GetComponent<Animator>().SetBool("menu", false);
+        
         if (eventSystem != null)
         {
             eventSystem.SetSelectedGameObject(null);
+            if (sceneName == scene.gathering)
+            {
+                // set variable - complete by default.
+                Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
+                if(flowchart != null)
+                {
+                    flowchart.SetBooleanVariable("hoshi_gath_complete", true);
+                    Debug.Log("Gathering complete:" + flowchart.GetBooleanVariable("hoshi_gath_complete"));
+                }
+                else
+                {
+                    Debug.Log("Whoopsie daisy. Flowchart not found!");
+                }
+
+              
+            }
         }
 
         SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
@@ -270,11 +288,11 @@ public class MenuActions : MonoBehaviour
         }
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
-            CreditScene();
+            SceneManager.LoadScene("CraftScene", LoadSceneMode.Single);
         }
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
-            Quit();
+            CreditScene();
         }
     }
 }
