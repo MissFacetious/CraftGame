@@ -20,6 +20,7 @@ TagManager:
   - PW - Nature
   - CraftCollider
   - Flowchart
+  - PlayerButton
   layers:
   - Default
   - TransparentFX

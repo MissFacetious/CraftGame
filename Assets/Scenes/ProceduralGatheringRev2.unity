@@ -2933,6 +2933,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1744229862823490405, guid: 4608ce8f78e0504489b1dff1bffac3ef,
+        type: 3}
+      propertyPath: m_TagString
+      value: PlayerButton
+      objectReference: {fileID: 0}
     - target: {fileID: 1744229863850423523, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
       propertyPath: eventSystem
@@ -4703,6 +4708,7 @@ MonoBehaviour:
   OnInteraction:
     m_PersistentCalls:
       m_Calls: []
+  interactionTransform: {fileID: 0}
   interactRadius: 3
 --- !u!4 &278816566 stripped
 Transform:
@@ -16245,6 +16251,7 @@ MonoBehaviour:
   OnInteraction:
     m_PersistentCalls:
       m_Calls: []
+  interactionTransform: {fileID: 0}
   interactRadius: 3
 --- !u!4 &979856553 stripped
 Transform:
@@ -29910,6 +29917,7 @@ MonoBehaviour:
   OnInteraction:
     m_PersistentCalls:
       m_Calls: []
+  interactionTransform: {fileID: 0}
   interactRadius: 3
 --- !u!4 &1752238563 stripped
 Transform:
