@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 1744229862823490403}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: PlayerButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2320,9 +2320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf8337d9383f7b43a177dc6859c51d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: 0
-  village: 0
+  sceneName: 0
   eventSystem: {fileID: 0}
+  panelManager: {fileID: 0}
   firstButton: {fileID: 1744229863609581015}
   backButton: {fileID: 0}
   counter: {fileID: 1744229862337546631}

@@ -22,7 +22,7 @@ public class Interactor : MonoBehaviour
 
     private void Awake()
     {
-        button = Canvas.FindObjectOfType<Button>();
+        button = GameObject.FindWithTag("PlayerButton").GetComponent<Button>();
         if (button == null)
         {
             Debug.LogError("Button not assigned.");
