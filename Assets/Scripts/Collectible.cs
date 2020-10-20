@@ -6,12 +6,12 @@ public class Collectible : MonoBehaviour
     [Range(0f, 100f)]
     public float rotateSpeed = 35f;
     private float rotationAngle = 0f;
-
+    public Recipes.RecipeEnum recipe;
 
     private void Awake()
     {
-        // rb = GetComponent<Rigidbody>();
-        // rb.AddForce(Vector3.up * 100f);
+        rb = GetComponent<Rigidbody>();
+        rb.AddForce(Vector3.up * 100f);
     }
 
     // Start is called before the first frame update
@@ -30,12 +30,12 @@ public class Collectible : MonoBehaviour
         // when object pooling, use OnEnable instead of Awake/Start
     }
 
-    public void Collect(Transform collector)
+    public void Collect(GameObject collector)
     {
         Destroy(gameObject.GetComponent<Rigidbody>());
         Destroy(gameObject.GetComponent<Collider>());
 
-        transform.parent = collector;
+        transform.parent = collector.transform;
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         transform.localPosition = new Vector3(0f, 0.5f, 0f);
 

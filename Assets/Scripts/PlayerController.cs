@@ -114,6 +114,22 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+
+        if (other.gameObject.CompareTag("Collectible"))
+        {
+            Collectible collectible = other.gameObject.GetComponent<Collectible>();
+            if (collectible != null)
+            {
+                animator.SetTrigger("collect");
+                collectible.Collect(gameObject);
+                menuActions.increaseCurrentCounter();
+                inventoryManager.CreateNewItem(collectible.recipe, false);
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -137,10 +153,11 @@ public class PlayerController : MonoBehaviour
                 float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
                 float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
 
-                transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
                 Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-                transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
+                rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
+                rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
+                //transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
+                //transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
             }
             else
             {

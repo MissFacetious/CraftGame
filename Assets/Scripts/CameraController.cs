@@ -91,8 +91,9 @@ public class CameraController : MonoBehaviour
         focusPoint = target.transform.position;
         obstruction = target.transform;
 
-        // Ignore camera raycasts on Player layer
-        clippingMask = clippingMask ^ LayerMask.GetMask("Player");
+        // Ignore camera raycasts on Terrain and Player layer
+        string[] maskNames = {"Player", "Terrain"};
+        //clippingMask ^= LayerMask.GetMask("Player");
     }
 
     private void LateUpdate()

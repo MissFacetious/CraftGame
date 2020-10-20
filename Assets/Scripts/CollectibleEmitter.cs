@@ -11,6 +11,10 @@ public class CollectibleEmitter : MonoBehaviour
     [SerializeField]
     private int collectibleAmount = 3;
 
+    [SerializeField]
+    private float emitterSpeed = 3f;
+    private float emitterTimeElapsed = 0f;
+
     private void Awake()
     {
         // Register interaction event
@@ -32,12 +36,6 @@ public class CollectibleEmitter : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnInteract()
     {
         // emit items
@@ -50,16 +48,12 @@ public class CollectibleEmitter : MonoBehaviour
 
     private void EmitItems()
     {
-         if (hasItemsToDrop)
+        if (hasItemsToDrop)
         {
+            GameObject item;
             for (int i = 0; i < collectibleAmount; i++)
             {
-                GameObject item = Instantiate(collectible, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
-                
-                Rigidbody rb = item.GetComponent<Rigidbody>();
-                if (rb != null) {
-                    rb.AddForce(Vector3.up * 100f);
-                }
+                item = Instantiate(collectible, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
             }
 
             hasItemsToDrop = false;

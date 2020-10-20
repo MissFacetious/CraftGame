@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5283259732085464475}
   - component: {fileID: 5283259732085464472}
   - component: {fileID: 5283259732085464473}
-  - component: {fileID: 5283259732085464470}
+  - component: {fileID: 3915450205640767235}
   m_Layer: 0
   m_Name: CelestineRock3
   m_TagString: Untagged
@@ -49,7 +49,6 @@ MonoBehaviour:
   OnInteraction:
     m_PersistentCalls:
       m_Calls: []
-  interactionVector: {x: 0, y: 0, z: 0}
   interactRadius: 3
 --- !u!114 &5283259732085464473
 MonoBehaviour:
@@ -66,9 +65,9 @@ MonoBehaviour:
   collectible: {fileID: 6131762233143765123, guid: 1dc3a10dc8ff37448802f630f77cc26e,
     type: 3}
   collectibleAmount: 3
-  emitDistance: 5
---- !u!65 &5283259732085464470
-BoxCollider:
+  emitterSpeed: 3
+--- !u!136 &3915450205640767235
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -77,8 +76,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 3}
+  m_Radius: 2
+  m_Height: 3.7
+  m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &5283259733544503105
 PrefabInstance:
