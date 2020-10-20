@@ -19,6 +19,7 @@ TagManager:
   - PW - Building
   - PW - Nature
   - CraftCollider
+  - Flowchart
   layers:
   - Default
   - TransparentFX

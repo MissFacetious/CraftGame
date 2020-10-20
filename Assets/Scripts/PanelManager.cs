@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fungus;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -45,6 +46,8 @@ public class PanelManager : MonoBehaviour
 
     [Header("Animator")]
     public Animator mix;
+
+    public Flowchart flowchart;
 
     Stack<Action> lastAction = new Stack<Action>();
 
@@ -182,10 +185,17 @@ public class PanelManager : MonoBehaviour
         bool success = craftingManager.Craft(type);
         if (success)
         {
+
+            if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
+            {
+                flowchart.SetBooleanVariable("hoshi_item_crafted", true);
+            }
             // show success panel
             resultPanel.SetActive(true);
             resultPanel.GetComponent<ResultsDisplay>().setItem(type);
             craftPanel.SetActive(false);
+            // tell the flowchart to set a var
+
         }
         else
         {

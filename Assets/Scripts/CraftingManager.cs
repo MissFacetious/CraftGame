@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using Fungus;
 
 public class CraftingManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class CraftingManager : MonoBehaviour
     public GameObject item3;
     public GameObject inventoryPanel;
     public GameObject inventoryContent;
+    //public Flowchart gameManagerFlowchart;
 
     public void Select(GameObject item, GameObject itemSlot)
     {
