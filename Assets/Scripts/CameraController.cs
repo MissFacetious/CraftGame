@@ -93,7 +93,7 @@ public class CameraController : MonoBehaviour
 
         // Ignore camera raycasts on Terrain and Player layer
         string[] maskNames = {"Player", "Terrain"};
-        //clippingMask ^= LayerMask.GetMask("Player");
+        //clippingMask ^= LayerMask.GetMask(maskNames);
     }
 
     private void LateUpdate()
