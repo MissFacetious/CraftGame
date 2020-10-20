@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/Large Interactable Objects.meta
 guid: 474ab475a50973b4e820239d386ea30f
 folderAsset: yes
 DefaultImporter:
+=======
+guid: bd55ade07a033c94ab14e7e75f83e1bc
+PrefabImporter:
+>>>>>>> 3875a2d0ee749a2dd0d7d83c453631c3642f71fd:Assets/Prefabs/Pumpkin.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
