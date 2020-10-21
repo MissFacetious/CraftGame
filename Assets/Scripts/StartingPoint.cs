@@ -16,12 +16,17 @@ public class StartingPoint : MonoBehaviour
     public Item topItem1;
     public Item topItem2;
     public Item topItem3;
+    public TextMeshProUGUI gatherInstructions;
     public Recipes recipes;
     public RecipeManager recipeManager;
+    public InventoryManager inventoryManager;
 
     private int outOf1 = 0;
     private int outOf2 = 0;
     private int outOf3 = 0;
+    private Recipes.RecipeEnum type1;
+    private Recipes.RecipeEnum type2;
+    private Recipes.RecipeEnum type3;
 
     // Start is called before the first frame update
     void Start()
@@ -30,28 +35,31 @@ public class StartingPoint : MonoBehaviour
         if (recipeManager == null) {
             recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
             recipes = GameObject.FindGameObjectWithTag("Recipes").GetComponent<Recipes>();
+            inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
         }
         Recipes.RecipeEnum currentRecipe = recipeManager.getCurrentRecipe();
         // just use this until we set the proper actual one for the quest
         Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
 
-        Debug.Log(items[0].type);
-        Debug.Log(items[1].type);
-        Debug.Log(items[2].type);
-        
-        item1.setItem(items[0].type, false);
-        item2.setItem(items[1].type, false);
-        item3.setItem(items[2].type, false);
-        item1.count = items[0].count;
-        item2.count = items[1].count;
-        item3.count = items[2].count;
+        type1 = items[0].type;
+        type2 = items[1].type;
+        type3 = items[2].type;
+
+        item1.setItem(type1, false);
+        item2.setItem(type2, false);
+        item3.setItem(type3, false);
 
         topItem1.setItem(items[0].type, false);
         topItem2.setItem(items[1].type, false);
         topItem3.setItem(items[2].type, false);
+
         outOf1 = items[0].count;
         outOf2 = items[1].count;
         outOf3 = items[2].count;
+
+        item1.count = outOf1;
+        item2.count = outOf2;
+        item3.count = outOf3;
 
         // set this in the menu as well on the top panel
     }
@@ -62,6 +70,7 @@ public class StartingPoint : MonoBehaviour
         // show intro menu
         ready.gameObject.SetActive(true);
         end.gameObject.SetActive(false);
+        gatherInstructions.text = "Let's Get Ready to Gather";
         menu.GetComponent<Animator>().SetBool("gathering", true);
     }
 
@@ -79,6 +88,7 @@ public class StartingPoint : MonoBehaviour
         menu.GetComponent<Animator>().SetBool("menu", false);
         ready.gameObject.SetActive(false);
         end.gameObject.SetActive(true);
+        gatherInstructions.text = "All Done Gathering";
         menu.GetComponent<Animator>().SetBool("gathering", true);
     }
 
@@ -91,8 +101,8 @@ public class StartingPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        topItem1.displayCount.text = " / " + outOf1;
-        topItem2.displayCount.text = " / " + outOf2;
-        topItem3.displayCount.text = " / " + outOf3;
+        topItem1.displayCount.text = inventoryManager.getCount(type1) + " / " + outOf1;
+        topItem2.displayCount.text = inventoryManager.getCount(type2) + " / " + outOf2;
+        topItem3.displayCount.text = inventoryManager.getCount(type3) + " / " + outOf3;
     }
 }

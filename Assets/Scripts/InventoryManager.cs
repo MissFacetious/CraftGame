@@ -226,6 +226,20 @@ public class InventoryManager : MonoBehaviour, IComparer
         }
     }
 
+    public int getCount(Recipes.RecipeEnum type)
+    {
+        int count = 0;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Item myItem = gameObject.transform.GetChild(i).GetComponent<Item>();            
+            if (myItem.type == type)
+            {
+                count = count + myItem.count;
+            }
+        }
+        return count;
+    }
+
     public void HideInventory()
     {
         int size = inventoryContent.transform.childCount;
