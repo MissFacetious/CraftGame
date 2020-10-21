@@ -35,6 +35,10 @@ public class Item : MonoBehaviour
         {
         //    Debug.Log("map your text");
         }
+        if (recipes == null)
+        {
+            recipes = GameObject.FindGameObjectWithTag("Recipes").GetComponent<Recipes>();
+        }
     }
 
     public void setItem(Recipes.RecipeEnum myType, bool myBundle)

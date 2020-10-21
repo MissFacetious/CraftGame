@@ -27,6 +27,8 @@ public class MenuActions : MonoBehaviour
     public GameObject backButton;
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
+    public TextMeshProUGUI locationName;
+    public StartingPoint startingPoint;
 
     private bool countdown;
     private float timeLeft;
@@ -43,9 +45,13 @@ public class MenuActions : MonoBehaviour
         {
             showMenu();
         }
+        else if (sceneName == scene.village)
+        {
+            showTitle("The Village");
+        }
         else if (sceneName == scene.gathering)
         {
-            startClock();
+            showTitle("The Spring Hills");
         }
         else if (sceneName == scene.craft)
         {
@@ -57,7 +63,6 @@ public class MenuActions : MonoBehaviour
             GetComponent<Animator>().SetTrigger("endCredits");
         }
     }
-
 
     void getEventSystem()
     {
@@ -137,6 +142,15 @@ public class MenuActions : MonoBehaviour
         }
     }
 
+    public void showTitle(string location)
+    {
+        if (locationName != null)
+        {
+            locationName.text = location;
+            GetComponent<Animator>().SetTrigger("location");
+        }
+    }
+
     public void increaseCurrentCounter()
     {
         currentCount++;
@@ -197,6 +211,11 @@ public class MenuActions : MonoBehaviour
             GetComponent<Animator>().SetBool("menu", false);
         }
         panelManager.ShowRecipesPanel();
+    }
+
+    public void MenuEnd()
+    {
+        startingPoint.EndPanel();
     }
 
     public void End()
