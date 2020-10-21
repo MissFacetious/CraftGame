@@ -21,6 +21,8 @@ TagManager:
   - CraftCollider
   - Flowchart
   - PlayerButton
+  - RecipeManager
+  - Recipes
   layers:
   - Default
   - TransparentFX

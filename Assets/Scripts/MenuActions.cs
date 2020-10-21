@@ -28,6 +28,7 @@ public class MenuActions : MonoBehaviour
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI locationName;
+    public StartingPoint startingPoint;
 
     private bool countdown;
     private float timeLeft;
@@ -50,7 +51,6 @@ public class MenuActions : MonoBehaviour
         }
         else if (sceneName == scene.gathering)
         {
-            startClock();
             showTitle("The Spring Hills");
         }
         else if (sceneName == scene.craft)
@@ -63,7 +63,6 @@ public class MenuActions : MonoBehaviour
             GetComponent<Animator>().SetTrigger("endCredits");
         }
     }
-
 
     void getEventSystem()
     {
@@ -212,6 +211,11 @@ public class MenuActions : MonoBehaviour
             GetComponent<Animator>().SetBool("menu", false);
         }
         panelManager.ShowRecipesPanel();
+    }
+
+    public void MenuEnd()
+    {
+        startingPoint.EndPanel();
     }
 
     public void End()
