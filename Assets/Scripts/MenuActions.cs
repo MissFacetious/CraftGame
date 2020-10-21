@@ -27,6 +27,7 @@ public class MenuActions : MonoBehaviour
     public GameObject backButton;
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
+    public TextMeshProUGUI locationName;
 
     private bool countdown;
     private float timeLeft;
@@ -43,9 +44,14 @@ public class MenuActions : MonoBehaviour
         {
             showMenu();
         }
+        else if (sceneName == scene.village)
+        {
+            showTitle("The Village");
+        }
         else if (sceneName == scene.gathering)
         {
             startClock();
+            showTitle("The Spring Hills");
         }
         else if (sceneName == scene.craft)
         {
@@ -134,6 +140,15 @@ public class MenuActions : MonoBehaviour
             int minutes = Mathf.FloorToInt(timeLeft / 60);
             int seconds = Mathf.CeilToInt(timeLeft % 60);
             timer.text = minutes + ":" + seconds;
+        }
+    }
+
+    public void showTitle(string location)
+    {
+        if (locationName != null)
+        {
+            locationName.text = location;
+            GetComponent<Animator>().SetTrigger("location");
         }
     }
 
