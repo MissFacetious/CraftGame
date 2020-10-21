@@ -13,8 +13,15 @@ public class StartingPoint : MonoBehaviour
     public Item item3;
     public Button ready;
     public Button end;
+    public Item topItem1;
+    public Item topItem2;
+    public Item topItem3;
     public Recipes recipes;
     public RecipeManager recipeManager;
+
+    private int outOf1 = 0;
+    private int outOf2 = 0;
+    private int outOf3 = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +46,13 @@ public class StartingPoint : MonoBehaviour
         item2.count = items[1].count;
         item3.count = items[2].count;
 
+        topItem1.setItem(items[0].type, false);
+        topItem2.setItem(items[1].type, false);
+        topItem3.setItem(items[2].type, false);
+        outOf1 = items[0].count;
+        outOf2 = items[1].count;
+        outOf3 = items[2].count;
+
         // set this in the menu as well on the top panel
     }
 
@@ -46,6 +60,8 @@ public class StartingPoint : MonoBehaviour
     {
         Debug.Log(name + "'s interaction method");
         // show intro menu
+        ready.gameObject.SetActive(true);
+        end.gameObject.SetActive(false);
         menu.GetComponent<Animator>().SetBool("gathering", true);
     }
 
@@ -60,6 +76,9 @@ public class StartingPoint : MonoBehaviour
 
     public void EndPanel()
     {
+        menu.GetComponent<Animator>().SetBool("menu", false);
+        ready.gameObject.SetActive(false);
+        end.gameObject.SetActive(true);
         menu.GetComponent<Animator>().SetBool("gathering", true);
     }
 
@@ -72,6 +91,8 @@ public class StartingPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        topItem1.displayCount.text = " / " + outOf1;
+        topItem2.displayCount.text = " / " + outOf2;
+        topItem3.displayCount.text = " / " + outOf3;
     }
 }
