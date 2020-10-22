@@ -18,6 +18,7 @@ public class Item : MonoBehaviour
     public Image displayImage;
     public bool bundle = false;
     public GameObject displayBundleImage;
+    public bool inGathering;
 
     // Start is called before the first frame update
     void Awake()
@@ -66,9 +67,15 @@ public class Item : MonoBehaviour
         {
             displayImage.sprite = image;
         }
-        if (displayCount != null && count > 0)
-        {
-            displayCount.text = count.ToString();
+        if (displayCount != null && !inGathering) {
+            if (count > 0)
+            {
+                displayCount.text = count.ToString();
+            }
+            else
+            {
+                displayCount.text = "";
+            }
         }
         if (bundle && displayBundleImage != null)
         {
