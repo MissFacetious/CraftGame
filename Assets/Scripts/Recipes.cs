@@ -99,9 +99,9 @@ public class Recipes : MonoBehaviour
             type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
             type2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
             type3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
-            count1 = 10;
-            count2 = 10;
-            count3 = 10;
+            count1 = 2;
+            count2 = 2;
+            count3 = 2;
         }
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {

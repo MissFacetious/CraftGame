@@ -281,7 +281,7 @@ public class MenuActions : MonoBehaviour
         if (sceneName == scene.gathering && countdown)
         {
             
-            if(timeLeft <= 0)
+            if(timeLeft <= 1)
             {
                 MenuEnd();
             } else

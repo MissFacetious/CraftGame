@@ -89,6 +89,12 @@ public class InventoryManager : MonoBehaviour, IComparer
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
+            inventoryList.Add(gameObject.transform.GetChild(i).GetComponent<Item>());
+        }
+
+        /*
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
             int count = 1;
             int oldCount = 0;
             if (inventoryMap.ContainsKey(gameObject.transform.GetChild(i).gameObject.GetComponent<Item>().type))
@@ -154,7 +160,8 @@ public class InventoryManager : MonoBehaviour, IComparer
                 }
             }
         }
-        return bundledInventoryList;
+        */
+        return inventoryList;
     }
 
     public void ShowInventory()
