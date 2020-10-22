@@ -128,6 +128,7 @@ public class Recipes : MonoBehaviour
     public bool CheckRecipe(RecipeEnum recipe, Item slot1, Item slot2, Item slot3)
     {
         RecipeTypeCount[] items = getItemsInRecipe(recipe);
+        Debug.Log(items);
 
         if (items[0].type == slot1.type && items[1].type == slot2.type && items[2].type == slot3.type)
         {

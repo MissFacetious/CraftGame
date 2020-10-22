@@ -44,44 +44,43 @@ public class CraftingManager : MonoBehaviour
 
     public bool Craft(Recipes.RecipeEnum type)
     {
+        Debug.Log("invoke the Craft method");
         // make new item and put into inventory
         Item slot1 = item1.GetComponent<Item>();
         Item slot2 = item2.GetComponent<Item>();
         Item slot3 = item3.GetComponent<Item>();
-        
+        bool success = false;
+
         if (recipes.CheckRecipe(type, slot1, slot2, slot3))
         {
-            // lolop through slot1, slot2, slot3 and dstroy and thing that is of Component<ITem>()
-
-            for (int i = 0; i < slot1.gameObject.transform.childCount; i++)
-            {
-                if(slot1.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
-                {
-                    Destroy(slot1.gameObject.transform.GetChild(i).gameObject);
-                }
-              
-            }
-            for (int i = 0; i < slot2.gameObject.transform.childCount; i++)
-            {
-                if (slot2.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
-                {
-                    Destroy(slot2.gameObject.transform.GetChild(i).gameObject);
-                }
-            }
-            for (int i = 0; i < slot3.gameObject.transform.childCount; i++)
-            {
-                if (slot3.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
-                {
-                    Destroy(slot3.gameObject.transform.GetChild(i).gameObject);
-                }
-            }
-
             inventoryManager.CreateNewItem(type, false);
             
-            Debug.Log("success!");
-            return true;
+            success = true;
         }
-        return false;
+        // loop through slot1, slot2, slot3 and destroy anything that is of Component<Item>()
+        Debug.Log("deleting items to make things");
+        for (int i = 0; i < slot1.gameObject.transform.childCount; i++)
+        {
+            if (slot1.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
+            {
+                Destroy(slot1.gameObject.transform.GetChild(i).gameObject);
+            }
+        }
+        for (int i = 0; i < slot2.gameObject.transform.childCount; i++)
+        {
+            if (slot2.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
+            {
+                Destroy(slot2.gameObject.transform.GetChild(i).gameObject);
+            }
+        }
+        for (int i = 0; i < slot3.gameObject.transform.childCount; i++)
+        {
+            if (slot3.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
+            {
+                Destroy(slot3.gameObject.transform.GetChild(i).gameObject);
+            }
+        }
+        return success;
     }
 
     public void DestroyRecipePanel()
