@@ -20,6 +20,8 @@ public class StartingPoint : MonoBehaviour
     public Recipes recipes;
     public RecipeManager recipeManager;
     public InventoryManager inventoryManager;
+    public GameObject yes;
+    public GameObject no;
 
     private int outOf1 = 0;
     private int outOf2 = 0;
@@ -60,6 +62,9 @@ public class StartingPoint : MonoBehaviour
         item1.count = outOf1;
         item2.count = outOf2;
         item3.count = outOf3;
+        item1.displayCount.text = outOf1.ToString();
+        item2.displayCount.text = outOf2.ToString();
+        item3.displayCount.text = outOf3.ToString();
 
         // set this in the menu as well on the top panel
     }
@@ -89,13 +94,39 @@ public class StartingPoint : MonoBehaviour
         ready.gameObject.SetActive(false);
         end.gameObject.SetActive(true);
         gatherInstructions.text = "All Done Gathering";
+
+        item1.count = 0;
+        item2.count = 0;
+        item3.count = 0;
+        item1.displayCount.text = inventoryManager.getCount(type1) + " / " + outOf1;
+        item2.displayCount.text = inventoryManager.getCount(type2) + " / " + outOf2;
+        item3.displayCount.text = inventoryManager.getCount(type3) + " / " + outOf3;
+
+        // check the inventory if they succeeded
+        if (inventoryManager.getCount(type1) >= outOf1 &&
+            inventoryManager.getCount(type2) >= outOf2 &&
+            inventoryManager.getCount(type3) >= outOf3) {
+            yes.SetActive(true);
+            no.SetActive(false);
+        }
+        else {
+            yes.SetActive(false);
+            no.SetActive(true);
+        }
         menu.GetComponent<Animator>().SetBool("gathering", true);
     }
 
     public void Leave()
     {
         menu.GetComponent<Animator>().SetBool("gathering", false);
-        menu.End();
+        if (yes.activeInHierarchy)
+        {
+            menu.End(true);
+        }
+        else
+        {
+            menu.End(false);
+        } 
     }
 
     // Update is called once per frame

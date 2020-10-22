@@ -12,6 +12,8 @@ public class ResultsDisplay : MonoBehaviour
     public string title;
     public Image image;
     public Recipes recipes;
+    public GameObject yes;
+    public GameObject no;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,17 @@ public class ResultsDisplay : MonoBehaviour
         }
     }
 
+    public void ShowSuccess()
+    {
+        yes.SetActive(true);
+        no.SetActive(false);
+    }
+
+    public void ShowFailure()
+    {
+        yes.SetActive(false);
+        no.SetActive(true);
+    }
     // Update is called once per frame
     void Update()
     {

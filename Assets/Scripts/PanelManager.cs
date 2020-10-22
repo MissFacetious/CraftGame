@@ -185,22 +185,23 @@ public class PanelManager : MonoBehaviour
         bool success = craftingManager.Craft(type);
         if (success)
         {
-
+            resultPanel.GetComponent<ResultsDisplay>().ShowSuccess();
+            // tell the flowchart to set a var
             if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
             {
                 flowchart.SetBooleanVariable("hoshi_item_crafted", true);
             }
-            // show success panel
-            resultPanel.SetActive(true);
-            resultPanel.GetComponent<ResultsDisplay>().setItem(type);
-            craftPanel.SetActive(false);
-            // tell the flowchart to set a var
-
         }
         else
         {
             // failure panel
+            resultPanel.GetComponent<ResultsDisplay>().ShowFailure();
         }
+        // show results panel
+        resultPanel.SetActive(true);
+        resultPanel.GetComponent<ResultsDisplay>().setItem(type);
+        craftPanel.SetActive(false);
+
         // clear the last actions
         lastAction.Clear();
 
