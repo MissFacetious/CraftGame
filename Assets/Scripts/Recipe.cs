@@ -36,11 +36,11 @@ public class Recipe : MonoBehaviour
             title = "Rainbow Refractor";
             image = Resources.Load<Sprite>("Icons/diaphragm");
         }
-        else if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
-        {
-            title = "Apple Blossom Tea";
-            image = Resources.Load<Sprite>("Icons/hot-cup");
-        }
+       // else if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
+       // {
+       //     title = "Apple Blossom Tea";
+       //     image = Resources.Load<Sprite>("Icons/hot-cup");
+       // }
     }
 
     // Update is called once per frame

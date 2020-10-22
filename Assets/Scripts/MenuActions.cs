@@ -118,7 +118,7 @@ public class MenuActions : MonoBehaviour
     {
 
         countdown = true;
-        timeLeft = 10 * 60; // 10 minutes
+        timeLeft = 1 * 60; // currently 1 minute for demo, can be 10 minutes for final
     }
 
     public void pauseClock()
@@ -137,7 +137,7 @@ public class MenuActions : MonoBehaviour
         if (timer)
         {
             int minutes = Mathf.FloorToInt(timeLeft / 60);
-            int seconds = Mathf.CeilToInt(timeLeft % 60);
+            int seconds = Mathf.FloorToInt(timeLeft % 60);
             timer.text = minutes + ":" + seconds;
         }
     }
@@ -215,6 +215,7 @@ public class MenuActions : MonoBehaviour
 
     public void MenuEnd()
     {
+        stopClock();
         startingPoint.EndPanel();
     }
 
@@ -279,8 +280,15 @@ public class MenuActions : MonoBehaviour
         }
         if (sceneName == scene.gathering && countdown)
         {
-            timeLeft -= Time.deltaTime;
-            showCountdown();
+            
+            if(timeLeft <= 0)
+            {
+                MenuEnd();
+            } else
+            {
+                timeLeft -= Time.deltaTime;
+                showCountdown();
+            }
         }
         if ((sceneName == scene.village || sceneName == scene.gathering || sceneName == scene.craft) && Keyboard.current.iKey.wasPressedThisFrame)
         {
