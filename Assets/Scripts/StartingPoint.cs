@@ -119,7 +119,14 @@ public class StartingPoint : MonoBehaviour
     public void Leave()
     {
         menu.GetComponent<Animator>().SetBool("gathering", false);
-        menu.End();
+        if (yes.activeInHierarchy)
+        {
+            menu.End(true);
+        }
+        else
+        {
+            menu.End(false);
+        } 
     }
 
     // Update is called once per frame

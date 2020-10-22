@@ -219,7 +219,7 @@ public class MenuActions : MonoBehaviour
         startingPoint.EndPanel();
     }
 
-    public void End()
+    public void End(bool success)
     {
         GetComponent<Animator>().SetBool("menu", false);
         
@@ -232,18 +232,30 @@ public class MenuActions : MonoBehaviour
                 Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
                 if(flowchart != null)
                 {
-                    flowchart.SetBooleanVariable("hoshi_gath_complete", true);
-                    Debug.Log("Gathering complete:" + flowchart.GetBooleanVariable("hoshi_gath_complete"));
+                    if (success)
+                    {
+                        flowchart.SetBooleanVariable("hoshi_gath_complete", true);
+                        flowchart.SetBooleanVariable("hoshi_fail", false);
+                    }
+                    else
+                    {
+                        flowchart.SetBooleanVariable("hoshi_fail", true);
+                    }
+                    //Debug.Log("Gathering complete:" + flowchart.GetBooleanVariable("hoshi_gath_complete"));
                 }
                 else
                 {
                     Debug.Log("Whoopsie daisy. Flowchart not found!");
                 }
-
-              
             }
         }
 
+        SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
+    }
+
+    public void End()
+    {
+        GetComponent<Animator>().SetBool("menu", false);
         SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
     }
 

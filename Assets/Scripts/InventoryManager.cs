@@ -22,7 +22,7 @@ public class InventoryManager : MonoBehaviour, IComparer
     // Start is called before the first frame update
     void Start()
     {
-
+        /*
         for (int i = 0; i < 10; i++)
         {
             Item myItem = Instantiate(item);
@@ -44,6 +44,7 @@ public class InventoryManager : MonoBehaviour, IComparer
             myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP, false);
             myItem.gameObject.transform.parent = gameObject.transform;
         }
+        */
     }
 
     public Item CreateNewItem(Recipes.RecipeEnum type, bool bundle)
