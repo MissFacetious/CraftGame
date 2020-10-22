@@ -3098,6 +3098,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 1744229863883313120, guid: 4608ce8f78e0504489b1dff1bffac3ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1744229864034314378, guid: 4608ce8f78e0504489b1dff1bffac3ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1744229864331574739, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -3172,6 +3182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.x
       value: 186.466
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305755078545375262, guid: 4608ce8f78e0504489b1dff1bffac3ef,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1225
       objectReference: {fileID: 0}
     - target: {fileID: 4548834584986455321, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}

@@ -1714,7 +1714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &516929836
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2342,7 +2342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &682476618
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2523,6 +2523,8 @@ MonoBehaviour:
   backButton: {fileID: 0}
   counter: {fileID: 0}
   timer: {fileID: 0}
+  locationName: {fileID: 0}
+  startingPoint: {fileID: 0}
 --- !u!95 &697440788
 Animator:
   serializedVersion: 3
