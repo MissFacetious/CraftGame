@@ -11,7 +11,7 @@ public class Collectible : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.up * 100f);
+        rb.AddForce(Vector3.up, ForceMode.Impulse);
     }
 
     // Start is called before the first frame update

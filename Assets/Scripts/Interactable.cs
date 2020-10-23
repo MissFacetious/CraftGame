@@ -77,8 +77,11 @@ public class Interactable : MonoBehaviour
 
     public void OnFocused(Transform interactorTransform)
     {
-        isFocused = true;
-        player = interactorTransform;
+        if (isReady)
+        {
+            isFocused = true;
+            player = interactorTransform;
+        }
     }
 
     public void OnUnfocused()
