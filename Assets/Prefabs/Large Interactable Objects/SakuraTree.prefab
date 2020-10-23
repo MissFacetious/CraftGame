@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7820227249202858501}
+  - {fileID: 6165298561370303379}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,6 +50,7 @@ MonoBehaviour:
   OnInteraction:
     m_PersistentCalls:
       m_Calls: []
+  interactionTransform: {fileID: 0}
   interactRadius: 4
 --- !u!114 &7820891778017681163
 MonoBehaviour:
@@ -64,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectible: {fileID: 5786793133208403768, guid: 770de0e1a3b6e52449307f930866a9cb,
     type: 3}
+  particles: {fileID: 6165298561370303372}
   collectibleAmount: 3
   emitterSpeed: 3
 --- !u!136 &344452469966998650
@@ -147,4 +150,105 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4051275931387646, guid: f371874061e9c874481abcdb897e9420,
     type: 3}
   m_PrefabInstance: {fileID: 7820891779054832891}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9081665465960355286
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7820891778017681161}
+    m_Modifications:
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828568, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: m_Name
+      value: Sparkle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828570, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828570, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: ShapeModule.angle
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828570, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3136481161967828570, guid: c15c9e79d18d1444d95889743b77115f,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c15c9e79d18d1444d95889743b77115f, type: 3}
+--- !u!4 &6165298561370303379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
+    type: 3}
+  m_PrefabInstance: {fileID: 9081665465960355286}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6165298561370303372 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3136481161967828570, guid: c15c9e79d18d1444d95889743b77115f,
+    type: 3}
+  m_PrefabInstance: {fileID: 9081665465960355286}
   m_PrefabAsset: {fileID: 0}

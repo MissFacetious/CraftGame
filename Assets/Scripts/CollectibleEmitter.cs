@@ -7,6 +7,7 @@ public class CollectibleEmitter : MonoBehaviour
     private bool isReady = true;
     
     public GameObject collectible;
+    public ParticleSystem particles;
     
     [SerializeField]
     private int collectibleAmount = 3;
@@ -57,6 +58,10 @@ public class CollectibleEmitter : MonoBehaviour
             }
 
             hasItemsToDrop = false;
+        }
+        if (particles)
+        {
+            particles.gameObject.SetActive(false);
         }
     }
 }
