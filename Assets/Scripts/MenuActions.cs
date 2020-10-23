@@ -55,7 +55,6 @@ public class MenuActions : MonoBehaviour
         }
         else if (sceneName == scene.craft)
         {
-            Debug.Log("invoke Crafting()");
             Crafting();
         }
         else if (sceneName == scene.credits)
@@ -118,7 +117,7 @@ public class MenuActions : MonoBehaviour
     {
 
         countdown = true;
-        timeLeft = 1 * 60; // currently 1 minute for demo, can be 10 minutes for final
+        timeLeft = 3 * 60; // currently 3 minutes for demo, can be 10 minutes for final
     }
 
     public void pauseClock()
@@ -169,7 +168,7 @@ public class MenuActions : MonoBehaviour
 
     public void Crafting() { 
         // on start of crafting, show the menu, and when we exit out of inventory/recipe
-        //GetComponent<Animator>().SetBool("menu", true);
+        GetComponent<Animator>().SetBool("menu", true);
         transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
     }
