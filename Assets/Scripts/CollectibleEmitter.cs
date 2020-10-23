@@ -7,6 +7,7 @@ public class CollectibleEmitter : MonoBehaviour
     private bool isReady = true;
     
     public GameObject collectible;
+    public ParticleSystem particles;
     
     [SerializeField]
     private int collectibleAmount = 3;
@@ -53,10 +54,14 @@ public class CollectibleEmitter : MonoBehaviour
             GameObject item;
             for (int i = 0; i < collectibleAmount; i++)
             {
-                item = Instantiate(collectible, transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+                item = Instantiate(collectible, new Vector3(transform.position.x, transform.position.y+3f, transform.position.z), Quaternion.identity);
             }
 
             hasItemsToDrop = false;
+        }
+        if (particles)
+        {
+            particles.gameObject.SetActive(false);
         }
     }
 }

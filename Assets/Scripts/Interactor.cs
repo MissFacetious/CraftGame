@@ -61,7 +61,7 @@ public class Interactor : MonoBehaviour
         {
             Interactable i = hitInfo.collider.GetComponent<Interactable>();
             //Debug.Log("HitDetected");
-            if (i != null)
+            if (i != null && i.isReady)
             {
                 SetFocus(i);
             } else  {
@@ -108,6 +108,8 @@ public class Interactor : MonoBehaviour
             //Debug.Log("Hit: " + hitInfo.collider.name);
             focus = newFocus;
             focus.OnFocused(transform);
+
+
         }
         
         button.gameObject.SetActive(true);
