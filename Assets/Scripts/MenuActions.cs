@@ -27,6 +27,8 @@ public class MenuActions : MonoBehaviour
     public GameObject backButton;
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
+    public TextMeshProUGUI locationName;
+    public StartingPoint startingPoint;
 
     private bool countdown;
     private float timeLeft;
@@ -43,13 +45,16 @@ public class MenuActions : MonoBehaviour
         {
             showMenu();
         }
+        else if (sceneName == scene.village)
+        {
+            showTitle("The Village");
+        }
         else if (sceneName == scene.gathering)
         {
-            startClock();
+            showTitle("The Spring Hills");
         }
         else if (sceneName == scene.craft)
         {
-            Debug.Log("invoke Crafting()");
             Crafting();
         }
         else if (sceneName == scene.credits)
@@ -57,7 +62,6 @@ public class MenuActions : MonoBehaviour
             GetComponent<Animator>().SetTrigger("endCredits");
         }
     }
-
 
     void getEventSystem()
     {
@@ -113,7 +117,7 @@ public class MenuActions : MonoBehaviour
     {
 
         countdown = true;
-        timeLeft = 10 * 60; // 10 minutes
+        timeLeft = 3 * 60; // currently 3 minutes for demo, can be 10 minutes for final
     }
 
     public void pauseClock()
@@ -132,8 +136,17 @@ public class MenuActions : MonoBehaviour
         if (timer)
         {
             int minutes = Mathf.FloorToInt(timeLeft / 60);
-            int seconds = Mathf.CeilToInt(timeLeft % 60);
+            int seconds = Mathf.FloorToInt(timeLeft % 60);
             timer.text = minutes + ":" + seconds;
+        }
+    }
+
+    public void showTitle(string location)
+    {
+        if (locationName != null)
+        {
+            locationName.text = location;
+            GetComponent<Animator>().SetTrigger("location");
         }
     }
 
@@ -155,7 +168,7 @@ public class MenuActions : MonoBehaviour
 
     public void Crafting() { 
         // on start of crafting, show the menu, and when we exit out of inventory/recipe
-        //GetComponent<Animator>().SetBool("menu", true);
+        GetComponent<Animator>().SetBool("menu", true);
         transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
     }
@@ -199,7 +212,13 @@ public class MenuActions : MonoBehaviour
         panelManager.ShowRecipesPanel();
     }
 
-    public void End()
+    public void MenuEnd()
+    {
+        stopClock();
+        startingPoint.EndPanel();
+    }
+
+    public void End(bool success)
     {
         GetComponent<Animator>().SetBool("menu", false);
         
@@ -212,18 +231,30 @@ public class MenuActions : MonoBehaviour
                 Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
                 if(flowchart != null)
                 {
-                    flowchart.SetBooleanVariable("hoshi_gath_complete", true);
-                    Debug.Log("Gathering complete:" + flowchart.GetBooleanVariable("hoshi_gath_complete"));
+                    if (success)
+                    {
+                        flowchart.SetBooleanVariable("hoshi_gath_complete", true);
+                        flowchart.SetBooleanVariable("hoshi_fail", false);
+                    }
+                    else
+                    {
+                        flowchart.SetBooleanVariable("hoshi_fail", true);
+                    }
+                    //Debug.Log("Gathering complete:" + flowchart.GetBooleanVariable("hoshi_gath_complete"));
                 }
                 else
                 {
                     Debug.Log("Whoopsie daisy. Flowchart not found!");
                 }
-
-              
             }
         }
 
+        SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
+    }
+
+    public void End()
+    {
+        GetComponent<Animator>().SetBool("menu", false);
         SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
     }
 
@@ -260,8 +291,15 @@ public class MenuActions : MonoBehaviour
         }
         if (sceneName == scene.gathering && countdown)
         {
-            timeLeft -= Time.deltaTime;
-            showCountdown();
+            
+            if(timeLeft <= 1)
+            {
+                MenuEnd();
+            } else
+            {
+                timeLeft -= Time.deltaTime;
+                showCountdown();
+            }
         }
         if ((sceneName == scene.village || sceneName == scene.gathering || sceneName == scene.craft) && Keyboard.current.iKey.wasPressedThisFrame)
         {

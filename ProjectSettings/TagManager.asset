@@ -20,6 +20,9 @@ TagManager:
   - PW - Nature
   - CraftCollider
   - Flowchart
+  - PlayerButton
+  - RecipeManager
+  - Recipes
   layers:
   - Default
   - TransparentFX

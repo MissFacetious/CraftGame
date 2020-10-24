@@ -22,72 +22,29 @@ public class InventoryManager : MonoBehaviour, IComparer
     // Start is called before the first frame update
     void Start()
     {
-        Item myItem1 = Instantiate(item);
-        myItem1.setItem(Recipes.RecipeEnum.APPLEBLOSSOM_TEA, false);
-        myItem1.gameObject.transform.parent = gameObject.transform;
-
-        Item myItem2 = Instantiate(item);
-        myItem2.setItem(Recipes.RecipeEnum.TEA_LEAF, false);
-        myItem2.gameObject.transform.parent = gameObject.transform;
-
-        for (int i = 0; i < 21; i++)
+        /*
+        for (int i = 0; i < 10; i++)
         {
             Item myItem = Instantiate(item);
             myItem.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE, false);
             myItem.gameObject.transform.parent = gameObject.transform;
         }
 
-        for (int i = 0; i < 15; i++)
-        {
-            Item myItem = Instantiate(item);
-            myItem.setItem(Recipes.RecipeEnum.APPLEBLOSSOM_TEA, false);
-            myItem.gameObject.transform.parent = gameObject.transform;
-        }
 
-        Item myItem4 = Instantiate(item);
-        myItem4.setItem(Recipes.RecipeEnum.TEA_LEAF, false);
-        myItem4.gameObject.transform.parent = gameObject.transform;
-
-        Item myItem5 = Instantiate(item);
-        myItem5.setItem(Recipes.RecipeEnum.LOFTY_LEMON, false);
-        myItem5.gameObject.transform.parent = gameObject.transform;
-
-        for (int i = 0; i < 25; i++)
+        for (int i = 0; i < 10; i++)
         {
             Item myItem = Instantiate(item);
             myItem.setItem(Recipes.RecipeEnum.SAKURA_BLOSSOMS, false);
             myItem.gameObject.transform.parent = gameObject.transform;
         }
 
-        Item myItem7 = Instantiate(item);
-        myItem7.setItem(Recipes.RecipeEnum.TEA_LEAF, false);
-        myItem7.gameObject.transform.parent = gameObject.transform;
-
-        for (int i = 0; i < 30; i++)
-        {
-            Item myItem = Instantiate(item);
-            myItem.setItem(Recipes.RecipeEnum.RAINBOW_REFRACTOR, false);
-            myItem.gameObject.transform.parent = gameObject.transform;
-        }
-
-        Item myItem9 = Instantiate(item);
-        myItem9.setItem(Recipes.RecipeEnum.LOFTY_LEMON, false);
-        myItem9.gameObject.transform.parent = gameObject.transform;
-
-        Item myItem10 = Instantiate(item);
-        myItem10.setItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
-        myItem10.gameObject.transform.parent = gameObject.transform;
-
-        Item myItem11 = Instantiate(item);
-        myItem11.setItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
-        myItem11.gameObject.transform.parent = gameObject.transform;
-
-        for (int i = 0; i < 45; i++)
+        for (int i = 0; i < 10; i++)
         {
             Item myItem = Instantiate(item);
             myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP, false);
             myItem.gameObject.transform.parent = gameObject.transform;
         }
+        */
     }
 
     public Item CreateNewItem(Recipes.RecipeEnum type, bool bundle)
@@ -131,6 +88,12 @@ public class InventoryManager : MonoBehaviour, IComparer
         Dictionary<Recipes.RecipeEnum, int> inventoryMap = new Dictionary<Recipes.RecipeEnum, int>();
         ArrayList inventoryList = new ArrayList();
 
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            inventoryList.Add(gameObject.transform.GetChild(i).GetComponent<Item>());
+        }
+
+        /*
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             int count = 1;
@@ -198,7 +161,8 @@ public class InventoryManager : MonoBehaviour, IComparer
                 }
             }
         }
-        return bundledInventoryList;
+        */
+        return inventoryList;
     }
 
     public void ShowInventory()
@@ -224,6 +188,20 @@ public class InventoryManager : MonoBehaviour, IComparer
             myItem.gameObject.transform.localScale = new Vector3(1f, 1f, 1f);
             myItem.gameObject.transform.localPosition = new Vector2((column * 105f) - 50f, -(row * 105f) + 45f);
         }
+    }
+
+    public int getCount(Recipes.RecipeEnum type)
+    {
+        int count = 0;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Item myItem = gameObject.transform.GetChild(i).GetComponent<Item>();            
+            if (myItem.type == type)
+            {
+                count = count + myItem.count;
+            }
+        }
+        return count;
     }
 
     public void HideInventory()

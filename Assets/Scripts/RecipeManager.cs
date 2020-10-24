@@ -21,9 +21,9 @@ public class RecipeManager : MonoBehaviour
         Recipe myRecipe1 = Instantiate(recipe);
         myRecipe1.setRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
         myRecipe1.gameObject.transform.parent = gameObject.transform;
-        Recipe myRecipe2 = Instantiate(recipe);
-        myRecipe2.setRecipe(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
-        myRecipe2.gameObject.transform.parent = gameObject.transform;
+        //Recipe myRecipe2 = Instantiate(recipe);
+        //myRecipe2.setRecipe(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
+        //myRecipe2.gameObject.transform.parent = gameObject.transform;
     }
 
     public void ShowRecipes()

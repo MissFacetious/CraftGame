@@ -44,19 +44,43 @@ public class CraftingManager : MonoBehaviour
 
     public bool Craft(Recipes.RecipeEnum type)
     {
+        Debug.Log("invoke the Craft method");
         // make new item and put into inventory
         Item slot1 = item1.GetComponent<Item>();
         Item slot2 = item2.GetComponent<Item>();
         Item slot3 = item3.GetComponent<Item>();
-        
+        bool success = false;
+
         if (recipes.CheckRecipe(type, slot1, slot2, slot3))
         {
             inventoryManager.CreateNewItem(type, false);
             
-            Debug.Log("success!");
-            return true;
+            success = true;
         }
-        return false;
+        // loop through slot1, slot2, slot3 and destroy anything that is of Component<Item>()
+        Debug.Log("deleting items to make things");
+        for (int i = 0; i < slot1.gameObject.transform.childCount; i++)
+        {
+            if (slot1.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
+            {
+                Destroy(slot1.gameObject.transform.GetChild(i).gameObject);
+            }
+        }
+        for (int i = 0; i < slot2.gameObject.transform.childCount; i++)
+        {
+            if (slot2.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
+            {
+                Destroy(slot2.gameObject.transform.GetChild(i).gameObject);
+            }
+        }
+        for (int i = 0; i < slot3.gameObject.transform.childCount; i++)
+        {
+            if (slot3.gameObject.transform.GetChild(i).GetComponent<Item>() != null)
+            {
+                Destroy(slot3.gameObject.transform.GetChild(i).gameObject);
+            }
+        }
+        return success;
     }
 
     public void DestroyRecipePanel()
@@ -111,7 +135,8 @@ public class CraftingManager : MonoBehaviour
         //}
 
         ArrayList inventoryList = inventoryManager.Bundlize();
-       
+
+
         // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
         int rowCount = 0;
         for (int i = 0; i < inventoryList.Count; i++)

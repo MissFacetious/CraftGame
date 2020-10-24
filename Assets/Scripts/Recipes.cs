@@ -99,9 +99,9 @@ public class Recipes : MonoBehaviour
             type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
             type2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
             type3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
-            count1 = 11;
-            count2 = 18;
-            count3 = 12;
+            count1 = 2;
+            count2 = 2;
+            count3 = 2;
         }
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
@@ -128,6 +128,7 @@ public class Recipes : MonoBehaviour
     public bool CheckRecipe(RecipeEnum recipe, Item slot1, Item slot2, Item slot3)
     {
         RecipeTypeCount[] items = getItemsInRecipe(recipe);
+        Debug.Log(items);
 
         if (items[0].type == slot1.type && items[1].type == slot2.type && items[2].type == slot3.type)
         {
