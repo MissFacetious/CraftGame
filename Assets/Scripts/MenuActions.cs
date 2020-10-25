@@ -44,6 +44,7 @@ public class MenuActions : MonoBehaviour
         getPanelManager();
           
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         if (sceneName == scene.title)
         {

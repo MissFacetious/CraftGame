@@ -54,6 +54,7 @@ public class PanelManager : MonoBehaviour
     public void Awake()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void ShowInventoryPanel()
