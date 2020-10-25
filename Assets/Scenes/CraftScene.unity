@@ -2521,6 +2521,7 @@ MonoBehaviour:
   panelManager: {fileID: 0}
   firstButton: {fileID: 1732234213}
   backButton: {fileID: 0}
+  craftRecipesButton: {fileID: 1732234213}
   counter: {fileID: 0}
   timer: {fileID: 0}
   locationName: {fileID: 0}

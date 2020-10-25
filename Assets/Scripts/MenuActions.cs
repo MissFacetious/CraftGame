@@ -25,6 +25,7 @@ public class MenuActions : MonoBehaviour
     public PanelManager panelManager;
     public GameObject firstButton;
     public GameObject backButton;
+    public GameObject craftRecipesButton;
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI locationName;
@@ -41,6 +42,9 @@ public class MenuActions : MonoBehaviour
     {
         getEventSystem();
         getPanelManager();
+          
+        Cursor.visible = true;
+
         if (sceneName == scene.title)
         {
             showMenu();
@@ -171,6 +175,7 @@ public class MenuActions : MonoBehaviour
         GetComponent<Animator>().SetBool("menu", true);
         transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
         transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(craftRecipesButton);
     }
 
     public void Inventory()

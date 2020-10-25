@@ -51,6 +51,11 @@ public class PanelManager : MonoBehaviour
 
     Stack<Action> lastAction = new Stack<Action>();
 
+    public void Awake()
+    {
+        Cursor.visible = true;
+    }
+
     public void ShowInventoryPanel()
     {
         craftingManager.HideFilteredInventory();
