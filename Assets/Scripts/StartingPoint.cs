@@ -76,6 +76,10 @@ public class StartingPoint : MonoBehaviour
         ready.gameObject.SetActive(true);
         end.gameObject.SetActive(false);
         gatherInstructions.text = "Let's Get Ready to Gather";
+        if (menu.eventSystem != null)
+        {
+            menu.eventSystem.SetSelectedGameObject(ready.gameObject);
+        }
         menu.GetComponent<Animator>().SetBool("gathering", true);
     }
 
@@ -94,6 +98,10 @@ public class StartingPoint : MonoBehaviour
         ready.gameObject.SetActive(false);
         end.gameObject.SetActive(true);
         gatherInstructions.text = "All Done Gathering";
+        if (menu.eventSystem != null)
+        {
+            menu.eventSystem.SetSelectedGameObject(end.gameObject);
+        }
 
         item1.count = 0;
         item2.count = 0;
