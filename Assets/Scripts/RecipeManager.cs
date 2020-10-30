@@ -16,24 +16,45 @@ public class RecipeManager : MonoBehaviour
     public GameObject item2;
     public GameObject item3;
 
-    void Start()
+    bool alreadyInThere(Recipes.RecipeEnum type)
     {
-        Recipe myRecipe1 = Instantiate(recipe);
-        myRecipe1.setRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
-        myRecipe1.gameObject.transform.parent = gameObject.transform;
-        Recipe myRecipe2 = Instantiate(recipe);
-        myRecipe2.setRecipe(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
-        myRecipe2.gameObject.transform.parent = gameObject.transform;
-        Recipe myRecipe3 = Instantiate(recipe);
-        myRecipe3.setRecipe(Recipes.RecipeEnum.TRANSFORMATIONAL_POTION);
-        myRecipe3.gameObject.transform.parent = gameObject.transform;
-        Recipe myRecipe4 = Instantiate(recipe);
-        myRecipe4.setRecipe(Recipes.RecipeEnum.GNOME_NET);
-        myRecipe4.gameObject.transform.parent = gameObject.transform;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Recipe myRecipe = gameObject.transform.GetChild(i).gameObject.GetComponent<Recipe>();
+            // is this a recipe we should be showing
+            if (myRecipe.type == type)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void createRecipesInPanel()
+    {
+        ArrayList rs = new ArrayList();
+
+        // have conditionals here based on the fugus variables if we have processed enough to have these recipes
+        rs.Add(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
+        rs.Add(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
+        rs.Add(Recipes.RecipeEnum.TRANSFORMATIONAL_POTION);
+        rs.Add(Recipes.RecipeEnum.GNOME_NET);
+
+        for (int i = 0; i < rs.Count; i++) {
+            if (!alreadyInThere((Recipes.RecipeEnum)rs[i]))
+            {
+                Recipe myRecipe = Instantiate(recipe);
+                myRecipe.setRecipe((Recipes.RecipeEnum)rs[i]);
+                myRecipe.gameObject.transform.parent = gameObject.transform;
+            }
+        }
     }
 
     public void ShowRecipes()
     {
+        // show recipes that are accessible at this point of the game
+        createRecipesInPanel();
+
         // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
         int rowCount = 0;
         for (int i = 0; i < gameObject.transform.childCount; i++)
