@@ -22,29 +22,13 @@ public class InventoryManager : MonoBehaviour, IComparer
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        for (int i = 0; i < 10; i++)
+        Recipes.RecipeEnum[] array = new Recipes.RecipeEnum[] { Recipes.RecipeEnum.APPLEBLOSSOM_TEA, Recipes.RecipeEnum.FRESH_STREAM_WATER, Recipes.RecipeEnum.GNOME_NET, Recipes.RecipeEnum.GOLDEN_APPLE, Recipes.RecipeEnum.LAVENDER_SCENT, Recipes.RecipeEnum.LOFTY_LEMON, Recipes.RecipeEnum.MIRROR_CELESTINE, Recipes.RecipeEnum.ORANGE_POWDER, Recipes.RecipeEnum.PINK_CRYSTAL, Recipes.RecipeEnum.RAINBOW_DEWDROP, Recipes.RecipeEnum.RAINBOW_REFRACTOR, Recipes.RecipeEnum.SAKURA_BLOSSOMS, Recipes.RecipeEnum.SHINY_STONE, Recipes.RecipeEnum.TEA_LEAF, Recipes.RecipeEnum.TRANSFORMATIONAL_POTION, Recipes.RecipeEnum.VINES};
+        for (int i = 0; i < array.Length; i++)
         {
             Item myItem = Instantiate(item);
-            myItem.setItem(Recipes.RecipeEnum.MIRROR_CELESTINE, false);
+            myItem.setItem(array[i], false);
             myItem.gameObject.transform.parent = gameObject.transform;
         }
-
-
-        for (int i = 0; i < 10; i++)
-        {
-            Item myItem = Instantiate(item);
-            myItem.setItem(Recipes.RecipeEnum.SAKURA_BLOSSOMS, false);
-            myItem.gameObject.transform.parent = gameObject.transform;
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            Item myItem = Instantiate(item);
-            myItem.setItem(Recipes.RecipeEnum.RAINBOW_DEWDROP, false);
-            myItem.gameObject.transform.parent = gameObject.transform;
-        }
-        */
     }
 
     public Item CreateNewItem(Recipes.RecipeEnum type, bool bundle)
