@@ -23,6 +23,14 @@ public class Recipes : MonoBehaviour
         LOFTY_LEMON,
         TEA_LEAF,
         APPLEBLOSSOM_TEA,
+        GNOME_NET,
+        VINES,
+        SHINY_STONE,
+        LAVENDER_SCENT,
+        ORANGE_POWDER,
+        PINK_CRYSTAL,
+        FRESH_STREAM_WATER,
+        TRANSFORMATIONAL_POTION
     }
 
     private void Start()
@@ -42,7 +50,7 @@ public class Recipes : MonoBehaviour
         if (type == Recipes.RecipeEnum.MIRROR_CELESTINE)
         {
             title = "Mirror Celestine";
-            image.sprite = Resources.Load<Sprite>("Icons/gem");
+            image.sprite = Resources.Load<Sprite>("Icons/diamond");
         }
         else if (type == Recipes.RecipeEnum.RAINBOW_DEWDROP)
         {
@@ -79,6 +87,46 @@ public class Recipes : MonoBehaviour
             title = "Apple Blossom Tea";
             image.sprite = Resources.Load<Sprite>("Icons/hot-cup");
         }
+        else if (type == Recipes.RecipeEnum.TRANSFORMATIONAL_POTION)
+        {
+            title = "Transformation Potion";
+            image.sprite = Resources.Load<Sprite>("Icons/potion");
+        }
+        else if (type == Recipes.RecipeEnum.GNOME_NET)
+        {
+            title = "Gnome Gnet";
+            image.sprite = Resources.Load<Sprite>("Icons/net");
+        }
+        else if (type == Recipes.RecipeEnum.ORANGE_POWDER)
+        {
+            title = "Orange Powder";
+            image.sprite = Resources.Load<Sprite>("Icons/flower");
+        }
+        else if (type == Recipes.RecipeEnum.PINK_CRYSTAL)
+        {
+            title = "Pink Crystal";
+            image.sprite = Resources.Load<Sprite>("Icons/gem");
+        }
+        else if (type == Recipes.RecipeEnum.FRESH_STREAM_WATER)
+        {
+            title = "Fresh Stream Water";
+            image.sprite = Resources.Load<Sprite>("Icons/splash");
+        }
+        else if (type == Recipes.RecipeEnum.VINES)
+        {
+            title = "Vines";
+            image.sprite = Resources.Load<Sprite>("Icons/vine");
+        }
+        else if (type == Recipes.RecipeEnum.SHINY_STONE)
+        {
+            title = "Shiny Stone";
+            image.sprite = Resources.Load<Sprite>("Icons/stone");
+        }
+        else if (type == Recipes.RecipeEnum.LAVENDER_SCENT)
+        {
+            title = "Lavender Scent";
+            image.sprite = Resources.Load<Sprite>("Icons/lotus");
+        }
         return Tuple.Create(title, image);
     }
 
@@ -97,8 +145,8 @@ public class Recipes : MonoBehaviour
         if (recipe == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
         {
             type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
-            type2 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
-            type3 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
+            type2 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
+            type3 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
             count1 = 2;
             count2 = 2;
             count3 = 2;
@@ -106,8 +154,26 @@ public class Recipes : MonoBehaviour
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
             type1 = Recipes.RecipeEnum.GOLDEN_APPLE;
-            type2 = Recipes.RecipeEnum.LOFTY_LEMON;
-            type3 = Recipes.RecipeEnum.TEA_LEAF;
+            type2 = Recipes.RecipeEnum.TEA_LEAF;
+            type3 = Recipes.RecipeEnum.LOFTY_LEMON;
+            count1 = 10;
+            count2 = 25;
+            count3 = 12;
+        }
+        if (recipe == Recipes.RecipeEnum.TRANSFORMATIONAL_POTION)
+        {
+            type1 = Recipes.RecipeEnum.FRESH_STREAM_WATER;
+            type2 = Recipes.RecipeEnum.ORANGE_POWDER;
+            type3 = Recipes.RecipeEnum.PINK_CRYSTAL;
+            count1 = 10;
+            count2 = 25;
+            count3 = 12;
+        }
+        if (recipe == Recipes.RecipeEnum.GNOME_NET)
+        {
+            type1 = Recipes.RecipeEnum.VINES;
+            type2 = Recipes.RecipeEnum.SHINY_STONE;
+            type3 = Recipes.RecipeEnum.LAVENDER_SCENT;
             count1 = 10;
             count2 = 25;
             count3 = 12;
