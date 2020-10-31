@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 648239610350896607}
   - component: {fileID: 648239610350896544}
   m_Layer: 0
-  m_Name: RainbowCrystal
+  m_Name: RainbowDewdrop1
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: d7dc84140695bd04d962c5734fb6683e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 00857b241e02c714ebd3be78519c7d6a, type: 2}
+      objectReference: {fileID: 2100000, guid: cc51a09dd3b0358478910c47d6fe9017, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7dc84140695bd04d962c5734fb6683e, type: 3}
 --- !u!4 &6349622720779156802 stripped

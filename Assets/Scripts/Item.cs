@@ -36,7 +36,7 @@ public class Item : MonoBehaviour
         {
         //    Debug.Log("map your text");
         }
-        if (recipes == null)
+        if (recipes == null && GameObject.FindGameObjectWithTag("Recipes"))
         {
             recipes = GameObject.FindGameObjectWithTag("Recipes").GetComponent<Recipes>();
         }

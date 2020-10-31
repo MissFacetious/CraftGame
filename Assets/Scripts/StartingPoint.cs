@@ -60,43 +60,47 @@ public class StartingPoint : MonoBehaviour
     {
         Debug.Log("show requirements");
         // get the current quest/recipe to make
-        if (recipeManager == null)
+        if (recipeManager == null && GameObject.FindGameObjectWithTag("RecipeManager") &&
+            GameObject.FindGameObjectWithTag("Recipes") && GameObject.FindGameObjectWithTag("InventoryManager"))
         {
             recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
             recipes = GameObject.FindGameObjectWithTag("Recipes").GetComponent<Recipes>();
             inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
         }
-        Recipes.RecipeEnum currentRecipe = recipeManager.getCurrentRecipe();
-        // just use this until we set the proper actual one for the quest
-        Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
+        if (recipeManager != null)
+        {
+            Recipes.RecipeEnum currentRecipe = recipeManager.getCurrentRecipe();
+            // just use this until we set the proper actual one for the quest
+            Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
 
-        if (item1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
-        {
-            type1 = items[0].type;
-            item1.setItem(type1, false);
-            outOf1 = items[0].count;
-            item1.count = outOf1;
-            item1.displayCount.text = outOf1.ToString();
+            if (item1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
+            {
+                type1 = items[0].type;
+                item1.setItem(type1, false);
+                outOf1 = items[0].count;
+                item1.count = outOf1;
+                item1.displayCount.text = outOf1.ToString();
+            }
+            if (item2.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
+            {
+                type2 = items[1].type;
+                item2.setItem(type2, false);
+                outOf2 = items[1].count;
+                item2.count = outOf2;
+                item2.displayCount.text = outOf2.ToString();
+            }
+            if (item3.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
+            {
+                type3 = items[2].type;
+                item3.setItem(type3, false);
+                outOf3 = items[2].count;
+                item3.count = outOf3;
+                item3.displayCount.text = outOf3.ToString();
+            }
+            if (topItem1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem1.setItem(items[0].type, false);
+            if (topItem2.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem2.setItem(items[1].type, false);
+            if (topItem3.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem3.setItem(items[2].type, false);
         }
-        if (item2.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
-        {
-            type2 = items[1].type;
-            item2.setItem(type2, false);
-            outOf2 = items[1].count;
-            item2.count = outOf2;
-            item2.displayCount.text = outOf2.ToString();
-        }
-        if (item3.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
-        {
-            type3 = items[2].type;
-            item3.setItem(type3, false);
-            outOf3 = items[2].count;
-            item3.count = outOf3;
-            item3.displayCount.text = outOf3.ToString();
-        }
-        if (topItem1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem1.setItem(items[0].type, false);
-        if (topItem2.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem2.setItem(items[1].type, false);
-        if (topItem3.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem3.setItem(items[2].type, false);
     }
 
     public void Proceed()
