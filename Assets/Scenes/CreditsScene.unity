@@ -13558,13 +13558,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf8337d9383f7b43a177dc6859c51d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 6
+  sceneName: 9
   eventSystem: {fileID: 1236433092}
   panelManager: {fileID: 0}
   firstButton: {fileID: 0}
   backButton: {fileID: 0}
+  craftRecipesButton: {fileID: 0}
   counter: {fileID: 0}
   timer: {fileID: 0}
+  locationName: {fileID: 0}
+  startingPoint: {fileID: 0}
 --- !u!1 &1140562644
 GameObject:
   m_ObjectHideFlags: 0

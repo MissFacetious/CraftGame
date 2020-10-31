@@ -14,7 +14,10 @@ public class MenuActions : MonoBehaviour
         title,
         intro,
         village,
-        gathering,
+        summer,
+        spring,
+        autumn,
+        greene,
         craft,
         outro,
         credits
@@ -54,9 +57,21 @@ public class MenuActions : MonoBehaviour
         {
             showTitle("The Village");
         }
-        else if (sceneName == scene.gathering)
+        else if (sceneName == scene.summer)
+        {
+            showTitle("Summer Shores");
+        }
+        else if (sceneName == scene.spring)
         {
             showTitle("The Spring Hills");
+        }
+        else if (sceneName == scene.autumn)
+        {
+            showTitle("Autumn Woodlands");
+        }
+        else if (sceneName == scene.greene)
+        {
+            showTitle("Greene Gardens");
         }
         else if (sceneName == scene.craft)
         {
@@ -231,8 +246,10 @@ public class MenuActions : MonoBehaviour
         if (eventSystem != null)
         {
             eventSystem.SetSelectedGameObject(null);
-            if (sceneName == scene.gathering)
-            {
+            if (sceneName == scene.summer || 
+                sceneName == scene.spring || 
+                sceneName == scene.autumn || 
+                sceneName == scene.greene) {
                 // set variable - complete by default.
                 Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
                 if(flowchart != null)
@@ -295,10 +312,12 @@ public class MenuActions : MonoBehaviour
         {
             getPanelManager();
         }
-        if (sceneName == scene.gathering && countdown)
+        if ((sceneName == scene.summer ||
+             sceneName == scene.spring ||
+             sceneName == scene.autumn ||
+             sceneName == scene.greene) && countdown)
         {
-            
-            if(timeLeft <= 1)
+            if (timeLeft <= 1)
             {
                 MenuEnd();
             } else
@@ -307,7 +326,12 @@ public class MenuActions : MonoBehaviour
                 showCountdown();
             }
         }
-        if ((sceneName == scene.village || sceneName == scene.gathering || sceneName == scene.craft) && Keyboard.current.iKey.wasPressedThisFrame)
+        if ((sceneName == scene.village ||
+             sceneName == scene.summer ||
+             sceneName == scene.spring ||
+             sceneName == scene.autumn ||
+             sceneName == scene.greene || 
+             sceneName == scene.craft) && Keyboard.current.iKey.wasPressedThisFrame)
         {
             Inventory();
         }
@@ -315,7 +339,12 @@ public class MenuActions : MonoBehaviour
         {
             Recipes();
         }
-        if ((sceneName == scene.village || sceneName == scene.gathering || sceneName == scene.craft) && Keyboard.current.mKey.wasPressedThisFrame)
+        if ((sceneName == scene.village ||
+             sceneName == scene.summer ||
+             sceneName == scene.spring ||
+             sceneName == scene.autumn ||
+             sceneName == scene.greene ||
+             sceneName == scene.craft) && Keyboard.current.mKey.wasPressedThisFrame)
         {
             bool menu = GetComponent<Animator>().GetBool("menu");
             GetComponent<Animator>().SetBool("menu", !menu);
