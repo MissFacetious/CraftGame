@@ -27,6 +27,9 @@ public class StartingPoint : MonoBehaviour
     public GameObject yes;
     public GameObject no;
 
+    [Header("Gathering Recipe")]
+    public Recipes.RecipeEnum gatheringRecipe;
+
     private int outOf1 = 0;
     private int outOf2 = 0;
     private int outOf3 = 0;
@@ -37,7 +40,12 @@ public class StartingPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        if (topItem1 && topItem2 && topItem3)
+        {
+            topItem1.gameObject.SetActive(false);
+            topItem2.gameObject.SetActive(false);
+            topItem3.gameObject.SetActive(false);
+        }
     }
 
     public void OnInteract()
@@ -67,11 +75,13 @@ public class StartingPoint : MonoBehaviour
             recipes = GameObject.FindGameObjectWithTag("Recipes").GetComponent<Recipes>();
             inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
         }
-        if (recipeManager != null)
-        {
-            Recipes.RecipeEnum currentRecipe = recipeManager.getCurrentRecipe();
-            // just use this until we set the proper actual one for the quest
-            Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
+        if (recipeManager != null && item1 && item2 && item3 && topItem1 && topItem2 && topItem3)
+            {
+            topItem1.gameObject.SetActive(true);
+            topItem2.gameObject.SetActive(true);
+            topItem3.gameObject.SetActive(true);
+
+            Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(gatheringRecipe);
 
             if (item1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
             {

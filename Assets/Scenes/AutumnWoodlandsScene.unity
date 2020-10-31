@@ -9350,6 +9350,7 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   yes: {fileID: 154675974}
   no: {fileID: 154675973}
+  gatheringRecipe: 8
 --- !u!1001 &511295540
 PrefabInstance:
   m_ObjectHideFlags: 0

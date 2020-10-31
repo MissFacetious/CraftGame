@@ -54,7 +54,7 @@ public class Recipes : MonoBehaviour
         }
         else if (type == Recipes.RecipeEnum.RAINBOW_DEWDROP)
         {
-            title = "Rainbow Dewdrop";
+            title = "Dewdrop Prism";
             image.sprite = Resources.Load<Sprite>("Icons/water-drop");
         }
         else if (type == Recipes.RecipeEnum.SAKURA_BLOSSOMS)
