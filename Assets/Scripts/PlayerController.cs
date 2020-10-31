@@ -123,7 +123,10 @@ public class PlayerController : MonoBehaviour
                 animator.SetTrigger("collect");
                 collectible.Collect(gameObject);
                 menuActions.increaseCurrentCounter();
-                inventoryManager.CreateNewItem(collectible.recipe, false);
+                if (inventoryManager)
+                {
+                    inventoryManager.CreateNewItem(collectible.recipe, false);
+                }
             }
             else
             {

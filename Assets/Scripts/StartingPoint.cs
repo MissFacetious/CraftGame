@@ -8,6 +8,10 @@ using UnityEngine.UI;
 public class StartingPoint : MonoBehaviour
 {
     public MenuActions menu;
+
+    [Header("Gathering Panel")]
+    // under the gathering panel
+    public GameObject gatheringPanel;
     public Item item1;
     public Item item2;
     public Item item3;
@@ -23,6 +27,9 @@ public class StartingPoint : MonoBehaviour
     public GameObject yes;
     public GameObject no;
 
+    [Header("Gathering Recipe")]
+    public Recipes.RecipeEnum gatheringRecipe;
+
     private int outOf1 = 0;
     private int outOf2 = 0;
     private int outOf3 = 0;
@@ -33,40 +40,12 @@ public class StartingPoint : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // get the current quest/recipe to make
-        if (recipeManager == null) {
-            recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
-            recipes = GameObject.FindGameObjectWithTag("Recipes").GetComponent<Recipes>();
-            inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
+        if (topItem1 && topItem2 && topItem3)
+        {
+            topItem1.gameObject.SetActive(false);
+            topItem2.gameObject.SetActive(false);
+            topItem3.gameObject.SetActive(false);
         }
-        Recipes.RecipeEnum currentRecipe = recipeManager.getCurrentRecipe();
-        // just use this until we set the proper actual one for the quest
-        Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
-
-        type1 = items[0].type;
-        type2 = items[1].type;
-        type3 = items[2].type;
-
-        item1.setItem(type1, false);
-        item2.setItem(type2, false);
-        item3.setItem(type3, false);
-
-        topItem1.setItem(items[0].type, false);
-        topItem2.setItem(items[1].type, false);
-        topItem3.setItem(items[2].type, false);
-
-        outOf1 = items[0].count;
-        outOf2 = items[1].count;
-        outOf3 = items[2].count;
-
-        item1.count = outOf1;
-        item2.count = outOf2;
-        item3.count = outOf3;
-        item1.displayCount.text = outOf1.ToString();
-        item2.displayCount.text = outOf2.ToString();
-        item3.displayCount.text = outOf3.ToString();
-
-        // set this in the menu as well on the top panel
     }
 
     public void OnInteract()
@@ -81,6 +60,57 @@ public class StartingPoint : MonoBehaviour
             menu.eventSystem.SetSelectedGameObject(ready.gameObject);
         }
         menu.GetComponent<Animator>().SetBool("gathering", true);
+
+        //ShowRequirements();
+    }
+
+    public void ShowRequirements()
+    {
+        Debug.Log("show requirements");
+        // get the current quest/recipe to make
+        if (recipeManager == null && GameObject.FindGameObjectWithTag("RecipeManager") &&
+            GameObject.FindGameObjectWithTag("Recipes") && GameObject.FindGameObjectWithTag("InventoryManager"))
+        {
+            recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
+            recipes = GameObject.FindGameObjectWithTag("Recipes").GetComponent<Recipes>();
+            inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
+        }
+        if (recipeManager != null && item1 && item2 && item3 && topItem1 && topItem2 && topItem3)
+            {
+            topItem1.gameObject.SetActive(true);
+            topItem2.gameObject.SetActive(true);
+            topItem3.gameObject.SetActive(true);
+
+            Recipes.RecipeTypeCount[] items = recipes.getItemsInRecipe(gatheringRecipe);
+
+            if (item1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
+            {
+                type1 = items[0].type;
+                item1.setItem(type1, false);
+                outOf1 = items[0].count;
+                item1.count = outOf1;
+                item1.displayCount.text = outOf1.ToString();
+            }
+            if (item2.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
+            {
+                type2 = items[1].type;
+                item2.setItem(type2, false);
+                outOf2 = items[1].count;
+                item2.count = outOf2;
+                item2.displayCount.text = outOf2.ToString();
+            }
+            if (item3.GetComponent<Item>().type == Recipes.RecipeEnum.NONE)
+            {
+                type3 = items[2].type;
+                item3.setItem(type3, false);
+                outOf3 = items[2].count;
+                item3.count = outOf3;
+                item3.displayCount.text = outOf3.ToString();
+            }
+            if (topItem1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem1.setItem(items[0].type, false);
+            if (topItem2.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem2.setItem(items[1].type, false);
+            if (topItem3.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem3.setItem(items[2].type, false);
+        }
     }
 
     public void Proceed()
@@ -140,8 +170,15 @@ public class StartingPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        topItem1.displayCount.text = inventoryManager.getCount(type1) + " / " + outOf1;
-        topItem2.displayCount.text = inventoryManager.getCount(type2) + " / " + outOf2;
-        topItem3.displayCount.text = inventoryManager.getCount(type3) + " / " + outOf3;
+        if (gatheringPanel && gatheringPanel.activeInHierarchy)
+        {
+            ShowRequirements();
+        }
+        if (inventoryManager && !inventoryManager.inventoryPanel.activeInHierarchy)
+        {
+            topItem1.displayCount.text = inventoryManager.getCount(type1) + " / " + outOf1;
+            topItem2.displayCount.text = inventoryManager.getCount(type2) + " / " + outOf2;
+            topItem3.displayCount.text = inventoryManager.getCount(type3) + " / " + outOf3;
+        }
     }
 }

@@ -24,13 +24,25 @@ public class DoNotDestroy : MonoBehaviour
         {
             SceneManager.LoadScene("CraftScene", LoadSceneMode.Single);
         }
-        if (Keyboard.current.gKey.wasPressedThisFrame)
-        {
-            SceneManager.LoadScene("ProceduralGatheringRev2", LoadSceneMode.Single);
-        }
         if (Keyboard.current.vKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("1").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("SummerShoresScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("2").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("SpringHillsScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("3").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("AutumnWoodlandsScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("4").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("GreeneGardensScene", LoadSceneMode.Single);
         }
     }
 }
