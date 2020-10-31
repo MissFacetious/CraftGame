@@ -995,7 +995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &43380633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9612,7 +9612,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &520646734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9743,7 +9743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &532709089
 Transform:
   m_ObjectHideFlags: 0
@@ -12299,7 +12299,7 @@ TerrainCollider:
   m_GameObject: {fileID: 657619290}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: e51b09347d9641b4aa6e3417f6fcd4d9, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 982e552f6c5562d458433802364a3fa4, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &657619294
 Terrain:
@@ -12310,7 +12310,7 @@ Terrain:
   m_GameObject: {fileID: 657619290}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: e51b09347d9641b4aa6e3417f6fcd4d9, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 982e552f6c5562d458433802364a3fa4, type: 2}
   m_TreeDistance: 1000
   m_TreeBillboardDistance: 90
   m_TreeCrossFadeLength: 50
@@ -14178,7 +14178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &762051181
 Transform:
   m_ObjectHideFlags: 0
@@ -17524,7 +17524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1012167424
 Transform:
   m_ObjectHideFlags: 0
