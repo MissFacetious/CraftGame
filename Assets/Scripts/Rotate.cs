@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rotate : MonoBehaviour
 {
     public float speed = 1f;
+    public bool clockwise = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,8 @@ public class Rotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.back, speed * Time.deltaTime);
+        Vector3 direction = Vector3.back;
+        if (clockwise) direction = Vector3.forward;
+        transform.Rotate(direction, speed * Time.deltaTime);
     }
 }
