@@ -4129,6 +4129,8 @@ GameObject:
   - component: {fileID: 252879409}
   - component: {fileID: 252879413}
   - component: {fileID: 252879412}
+  - component: {fileID: 252879405}
+  - component: {fileID: 252879404}
   m_Layer: 0
   m_Name: GameManagerFlowchart
   m_TagString: Flowchart
@@ -4150,6 +4152,36 @@ Transform:
   m_Father: {fileID: 1236433093}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &252879404
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252879402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4580f28dd8581476b810b38eea2f1316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 2
+  key: greene_state
+  value: 
+--- !u!114 &252879405
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252879402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4580f28dd8581476b810b38eea2f1316, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 2
+  key: ivy_state
+  value: 
 --- !u!114 &252879409
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4220,6 +4252,8 @@ MonoBehaviour:
   variables:
   - {fileID: 252879413}
   - {fileID: 252879412}
+  - {fileID: 252879405}
+  - {fileID: 252879404}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -4244,7 +4278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 2
   key: hawking_state
-  value: 
+  value: QUEST_COMPLETE
 --- !u!114 &252879413
 MonoBehaviour:
   m_ObjectHideFlags: 2
