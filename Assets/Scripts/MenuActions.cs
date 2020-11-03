@@ -39,6 +39,7 @@ public class MenuActions : MonoBehaviour
 
     private int currentCount = 0;
     private int outOf = 40;
+    private bool selectAgain = true;
 
     // Start is called before the first frame update
     void Start()
@@ -310,6 +311,17 @@ public class MenuActions : MonoBehaviour
         if (sceneName != scene.title && panelManager == null)
         {
             getPanelManager();
+        }
+        if (GameObject.FindGameObjectWithTag("Selection") != null && selectAgain)
+        {
+            GameObject firstSelection = GameObject.FindGameObjectWithTag("Selection");
+            // a fungus yes/no selection has popped up, first selection is tagged
+            eventSystem.SetSelectedGameObject(firstSelection);
+            selectAgain = false;
+        }
+        else if (GameObject.FindGameObjectWithTag("Selection") == null)
+        {
+            selectAgain = true;
         }
         if ((sceneName == scene.summer ||
              sceneName == scene.spring ||
