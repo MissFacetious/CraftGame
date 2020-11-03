@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\ResultsDisplay.cs" />
     <Compile Include="Assets\Scripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\StartingPoint.cs" />
+    <Compile Include="Assets\Scripts\Switcheroo.cs" />
     <Compile Include="Assets\Scripts\Tree.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\3rd Party\Quantum Theory\Polyworld\Shaders\HDRP\PolyWorldSurface_Linear.shader" />
