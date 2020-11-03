@@ -195,7 +195,7 @@ public class PanelManager : MonoBehaviour
             // tell the flowchart to set a var
             if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
             {
-                flowchart.SetBooleanVariable("hoshi_item_crafted", true);
+                flowchart.SetStringVariable("hoshi_state", "CRAFTING_SUCCEEDED");
             }
         }
         else

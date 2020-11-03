@@ -256,12 +256,11 @@ public class MenuActions : MonoBehaviour
                 {
                     if (success)
                     {
-                        flowchart.SetBooleanVariable("hoshi_gath_complete", true);
-                        flowchart.SetBooleanVariable("hoshi_fail", false);
+                        flowchart.SetStringVariable("hoshi_state", "GATHERING_SUCCEEDED");
                     }
                     else
                     {
-                        flowchart.SetBooleanVariable("hoshi_fail", true);
+                        flowchart.SetStringVariable("hoshi_state", "GATHERING_FAILED");
                     }
                     //Debug.Log("Gathering complete:" + flowchart.GetBooleanVariable("hoshi_gath_complete"));
                 }
