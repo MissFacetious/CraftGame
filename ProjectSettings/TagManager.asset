@@ -23,6 +23,7 @@ TagManager:
   - PlayerButton
   - RecipeManager
   - Recipes
+  - Selection
   layers:
   - Default
   - TransparentFX
