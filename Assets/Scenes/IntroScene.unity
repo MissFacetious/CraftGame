@@ -4166,7 +4166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 2
   key: greene_state
-  value: 
+  value: QUEST_START
 --- !u!114 &252879405
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4181,7 +4181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 2
   key: ivy_state
-  value: 
+  value: QUEST_COMPLETE
 --- !u!114 &252879409
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -4213,7 +4213,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 67
     y: 70
-    width: 112.8866
+    width: 72.8866
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
