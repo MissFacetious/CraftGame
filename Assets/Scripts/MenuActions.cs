@@ -255,15 +255,51 @@ public class MenuActions : MonoBehaviour
                 Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
                 if(flowchart != null)
                 {
-                    if (success)
+                    if (sceneName == scene.spring)
                     {
-                        flowchart.SetStringVariable("hoshi_state", "GATHERING_SUCCEEDED");
+                        if (success)
+                        {
+                            flowchart.SetStringVariable("hoshi_state", "GATHERING_SUCCEEDED");
+                        }
+                        else
+                        {
+                            flowchart.SetStringVariable("hoshi_state", "GATHERING_FAILED");
+                        }
                     }
-                    else
+                    if (sceneName == scene.autumn)
                     {
-                        flowchart.SetStringVariable("hoshi_state", "GATHERING_FAILED");
+                        if (success)
+                        {
+                            flowchart.SetStringVariable("hawking_state", "GATHERING_SUCCEEDED");
+                        }
+                        else
+                        {
+                            flowchart.SetStringVariable("hawking_state", "GATHERING_FAILED");
+                        }
                     }
-                    //Debug.Log("Gathering complete:" + flowchart.GetBooleanVariable("hoshi_gath_complete"));
+                    if (sceneName == scene.summer)
+                    {
+                        if (success)
+                        {
+                            flowchart.SetStringVariable("ivy_state", "GATHERING_SUCCEEDED");
+                        }
+                        else
+                        {
+                            flowchart.SetStringVariable("ivy_state", "GATHERING_FAILED");
+                        }
+                    }
+                    if (sceneName == scene.greene)
+                    {
+                        if (success)
+                        {
+                            flowchart.SetStringVariable("greene_state", "GATHERING_SUCCEEDED");
+                        }
+                        else
+                        {
+                            flowchart.SetStringVariable("greene_state", "GATHERING_FAILED");
+                        }
+                    }
+                    
                 }
                 else
                 {
