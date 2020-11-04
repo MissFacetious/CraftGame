@@ -69,6 +69,14 @@ public class RecipeManager : MonoBehaviour
 
     public void ShowRecipes()
     {
+        // remove any recipes in panel
+        int size = recipeContent.transform.childCount;
+        for (int i = 0; i < size; i++)
+        {
+            GameObject recipe = recipeContent.transform.GetChild(0).gameObject;
+            Destroy(recipe);
+        }
+
         // show recipes that are accessible at this point of the game
         createRecipesInPanel();
 
