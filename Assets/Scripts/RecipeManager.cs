@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using Fungus;
 
 public class RecipeManager : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class RecipeManager : MonoBehaviour
     public GameObject item1;
     public GameObject item2;
     public GameObject item3;
+
+    public EventSystem eventSystem;
 
     bool alreadyInThere(Recipes.RecipeEnum type)
     {
@@ -35,10 +39,23 @@ public class RecipeManager : MonoBehaviour
         ArrayList rs = new ArrayList();
 
         // have conditionals here based on the fugus variables if we have processed enough to have these recipes
-        rs.Add(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
-        rs.Add(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
-        rs.Add(Recipes.RecipeEnum.TRANSFORMATIONAL_POTION);
-        rs.Add(Recipes.RecipeEnum.GNOME_NET);
+
+        Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
+        if (flowchart != null)
+        {
+            if (flowchart.GetStringVariable("hoshi_state") == "GATHERING_SUCCEEDED") {
+                rs.Add(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
+            }
+            if (flowchart.GetStringVariable("hawking_state") == "GATHERING_SUCCEEDED") {
+                rs.Add(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
+            }
+            if (flowchart.GetStringVariable("ivy_state") == "GATHERING_SUCCEEDED") {
+                rs.Add(Recipes.RecipeEnum.TRANSFORMATIONAL_POTION);
+            }
+            if (flowchart.GetStringVariable("greene_state") == "GATHERING_SUCCEEDED") {
+                rs.Add(Recipes.RecipeEnum.GNOME_NET);
+            }
+        }  
 
         for (int i = 0; i < rs.Count; i++) {
             if (!alreadyInThere((Recipes.RecipeEnum)rs[i]))
@@ -106,5 +123,26 @@ public class RecipeManager : MonoBehaviour
     public Recipes.RecipeEnum getCurrentRecipe()
     {
         return currentRecipe;
+    }
+
+    void getEventSystem()
+    {
+        if (GameObject.FindGameObjectWithTag("EventSystem") != null)
+        {
+            eventSystem = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<EventSystem>();
+        }
+        else
+        {
+            Debug.Log("event system is not hooked up.");
+        }
+    }
+
+
+    public void Update()
+    {
+        if (eventSystem == null)
+        {
+            getEventSystem();
+        }
     }
 }
