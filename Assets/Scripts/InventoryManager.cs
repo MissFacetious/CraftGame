@@ -28,6 +28,10 @@ public class InventoryManager : MonoBehaviour, IComparer
             Item myItem = Instantiate(item);
             myItem.setItem(array[i], false);
             myItem.gameObject.transform.parent = gameObject.transform;
+
+            Item myItem2 = Instantiate(item);
+            myItem2.setItem(array[i], false);
+            myItem2.gameObject.transform.parent = gameObject.transform;
         }
     }
 
