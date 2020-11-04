@@ -197,6 +197,18 @@ public class PanelManager : MonoBehaviour
             {
                 flowchart.SetStringVariable("hoshi_state", "CRAFTING_SUCCEEDED");
             }
+            if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
+            {
+                flowchart.SetStringVariable("hawking_state", "CRAFTING_SUCCEEDED");
+            }
+            if (type == Recipes.RecipeEnum.TRANSFORMATIONAL_POTION)
+            {
+                flowchart.SetStringVariable("ivy_state", "CRAFTING_SUCCEEDED");
+            }
+            if (type == Recipes.RecipeEnum.GNOME_NET)
+            {
+                flowchart.SetStringVariable("greene_state", "CRAFTING_SUCCEEDED");
+            }
         }
         else
         {

@@ -22,12 +22,34 @@ public class InventoryManager : MonoBehaviour, IComparer
     // Start is called before the first frame update
     void Start()
     {
-        Recipes.RecipeEnum[] array = new Recipes.RecipeEnum[] { Recipes.RecipeEnum.APPLEBLOSSOM_TEA, Recipes.RecipeEnum.FRESH_STREAM_WATER, Recipes.RecipeEnum.GNOME_NET, Recipes.RecipeEnum.GOLDEN_APPLE, Recipes.RecipeEnum.LAVENDER_SCENT, Recipes.RecipeEnum.LOFTY_LEMON, Recipes.RecipeEnum.MIRROR_CELESTINE, Recipes.RecipeEnum.ORANGE_POWDER, Recipes.RecipeEnum.PINK_CRYSTAL, Recipes.RecipeEnum.RAINBOW_DEWDROP, Recipes.RecipeEnum.RAINBOW_REFRACTOR, Recipes.RecipeEnum.SAKURA_BLOSSOMS, Recipes.RecipeEnum.SHINY_STONE, Recipes.RecipeEnum.TEA_LEAF, Recipes.RecipeEnum.TRANSFORMATIONAL_POTION, Recipes.RecipeEnum.VINES};
+        // TODO TAKE OUT THIS FAKE INVENTORY
+        Recipes.RecipeEnum[] array = new Recipes.RecipeEnum[] {
+            //Recipes.RecipeEnum.APPLEBLOSSOM_TEA,
+            Recipes.RecipeEnum.FRESH_STREAM_WATER,
+            //Recipes.RecipeEnum.GNOME_NET,
+            Recipes.RecipeEnum.GOLDEN_APPLE,
+            Recipes.RecipeEnum.LAVENDER_SCENT,
+            Recipes.RecipeEnum.LOFTY_LEMON,
+            Recipes.RecipeEnum.MIRROR_CELESTINE,
+            Recipes.RecipeEnum.ORANGE_POWDER,
+            Recipes.RecipeEnum.PINK_CRYSTAL,
+            Recipes.RecipeEnum.RAINBOW_DEWDROP,
+            //Recipes.RecipeEnum.RAINBOW_REFRACTOR,
+            Recipes.RecipeEnum.SAKURA_BLOSSOMS,
+            Recipes.RecipeEnum.SHINY_STONE,
+            Recipes.RecipeEnum.TEA_LEAF,
+            //Recipes.RecipeEnum.TRANSFORMATIONAL_POTION,
+            Recipes.RecipeEnum.VINES
+        };
         for (int i = 0; i < array.Length; i++)
         {
             Item myItem = Instantiate(item);
             myItem.setItem(array[i], false);
             myItem.gameObject.transform.parent = gameObject.transform;
+
+            Item myItem2 = Instantiate(item);
+            myItem2.setItem(array[i], false);
+            myItem2.gameObject.transform.parent = gameObject.transform;
         }
     }
 
