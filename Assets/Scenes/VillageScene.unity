@@ -31948,7 +31948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 2
   key: ivy_state
-  value: 
+  value: QUEST_COMPLETE
 --- !u!114 &1425374360
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -32056,10 +32056,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1425374440}
-  selectedCommands:
-  - {fileID: 1425374414}
+  selectedBlocks: []
+  selectedCommands: []
   variables:
   - {fileID: 1425374360}
   - {fileID: 1425374359}
@@ -35883,7 +35881,6 @@ GameObject:
   - component: {fileID: 1431549647}
   - component: {fileID: 1431549646}
   - component: {fileID: 1431549645}
-  - component: {fileID: 1431549644}
   - component: {fileID: 1431549643}
   - component: {fileID: 1431549642}
   - component: {fileID: 1431549641}
@@ -35916,39 +35913,30 @@ GameObject:
   - component: {fileID: 1431549688}
   - component: {fileID: 1431549687}
   - component: {fileID: 1431549686}
-  - component: {fileID: 1431549685}
-  - component: {fileID: 1431549684}
   - component: {fileID: 1431549683}
   - component: {fileID: 1431549682}
-  - component: {fileID: 1431549681}
-  - component: {fileID: 1431549680}
-  - component: {fileID: 1431549679}
-  - component: {fileID: 1431549678}
-  - component: {fileID: 1431549677}
-  - component: {fileID: 1431549676}
-  - component: {fileID: 1431549675}
+  - component: {fileID: 1431549669}
+  - component: {fileID: 1431549668}
+  - component: {fileID: 1431549667}
+  - component: {fileID: 1431549666}
+  - component: {fileID: 1431549701}
+  - component: {fileID: 1431549702}
+  - component: {fileID: 1431549705}
+  - component: {fileID: 1431549704}
+  - component: {fileID: 1431549700}
   - component: {fileID: 1431549674}
   - component: {fileID: 1431549673}
   - component: {fileID: 1431549672}
   - component: {fileID: 1431549671}
   - component: {fileID: 1431549670}
-  - component: {fileID: 1431549669}
-  - component: {fileID: 1431549668}
-  - component: {fileID: 1431549660}
-  - component: {fileID: 1431549667}
-  - component: {fileID: 1431549666}
-  - component: {fileID: 1431549661}
   - component: {fileID: 1431549665}
   - component: {fileID: 1431549664}
   - component: {fileID: 1431549663}
   - component: {fileID: 1431549662}
+  - component: {fileID: 1431549661}
+  - component: {fileID: 1431549660}
   - component: {fileID: 1431549659}
-  - component: {fileID: 1431549701}
-  - component: {fileID: 1431549702}
-  - component: {fileID: 1431549705}
-  - component: {fileID: 1431549704}
-  - component: {fileID: 1431549703}
-  - component: {fileID: 1431549700}
+  - component: {fileID: 1431549644}
   m_Layer: 0
   m_Name: GreeneFlowchart
   m_TagString: Untagged
@@ -35986,7 +35974,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 69.63158
     y: 71.31579
-    width: 76.31578
+    width: 78.3582
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -36010,19 +35998,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -169.49397, y: 59.01862}
+  scrollPos: {x: 120.838776, y: 139.11163}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 314
-  zoom: 0.7600002
+  zoom: 0.6700003
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 1431549627}
+  selectedCommands:
+  - {fileID: 1431549655}
   variables:
   - {fileID: 1431549624}
   - {fileID: 1431549623}
@@ -36460,7 +36450,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 485.28333
     y: -36.650295
-    width: 89.47367
+    width: 93.28356
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -36529,7 +36519,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1252.3896
     y: 47.56022
-    width: 94.73683
+    width: 99.25371
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -36554,7 +36544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 2
   key: greene_state
-  value: 
+  value: QUEST_START
 --- !u!114 &1431549624
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -36569,7 +36559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scope: 2
   key: ivy_state
-  value: 
+  value: QUEST_COMPLETE
 --- !u!114 &1431549625
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -36586,7 +36576,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 262
     y: 72
-    width: 147.3684
+    width: 154.47757
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -36652,7 +36642,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 476.07278
     y: 68.61284
-    width: 109.21051
+    width: 112.68654
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -36674,11 +36664,11 @@ MonoBehaviour:
   - {fileID: 1431549647}
   - {fileID: 1431549646}
   - {fileID: 1431549645}
-  - {fileID: 1431549644}
   - {fileID: 1431549643}
   - {fileID: 1431549642}
   - {fileID: 1431549641}
   - {fileID: 1431549640}
+  - {fileID: 1431549674}
   - {fileID: 1431549628}
   suppressAllAutoSelections: 0
 --- !u!114 &1431549628
@@ -36718,7 +36708,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 605.0199
     y: 135.71805
-    width: 180.26312
+    width: 191.79099
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -36772,7 +36762,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 855.02014
     y: 189.66542
-    width: 128.94734
+    width: 136.56712
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -37028,7 +37018,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 845.80945
     y: 35.718113
-    width: 121.05261
+    width: 127.6119
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -37144,8 +37134,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 41
   indentLevel: 0
-  storyText: "I guess that would be the kind thing to do, but we still have to catch
-    them first. Let\u2019s focus on the gnet."
+  storyText: "I guess that would be the kind thing to do, but I still have to catch
+    them first. Let\u2019s focus on the gnet. "
   description: 
   character: {fileID: 77614005}
   portrait: {fileID: 0}
@@ -37172,7 +37162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 40
   indentLevel: 0
-  storyText: Maybe we could move them into those empty houses in town?
+  storyText: Maybe you could move them into those empty houses in town?
   description: 
   character: {fileID: 880061730}
   portrait: {fileID: 0}
@@ -37225,10 +37215,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 38
+  itemId: 116
   indentLevel: 0
-  storyText: "I also need help getting them out of here and into the woods where
-    they belong. They\u2019re raiding my arugula and ripping up the rampion!"
+  storyText: That should do it! All the gnomes have been re-homed. And my garden
+    is finally safe, thanks to you..
   description: 
   character: {fileID: 77614005}
   portrait: {fileID: 0}
@@ -37851,12 +37841,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431549607}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207aecf668a0345388087ccf522f9957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 115
+  indentLevel: 0
+  duration: 1
+  targetAlpha: 0
+  waitUntilFinished: 1
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  fadeTexture: {fileID: 0}
+  fadeTweenType: 4
+--- !u!114 &1431549660
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431549607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207aecf668a0345388087ccf522f9957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 114
+  indentLevel: 0
+  duration: 1
+  targetAlpha: 1
+  waitUntilFinished: 1
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  fadeTexture: {fileID: 0}
+  fadeTweenType: 4
+--- !u!114 &1431549661
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431549607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 97
+  itemId: 113
   indentLevel: 0
-  storyText: Maybe there's some hope for this year's harvest after all.
+  storyText: Need anything else?
   description: 
   character: {fileID: 880061730}
   portrait: {fileID: 0}
@@ -37869,60 +37899,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1431549660
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: 465.5464
-    y: 404.13913
-    width: 196.05258
-    height: 40
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  useCustomTint: 0
-  itemId: 89
-  blockName: GnomecatchingSucceeded
-  description: 
-  eventHandler: {fileID: 0}
-  commandList:
-  - {fileID: 1431549703}
-  - {fileID: 1431549665}
-  - {fileID: 1431549664}
-  - {fileID: 1431549663}
-  - {fileID: 1431549662}
-  - {fileID: 1431549659}
-  - {fileID: 1431549661}
-  suppressAllAutoSelections: 0
---- !u!114 &1431549661
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 92
-  indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1431549622}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
 --- !u!114 &1431549662
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -37935,10 +37911,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 96
+  itemId: 112
   indentLevel: 0
-  storyText: "Saplings? I haven\u2019t planted any new trees in years. I guess we\u2019ll
-    have to wait to see what they are."
+  storyText: Great! Now to catch some gnomes!
   description: 
   character: {fileID: 77614005}
   portrait: {fileID: 0}
@@ -37960,25 +37935,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431549607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 95
+  itemId: 111
   indentLevel: 0
-  storyText: It looked like there were some saplings starting to grow in the spots
-    that the gnomes destroyed. What kind of trees are those?
-  description: 
-  character: {fileID: 880061730}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
+  targetFlowchart: {fileID: 0}
+  targetBlock: {fileID: 1431549622}
+  startLabel:
+    stringRef: {fileID: 0}
+    stringVal: 
+  startIndex: 0
+  callMode: 0
 --- !u!114 &1431549664
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -37991,13 +37959,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 94
+  itemId: 110
   indentLevel: 0
-  storyText: "Great! I can take it from here. I\u2019ll stop by Hawking\u2019s place
-    to see if he has any ideas on how to help these gnomes out or how to talk to
-    them, at the very least."
+  storyText: Maybe there's some hope for this year's harvest after all.
   description: 
-  character: {fileID: 77614005}
+  character: {fileID: 880061730}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -38020,11 +37986,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 93
+  itemId: 109
   indentLevel: 0
-  storyText: "I think that\u2019s all of them."
+  storyText: "Saplings? I haven\u2019t planted any new trees in years. I guess we\u2019ll
+    have to wait to see what they are."
   description: 
-  character: {fileID: 880061730}
+  character: {fileID: 77614005}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -38050,7 +38017,7 @@ MonoBehaviour:
   itemId: 91
   indentLevel: 1
   targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1431549660}
+  targetBlock: {fileID: 0}
   startLabel:
     stringRef: {fileID: 0}
     stringVal: 
@@ -38314,7 +38281,7 @@ MonoBehaviour:
   itemId: 88
   indentLevel: 1
   targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1431549681}
+  targetBlock: {fileID: 0}
   startLabel:
     stringRef: {fileID: 0}
     stringVal: 
@@ -38572,18 +38539,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431549607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 86
+  itemId: 108
   indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1431549681}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
+  storyText: It looked like there were some saplings starting to grow in the spots
+    that the gnomes destroyed. What kind of trees are those?
+  description: 
+  character: {fileID: 880061730}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1431549671
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -38593,16 +38567,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431549607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00d03ae0919f04264b018681ed534177, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 85
+  itemId: 107
   indentLevel: 0
-  _sceneName:
-    stringRef: {fileID: 0}
-    stringVal: GreeneGardensScene
-  loadingImage: {fileID: 0}
-  sceneNameOLD: 
+  storyText: "I can take it from here. I\u2019ll stop by Hawking\u2019s place to
+    see if he has any ideas on how to help these gnomes out or how to talk to them,
+    at the very least."
+  description: 
+  character: {fileID: 77614005}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1431549672
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -38612,14 +38596,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431549607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 84
+  itemId: 106
   indentLevel: 0
-  targetObject: {fileID: 1189265145}
-  methodName: MakeReady
-  delay: 0
+  storyText: Here's the gnet.
+  description: 
+  character: {fileID: 880061730}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!114 &1431549673
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -38632,7 +38626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 83
+  itemId: 105
   indentLevel: 0
   anyVar:
     variable: {fileID: 1431549623}
@@ -38706,7 +38700,7 @@ MonoBehaviour:
         spriteVal: {fileID: 0}
       stringData:
         stringRef: {fileID: 0}
-        stringVal: GNOMECATCHING_START
+        stringVal: QUEST_COMPLETE
       textureData:
         textureRef: {fileID: 0}
         textureVal: {fileID: 0}
@@ -38781,35 +38775,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431549607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 050fb9e6e72f442b3b883da8a965bdeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 82
-  indentLevel: 0
-  targetFlowchart: {fileID: 0}
-  targetBlock: {fileID: 1431549622}
-  startLabel:
-    stringRef: {fileID: 0}
-    stringVal: 
-  startIndex: 0
-  callMode: 0
---- !u!114 &1431549675
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 81
+  itemId: 104
   indentLevel: 0
-  storyText: I'll wait a bit.
+  storyText: Be careful! The gnomes love munching on the crops. If you can't gather
+    ingredients for the gnet fast enough, they might snatch them away!
   description: 
-  character: {fileID: 880061730}
+  character: {fileID: 77614005}
   portrait: {fileID: 0}
   voiceOverClip: {fileID: 0}
   showAlways: 1
@@ -38820,171 +38794,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1431549676
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 80
-  indentLevel: 0
-  text: Wait a bit...
-  description: 
-  targetBlock: {fileID: 1431549680}
-  hideIfVisited: 0
-  interactable:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  setMenuDialog: {fileID: 0}
-  hideThisOption:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
---- !u!114 &1431549677
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 841589fc622bc494aa5405f416fa1301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 79
-  indentLevel: 0
-  text: 'Head to Greene Gardens!
-
-'
-  description: 
-  targetBlock: {fileID: 1431549679}
-  hideIfVisited: 0
-  interactable:
-    booleanRef: {fileID: 0}
-    booleanVal: 1
-  setMenuDialog: {fileID: 0}
-  hideThisOption:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
---- !u!114 &1431549678
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 78
-  indentLevel: 0
-  storyText: Should I head to the Greene Gardens?
-  description: 
-  character: {fileID: 880061730}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1431549679
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: 901.0724
-    y: 287.03366
-    width: 153.94733
-    height: 40
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  useCustomTint: 0
-  itemId: 77
-  blockName: Go Gnomecatching
-  description: 
-  eventHandler: {fileID: 0}
-  commandList:
-  - {fileID: 1431549672}
-  - {fileID: 1431549671}
-  suppressAllAutoSelections: 0
---- !u!114 &1431549680
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: 907.6513
-    y: 431.771
-    width: 161.84207
-    height: 40
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  useCustomTint: 0
-  itemId: 76
-  blockName: Wait Gnomecatching
-  description: 
-  eventHandler: {fileID: 0}
-  commandList:
-  - {fileID: 1431549673}
-  - {fileID: 1431549675}
-  - {fileID: 1431549674}
-  suppressAllAutoSelections: 0
---- !u!114 &1431549681
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeRect:
-    serializedVersion: 2
-    x: 694.4935
-    y: 329.13916
-    width: 182.8947
-    height: 40
-  tint: {r: 1, g: 1, b: 1, a: 1}
-  useCustomTint: 0
-  itemId: 75
-  blockName: Adventure Menu Options
-  description: 
-  eventHandler: {fileID: 0}
-  commandList:
-  - {fileID: 1431549678}
-  - {fileID: 1431549677}
-  - {fileID: 1431549676}
-  suppressAllAutoSelections: 0
 --- !u!114 &1431549682
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -39249,61 +39058,6 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
---- !u!114 &1431549684
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 72
-  indentLevel: 0
-  storyText: Yeah, I can do it!
-  description: 
-  character: {fileID: 880061730}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
---- !u!114 &1431549685
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 71
-  indentLevel: 0
-  storyText: Now, we just have to catch all of the gnomes. Do you think you can handle
-    this one too?
-  description: 
-  character: {fileID: 77614005}
-  portrait: {fileID: 0}
-  voiceOverClip: {fileID: 0}
-  showAlways: 1
-  showCount: 1
-  extendPrevious: 0
-  fadeWhenDone: 1
-  waitForClick: 1
-  stopVoiceover: 1
-  waitForVO: 0
-  setSayDialog: {fileID: 0}
 --- !u!114 &1431549686
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -39318,9 +39072,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 455.0198
-    y: 310.71808
-    width: 153.94733
+    x: 461.92322
+    y: 310.71826
+    width: 164.92532
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -39329,9 +39083,18 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
-  - {fileID: 1431549685}
-  - {fileID: 1431549684}
+  - {fileID: 1431549673}
+  - {fileID: 1431549672}
+  - {fileID: 1431549662}
+  - {fileID: 1431549660}
+  - {fileID: 1431549659}
+  - {fileID: 1431549644}
+  - {fileID: 1431549661}
+  - {fileID: 1431549671}
   - {fileID: 1431549670}
+  - {fileID: 1431549665}
+  - {fileID: 1431549664}
+  - {fileID: 1431549663}
   suppressAllAutoSelections: 0
 --- !u!114 &1431549687
 MonoBehaviour:
@@ -39688,7 +39451,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 456.33582
     y: 225.19168
-    width: 163.15787
+    width: 175.37308
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -40294,7 +40057,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 462.91476
     y: 147.56023
-    width: 134.21051
+    width: 144.02982
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -40341,9 +40104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 474.75696
-    y: 481.77063
-    width: 135.52629
+    x: 470.9108
+    y: 385.61734
+    width: 141.04474
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -40382,158 +40145,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &1431549703
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1431549607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemId: 102
-  indentLevel: 0
-  anyVar:
-    variable: {fileID: 1431549623}
-    data:
-      animatorData:
-        animatorRef: {fileID: 0}
-        animatorVal: {fileID: 0}
-      audioSourceData:
-        audioSourceRef: {fileID: 0}
-        audioSourceVal: {fileID: 0}
-      booleanData:
-        booleanRef: {fileID: 0}
-        booleanVal: 0
-      collectionData:
-        collectionRef: {fileID: 0}
-        collectionVal: {fileID: 0}
-      collider2DData:
-        collider2DRef: {fileID: 0}
-        collider2DVal: {fileID: 0}
-      colliderData:
-        colliderRef: {fileID: 0}
-        colliderVal: {fileID: 0}
-      colorData:
-        colorRef: {fileID: 0}
-        colorVal: {r: 0, g: 0, b: 0, a: 0}
-      floatData:
-        floatRef: {fileID: 0}
-        floatVal: 0
-      gameObjectData:
-        gameObjectRef: {fileID: 0}
-        gameObjectVal: {fileID: 0}
-      integerData:
-        integerRef: {fileID: 0}
-        integerVal: 0
-      materialData:
-        materialRef: {fileID: 0}
-        materialVal: {fileID: 0}
-      matrix4x4Data:
-        matrix4x4Ref: {fileID: 0}
-        matrix4x4Val:
-          e00: 0
-          e01: 0
-          e02: 0
-          e03: 0
-          e10: 0
-          e11: 0
-          e12: 0
-          e13: 0
-          e20: 0
-          e21: 0
-          e22: 0
-          e23: 0
-          e30: 0
-          e31: 0
-          e32: 0
-          e33: 0
-      objectData:
-        objectRef: {fileID: 0}
-        objectVal: {fileID: 0}
-      quaternionData:
-        quaternionRef: {fileID: 0}
-        quaternionVal: {x: 0, y: 0, z: 0, w: 0}
-      rigidbody2DData:
-        rigidbody2DRef: {fileID: 0}
-        rigidbody2DVal: {fileID: 0}
-      rigidbodyData:
-        rigidbodyRef: {fileID: 0}
-        rigidbodyVal: {fileID: 0}
-      spriteData:
-        spriteRef: {fileID: 0}
-        spriteVal: {fileID: 0}
-      stringData:
-        stringRef: {fileID: 0}
-        stringVal: QUEST_COMPLETE
-      textureData:
-        textureRef: {fileID: 0}
-        textureVal: {fileID: 0}
-      transformData:
-        transformRef: {fileID: 0}
-        transformVal: {fileID: 0}
-      vector2Data:
-        vector2Ref: {fileID: 0}
-        vector2Val: {x: 0, y: 0}
-      vector3Data:
-        vector3Ref: {fileID: 0}
-        vector3Val: {x: 0, y: 0, z: 0}
-      vector4Data:
-        vector4Ref: {fileID: 0}
-        vector4Val: {x: 0, y: 0, z: 0, w: 0}
-  setOperator: 0
-  variable: {fileID: 0}
-  booleanData:
-    booleanRef: {fileID: 0}
-    booleanVal: 0
-  integerData:
-    integerRef: {fileID: 0}
-    integerVal: 0
-  floatData:
-    floatRef: {fileID: 0}
-    floatVal: 0
-  stringData:
-    stringRef: {fileID: 0}
-    stringVal: 
-  animatorData:
-    animatorRef: {fileID: 0}
-    animatorVal: {fileID: 0}
-  audioSourceData:
-    audioSourceRef: {fileID: 0}
-    audioSourceVal: {fileID: 0}
-  colorData:
-    colorRef: {fileID: 0}
-    colorVal: {r: 0, g: 0, b: 0, a: 0}
-  gameObjectData:
-    gameObjectRef: {fileID: 0}
-    gameObjectVal: {fileID: 0}
-  materialData:
-    materialRef: {fileID: 0}
-    materialVal: {fileID: 0}
-  objectData:
-    objectRef: {fileID: 0}
-    objectVal: {fileID: 0}
-  rigidbody2DData:
-    rigidbody2DRef: {fileID: 0}
-    rigidbody2DVal: {fileID: 0}
-  spriteData:
-    spriteRef: {fileID: 0}
-    spriteVal: {fileID: 0}
-  textureData:
-    textureRef: {fileID: 0}
-    textureVal: {fileID: 0}
-  transformData:
-    transformRef: {fileID: 0}
-    transformVal: {fileID: 0}
-  vector2Data:
-    vector2Ref: {fileID: 0}
-    vector2Val: {x: 0, y: 0}
-  vector3Data:
-    vector3Ref: {fileID: 0}
-    vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1431549704
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -58628,7 +58239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1431549610}
+  selectedFlowchart: {fileID: 1425374363}
 --- !u!4 &1990647167
 Transform:
   m_ObjectHideFlags: 1
