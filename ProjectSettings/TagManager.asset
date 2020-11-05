@@ -24,6 +24,7 @@ TagManager:
   - RecipeManager
   - Recipes
   - Selection
+  - ExtraTime
   layers:
   - Default
   - TransparentFX
