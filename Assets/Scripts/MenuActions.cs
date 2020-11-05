@@ -146,6 +146,16 @@ public class MenuActions : MonoBehaviour
         countdown = false;
     }
 
+    public void addTime(float newTime)
+    {
+        //only add time to the counter if we're above one second remaining
+        //this is to hold off any weirdness with ending gathering.
+        if (timeLeft >= 1.0f)
+        {
+            timeLeft = timeLeft + newTime;
+        }
+    }
+
     public void stopClock()
     {
         countdown = false;

@@ -133,6 +133,18 @@ public class PlayerController : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+        if (other.gameObject.CompareTag("ExtraTime"))
+        {
+        
+            //increase time
+            menuActions.addTime(1.0f);
+
+            //destroy
+            Destroy(other.gameObject);
+          
+
+
+        }
     }
 
     void FixedUpdate()
