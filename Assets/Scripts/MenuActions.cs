@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuActions : MonoBehaviour
 {
@@ -34,17 +35,28 @@ public class MenuActions : MonoBehaviour
     public TextMeshProUGUI locationName;
     public StartingPoint startingPoint;
 
+    public GameObject selectIcon;
+    public GameObject backIcon;
+    public GameObject jumpIcon;
+    public GameObject runIcon;
+    public GameObject menuIcon;
+
     private bool countdown;
     private float timeLeft;
 
     private int currentCount = 0;
     private int outOf = 40;
     private bool selectAgain = true;
+    private bool continueAgain = true;
+
+    private Interactor interactor;
+    private PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Start()
     {
         getEventSystem();
+        getPlayerInput();
         getPanelManager();
           
         Cursor.visible = true;
@@ -96,6 +108,21 @@ public class MenuActions : MonoBehaviour
         }
     }
 
+    void getPlayerInput()
+    {
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+            interactor = playerInput.GetComponent<Interactor>();
+
+            OnControlsChanged();
+        }
+        else
+        {
+            Debug.Log("event system is not hooked up.");
+        }
+    }
+
     void getPanelManager()
     {
         if (GameObject.FindGameObjectWithTag("PanelManager") != null)
@@ -105,6 +132,34 @@ public class MenuActions : MonoBehaviour
         else
         {
             Debug.Log("PanelManager is not hooked up.");
+        }
+    }
+
+    private void OnControlsChanged()
+    {
+        if (playerInput != null && playerInput.devices.Count > 0)
+        {
+            // change sprites of the bottom menu
+            if (selectIcon != null)
+            {
+                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
+            }
+            if (backIcon != null)
+            {
+                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.cancel);
+            }
+            if (jumpIcon != null)
+            {
+                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.jump);
+            }
+            if (runIcon != null)
+            {
+                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.run);
+            }
+            if (menuIcon != null)
+            {
+                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.menu);
+            }
         }
     }
 
@@ -200,8 +255,8 @@ public class MenuActions : MonoBehaviour
     public void Crafting() { 
         // on start of crafting, show the menu, and when we exit out of inventory/recipe
         GetComponent<Animator>().SetBool("menu", true);
-        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+        transform.Find("MainMenu").GetChild(0).gameObject.SetActive(true);
+        transform.Find("BottomMenu").GetChild(0).gameObject.SetActive(true);
         eventSystem.SetSelectedGameObject(craftRecipesButton);
     }
 
@@ -209,13 +264,13 @@ public class MenuActions : MonoBehaviour
     {
         if (sceneName == scene.craft)
         {
-            if (transform.GetChild(0).gameObject.activeInHierarchy)
+            if (transform.Find("MainMenu").gameObject.activeInHierarchy)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
+                transform.Find("MainMenu").gameObject.SetActive(false);
             }
             else
             {
-                transform.GetChild(0).gameObject.SetActive(true);
+                transform.Find("MainMenu").gameObject.SetActive(true);
             }
         }
         else
@@ -228,14 +283,13 @@ public class MenuActions : MonoBehaviour
     public void Recipes()
     {
         if (sceneName == scene.craft) {
-            Debug.Log(transform.GetChild(0).name);
-            if (transform.GetChild(0).gameObject.activeInHierarchy)
+            if (transform.Find("MainMenu").gameObject.activeInHierarchy)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
+                transform.Find("MainMenu").gameObject.SetActive(false);
             }
             else
             {
-                transform.GetChild(0).gameObject.SetActive(true);
+                transform.Find("MainMenu").gameObject.SetActive(true);
             }
          }
         else {
@@ -368,6 +422,17 @@ public class MenuActions : MonoBehaviour
         else if (GameObject.FindGameObjectWithTag("Selection") == null)
         {
             selectAgain = true;
+        }
+        if (GameObject.FindGameObjectWithTag("Continue") != null && continueAgain)
+        {
+            GameObject continueIcon = GameObject.FindGameObjectWithTag("Continue");
+            // a fungus yes/no selection has popped up, first selection is tagged
+            continueIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
+            continueAgain = false;
+        }
+        else if (GameObject.FindGameObjectWithTag("Selection") == null)
+        {
+            continueAgain = true;
         }
         if ((sceneName == scene.summer ||
              sceneName == scene.spring ||

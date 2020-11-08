@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerCamera == null)
         {
-            Debug.LogError("Camera not found.");
+            Debug.Log("Camera not found.");
         }
         if (inventoryManager == null)
         {
@@ -70,8 +70,7 @@ public class PlayerController : MonoBehaviour
     { 
         if (playerInput.devices.Count > 0)
         {
-            //Debug.Log(playerInput.devices[0].name);
-            interactor.UpdateIconSprite(playerInput.devices[0].name);
+            interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
         }
     }
 
@@ -80,41 +79,31 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
-        animator.SetBool("walking", true);
+        if (animator != null)
+        {
+            animator.SetBool("walking", true);
+        }
     }
 
     private void OnLook(InputValue lookValue)
     {
-        cameraController.lookVector = lookValue.Get<Vector2>();
+        if (cameraController != null)
+        {
+            cameraController.lookVector = lookValue.Get<Vector2>();
+        }
     }
 
     private void OnInteract(InputValue interactValue)
     {
         interactor.PerformInteraction();
-        animator.SetBool("walking", false);
+        if (animator != null)
+        {
+            animator.SetBool("walking", false);
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Apple"))
-        {
-            Apple apple = other.gameObject.GetComponent<Apple>();
-
-            if (apple != null)
-            {
-                // kick off collection animations
-                // this animation seems to slow down the game
-                animator.SetTrigger("collect");
-                apple.Collect(gameObject);
-                menuActions.increaseCurrentCounter();
-                inventoryManager.CreateNewItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
-        }
-
         if (other.gameObject.CompareTag("Collectible"))
         {
             Collectible collectible = other.gameObject.GetComponent<Collectible>();
@@ -135,15 +124,11 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("ExtraTime"))
         {
-        
             //increase time
             menuActions.addTime(1.0f);
 
             //destroy
             Destroy(other.gameObject);
-          
-
-
         }
     }
 
