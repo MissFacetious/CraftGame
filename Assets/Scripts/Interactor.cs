@@ -11,7 +11,7 @@ public class Interactor : MonoBehaviour
 
     [SerializeField]
     public static Sprite interactSprites;
-    public static Dictionary<string, Sprite> interactSpriteDict;
+    public static Dictionary<string, Sprite[]> interactSpriteDict;
 
     [Range(0f, 100f)]
     public float rayLength = 2.5f;
@@ -20,38 +20,69 @@ public class Interactor : MonoBehaviour
     private bool hitDetected;
     private float aboveCharacter = 150f;
 
+    public enum buttons
+    {
+        okay,
+        cancel,
+        jump,
+        run,
+        menu,
+    }
+
     private void Awake()
     {
-        button = GameObject.FindWithTag("PlayerButton").GetComponent<Button>();
-        if (button == null)
+        GameObject PlayerButton = GameObject.FindWithTag("PlayerButton");
+        if (PlayerButton != null)
         {
-            Debug.LogError("Button not assigned.");
+            button = PlayerButton.GetComponent<Button>();
+            if (button == null)
+            {
+                Debug.LogError("Button not assigned.");
+            }
         }
 
+
         // Preload input-specific prompts
-        Sprite PS4_sprite = Resources.Load<Sprite>("Input/PS4_Cross");
-        Sprite XB1_sprite = Resources.Load<Sprite>("Input/XboxOne_A");
-        Sprite KB_sprite = Resources.Load<Sprite>("Input/Keyboard_White_Space");
-        Sprite Switch_sprite = Resources.Load<Sprite>("Input/Switch_B");
+        Sprite PS4_okay = Resources.Load<Sprite>("Input/PS4_Cross");
+        Sprite PS4_cancel = Resources.Load<Sprite>("Input/PS4_Circle");
+        Sprite PS4_jump = Resources.Load<Sprite>("Input/PS4_Triangle");
+        Sprite PS4_run = Resources.Load<Sprite>("Input/PS4_Square");
+        Sprite PS4_menu = Resources.Load<Sprite>("Input/PS4_Start");
 
-        interactSpriteDict = new Dictionary<string, Sprite>
+        Sprite XB1_okay = Resources.Load<Sprite>("Input/XboxOne_A");
+        Sprite XB1_cancel = Resources.Load<Sprite>("Input/XboxOne_B");
+        Sprite XB1_jump = Resources.Load<Sprite>("Input/XboxOne_Y");
+        Sprite XB1_run = Resources.Load<Sprite>("Input/XboxOne_X");
+        Sprite XB1_menu = Resources.Load<Sprite>("Input/XboxOne_Menu");
+
+        Sprite KB_okay = Resources.Load<Sprite>("Input/Keyboard_Black_Space");
+        Sprite KB_cancel = Resources.Load<Sprite>("Input/Keyboard_Black_Esc");
+        Sprite KB_jump = Resources.Load<Sprite>("Input/Keyboard_Black_Ctrl");
+        Sprite KB_menu = Resources.Load<Sprite>("Input/Keyboard_Black_Del");
+        Sprite KB_run = Resources.Load<Sprite>("Input/Keyboard_Black_Alt");
+        //Sprite Switch_sprite = Resources.Load<Sprite>("Input/Switch_B");
+
+        Sprite[] PS4 = new Sprite[] { PS4_okay, PS4_cancel, PS4_jump, PS4_run, PS4_menu };
+        Sprite[] XBOX = new Sprite[] { XB1_okay, XB1_cancel, XB1_jump, XB1_run, XB1_menu };
+        //Sprite[] SWITCH = new Sprite[] { Switch_sprite, Switch_sprite };
+        Sprite[] KEYBOARD = new Sprite[] { KB_okay, KB_cancel, KB_jump, KB_run, KB_menu };
+
+        interactSpriteDict = new Dictionary<string, Sprite[]>
         {
-            { "DualShock4GamepadHID", PS4_sprite },
-            { "XInputControllerWindows", XB1_sprite },
-            { "SwitchProControllerHID", Switch_sprite},
-            { "Keyboard", KB_sprite }
+            { "DualShock4GamepadHID", PS4 },
+            { "XInputControllerWindows", XBOX },
+            //{ "SwitchProControllerHID", SWITCH },
+            { "Keyboard", KEYBOARD }
         };
-
-        Assert.IsNotNull(PS4_sprite);
-        Assert.IsNotNull(XB1_sprite);
-        Assert.IsNotNull(KB_sprite);
-        Assert.IsNotNull(Switch_sprite);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        button.gameObject.SetActive(false);
+        if (button != null)
+        {
+            button.gameObject.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -72,7 +103,7 @@ public class Interactor : MonoBehaviour
         {
             if (hitInfo.collider != null)
             {
-                Debug.Log(hitInfo.collider.name);
+            //    Debug.Log(hitInfo.collider.name);
             }
             RemoveFocus();
         }
@@ -108,8 +139,6 @@ public class Interactor : MonoBehaviour
             //Debug.Log("Hit: " + hitInfo.collider.name);
             focus = newFocus;
             focus.OnFocused(transform);
-
-
         }
         
         button.gameObject.SetActive(true);
@@ -119,13 +148,21 @@ public class Interactor : MonoBehaviour
         button.transform.position = new Vector3(buttonPosition.x, buttonPosition.y+aboveCharacter, 0f);
     }
 
-    public void UpdateIconSprite(string deviceName)
+    public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
     {
-        if (interactSpriteDict.TryGetValue(deviceName, out Sprite deviceIcon))
+        Debug.Log(deviceName);
+        if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
+        if (interactSpriteDict.TryGetValue(deviceName, out Sprite[] deviceIcon))
         {
-            Image image = button.GetComponent<Image>();
-            image.sprite = deviceIcon;
+            //Debug.Log(deviceIcon[(int)buttonName]);
+            if (buttonName.Equals(buttons.okay) && button != null)
+            {
+                Image image = button.GetComponent<Image>();
+                image.sprite = deviceIcon[(int)buttonName];
+            }
+            return deviceIcon[(int)buttonName];
         }
+        return null;
     }
 
     private void OnDrawGizmos()

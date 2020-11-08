@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
@@ -12,7 +8,9 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float rotationSmoothing = 0.05f;
     public float rotationSmoothingVelocity;
-    public float speed = 10;
+    public float speed = 6;
+    private bool running = false;
+    private bool jumping = false;
 
     [SerializeField]
     private Camera playerCamera;
@@ -30,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerCamera == null)
         {
-            Debug.LogError("Camera not found.");
+            Debug.Log("Camera not found.");
         }
         if (inventoryManager == null)
         {
@@ -67,12 +65,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnControlsChanged()
-    { 
+    {
         if (playerInput.devices.Count > 0)
         {
-            //Debug.Log(playerInput.devices[0].name);
-            interactor.UpdateIconSprite(playerInput.devices[0].name);
+            int lastPluggedIn = playerInput.devices.Count - 1;
+            interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.okay);
         }
+        menuActions.OnControlsChanged();
     }
 
     private void OnMove(InputValue movementValue)
@@ -80,41 +79,80 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
-        animator.SetBool("walking", true);
+        if (running)
+        {
+            speed = 12;
+            if (animator != null)
+            {
+                animator.SetTrigger("running");
+            }
+        }
+        else if (jumping)
+        {
+            speed = 0;
+             if (animator != null)
+            {
+                animator.SetTrigger("jumping");
+            }
+        }
+        else // just walking
+        {
+            speed = 6;
+            if (animator != null)
+            {
+                animator.SetTrigger("walking");
+            }
+        }
     }
 
     private void OnLook(InputValue lookValue)
     {
-        cameraController.lookVector = lookValue.Get<Vector2>();
+        if (cameraController != null)
+        {
+            cameraController.lookVector = lookValue.Get<Vector2>();
+        }
+    }
+
+    private void OnJump(InputValue inputValue)
+    {
+        Debug.Log("hit jump");
+        Debug.Log(inputValue);
+        jumping = true;
+    }
+
+    private void OnRun(InputValue inputValue)
+    {
+        if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
+        {
+            running = true;
+        }
+        else
+        {
+            running = false;
+        }
+    }
+
+    private void OnCancel(InputValue inputValue)
+    {
+        menuActions.OnCancel(inputValue);
+    }
+
+    private void OnMenu(InputValue inputValue)
+    {
+        menuActions.OnControlsChanged();
+        menuActions.OnMenu(inputValue);
     }
 
     private void OnInteract(InputValue interactValue)
     {
-        interactor.PerformInteraction();
-        animator.SetBool("walking", false);
+        if (interactor != null)
+        {
+            interactor.PerformInteraction();
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Apple"))
-        {
-            Apple apple = other.gameObject.GetComponent<Apple>();
-
-            if (apple != null)
-            {
-                // kick off collection animations
-                // this animation seems to slow down the game
-                animator.SetTrigger("collect");
-                apple.Collect(gameObject);
-                menuActions.increaseCurrentCounter();
-                inventoryManager.CreateNewItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
-        }
-
         if (other.gameObject.CompareTag("Collectible"))
         {
             Collectible collectible = other.gameObject.GetComponent<Collectible>();
@@ -135,15 +173,11 @@ public class PlayerController : MonoBehaviour
         }
         if (other.gameObject.CompareTag("ExtraTime"))
         {
-        
             //increase time
             menuActions.addTime(1.0f);
 
             //destroy
             Destroy(other.gameObject);
-          
-
-
         }
     }
 
@@ -176,7 +210,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                animator.SetBool("walking", false);
+                animator.SetTrigger("idle");
             }
         }
     }

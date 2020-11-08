@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuActions : MonoBehaviour
 {
@@ -28,11 +29,16 @@ public class MenuActions : MonoBehaviour
     public PanelManager panelManager;
     public GameObject firstButton;
     public GameObject backButton;
-    public GameObject craftRecipesButton;
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI locationName;
     public StartingPoint startingPoint;
+
+    public GameObject selectIcon;
+    public GameObject backIcon;
+    public GameObject jumpIcon;
+    public GameObject runIcon;
+    public GameObject menuIcon;
 
     private bool countdown;
     private float timeLeft;
@@ -40,11 +46,16 @@ public class MenuActions : MonoBehaviour
     private int currentCount = 0;
     private int outOf = 40;
     private bool selectAgain = true;
+    private bool continueAgain = true;
+
+    private Interactor interactor;
+    private PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Start()
     {
         getEventSystem();
+        getPlayerInput();
         getPanelManager();
           
         Cursor.visible = true;
@@ -96,6 +107,21 @@ public class MenuActions : MonoBehaviour
         }
     }
 
+    void getPlayerInput()
+    {
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+            interactor = playerInput.GetComponent<Interactor>();
+
+            OnControlsChanged();
+        }
+        else
+        {
+            Debug.Log("event system is not hooked up.");
+        }
+    }
+
     void getPanelManager()
     {
         if (GameObject.FindGameObjectWithTag("PanelManager") != null)
@@ -105,6 +131,35 @@ public class MenuActions : MonoBehaviour
         else
         {
             Debug.Log("PanelManager is not hooked up.");
+        }
+    }
+
+    public void OnControlsChanged()
+    {
+        if (playerInput != null && playerInput.devices.Count > 0)
+        {
+            int lastPluggedIn = playerInput.devices.Count - 1;
+            // change sprites of the bottom menu
+            if (selectIcon != null)
+            {
+                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.okay);
+            }
+            if (backIcon != null)
+            {
+                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.cancel);
+            }
+            if (jumpIcon != null)
+            {
+                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.jump);
+            }
+            if (runIcon != null)
+            {
+                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.run);
+            }
+            if (menuIcon != null)
+            {
+                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.menu);
+            }
         }
     }
 
@@ -200,48 +255,49 @@ public class MenuActions : MonoBehaviour
     public void Crafting() { 
         // on start of crafting, show the menu, and when we exit out of inventory/recipe
         GetComponent<Animator>().SetBool("menu", true);
-        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-        eventSystem.SetSelectedGameObject(craftRecipesButton);
+        transform.Find("MainMenu").GetChild(0).gameObject.SetActive(true);
+        transform.Find("BottomMenu").GetChild(0).gameObject.SetActive(true);
+        eventSystem.SetSelectedGameObject(firstButton);
     }
 
     public void Inventory()
     {
         if (sceneName == scene.craft)
         {
-            if (transform.GetChild(0).gameObject.activeInHierarchy)
+            if (transform.Find("MainMenu").gameObject.activeInHierarchy)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
+                panelManager.ShowInventoryPanel();
+                transform.Find("MainMenu").gameObject.SetActive(false);
             }
             else
             {
-                transform.GetChild(0).gameObject.SetActive(true);
+                transform.Find("MainMenu").gameObject.SetActive(true);
             }
         }
         else
         {
+            panelManager.ShowInventoryPanel();
             GetComponent<Animator>().SetBool("menu", false);
         }
-        panelManager.ShowInventoryPanel();
     }
 
     public void Recipes()
     {
         if (sceneName == scene.craft) {
-            Debug.Log(transform.GetChild(0).name);
-            if (transform.GetChild(0).gameObject.activeInHierarchy)
+            if (transform.Find("MainMenu").gameObject.activeInHierarchy)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
+                panelManager.ShowRecipesPanel();
+                transform.Find("MainMenu").gameObject.SetActive(false);
             }
             else
             {
-                transform.GetChild(0).gameObject.SetActive(true);
+                transform.Find("MainMenu").gameObject.SetActive(true);
             }
          }
         else {
+            panelManager.ShowRecipesPanel();
             GetComponent<Animator>().SetBool("menu", false);
         }
-        panelManager.ShowRecipesPanel();
     }
 
     public void MenuEnd()
@@ -348,6 +404,53 @@ public class MenuActions : MonoBehaviour
         SceneManager.LoadScene("CreditsScene", LoadSceneMode.Single);
     }
 
+    public void OnCancel(InputValue inputValue)
+    {
+        Debug.Log("hit cancel");
+
+        // if in inventory, to the menu
+        if (GameObject.FindGameObjectWithTag("InventoryPanel") != null && GameObject.FindGameObjectWithTag("InventoryPanel").activeInHierarchy) { 
+            Inventory();
+            if (eventSystem != null)
+            {
+                eventSystem.SetSelectedGameObject(firstButton);
+            }
+        }
+        // if in recipe, to the menu
+        if (GameObject.FindGameObjectWithTag("RecipePanel") != null && GameObject.FindGameObjectWithTag("RecipePanel").activeInHierarchy)
+        {
+            Recipes();
+            if (eventSystem != null)
+            {
+                eventSystem.SetSelectedGameObject(firstButton);
+            }
+        }
+    }
+
+    public void OnMenu(InputValue inputValue)
+    {
+        if ((sceneName == scene.village ||
+             sceneName == scene.summer ||
+             sceneName == scene.spring ||
+             sceneName == scene.autumn ||
+             sceneName == scene.greene ||
+             sceneName == scene.craft))
+        {
+            bool menu = GetComponent<Animator>().GetBool("menu");
+            GetComponent<Animator>().SetBool("menu", !menu);
+            if (menu && eventSystem != null)
+            {
+                eventSystem.SetSelectedGameObject(null);
+                // also start input from the player controller
+            }
+            else
+            {
+                eventSystem.SetSelectedGameObject(firstButton);
+                // also stop input from the player controller
+            }
+        }
+    }
+
     void Update()
     {
         if (eventSystem == null)
@@ -368,6 +471,17 @@ public class MenuActions : MonoBehaviour
         else if (GameObject.FindGameObjectWithTag("Selection") == null)
         {
             selectAgain = true;
+        }
+        if (GameObject.FindGameObjectWithTag("Continue") != null && continueAgain)
+        {
+            GameObject continueIcon = GameObject.FindGameObjectWithTag("Continue");
+            // a fungus continue icon has popped up, set the sprite correctly
+            continueIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
+            continueAgain = false;
+        }
+        else if (GameObject.FindGameObjectWithTag("Continue") == null)
+        {
+            continueAgain = true;
         }
         if ((sceneName == scene.summer ||
              sceneName == scene.spring ||
@@ -396,26 +510,7 @@ public class MenuActions : MonoBehaviour
         {
             Recipes();
         }
-        if ((sceneName == scene.village ||
-             sceneName == scene.summer ||
-             sceneName == scene.spring ||
-             sceneName == scene.autumn ||
-             sceneName == scene.greene ||
-             sceneName == scene.craft) && Keyboard.current.mKey.wasPressedThisFrame)
-        {
-            bool menu = GetComponent<Animator>().GetBool("menu");
-            GetComponent<Animator>().SetBool("menu", !menu);
-            if (menu && eventSystem != null)
-            {
-                eventSystem.SetSelectedGameObject(null);
-                // also start input from the player controller
-            }
-            else
-            {
-                eventSystem.SetSelectedGameObject(firstButton);
-                // also stop input from the player controller
-            }
-        }
+        
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("CraftScene", LoadSceneMode.Single);
