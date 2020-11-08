@@ -39,6 +39,11 @@ public class Collectible : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         transform.localPosition = new Vector3(0f, 0.5f, 0f);
 
+        GetComponent<Animator>().SetTrigger("collect");
+    }
+
+    public void Done()
+    {
         Destroy(gameObject);
     }
 

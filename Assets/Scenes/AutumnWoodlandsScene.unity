@@ -4818,7 +4818,7 @@ MonoBehaviour:
   cameraPanRadius: 2
   cameraResetDelay: 5
   cameraResetSpeed: 0.75
-  cameraRotateSpeed: 30
+  cameraRotateSpeed: 150
   cameraMinYAngle: -5
   cameraMaxYAngle: 45
   cameraSensitivity: 0.4

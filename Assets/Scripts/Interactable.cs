@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
@@ -40,6 +37,10 @@ public class Interactable : MonoBehaviour
             if (isReady) // && withinRange
             {
                 isReady = false;
+                if (interactionTransform.gameObject.tag == "Interactable")
+                {
+                    player.gameObject.GetComponent<PlayerController>().animator.SetTrigger("interact");
+                }
                 OnInteraction.Invoke();
             }
         }
