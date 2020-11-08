@@ -50,23 +50,20 @@ public class StartingPoint : MonoBehaviour
 
     public void OnInteract()
     {
-        Debug.Log(name + "'s interaction method");
         // show intro menu
         ready.gameObject.SetActive(true);
         end.gameObject.SetActive(false);
         gatherInstructions.text = "Let's Get Ready to Gather";
+        menu.GetComponent<Animator>().SetBool("gathering", true);
         if (menu.eventSystem != null)
         {
             menu.eventSystem.SetSelectedGameObject(ready.gameObject);
         }
-        menu.GetComponent<Animator>().SetBool("gathering", true);
-
         //ShowRequirements();
     }
 
     public void ShowRequirements()
     {
-        Debug.Log("show requirements");
         // get the current quest/recipe to make
         if (recipeManager == null && GameObject.FindGameObjectWithTag("RecipeManager") &&
             GameObject.FindGameObjectWithTag("Recipes") && GameObject.FindGameObjectWithTag("InventoryManager"))
@@ -110,6 +107,10 @@ public class StartingPoint : MonoBehaviour
             if (topItem1.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem1.setItem(items[0].type, false);
             if (topItem2.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem2.setItem(items[1].type, false);
             if (topItem3.GetComponent<Item>().type == Recipes.RecipeEnum.NONE) topItem3.setItem(items[2].type, false);
+        }
+        if (menu.eventSystem != null)
+        {
+            menu.eventSystem.SetSelectedGameObject(ready.gameObject);
         }
     }
 
