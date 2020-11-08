@@ -135,30 +135,31 @@ public class MenuActions : MonoBehaviour
         }
     }
 
-    private void OnControlsChanged()
+    public void OnControlsChanged()
     {
         if (playerInput != null && playerInput.devices.Count > 0)
         {
+            int lastPluggedIn = playerInput.devices.Count - 1;
             // change sprites of the bottom menu
             if (selectIcon != null)
             {
-                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
+                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.okay);
             }
             if (backIcon != null)
             {
-                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.cancel);
+                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.cancel);
             }
             if (jumpIcon != null)
             {
-                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.jump);
+                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.jump);
             }
             if (runIcon != null)
             {
-                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.run);
+                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.run);
             }
             if (menuIcon != null)
             {
-                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.menu);
+                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.menu);
             }
         }
     }
@@ -402,6 +403,35 @@ public class MenuActions : MonoBehaviour
         SceneManager.LoadScene("CreditsScene", LoadSceneMode.Single);
     }
 
+    public void OnCancel(InputValue inputValue)
+    {
+        Debug.Log("hit cancel");
+    }
+
+    public void OnMenu(InputValue inputValue)
+    {
+        if ((sceneName == scene.village ||
+             sceneName == scene.summer ||
+             sceneName == scene.spring ||
+             sceneName == scene.autumn ||
+             sceneName == scene.greene ||
+             sceneName == scene.craft))
+        {
+            bool menu = GetComponent<Animator>().GetBool("menu");
+            GetComponent<Animator>().SetBool("menu", !menu);
+            if (menu && eventSystem != null)
+            {
+                eventSystem.SetSelectedGameObject(null);
+                // also start input from the player controller
+            }
+            else
+            {
+                eventSystem.SetSelectedGameObject(firstButton);
+                // also stop input from the player controller
+            }
+        }
+    }
+
     void Update()
     {
         if (eventSystem == null)
@@ -426,11 +456,11 @@ public class MenuActions : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Continue") != null && continueAgain)
         {
             GameObject continueIcon = GameObject.FindGameObjectWithTag("Continue");
-            // a fungus yes/no selection has popped up, first selection is tagged
+            // a fungus continue icon has popped up, set the sprite correctly
             continueIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
             continueAgain = false;
         }
-        else if (GameObject.FindGameObjectWithTag("Selection") == null)
+        else if (GameObject.FindGameObjectWithTag("Continue") == null)
         {
             continueAgain = true;
         }
@@ -461,26 +491,7 @@ public class MenuActions : MonoBehaviour
         {
             Recipes();
         }
-        if ((sceneName == scene.village ||
-             sceneName == scene.summer ||
-             sceneName == scene.spring ||
-             sceneName == scene.autumn ||
-             sceneName == scene.greene ||
-             sceneName == scene.craft) && Keyboard.current.mKey.wasPressedThisFrame)
-        {
-            bool menu = GetComponent<Animator>().GetBool("menu");
-            GetComponent<Animator>().SetBool("menu", !menu);
-            if (menu && eventSystem != null)
-            {
-                eventSystem.SetSelectedGameObject(null);
-                // also start input from the player controller
-            }
-            else
-            {
-                eventSystem.SetSelectedGameObject(firstButton);
-                // also stop input from the player controller
-            }
-        }
+        
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("CraftScene", LoadSceneMode.Single);

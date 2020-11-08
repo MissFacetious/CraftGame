@@ -103,7 +103,7 @@ public class Interactor : MonoBehaviour
         {
             if (hitInfo.collider != null)
             {
-                Debug.Log(hitInfo.collider.name);
+            //    Debug.Log(hitInfo.collider.name);
             }
             RemoveFocus();
         }
@@ -150,10 +150,11 @@ public class Interactor : MonoBehaviour
 
     public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
     {
-        if (deviceName == "Touchscreen") deviceName = "Keyboard";
+        Debug.Log(deviceName);
+        if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
         if (interactSpriteDict.TryGetValue(deviceName, out Sprite[] deviceIcon))
         {
-            Debug.Log(deviceIcon[(int)buttonName]);
+            //Debug.Log(deviceIcon[(int)buttonName]);
             if (buttonName.Equals(buttons.okay) && button != null)
             {
                 Image image = button.GetComponent<Image>();

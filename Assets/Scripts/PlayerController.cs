@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
@@ -12,7 +8,9 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float rotationSmoothing = 0.05f;
     public float rotationSmoothingVelocity;
-    public float speed = 10;
+    public float speed = 6;
+    private bool running = false;
+    private bool jumping = false;
 
     [SerializeField]
     private Camera playerCamera;
@@ -67,11 +65,13 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnControlsChanged()
-    { 
+    {
         if (playerInput.devices.Count > 0)
         {
-            interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
+            int lastPluggedIn = playerInput.devices.Count - 1;
+            interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.okay);
         }
+        menuActions.OnControlsChanged();
     }
 
     private void OnMove(InputValue movementValue)
@@ -79,9 +79,29 @@ public class PlayerController : MonoBehaviour
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementY = movementVector.y;
-        if (animator != null)
+        if (running)
         {
-            animator.SetBool("walking", true);
+            speed = 12;
+            if (animator != null)
+            {
+                animator.SetTrigger("running");
+            }
+        }
+        else if (jumping)
+        {
+            speed = 0;
+             if (animator != null)
+            {
+                animator.SetTrigger("jumping");
+            }
+        }
+        else // just walking
+        {
+            speed = 6;
+            if (animator != null)
+            {
+                animator.SetTrigger("walking");
+            }
         }
     }
 
@@ -93,13 +113,39 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnJump(InputValue inputValue)
+    {
+        Debug.Log("hit jump");
+        Debug.Log(inputValue);
+        jumping = true;
+    }
+
+    private void OnRun(InputValue inputValue)
+    {
+        if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
+        {
+            running = true;
+        }
+        else
+        {
+            running = false;
+        }
+    }
+
+    private void OnCancel(InputValue inputValue)
+    {
+        menuActions.OnCancel(inputValue);
+    }
+
+    private void OnMenu(InputValue inputValue)
+    {
+        menuActions.OnControlsChanged();
+        menuActions.OnMenu(inputValue);
+    }
+
     private void OnInteract(InputValue interactValue)
     {
         interactor.PerformInteraction();
-        if (animator != null)
-        {
-            animator.SetBool("walking", false);
-        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -161,7 +207,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                animator.SetBool("walking", false);
+                animator.SetTrigger("idle");
             }
         }
     }
