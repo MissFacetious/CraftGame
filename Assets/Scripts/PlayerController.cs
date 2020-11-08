@@ -158,7 +158,6 @@ public class PlayerController : MonoBehaviour
             Collectible collectible = other.gameObject.GetComponent<Collectible>();
             if (collectible != null)
             {
-                animator.SetTrigger("collect");
                 collectible.Collect(gameObject);
                 menuActions.increaseCurrentCounter();
                 if (inventoryManager)

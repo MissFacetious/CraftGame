@@ -218,4 +218,47 @@ public class InventoryManager : MonoBehaviour, IComparer
             inventoryContent.transform.GetChild(0).parent = gameObject.transform;
         }
     }
+
+    public bool CanCraftItemFromInventory(Recipes.RecipeEnum type)
+    {
+        Recipes.RecipeTypeCount[] recipe = recipes.getItemsInRecipe(type);
+
+        int item1 = 0;
+        int item2 = 0;
+        int item3 = 0;
+
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Item item = gameObject.transform.GetChild(i).GetComponent<Item>();
+            if (item.type == recipe[0].type)
+            {
+                item1++;
+            }
+            if (item.type == recipe[1].type)
+            {
+                item2++;
+            }
+            if (item.type == recipe[2].type)
+            {
+                item3++;
+            }
+        }
+        if (item1 >= recipe[0].count && item2 >= recipe[1].count && item3 >= recipe[2].count)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void RemoveItemFromInventory(Recipes.RecipeEnum type)
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            if (gameObject.transform.GetChild(i).GetComponent<Item>().type == type)
+            {
+                Destroy(gameObject.transform.GetChild(i).gameObject);
+                return;
+            }
+        }
+    }
 }

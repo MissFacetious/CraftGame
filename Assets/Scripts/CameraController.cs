@@ -27,8 +27,8 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float cameraResetSpeed = 0.75f;
 
-    [SerializeField, Range(1f, 100f)]
-    private float cameraRotateSpeed = 30f;
+    [SerializeField, Range(30f, 200f)]
+    private float cameraRotateSpeed = 150f;
 
     [SerializeField, Range(-15f, 80f)]
     private float cameraMinYAngle = -5f, cameraMaxYAngle = 45f;
