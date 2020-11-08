@@ -19,7 +19,8 @@ public class NPCAI : MonoBehaviour
     public enum AIState
     {
         ChaseStationaryWaypoints,
-        ChaseMovingWaypoint
+        ChaseMovingWaypoint,
+        StopAndTalk
     };
 
     public AIState aiState;
@@ -37,10 +38,11 @@ public class NPCAI : MonoBehaviour
     // TODO: update with more states for gnome AI
     void Update()
     {
-        anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
+        
         switch (aiState)
         {
             case AIState.ChaseStationaryWaypoints:
+                anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
                 //if (currWaypoint == waypoints.Length)
                 //{
                 //    aiState = AIState.ChaseMovingWaypoint;
@@ -73,10 +75,39 @@ public class NPCAI : MonoBehaviour
                 //    agent.SetDestination(futureTarget);
                 //}
                 break;
+            case AIState.StopAndTalk:
+                
+                //if (!agent.pathPending && agent.remainingDistance - agent.stoppingDistance < 0.3)
+                //{
+                //    aiState = AIState.ChaseStationaryWaypoints;
+                //    currWaypoint = -1;
+                //}
+                //else
+                //{
+                //    float dist = (movingWaypoint.transform.position - agent.transform.position).magnitude;
+
+                //    float lookAheadT = dist / agent.speed;
+
+                //    Vector3 futureTarget = movingWaypoint.transform.position + lookAheadT * movingWaypoint.GetComponent<VelocityReporter>().velocity;
+                //    agent.SetDestination(futureTarget);
+                //}
+                break;
             default:
                 break;
         }
 
+    }
+
+    public void setNpcToStopAndTalk()
+    {
+        aiState = AIState.StopAndTalk;
+        agent.isStopped = true;
+    }
+
+    public void setNpcToChaseWaypoints()
+    {
+        aiState = AIState.ChaseStationaryWaypoints;
+        agent.isStopped = false;
     }
 
     private void setNextWaypoint()
