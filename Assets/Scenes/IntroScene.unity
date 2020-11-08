@@ -6827,7 +6827,7 @@ GameObject:
   - component: {fileID: 418569917}
   m_Layer: 5
   m_Name: RecipesPanel
-  m_TagString: Untagged
+  m_TagString: RecipePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10619,7 +10619,7 @@ GameObject:
   - component: {fileID: 630972801}
   m_Layer: 5
   m_Name: InventoryLarge
-  m_TagString: Untagged
+  m_TagString: InventoryPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

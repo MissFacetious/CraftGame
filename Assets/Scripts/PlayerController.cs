@@ -145,7 +145,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnInteract(InputValue interactValue)
     {
-        interactor.PerformInteraction();
+        if (interactor != null)
+        {
+            interactor.PerformInteraction();
+        }
     }
 
     private void OnCollisionEnter(Collision other)

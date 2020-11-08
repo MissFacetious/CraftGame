@@ -26,6 +26,8 @@ TagManager:
   - Selection
   - ExtraTime
   - Continue
+  - InventoryPanel
+  - RecipePanel
   layers:
   - Default
   - TransparentFX

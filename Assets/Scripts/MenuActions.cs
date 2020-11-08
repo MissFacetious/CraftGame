@@ -29,7 +29,6 @@ public class MenuActions : MonoBehaviour
     public PanelManager panelManager;
     public GameObject firstButton;
     public GameObject backButton;
-    public GameObject craftRecipesButton;
     public TextMeshProUGUI counter;
     public TextMeshProUGUI timer;
     public TextMeshProUGUI locationName;
@@ -258,7 +257,7 @@ public class MenuActions : MonoBehaviour
         GetComponent<Animator>().SetBool("menu", true);
         transform.Find("MainMenu").GetChild(0).gameObject.SetActive(true);
         transform.Find("BottomMenu").GetChild(0).gameObject.SetActive(true);
-        eventSystem.SetSelectedGameObject(craftRecipesButton);
+        eventSystem.SetSelectedGameObject(firstButton);
     }
 
     public void Inventory()
@@ -267,6 +266,7 @@ public class MenuActions : MonoBehaviour
         {
             if (transform.Find("MainMenu").gameObject.activeInHierarchy)
             {
+                panelManager.ShowInventoryPanel();
                 transform.Find("MainMenu").gameObject.SetActive(false);
             }
             else
@@ -276,9 +276,9 @@ public class MenuActions : MonoBehaviour
         }
         else
         {
+            panelManager.ShowInventoryPanel();
             GetComponent<Animator>().SetBool("menu", false);
         }
-        panelManager.ShowInventoryPanel();
     }
 
     public void Recipes()
@@ -286,6 +286,7 @@ public class MenuActions : MonoBehaviour
         if (sceneName == scene.craft) {
             if (transform.Find("MainMenu").gameObject.activeInHierarchy)
             {
+                panelManager.ShowRecipesPanel();
                 transform.Find("MainMenu").gameObject.SetActive(false);
             }
             else
@@ -294,9 +295,9 @@ public class MenuActions : MonoBehaviour
             }
          }
         else {
+            panelManager.ShowRecipesPanel();
             GetComponent<Animator>().SetBool("menu", false);
         }
-        panelManager.ShowRecipesPanel();
     }
 
     public void MenuEnd()
@@ -406,6 +407,24 @@ public class MenuActions : MonoBehaviour
     public void OnCancel(InputValue inputValue)
     {
         Debug.Log("hit cancel");
+
+        // if in inventory, to the menu
+        if (GameObject.FindGameObjectWithTag("InventoryPanel") != null && GameObject.FindGameObjectWithTag("InventoryPanel").activeInHierarchy) { 
+            Inventory();
+            if (eventSystem != null)
+            {
+                eventSystem.SetSelectedGameObject(firstButton);
+            }
+        }
+        // if in recipe, to the menu
+        if (GameObject.FindGameObjectWithTag("RecipePanel") != null && GameObject.FindGameObjectWithTag("RecipePanel").activeInHierarchy)
+        {
+            Recipes();
+            if (eventSystem != null)
+            {
+                eventSystem.SetSelectedGameObject(firstButton);
+            }
+        }
     }
 
     public void OnMenu(InputValue inputValue)
