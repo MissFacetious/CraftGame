@@ -175,8 +175,11 @@ public class PlayerController : MonoBehaviour
             //increase time
             menuActions.addTime(1.0f);
 
+            //play the particle system.
+            other.gameObject.GetComponent<TimerCrystal>().collectMe();
+
             //destroy
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
         }
     }
 
