@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\StartingPoint.cs" />
     <Compile Include="Assets\Scripts\Switcheroo.cs" />
+    <Compile Include="Assets\Scripts\TimerCrystal.cs" />
     <Compile Include="Assets\Scripts\Tree.cs" />
     <Compile Include="Assets\StopAndGo.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
