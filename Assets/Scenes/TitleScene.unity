@@ -18390,7 +18390,7 @@ GameObject:
   - component: {fileID: 1099009145}
   m_Layer: 5
   m_Name: MainMenu
-  m_TagString: Untagged
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18819,11 +18819,15 @@ MonoBehaviour:
   panelManager: {fileID: 0}
   firstButton: {fileID: 1559854658}
   backButton: {fileID: 1347813780}
-  craftRecipesButton: {fileID: 0}
   counter: {fileID: 0}
   timer: {fileID: 0}
   locationName: {fileID: 0}
   startingPoint: {fileID: 0}
+  selectIcon: {fileID: 0}
+  backIcon: {fileID: 0}
+  jumpIcon: {fileID: 0}
+  runIcon: {fileID: 0}
+  menuIcon: {fileID: 0}
 --- !u!1 &1140562644
 GameObject:
   m_ObjectHideFlags: 0
@@ -29686,7 +29690,7 @@ GameObject:
   - component: {fileID: 1903873284}
   m_Layer: 5
   m_Name: Credits
-  m_TagString: Untagged
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
