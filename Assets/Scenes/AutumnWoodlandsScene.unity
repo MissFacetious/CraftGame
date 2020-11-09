@@ -11709,9 +11709,9 @@ GameObject:
   - component: {fileID: 657619291}
   - component: {fileID: 657619294}
   - component: {fileID: 657619293}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gathering_1
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 127

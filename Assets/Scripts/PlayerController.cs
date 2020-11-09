@@ -76,59 +76,71 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue movementValue)
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x;
-        movementY = movementVector.y;
-        if (running)
+        if (canMove)
         {
-            speed = 12;
-            if (animator != null)
+            Vector2 movementVector = movementValue.Get<Vector2>();
+            movementX = movementVector.x;
+            movementY = movementVector.y;
+            if (running)
             {
-                animator.SetTrigger("running");
+                speed = 12;
+                if (animator != null)
+                {
+                    animator.SetTrigger("running");
+                }
             }
-        }
-        else if (jumping)
-        {
-            speed = 0;
-             if (animator != null)
+            else if (jumping)
             {
-                animator.SetTrigger("jumping");
+                speed = 0;
+                if (animator != null)
+                {
+                    animator.SetTrigger("jumping");
+                }
             }
-        }
-        else // just walking
-        {
-            speed = 6;
-            if (animator != null)
+            else // just walking
             {
-                animator.SetTrigger("walking");
+                speed = 6;
+                if (animator != null)
+                {
+                    animator.SetTrigger("walking");
+                }
             }
         }
     }
 
     private void OnLook(InputValue lookValue)
     {
-        if (cameraController != null)
+        if (canMove)
         {
-            cameraController.lookVector = lookValue.Get<Vector2>();
+            if (cameraController != null)
+            {
+                cameraController.lookVector = lookValue.Get<Vector2>();
+            }
         }
     }
 
     private void OnJump(InputValue inputValue)
     {
-        Debug.Log("hit jump");
-        Debug.Log(inputValue);
-        jumping = true;
+        if (canMove)
+        {
+            Debug.Log("hit jump");
+            Debug.Log(inputValue);
+            jumping = true;
+        }
     }
 
     private void OnRun(InputValue inputValue)
     {
-        if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
+        if (canMove)
         {
-            running = true;
-        }
-        else
-        {
-            running = false;
+            if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
+            {
+                running = true;
+            }
+            else
+            {
+                running = false;
+            }
         }
     }
 
@@ -189,6 +201,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.FindGameObjectWithTag("Dialog") != null)
+        {
+            canMove = false;
+            // make sure we are in idle
+            animator.SetTrigger("idle");
+        }
+        else
+        {
+            canMove = true;
+        }
         if (inventoryManager == null)
         {
             getInventoryManager();
