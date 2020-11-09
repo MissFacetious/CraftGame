@@ -201,7 +201,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.FindGameObjectWithTag("Dialog") != null)
+        if (GameObject.FindGameObjectWithTag("Dialog") != null ||
+            GameObject.FindGameObjectWithTag("Menu") != null)
         {
             canMove = false;
             // make sure we are in idle

@@ -2564,7 +2564,6 @@ MonoBehaviour:
   panelManager: {fileID: 0}
   firstButton: {fileID: 1744229863609581015}
   backButton: {fileID: 0}
-  craftRecipesButton: {fileID: 0}
   counter: {fileID: 1744229862337546631}
   timer: {fileID: 1744229863457420007}
   locationName: {fileID: 0}
@@ -2587,7 +2586,7 @@ GameObject:
   - component: {fileID: 1744229863883313134}
   m_Layer: 5
   m_Name: MainMenu
-  m_TagString: Untagged
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4602,7 +4601,7 @@ GameObject:
   - component: {fileID: 5963913495196365071}
   m_Layer: 5
   m_Name: GatheringPanel
-  m_TagString: Untagged
+  m_TagString: Menu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -28,6 +28,7 @@ TagManager:
   - Water
   - Tree
   - Dialog
+  - Menu
   layers:
   - Default
   - TransparentFX

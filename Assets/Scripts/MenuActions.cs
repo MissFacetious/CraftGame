@@ -191,7 +191,6 @@ public class MenuActions : MonoBehaviour
 
     public void startClock()
     {
-
         countdown = true;
         timeLeft = 3 * 60; // currently 3 minutes for demo, can be 10 minutes for final
     }
@@ -205,7 +204,12 @@ public class MenuActions : MonoBehaviour
     {
         //only add time to the counter if we're above one second remaining
         //this is to hold off any weirdness with ending gathering.
-        if (timeLeft >= 1.0f)
+        if (GameObject.FindGameObjectWithTag("Dialog") != null ||
+            GameObject.FindGameObjectWithTag("Menu") != null)
+        {
+            // let the timer pause
+        }
+        else if (timeLeft >= 1.0f)
         {
             timeLeft = timeLeft + newTime;
         }
