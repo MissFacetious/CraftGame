@@ -205,9 +205,12 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (GameObject.FindGameObjectWithTag("Dialog") != null ||
+            GameObject.FindGameObjectWithTag("Selection") != null ||
             GameObject.FindGameObjectWithTag("Menu") != null)
         {
             canMove = false;
+            running = false;
+            jumping = false;
             // make sure we are in idle
             animator.SetTrigger("idle");
         }

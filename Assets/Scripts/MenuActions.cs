@@ -205,6 +205,7 @@ public class MenuActions : MonoBehaviour
         //only add time to the counter if we're above one second remaining
         //this is to hold off any weirdness with ending gathering.
         if (GameObject.FindGameObjectWithTag("Dialog") != null ||
+            GameObject.FindGameObjectWithTag("Selection") != null ||
             GameObject.FindGameObjectWithTag("Menu") != null)
         {
             // let the timer pause
