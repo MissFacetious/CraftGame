@@ -408,23 +408,23 @@ public class MenuActions : MonoBehaviour
                     if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.RAINBOW_REFRACTOR) && flowchart.GetStringVariable("hoshi_state") == "GATHERING_SUCCEEDED")
                     {
                         //check hoshi state.  if hoshi state is gathering succeeded and we can't craft.
-                        flowchart.SetStringVariable("hoshi_state", "GATHERING_FAILED");
+                        flowchart.SetStringVariable("hoshi_state", "GATHERING_AGAIN");
                         //Debug.Log("Set Hoshi back to Gathering_FAILED!");
                     }
 
                     if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.APPLEBLOSSOM_TEA) && flowchart.GetStringVariable("hawking_state") == "GATHERING_SUCCEEDED")
                     {
-                        flowchart.SetStringVariable("hawking_state", "GATHERING_FAILED");
+                        flowchart.SetStringVariable("hawking_state", "GATHERING_AGAIN");
                     }
 
                     if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.TRANSFORMATIONAL_POTION) && flowchart.GetStringVariable("ivy_state") == "GATHERING_SUCCEEDED")
                     {
-                        flowchart.SetStringVariable("ivy_state", "GATHERING_FAILED");
+                        flowchart.SetStringVariable("ivy_state", "GATHERING_AGAIN");
                     }
 
                     if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.GNOME_NET) && flowchart.GetStringVariable("greene_state") == "GATHERING_SUCCEEDED")
                     {
-                        flowchart.SetStringVariable("greene_state", "GATHERING_FAILED");
+                        flowchart.SetStringVariable("greene_state", "GATHERING_AGAIN");
                     }
 
                 }
