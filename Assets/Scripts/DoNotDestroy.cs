@@ -6,16 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class DoNotDestroy : MonoBehaviour
 {
+    private static DoNotDestroy _instance;
+
+    public static DoNotDestroy Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<DoNotDestroy>();
+            }
+            return _instance;
+        }
+    }
+
     void Awake()
     {
-        string thisName = gameObject.name;
-        GameObject[] objs = GameObject.FindGameObjectsWithTag(thisName);
-        if (objs.Length > 1)
-        {
-            // this is already loaded, destory!
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
+        _instance = this;
     }
 
     public void Update()

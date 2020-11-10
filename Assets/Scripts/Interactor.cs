@@ -148,13 +148,30 @@ public class Interactor : MonoBehaviour
         button.transform.position = new Vector3(buttonPosition.x, buttonPosition.y+aboveCharacter, 0f);
     }
 
+    public PlayerController.controls UpdateIcons(string deviceName)
+    {
+        if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
+
+        if (deviceName == "Keyboard")
+        {
+            return PlayerController.controls.Keyboard;
+        }
+        if (deviceName == "XInputControllerWindows")
+        {
+            return PlayerController.controls.XInputControllerWindows;
+        }
+        if (deviceName == "DualShock4GamepadHID")
+        {
+            return PlayerController.controls.DualShock4GamepadHID;
+        }
+        return PlayerController.controls.Keyboard;
+    }
+
     public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
     {
-        Debug.Log(deviceName);
         if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
         if (interactSpriteDict.TryGetValue(deviceName, out Sprite[] deviceIcon))
         {
-            //Debug.Log(deviceIcon[(int)buttonName]);
             if (buttonName.Equals(buttons.okay) && button != null)
             {
                 Image image = button.GetComponent<Image>();

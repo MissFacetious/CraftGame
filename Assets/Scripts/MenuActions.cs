@@ -23,7 +23,7 @@ public class MenuActions : MonoBehaviour
         outro,
         credits
     }
-
+    
     public scene sceneName;
     public EventSystem eventSystem;
     public PanelManager panelManager;
@@ -113,7 +113,6 @@ public class MenuActions : MonoBehaviour
         {
             playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
             interactor = playerInput.GetComponent<Interactor>();
-
             OnControlsChanged();
         }
         else
@@ -136,29 +135,29 @@ public class MenuActions : MonoBehaviour
 
     public void OnControlsChanged()
     {
-        if (playerInput != null && playerInput.devices.Count > 0)
+        PlayerController.currentControls.ToString();
+        if (interactor != null)
         {
-            int lastPluggedIn = playerInput.devices.Count - 1;
             // change sprites of the bottom menu
             if (selectIcon != null)
             {
-                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.okay);
+                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.okay);
             }
             if (backIcon != null)
             {
-                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.cancel);
+                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.cancel);
             }
             if (jumpIcon != null)
             {
-                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.jump);
+                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.jump);
             }
             if (runIcon != null)
             {
-                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.run);
+                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.run);
             }
             if (menuIcon != null)
             {
-                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.menu);
+                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.menu);
             }
         }
     }
@@ -228,7 +227,17 @@ public class MenuActions : MonoBehaviour
         {
             int minutes = Mathf.FloorToInt(timeLeft / 60);
             int seconds = Mathf.FloorToInt(timeLeft % 60);
-            timer.text = minutes + ":" + seconds;
+            string minutesStr = minutes.ToString();
+            string secondsStr = seconds.ToString();
+            if (seconds < 10)
+            {
+                secondsStr = "0" + secondsStr;
+            }
+            if (minutes < 10)
+            {
+                minutesStr = "0" + minutesStr;
+            }
+            timer.text = minutesStr + ":" + secondsStr;
         }
     }
 
@@ -483,6 +492,7 @@ public class MenuActions : MonoBehaviour
 
     public void OnMenu(InputValue inputValue)
     {
+        OnControlsChanged();
         if ((sceneName == scene.village ||
              sceneName == scene.summer ||
              sceneName == scene.spring ||

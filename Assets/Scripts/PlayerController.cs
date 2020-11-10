@@ -4,6 +4,16 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
+
+    public enum controls
+    {
+        Keyboard,
+        XInputControllerWindows,
+        DualShock4GamepadHID
+    }
+
+    public static controls currentControls;
+
     public MenuActions menuActions;
     public Animator animator;
     public float rotationSmoothing = 0.05f;
@@ -34,11 +44,9 @@ public class PlayerController : MonoBehaviour
         {
             getInventoryManager();
         }
-
         // using the Scene Name in MenuActions, 
         // we should be able to place the character in the right spot based on 
         // where they currently are, and where they've currently been
-
     }
 
     // Start is called before the first frame update
@@ -69,7 +77,11 @@ public class PlayerController : MonoBehaviour
         if (playerInput.devices.Count > 0)
         {
             int lastPluggedIn = playerInput.devices.Count - 1;
-            interactor.UpdateIconSprite(playerInput.devices[lastPluggedIn].name, Interactor.buttons.okay);
+            if (currentControls == controls.Keyboard)
+            {
+                currentControls = interactor.UpdateIcons(playerInput.devices[lastPluggedIn].name);
+                interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.okay);
+            }
         }
         menuActions.OnControlsChanged();
     }
@@ -208,10 +220,14 @@ public class PlayerController : MonoBehaviour
             GameObject.FindGameObjectWithTag("Selection") != null ||
             GameObject.FindGameObjectWithTag("Menu") != null)
         {
+            // make sure we are in idle
             canMove = false;
             running = false;
             jumping = false;
-            // make sure we are in idle
+
+            movementX = 0;
+            movementY = 0;
+
             animator.SetTrigger("idle");
         }
         else
