@@ -29,9 +29,9 @@ public class Interactable : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("Base interaction method.");
-        Debug.Log("OnInteraction:" + OnInteraction);
-        Debug.Log("IsReady:" + isReady);
+        //Debug.Log("Base interaction method.");
+        //Debug.Log("OnInteraction:" + OnInteraction);
+        //Debug.Log("IsReady:" + isReady);
         if (OnInteraction != null)
         {
             if (isReady) // && withinRange
@@ -49,13 +49,13 @@ public class Interactable : MonoBehaviour
     //need this because Fungus CallMethod does not support parameters in function calls.
     public void MakeReady()
     {
-        Debug.Log("Resetting interactable to ready.");
+       // Debug.Log("Resetting interactable to ready.");
         isReady = true;
     }
 
     public void SetReady(bool value)
     {
-        Debug.Log("Setting ready to:" + value);
+       // Debug.Log("Setting ready to:" + value);
         isReady = value;
     }
 
