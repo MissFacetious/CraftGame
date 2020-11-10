@@ -55,6 +55,7 @@ public class CollectibleEmitter : MonoBehaviour
             for (int i = 0; i < collectibleAmount; i++)
             {
                 item = Instantiate(collectible, new Vector3(transform.position.x, transform.position.y+3f, transform.position.z), Quaternion.identity);
+                item.AddComponent<StealableObject>();
             }
 
             hasItemsToDrop = false;
