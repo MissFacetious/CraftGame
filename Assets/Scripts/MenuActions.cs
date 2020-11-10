@@ -227,7 +227,17 @@ public class MenuActions : MonoBehaviour
         {
             int minutes = Mathf.FloorToInt(timeLeft / 60);
             int seconds = Mathf.FloorToInt(timeLeft % 60);
-            timer.text = minutes + ":" + seconds;
+            string minutesStr = minutes.ToString();
+            string secondsStr = seconds.ToString();
+            if (seconds < 10)
+            {
+                secondsStr = "0" + secondsStr;
+            }
+            if (minutes < 10)
+            {
+                minutesStr = "0" + minutesStr;
+            }
+            timer.text = minutesStr + ":" + secondsStr;
         }
     }
 
