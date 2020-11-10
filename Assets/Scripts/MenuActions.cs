@@ -314,7 +314,9 @@ public class MenuActions : MonoBehaviour
     public void End(bool success)
     {
         GetComponent<Animator>().SetBool("menu", false);
-        
+
+        Debug.Log("sceneName:" + sceneName);
+
         if (eventSystem != null)
         {
             eventSystem.SetSelectedGameObject(null);
@@ -324,8 +326,11 @@ public class MenuActions : MonoBehaviour
                 sceneName == scene.greene) {
                 // set variable - complete by default.
                 Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
-                if(flowchart != null)
+         
+                if (flowchart != null)
                 {
+                  
+
                     if (sceneName == scene.spring)
                     {
                         if (success)
@@ -371,12 +376,13 @@ public class MenuActions : MonoBehaviour
                         }
                     }
                     
-                }
+                } 
                 else
                 {
                     Debug.Log("Whoopsie daisy. Flowchart not found!");
                 }
             }
+            
         }
 
         SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
@@ -385,6 +391,49 @@ public class MenuActions : MonoBehaviour
     public void End()
     {
         GetComponent<Animator>().SetBool("menu", false);
+
+        eventSystem.SetSelectedGameObject(null);
+        if (sceneName == scene.craft)
+        {
+            // set variable - complete by default.
+            Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
+            //Debug.Log("sceneName:" + sceneName);
+            //Debug.Log("flowchart:" + flowchart.GetName());
+            if (flowchart != null)
+            {
+                //Debug.Log("sceneName:" + sceneName);
+                if (sceneName == scene.craft)
+                {
+                    //Debug.Log("Checking the state of things upon exiting crafting.");
+                    InventoryManager im = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
+                    if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.RAINBOW_REFRACTOR) && flowchart.GetStringVariable("hoshi_state") == "GATHERING_SUCCEEDED")
+                    {
+                        //check hoshi state.  if hoshi state is gathering succeeded and we can't craft.
+                        flowchart.SetStringVariable("hoshi_state", "GATHERING_FAILED");
+                        //Debug.Log("Set Hoshi back to Gathering_FAILED!");
+                    }
+
+                    if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.APPLEBLOSSOM_TEA) && flowchart.GetStringVariable("hawking_state") == "GATHERING_SUCCEEDED")
+                    {
+                        flowchart.SetStringVariable("hawking_state", "GATHERING_FAILED");
+                    }
+
+                    if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.TRANSFORMATIONAL_POTION) && flowchart.GetStringVariable("ivy_state") == "GATHERING_SUCCEEDED")
+                    {
+                        flowchart.SetStringVariable("ivy_state", "GATHERING_FAILED");
+                    }
+
+                    if (!im.CanCraftItemFromInventory(global::Recipes.RecipeEnum.GNOME_NET) && flowchart.GetStringVariable("greene_state") == "GATHERING_SUCCEEDED")
+                    {
+                        flowchart.SetStringVariable("greene_state", "GATHERING_FAILED");
+                    }
+
+                }
+            }
+
+        }
+
+
         SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
     }
 
