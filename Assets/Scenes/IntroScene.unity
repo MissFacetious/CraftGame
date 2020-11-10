@@ -182,21 +182,14 @@ MonoBehaviour:
 
     c - crafting scene
 
-    i - inventory panel
-
-    r -recipes
-    panel
-
-    m - menu panel
-
     1 - summer
 
     2 - spring
 
-    3 - autumn
+    3
+    - autumn
 
-    4
-    - gardens
+    4 - gardens
 
     v - village
 
@@ -4175,7 +4168,7 @@ PrefabInstance:
     - target: {fileID: 1744229863850423525, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1744229863850423525, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
@@ -5763,7 +5756,7 @@ Transform:
   m_Children:
   - {fileID: 373581901}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &345881966
 GameObject:
@@ -19758,7 +19751,7 @@ Transform:
   - {fileID: 1262381396}
   - {fileID: 1807308681}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1236433094
 MonoBehaviour:
@@ -32179,7 +32172,7 @@ PrefabInstance:
     - target: {fileID: 6028566139291724039, guid: ae6dd6c60ee0d6d4a89f9987641481f8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6028566139291724039, guid: ae6dd6c60ee0d6d4a89f9987641481f8,
         type: 3}

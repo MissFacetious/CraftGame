@@ -43,16 +43,20 @@ public class RecipeManager : MonoBehaviour
         Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
         if (flowchart != null)
         {
-            if (flowchart.GetStringVariable("hoshi_state") == "GATHERING_SUCCEEDED") {
+            if (flowchart.GetStringVariable("hoshi_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("hoshi_state") == "GATHERING_AGAIN") {
                 rs.Add(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
             }
-            if (flowchart.GetStringVariable("hawking_state") == "GATHERING_SUCCEEDED") {
+            if (flowchart.GetStringVariable("hawking_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("hawking_state") == "GATHERING_AGAIN") {
                 rs.Add(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
             }
-            if (flowchart.GetStringVariable("ivy_state") == "GATHERING_SUCCEEDED") {
+            if (flowchart.GetStringVariable("ivy_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("ivy_state") == "GATHERING_AGAIN") {
                 rs.Add(Recipes.RecipeEnum.TRANSFORMATIONAL_POTION);
             }
-            if (flowchart.GetStringVariable("greene_state") == "GATHERING_SUCCEEDED") {
+            if (flowchart.GetStringVariable("greene_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("greene_state") == "GATHERING_AGAIN") {
                 rs.Add(Recipes.RecipeEnum.GNOME_NET);
             }
         }  
