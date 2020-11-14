@@ -17,14 +17,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Camera playerCamera;
     private CameraController cameraController;
+    private CharacterController controller;
     private Interactor interactor;
     private PlayerInput playerInput;
     private Rigidbody rb;
     private InventoryManager inventoryManager;
 
     private bool canMove = true;
-    private float movementX;
-    private float movementY;
+    private Vector2 movementVector;
 
     private void Awake()
     {
@@ -77,15 +77,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue movementValue)
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x;
-        movementY = movementVector.y;
+        movementVector = movementValue.Get<Vector2>();
         animator.SetBool("walking", true);
     }
 
     private void OnLook(InputValue lookValue)
     {
         cameraController.lookVector = lookValue.Get<Vector2>();
+    }
+
+    private void OnJump()
+    {
+        rb.AddForce(new Vector3(rb.velocity.x, 3f, rb.velocity.z));
     }
 
     private void OnInteract(InputValue interactValue)
@@ -147,17 +150,16 @@ public class PlayerController : MonoBehaviour
         }
         if (canMove)
         {
-            Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
+            Vector3 playerMovement = new Vector3(movementVector.x, 0f, movementVector.y);
             if (playerMovement.magnitude >= 0.1f)
             {
-                float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
-                float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
-
-                Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
-                rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
-                //transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
-                //transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
+                    float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
+                    float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
+                    Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                    rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
+                    rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
+                    //transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
+                    //transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
             }
             else
             {
