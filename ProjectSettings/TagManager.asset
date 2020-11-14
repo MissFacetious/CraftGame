@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Tree
-  - Branch
   - Interactable
-  - Apple
   - Synty Tree
   - Ground
   - Collectible
@@ -23,6 +20,15 @@ TagManager:
   - PlayerButton
   - RecipeManager
   - Recipes
+  - Selection
+  - ExtraTime
+  - Continue
+  - InventoryPanel
+  - RecipePanel
+  - Water
+  - Tree
+  - Dialog
+  - Menu
   layers:
   - Default
   - TransparentFX

@@ -6,16 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class DoNotDestroy : MonoBehaviour
 {
+    private static DoNotDestroy _instance;
+
+    public static DoNotDestroy Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = GameObject.FindObjectOfType<DoNotDestroy>();
+            }
+            return _instance;
+        }
+    }
+
     void Awake()
     {
-        string thisName = gameObject.name;
-        GameObject[] objs = GameObject.FindGameObjectsWithTag(thisName);
-        if (objs.Length > 1)
-        {
-            // this is already loaded, destory!
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
+        _instance = this;
     }
 
     public void Update()
@@ -24,13 +31,25 @@ public class DoNotDestroy : MonoBehaviour
         {
             SceneManager.LoadScene("CraftScene", LoadSceneMode.Single);
         }
-        if (Keyboard.current.gKey.wasPressedThisFrame)
-        {
-            SceneManager.LoadScene("ProceduralGatheringRev2", LoadSceneMode.Single);
-        }
         if (Keyboard.current.vKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("VillageScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("1").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("SummerShoresScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("2").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("SpringHillsScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("3").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("AutumnWoodlandsScene", LoadSceneMode.Single);
+        }
+        if (Keyboard.current.FindKeyOnCurrentKeyboardLayout("4").wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("GreeneGardensScene", LoadSceneMode.Single);
         }
     }
 }

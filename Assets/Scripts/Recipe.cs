@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +38,16 @@ public class Recipe : MonoBehaviour
         {
             title = "Apple Blossom Tea";
             image = Resources.Load<Sprite>("Icons/hot-cup");
+        }
+        else if (type == Recipes.RecipeEnum.TRANSFORMATIONAL_POTION)
+        {
+            title = "Transformation Potion";
+            image = Resources.Load<Sprite>("Icons/potion");
+        }
+        else if (type == Recipes.RecipeEnum.GNOME_NET)
+        {
+            title = "Gnome Gnet";
+            image = Resources.Load<Sprite>("Icons/net");
         }
     }
 

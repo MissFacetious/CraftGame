@@ -1,46 +1,52 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
+
+    public enum controls
+    {
+        Keyboard,
+        XInputControllerWindows,
+        DualShock4GamepadHID
+    }
+
+    public static controls currentControls;
+
     public MenuActions menuActions;
     public Animator animator;
     public float rotationSmoothing = 0.05f;
     public float rotationSmoothingVelocity;
-    public float speed = 10;
+    public float speed = 6;
+    private bool running = false;
+    private bool jumping = false;
 
     [SerializeField]
     private Camera playerCamera;
     private CameraController cameraController;
-    private CharacterController controller;
     private Interactor interactor;
     private PlayerInput playerInput;
     private Rigidbody rb;
     private InventoryManager inventoryManager;
 
     private bool canMove = true;
-    private Vector2 movementVector;
+    private float movementX;
+    private float movementY;
 
     private void Awake()
     {
         if (playerCamera == null)
         {
-            Debug.LogError("Camera not found.");
+            Debug.Log("Camera not found.");
         }
         if (inventoryManager == null)
         {
             getInventoryManager();
         }
-
         // using the Scene Name in MenuActions, 
         // we should be able to place the character in the right spot based on 
         // where they currently are, and where they've currently been
-
     }
 
     // Start is called before the first frame update
@@ -67,71 +73,137 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnControlsChanged()
-    { 
+    {
         if (playerInput.devices.Count > 0)
         {
-            //Debug.Log(playerInput.devices[0].name);
-            interactor.UpdateIconSprite(playerInput.devices[0].name);
+            int lastPluggedIn = playerInput.devices.Count - 1;
+            if (currentControls == controls.Keyboard)
+            {
+                currentControls = interactor.UpdateIcons(playerInput.devices[lastPluggedIn].name);
+                interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.okay);
+            }
         }
+        menuActions.OnControlsChanged();
     }
 
     private void OnMove(InputValue movementValue)
     {
-        movementVector = movementValue.Get<Vector2>();
-        animator.SetBool("walking", true);
+        if (canMove)
+        {
+            Vector2 movementVector = movementValue.Get<Vector2>();
+            movementX = movementVector.x;
+            movementY = movementVector.y;
+            if (running)
+            {
+                speed = 12;
+                if (animator != null)
+                {
+                    animator.SetTrigger("running");
+                }
+            }
+            else if (jumping)
+            {
+                speed = 0;
+                if (animator != null)
+                {
+                    animator.SetTrigger("jumping");
+                }
+            }
+            else // just walking
+            {
+                speed = 6;
+                if (animator != null)
+                {
+                    animator.SetTrigger("walking");
+                }
+            }
+        }
     }
 
     private void OnLook(InputValue lookValue)
     {
-        cameraController.lookVector = lookValue.Get<Vector2>();
+        if (canMove)
+        {
+            if (cameraController != null)
+            {
+                cameraController.lookVector = lookValue.Get<Vector2>();
+            }
+        }
     }
 
-    private void OnJump()
+    private void OnJump(InputValue inputValue)
     {
-        rb.AddForce(new Vector3(rb.velocity.x, 3f, rb.velocity.z));
+        if (canMove)
+        {
+            Debug.Log("hit jump");
+            Debug.Log(inputValue);
+            jumping = true;
+        }
+    }
+
+    private void OnRun(InputValue inputValue)
+    {
+        if (canMove)
+        {
+            if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
+            {
+                running = true;
+            }
+            else
+            {
+                running = false;
+            }
+        }
+    }
+
+    private void OnCancel(InputValue inputValue)
+    {
+        menuActions.OnCancel(inputValue);
+    }
+
+    private void OnMenu(InputValue inputValue)
+    {
+        menuActions.OnControlsChanged();
+        menuActions.OnMenu(inputValue);
     }
 
     private void OnInteract(InputValue interactValue)
     {
-        interactor.PerformInteraction();
-        animator.SetBool("walking", false);
+        if (interactor != null)
+        {
+            interactor.PerformInteraction();
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Apple"))
-        {
-            Apple apple = other.gameObject.GetComponent<Apple>();
-
-            if (apple != null)
-            {
-                // kick off collection animations
-                // this animation seems to slow down the game
-                animator.SetTrigger("collect");
-                apple.Collect(gameObject);
-                menuActions.increaseCurrentCounter();
-                inventoryManager.CreateNewItem(Recipes.RecipeEnum.GOLDEN_APPLE, false);
-            }
-            else
-            {
-                Destroy(other.gameObject);
-            }
-        }
-
         if (other.gameObject.CompareTag("Collectible"))
         {
             Collectible collectible = other.gameObject.GetComponent<Collectible>();
             if (collectible != null)
             {
-                animator.SetTrigger("collect");
                 collectible.Collect(gameObject);
                 menuActions.increaseCurrentCounter();
-                inventoryManager.CreateNewItem(collectible.recipe, false);
+                if (inventoryManager)
+                {
+                    inventoryManager.CreateNewItem(collectible.recipe, false);
+                }
             }
             else
             {
                 Destroy(other.gameObject);
             }
+        }
+        if (other.gameObject.CompareTag("ExtraTime"))
+        {
+            //increase time
+            menuActions.addTime(1.0f);
+
+            //play the particle system.
+            other.gameObject.GetComponent<TimerCrystal>().collectMe();
+
+            //destroy
+            //Destroy(other.gameObject);
         }
     }
 
@@ -144,26 +216,45 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.FindGameObjectWithTag("Dialog") != null ||
+            GameObject.FindGameObjectWithTag("Selection") != null ||
+            GameObject.FindGameObjectWithTag("Menu") != null)
+        {
+            // make sure we are in idle
+            canMove = false;
+            running = false;
+            jumping = false;
+
+            movementX = 0;
+            movementY = 0;
+
+            animator.SetTrigger("idle");
+        }
+        else
+        {
+            canMove = true;
+        }
         if (inventoryManager == null)
         {
             getInventoryManager();
         }
         if (canMove)
         {
-            Vector3 playerMovement = new Vector3(movementVector.x, 0f, movementVector.y);
+            Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
             if (playerMovement.magnitude >= 0.1f)
             {
-                    float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
-                    float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
-                    Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                    rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
-                    rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
-                    //transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
-                    //transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
+                float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
+                float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
+
+                Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+                rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
+                rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
+                //transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
+                //transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
             }
             else
             {
-                animator.SetBool("walking", false);
+                animator.SetTrigger("idle");
             }
         }
     }

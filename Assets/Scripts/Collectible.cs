@@ -39,6 +39,17 @@ public class Collectible : MonoBehaviour
         transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
         transform.localPosition = new Vector3(0f, 0.5f, 0f);
 
+        gameObject.GetComponent<AudioSource>().Play();
+        ParticleSystem system = gameObject.transform.GetChild(1).GetComponent<ParticleSystem>();
+        system.gameObject.SetActive(true);
+        system.Play();
+
+
+        GetComponent<Animator>().SetTrigger("collect");
+    }
+
+    public void Done()
+    {
         Destroy(gameObject);
     }
 

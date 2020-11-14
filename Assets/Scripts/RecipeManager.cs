@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using Fungus;
 
 public class RecipeManager : MonoBehaviour
 {
@@ -16,18 +18,72 @@ public class RecipeManager : MonoBehaviour
     public GameObject item2;
     public GameObject item3;
 
-    void Start()
+    public EventSystem eventSystem;
+
+    bool alreadyInThere(Recipes.RecipeEnum type)
     {
-        Recipe myRecipe1 = Instantiate(recipe);
-        myRecipe1.setRecipe(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
-        myRecipe1.gameObject.transform.parent = gameObject.transform;
-        //Recipe myRecipe2 = Instantiate(recipe);
-        //myRecipe2.setRecipe(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
-        //myRecipe2.gameObject.transform.parent = gameObject.transform;
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Recipe myRecipe = gameObject.transform.GetChild(i).gameObject.GetComponent<Recipe>();
+            // is this a recipe we should be showing
+            if (myRecipe.type == type)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void createRecipesInPanel()
+    {
+        ArrayList rs = new ArrayList();
+
+        // have conditionals here based on the fugus variables if we have processed enough to have these recipes
+
+        Flowchart flowchart = eventSystem.GetComponentInChildren<Flowchart>();
+        if (flowchart != null)
+        {
+            if (flowchart.GetStringVariable("hoshi_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("hoshi_state") == "GATHERING_AGAIN") {
+                rs.Add(Recipes.RecipeEnum.RAINBOW_REFRACTOR);
+            }
+            if (flowchart.GetStringVariable("hawking_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("hawking_state") == "GATHERING_AGAIN") {
+                rs.Add(Recipes.RecipeEnum.APPLEBLOSSOM_TEA);
+            }
+            if (flowchart.GetStringVariable("ivy_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("ivy_state") == "GATHERING_AGAIN") {
+                rs.Add(Recipes.RecipeEnum.TRANSFORMATIONAL_POTION);
+            }
+            if (flowchart.GetStringVariable("greene_state") == "GATHERING_SUCCEEDED" ||
+                flowchart.GetStringVariable("greene_state") == "GATHERING_AGAIN") {
+                rs.Add(Recipes.RecipeEnum.GNOME_NET);
+            }
+        }  
+
+        for (int i = 0; i < rs.Count; i++) {
+            if (!alreadyInThere((Recipes.RecipeEnum)rs[i]))
+            {
+                Recipe myRecipe = Instantiate(recipe);
+                myRecipe.setRecipe((Recipes.RecipeEnum)rs[i]);
+                myRecipe.gameObject.transform.parent = gameObject.transform;
+            }
+        }
     }
 
     public void ShowRecipes()
     {
+        // remove any recipes in panel
+        int size = recipeContent.transform.childCount;
+        for (int i = 0; i < size; i++)
+        {
+            GameObject recipe = recipeContent.transform.GetChild(0).gameObject;
+            Destroy(recipe);
+        }
+
+        // show recipes that are accessible at this point of the game
+        createRecipesInPanel();
+
         // first, we need to know how big the panel needs to be, so I need to calculate the rowCount
         int rowCount = 0;
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -79,5 +135,26 @@ public class RecipeManager : MonoBehaviour
     public Recipes.RecipeEnum getCurrentRecipe()
     {
         return currentRecipe;
+    }
+
+    void getEventSystem()
+    {
+        if (GameObject.FindGameObjectWithTag("EventSystem") != null)
+        {
+            eventSystem = GameObject.FindGameObjectWithTag("EventSystem").GetComponent<EventSystem>();
+        }
+        else
+        {
+            Debug.Log("event system is not hooked up.");
+        }
+    }
+
+
+    public void Update()
+    {
+        if (eventSystem == null)
+        {
+            getEventSystem();
+        }
     }
 }

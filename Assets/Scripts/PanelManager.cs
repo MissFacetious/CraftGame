@@ -51,6 +51,12 @@ public class PanelManager : MonoBehaviour
 
     Stack<Action> lastAction = new Stack<Action>();
 
+    public void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void ShowInventoryPanel()
     {
         craftingManager.HideFilteredInventory();
@@ -189,7 +195,19 @@ public class PanelManager : MonoBehaviour
             // tell the flowchart to set a var
             if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
             {
-                flowchart.SetBooleanVariable("hoshi_item_crafted", true);
+                flowchart.SetStringVariable("hoshi_state", "CRAFTING_SUCCEEDED");
+            }
+            if (type == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
+            {
+                flowchart.SetStringVariable("hawking_state", "CRAFTING_SUCCEEDED");
+            }
+            if (type == Recipes.RecipeEnum.TRANSFORMATIONAL_POTION)
+            {
+                flowchart.SetStringVariable("ivy_state", "CRAFTING_SUCCEEDED");
+            }
+            if (type == Recipes.RecipeEnum.GNOME_NET)
+            {
+                flowchart.SetStringVariable("greene_state", "CRAFTING_SUCCEEDED");
             }
         }
         else

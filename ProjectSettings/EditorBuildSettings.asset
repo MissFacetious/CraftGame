@@ -18,8 +18,17 @@ EditorBuildSettings:
     path: Assets/Scenes/VillageScene.unity
     guid: f1110138499452e4f833d58ed184dfef
   - enabled: 1
-    path: Assets/Scenes/ProceduralGatheringRev2.unity
-    guid: 6616ca6f42489b44fb3aa076313e411f
+    path: Assets/Scenes/SummerShoresScene.unity
+    guid: 46ea814e001f2cd4683c6e780ba9f527
+  - enabled: 1
+    path: Assets/Scenes/SpringHillsScene.unity
+    guid: 5315c878c0675f0438415109c2c9862c
+  - enabled: 1
+    path: Assets/Scenes/AutumnWoodlandsScene.unity
+    guid: bc15c85c1041c994a8a74bcd833bf78f
+  - enabled: 1
+    path: Assets/Scenes/GreeneGardensScene.unity
+    guid: 1c14f8196dfb3684598fa1a5bf86f32c
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: c61cdab8b2201d54eb73c7c1d9303ac8
