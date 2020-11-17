@@ -28,7 +28,7 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Look"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""b5038534-ce70-4a34-a387-ce058fc60465"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": ""InvertVector2(invertX=false,invertY=false)"",
@@ -243,17 +243,6 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b2a3231f-04ca-4862-ae0b-68d5824c331d"",
-                    ""path"": ""<Joystick>/rz"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""be06dc81-fcbd-4d4a-9465-98537ade61a7"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -365,7 +354,7 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""365e0ace-1fa2-4d16-93de-0c4d2bcdf002"",
-                    ""path"": ""<Keyboard>/alt"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

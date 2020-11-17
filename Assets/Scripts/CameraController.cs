@@ -108,23 +108,12 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        if (!useOffset)
-        {
-            offset = target.position - transform.position;
-        }
-        pivot.transform.position = target.transform.position;
-        pivot.transform.parent = target.transform;
     }
 
     void Update()
     {
         float horizontal = lookVector.x * rotateSpeed;
         float vertical = lookVector.y * rotateSpeed;
-
-        //Quaternion rotation = Quaternion.Euler(xAngle, yAngle, 0);
-        //transform.position = target.position - (rotation * offset);
-
-        //transform.LookAt(target);
     }
 
     private void LateUpdate()

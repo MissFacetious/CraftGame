@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Camera), typeof(Interactor))]
+[RequireComponent(typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
 
@@ -12,34 +12,39 @@ public class PlayerController : MonoBehaviour
         DualShock4GamepadHID
     }
 
-    public static controls currentControls;
+    const float WALK_SPEED = 6f;
+    const float RUN_SPEED = 12f;
 
+    public static controls currentControls;
     public MenuActions menuActions;
     public Animator animator;
-    public float rotationSmoothing = 0.05f;
-    public float rotationSmoothingVelocity;
     public float speed = 6;
     private bool running = false;
     private bool jumping = false;
 
-    [SerializeField]
-    private Camera playerCamera;
-    private CameraController cameraController;
+    private Transform playerCamera;
     private Interactor interactor;
     private PlayerInput playerInput;
     private Rigidbody rb;
     private InventoryManager inventoryManager;
+    private Vector2 movementInput;
 
     private bool canMove = true;
-    private float movementX;
-    private float movementY;
 
     private void Awake()
     {
+        playerCamera = Camera.main.transform;
         if (playerCamera == null)
         {
-            Debug.Log("Camera not found.");
+            Debug.LogError("Camera not found.");
         }
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator not found!");
+        }
+
+
         if (inventoryManager == null)
         {
             getInventoryManager();
@@ -55,7 +60,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<Interactor>();
-        cameraController = playerCamera.GetComponent<CameraController>();
         // change sprite controller on start
         OnControlsChanged();
     }
@@ -88,47 +92,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue movementValue)
     {
-        if (canMove)
-        {
-            Vector2 movementVector = movementValue.Get<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
-            if (running)
-            {
-                speed = 12;
-                if (animator != null)
-                {
-                    animator.SetTrigger("running");
-                }
-            }
-            else if (jumping)
-            {
-                speed = 0;
-                if (animator != null)
-                {
-                    animator.SetTrigger("jumping");
-                }
-            }
-            else // just walking
-            {
-                speed = 6;
-                if (animator != null)
-                {
-                    animator.SetTrigger("walking");
-                }
-            }
-        }
-    }
-
-    private void OnLook(InputValue lookValue)
-    {
-        if (canMove)
-        {
-            if (cameraController != null)
-            {
-                cameraController.lookVector = lookValue.Get<Vector2>();
-            }
-        }
+        movementInput = movementValue.Get<Vector2>();
     }
 
     private void OnJump(InputValue inputValue)
@@ -145,7 +109,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
+            if (inputValue.isPressed)
             {
                 running = true;
             }
@@ -207,12 +171,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        //Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        //rb.AddForce(movement * speed);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -224,9 +182,6 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             running = false;
             jumping = false;
-
-            movementX = 0;
-            movementY = 0;
 
             animator.SetTrigger("idle");
         }
@@ -240,22 +195,40 @@ public class PlayerController : MonoBehaviour
         }
         if (canMove)
         {
-            Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
+            Vector3 playerMovement = new Vector3(movementInput.x, 0f, movementInput.y);
+            playerMovement = playerCamera.forward * playerMovement.z + playerCamera.right * playerMovement.x;
             if (playerMovement.magnitude >= 0.1f)
             {
-                float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
-                float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
+                const float turnSpeed = 3f;
+                float targetAngle = Mathf.Atan2(movementInput.x, movementInput.y) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
+                Quaternion rot = Quaternion.Euler(0f, targetAngle, 0f);
 
-                Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-                rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
-                rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
-                //transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
-                //transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
+                Animate();
+                rb.MovePosition(rb.position + playerMovement * Time.deltaTime * speed);
+                rb.MoveRotation(Quaternion.Lerp(rb.rotation, rot, Time.deltaTime * turnSpeed));
             }
             else
             {
                 animator.SetTrigger("idle");
             }
+        }
+    }
+
+    void Animate()
+    {
+        if (running) {
+            animator.SetTrigger("running");
+            speed = RUN_SPEED;
+        }
+        else if (jumping)
+        {
+            animator.SetTrigger("jumping");
+            speed = 0;
+        }
+        else
+        {
+            animator.SetTrigger("walking");
+            speed = WALK_SPEED;
         }
     }
 }
