@@ -29,6 +29,8 @@ TagManager:
   - Tree
   - Dialog
   - Menu
+  - fox
+  - TouchGround
   layers:
   - Default
   - TransparentFX

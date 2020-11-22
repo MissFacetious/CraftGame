@@ -69,10 +69,9 @@ public class Interactor : MonoBehaviour
 
         interactSpriteDict = new Dictionary<string, Sprite[]>
         {
-            { "DualShock4GamepadHID", PS4 },
-            { "XInputControllerWindows", XBOX },
-            //{ "SwitchProControllerHID", SWITCH },
-            { "Keyboard", KEYBOARD }
+            { PlayerController.controls.DualShock4GamepadHID.ToString(), PS4 },
+            { PlayerController.controls.XInputControllerWindows.ToString(), XBOX },
+            { PlayerController.controls.Keyboard.ToString(), KEYBOARD }
         };
     }
 
