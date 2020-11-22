@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
                     {
                         animator.ResetTrigger("idle");
                         animator.ResetTrigger("walking");
-                        //animator.ResetTrigger("flying");
+                        animator.ResetTrigger("flying");
                         animator.SetTrigger("jumping");
                     }
                 }
@@ -171,7 +171,6 @@ public class PlayerController : MonoBehaviour
         if (canMove && !isJumping && !isFlying)
         {
             addJumpForce = true;
-            Debug.Log("jumping now");
             animator.ResetTrigger("idle");
             animator.ResetTrigger("walking");
             animator.ResetTrigger("flying");
@@ -188,15 +187,14 @@ public class PlayerController : MonoBehaviour
                 isRunning = true;
                 if (isJumping && !isFlying)
                 {
-                    Debug.Log("flying!");
                     animator.ResetTrigger("jumping");
                     animator.ResetTrigger("walking");
                     animator.ResetTrigger("running");
                     animator.SetTrigger("flying");
                 }
-                else
+                else if (IsGrounded())
                 {
-                    // is flying already
+                    animator.SetTrigger("running");
                 }
             }
             else
@@ -318,9 +316,9 @@ public class PlayerController : MonoBehaviour
             }
             else if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0)))
             {
-                if (!IsGrounded())
+                if (IsGrounded())
                 { 
-                    animator.SetTrigger("idle");
+                   animator.SetTrigger("idle");
                 }
             }
         }
