@@ -17,11 +17,14 @@ public class PlayerController : MonoBehaviour
     public MenuActions menuActions;
     public Animator animator;
     public float rotationSmoothing = 0.05f;
-    public float groundDistanceMargin = .3f;
+    public float groundDistanceMargin = 0.3f;
     public float rotationSmoothingVelocity;
     public float speed = 6;
-    private bool running = false;
-    public bool isJumping = false;
+
+    private bool canMove = true;
+    private bool isRunning = false;
+    private bool isJumping = false;
+    private bool isFlying = false;
 
     [SerializeField]
     private Camera playerCamera;
@@ -31,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private InventoryManager inventoryManager;
     private bool addJumpForce = false;
-    private bool canMove = true;
+    
     private float movementX;
     private float movementY;
 
@@ -112,31 +115,40 @@ public class PlayerController : MonoBehaviour
             Vector2 movementVector = movementValue.Get<Vector2>();
             movementX = movementVector.x;
             movementY = movementVector.y;
-            if (running)
+            if (isFlying)
             {
-                speed = 12;
-                if (animator != null)
-                {
-                    animator.SetTrigger("running");
-                }
+                speed = 4;
             }
-            else if (isJumping)
+            else if (!isJumping && !isFlying)
             {
-                if (animator != null)
+                if (isRunning) // starting to run
                 {
-                    animator.ResetTrigger("idle");
-                    animator.ResetTrigger("walking");
-                    animator.SetTrigger("jumping");
+                    speed = 12;
+                    if (animator != null)
+                    {
+                        animator.SetTrigger("running");
+                    }
                 }
-            }
-            else // just walking
-            {
-                speed = 6;
-                if (animator != null)
+                else if (isJumping) // starting to jump
                 {
-                    animator.ResetTrigger("idle");
-                    animator.ResetTrigger("jumping");
-                    animator.SetTrigger("walking");
+                    if (animator != null)
+                    {
+                        animator.ResetTrigger("idle");
+                        animator.ResetTrigger("walking");
+                        //animator.ResetTrigger("flying");
+                        animator.SetTrigger("jumping");
+                    }
+                }
+                else // just walking
+                {
+                    speed = 6;
+                    if (animator != null)
+                    {
+                        animator.ResetTrigger("idle");
+                        animator.ResetTrigger("jumping");
+                        animator.ResetTrigger("flying");
+                        animator.SetTrigger("walking");
+                    }
                 }
             }
         }
@@ -156,12 +168,13 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight = 9f;
     private void OnJump(InputValue inputValue)
     {
-        if (canMove && !isJumping)
+        if (canMove && !isJumping && !isFlying)
         {
             addJumpForce = true;
-
+            Debug.Log("jumping now");
             animator.ResetTrigger("idle");
             animator.ResetTrigger("walking");
+            animator.ResetTrigger("flying");
             animator.SetTrigger("jumping");
         }
     }
@@ -172,11 +185,23 @@ public class PlayerController : MonoBehaviour
         {
             if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
             {
-                running = true;
+                isRunning = true;
+                if (isJumping && !isFlying)
+                {
+                    Debug.Log("flying!");
+                    animator.ResetTrigger("jumping");
+                    animator.ResetTrigger("walking");
+                    animator.ResetTrigger("running");
+                    animator.SetTrigger("flying");
+                }
+                else
+                {
+                    // is flying already
+                }
             }
             else
             {
-                running = false;
+                isRunning = false;
             }
         }
     }
@@ -258,8 +283,9 @@ public class PlayerController : MonoBehaviour
         {
             // make sure we are in idle
             canMove = false;
-            running = false;
+            isRunning = false;
             isJumping = false;
+            isFlying = false;
 
             movementX = 0;
             movementY = 0;
@@ -292,7 +318,10 @@ public class PlayerController : MonoBehaviour
             }
             else if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0)))
             {
-                animator.SetTrigger("idle");
+                if (!IsGrounded())
+                { 
+                    animator.SetTrigger("idle");
+                }
             }
         }
     }
@@ -303,14 +332,14 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(playerCollider.bounds.center, Vector3.down, out RaycastHit hitInfo, playerCollider.bounds.extents.y + groundDistanceMargin))
         {
             //has collided
-            if (isJumping) 
+            if (isJumping || isFlying) 
             {
-                //Debug.Log(hitInfo.collider.name);
-
                 animator.ResetTrigger("jumping");
-                animator.SetTrigger("walking");
+                animator.ResetTrigger("flying");
+                animator.SetTrigger("idle");
 
                 isJumping = false;
+                isFlying = false;
             }
             return true;
         }
