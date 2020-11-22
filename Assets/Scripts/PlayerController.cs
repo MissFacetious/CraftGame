@@ -5,22 +5,25 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    public enum controls
+    public enum inputControls
     {
         Keyboard,
         XInputControllerWindows,
         DualShock4GamepadHID
     }
 
-    public static controls currentControls;
+    public static inputControls currentControls;
+
+    private CraftGame controls = null;
 
     public MenuActions menuActions;
     public Animator animator;
     public float rotationSmoothing = 0.05f;
+    public float groundDistanceMargin = .3f;
     public float rotationSmoothingVelocity;
     public float speed = 6;
     private bool running = false;
-    private bool jumping = false;
+    public bool isJumping = false;
 
     [SerializeField]
     private Camera playerCamera;
@@ -29,13 +32,19 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody rb;
     private InventoryManager inventoryManager;
-
+    private bool addJumpForce = false;
     private bool canMove = true;
     private float movementX;
     private float movementY;
 
+    private Collider playerCollider;
+
+    public float rotationSpeed;
+
     private void Awake()
     {
+        controls = new CraftGame();
+        
         if (playerCamera == null)
         {
             Debug.Log("Camera not found.");
@@ -47,19 +56,30 @@ public class PlayerController : MonoBehaviour
         // using the Scene Name in MenuActions, 
         // we should be able to place the character in the right spot based on 
         // where they currently are, and where they've currently been
+
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Player.Disable();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerCollider = GetComponent<Collider>();
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<Interactor>();
         cameraController = playerCamera.GetComponent<CameraController>();
+
         // change sprite controller on start
         OnControlsChanged();
     }
-
     void getInventoryManager()
     {
         if (GameObject.FindGameObjectWithTag("InventoryManager") != null)
@@ -77,7 +97,7 @@ public class PlayerController : MonoBehaviour
         if (playerInput.devices.Count > 0)
         {
             int lastPluggedIn = playerInput.devices.Count - 1;
-            if (currentControls == controls.Keyboard)
+            if (currentControls == inputControls.Keyboard)
             {
                 currentControls = interactor.UpdateIcons(playerInput.devices[lastPluggedIn].name);
                 interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.okay);
@@ -86,6 +106,7 @@ public class PlayerController : MonoBehaviour
         menuActions.OnControlsChanged();
     }
 
+    // Adding resetTrigger appears to resolve the floaty walking from idle. Can clean it up later.
     private void OnMove(InputValue movementValue)
     {
         if (canMove)
@@ -101,11 +122,12 @@ public class PlayerController : MonoBehaviour
                     animator.SetTrigger("running");
                 }
             }
-            else if (jumping)
+            else if (isJumping)
             {
-                speed = 0;
                 if (animator != null)
                 {
+                    animator.ResetTrigger("idle");
+                    animator.ResetTrigger("walking");
                     animator.SetTrigger("jumping");
                 }
             }
@@ -114,6 +136,8 @@ public class PlayerController : MonoBehaviour
                 speed = 6;
                 if (animator != null)
                 {
+                    animator.ResetTrigger("idle");
+                    animator.ResetTrigger("jumping");
                     animator.SetTrigger("walking");
                 }
             }
@@ -131,13 +155,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public float jumpHeight = 9f;
     private void OnJump(InputValue inputValue)
     {
-        if (canMove)
+        if (canMove && !isJumping)
         {
-            Debug.Log("hit jump");
-            Debug.Log(inputValue);
-            jumping = true;
+            addJumpForce = true;
+
+            animator.ResetTrigger("idle");
+            animator.ResetTrigger("walking");
+            animator.SetTrigger("jumping");
         }
     }
 
@@ -206,11 +233,22 @@ public class PlayerController : MonoBehaviour
             //Destroy(other.gameObject);
         }
     }
-
     void FixedUpdate()
     {
-        //Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-        //rb.AddForce(movement * speed);
+        if (addJumpForce && IsGrounded())
+        {
+            rb.AddForce(Vector3.up * 600, ForceMode.Impulse);
+            isJumping = true;
+        }
+        else if (!Mathf.Approximately(rb.velocity.y, 0) && rb.velocity.y < 0)
+        {
+            if (!IsGrounded())
+            {
+                rb.AddForce(Vector3.down * 250);
+            }
+        }
+
+        addJumpForce = false;
     }
 
     // Update is called once per frame
@@ -223,7 +261,7 @@ public class PlayerController : MonoBehaviour
             // make sure we are in idle
             canMove = false;
             running = false;
-            jumping = false;
+            isJumping = false;
 
             movementX = 0;
             movementY = 0;
@@ -238,24 +276,46 @@ public class PlayerController : MonoBehaviour
         {
             getInventoryManager();
         }
+
         if (canMove)
         {
             Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
+
             if (playerMovement.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
                 float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
 
                 Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+
                 rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
+
                 rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
-                //transform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
-                //transform.Translate(movementDir * speed * Time.deltaTime, Space.World);
             }
-            else
+            else if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0)))
             {
                 animator.SetTrigger("idle");
             }
         }
+    }
+
+    // Check if the player is contacting the ground, or within the ground distance margin
+    private bool IsGrounded()
+    {
+        if (Physics.Raycast(playerCollider.bounds.center, Vector3.down, out RaycastHit hitInfo, playerCollider.bounds.extents.y + groundDistanceMargin))
+        {
+            //has collided
+            if (isJumping) 
+            {
+                //Debug.Log(hitInfo.collider.name);
+
+                animator.ResetTrigger("jumping");
+                animator.SetTrigger("walking");
+
+                isJumping = false;
+            }
+            return true;
+        }
+        return false;
     }
 }
