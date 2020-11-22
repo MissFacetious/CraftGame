@@ -101,10 +101,10 @@
     <Compile Include="Assets\Scripts\Rotate.cs" />
     <Compile Include="Assets\Scripts\StartingPoint.cs" />
     <Compile Include="Assets\Scripts\StealableObject.cs" />
-    <Compile Include="Assets\Scripts\StopAndGo.cs" />
     <Compile Include="Assets\Scripts\Switcheroo.cs" />
     <Compile Include="Assets\Scripts\TimerCrystal.cs" />
     <Compile Include="Assets\Scripts\Tree.cs" />
+    <Compile Include="Assets\StopAndGo.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\3rd Party\Quantum Theory\Polyworld\Shaders\HDRP\PolyWorldSurface_Linear.shader" />
     <None Include="Assets\3rd Party\Quantum Theory\Polyworld\Shaders\PolyWorld_TerrainTree.shader" />

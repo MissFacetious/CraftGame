@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
 
     public static inputControls currentControls;
 
-    private CraftGame controls = null;
-
     public MenuActions menuActions;
     public Animator animator;
     public float rotationSmoothing = 0.05f;
@@ -43,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        controls = new CraftGame();
+        //controls = new CraftGame();
         
         if (playerCamera == null)
         {
@@ -61,11 +59,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.Player.Enable();
+        //controls.Player.Enable();
     }
     private void OnDisable()
     {
-        controls.Player.Disable();
+        //controls.Player.Disable();
     }
 
     // Start is called before the first frame update
