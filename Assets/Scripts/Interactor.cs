@@ -69,9 +69,9 @@ public class Interactor : MonoBehaviour
 
         interactSpriteDict = new Dictionary<string, Sprite[]>
         {
-            { PlayerController.inputControls.DualShock4GamepadHID.ToString(), PS4 },
-            { PlayerController.inputControls.XInputControllerWindows.ToString(), XBOX },
-            { PlayerController.inputControls.Keyboard.ToString(), KEYBOARD }
+            { PlayerController.inputDevice.DualShock4GamepadHID.ToString(), PS4 },
+            { PlayerController.inputDevice.XInputControllerWindows.ToString(), XBOX },
+            { PlayerController.inputDevice.Keyboard.ToString(), KEYBOARD }
         };
     }
 
@@ -147,23 +147,23 @@ public class Interactor : MonoBehaviour
         button.transform.position = new Vector3(buttonPosition.x, buttonPosition.y+aboveCharacter, 0f);
     }
 
-    public PlayerController.inputControls UpdateIcons(string deviceName)
+    public PlayerController.inputDevice UpdateIcons(string deviceName)
     {
         if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
 
         if (deviceName == "Keyboard")
         {
-            return PlayerController.inputControls.Keyboard;
+            return PlayerController.inputDevice.Keyboard;
         }
         if (deviceName == "XInputControllerWindows")
         {
-            return PlayerController.inputControls.XInputControllerWindows;
+            return PlayerController.inputDevice.XInputControllerWindows;
         }
         if (deviceName == "DualShock4GamepadHID")
         {
-            return PlayerController.inputControls.DualShock4GamepadHID;
+            return PlayerController.inputDevice.DualShock4GamepadHID;
         }
-        return PlayerController.inputControls.Keyboard;
+        return PlayerController.inputDevice.Keyboard;
     }
 
     public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
