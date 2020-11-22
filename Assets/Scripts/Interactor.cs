@@ -147,23 +147,23 @@ public class Interactor : MonoBehaviour
         button.transform.position = new Vector3(buttonPosition.x, buttonPosition.y+aboveCharacter, 0f);
     }
 
-    public PlayerController.controls UpdateIcons(string deviceName)
+    public PlayerController.inputControls UpdateIcons(string deviceName)
     {
         if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
 
         if (deviceName == "Keyboard")
         {
-            return PlayerController.controls.Keyboard;
+            return PlayerController.inputControls.Keyboard;
         }
         if (deviceName == "XInputControllerWindows")
         {
-            return PlayerController.controls.XInputControllerWindows;
+            return PlayerController.inputControls.XInputControllerWindows;
         }
         if (deviceName == "DualShock4GamepadHID")
         {
-            return PlayerController.controls.DualShock4GamepadHID;
+            return PlayerController.inputControls.DualShock4GamepadHID;
         }
-        return PlayerController.controls.Keyboard;
+        return PlayerController.inputControls.Keyboard;
     }
 
     public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
