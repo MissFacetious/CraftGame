@@ -5,7 +5,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
-
     public enum inputDevice
     {
         Keyboard,
@@ -31,13 +30,10 @@ public class PlayerController : MonoBehaviour
     public float rotationSmoothing = 0.05f;
     public float groundDistanceMargin = 0.3f;
     public float rotationSmoothingVelocity;
-    public float speed = 6;
+    public float speed = 6f;
+    public float jumpHeight = 9f;
 
     private bool canMove = true;
-
-    //private bool isRunning = false;
-    //private bool isJumping = false;
-    //private bool isFlying = false;
 
     [SerializeField]
     private Camera playerCamera;
@@ -50,7 +46,6 @@ public class PlayerController : MonoBehaviour
     
     private float movementX;
     private float movementY;
-
 
     private Collider playerCollider;
 
@@ -77,8 +72,6 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         controls.Player.Enable();
-        //controls.Player.Attack.performed += context => OnAttackPerformed(context); // Bind a function to the attack performed event.
-        //controls.Player.Attack.canceled += context => OnAttackCanceled(context); // Bind a function to the attack canceled event.
 
         controls.Player.Move.started += context => OnMoveEnter(context); 
         controls.Player.Move.performed += context => OnMoving(context); 
@@ -91,8 +84,8 @@ public class PlayerController : MonoBehaviour
         controls.Player.Jump.started += context => OnJumpEnter(context);
         controls.Player.Jump.performed += context => OnJumping(context);
         controls.Player.Jump.canceled += context => OnJumpExit(context);
-
     }
+
     private void OnDisable()
     {
         controls.Player.Disable();
@@ -110,6 +103,7 @@ public class PlayerController : MonoBehaviour
         // change sprite controller on start
         OnControlsChanged();
     }
+
     void getInventoryManager()
     {
         if (GameObject.FindGameObjectWithTag("InventoryManager") != null)
@@ -136,7 +130,6 @@ public class PlayerController : MonoBehaviour
         menuActions.OnControlsChanged();
     }
 
-
     private void OnLook(InputValue lookValue)
     {
         if (canMove)
@@ -147,10 +140,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    public float jumpHeight = 9f;
-
-
 
     private void OnMoveEnter(InputAction.CallbackContext context)
     {
@@ -403,8 +392,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        GameObject.Find("action").GetComponent<Text>().text = currentMovement.ToString();
-
         if (GameObject.FindGameObjectWithTag("Dialog") != null ||
             GameObject.FindGameObjectWithTag("Selection") != null ||
             GameObject.FindGameObjectWithTag("Menu") != null)
