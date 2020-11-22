@@ -1,29 +1,39 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Camera), typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
-
-    public enum inputControls
+    public enum inputDevice
     {
         Keyboard,
         XInputControllerWindows,
         DualShock4GamepadHID
     }
 
-    public static inputControls currentControls;
+    public enum inputMovement
+    {
+        idle, // 0
+        walking, // 1
+        running, // 2
+        jumping, // 3
+        flying // 4
+    }
 
-    private CraftGame controls = null;
+    CraftGame controls = null;
+    public static inputDevice currentControls;
+    public static inputMovement currentMovement;
 
     public MenuActions menuActions;
     public Animator animator;
     public float rotationSmoothing = 0.05f;
-    public float groundDistanceMargin = .3f;
+    public float groundDistanceMargin = 0.3f;
     public float rotationSmoothingVelocity;
-    public float speed = 6;
-    private bool running = false;
-    public bool isJumping = false;
+    public float speed = 6f;
+    public float jumpHeight = 9f;
+
+    private bool canMove = true;
 
     [SerializeField]
     private Camera playerCamera;
@@ -33,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private InventoryManager inventoryManager;
     private bool addJumpForce = false;
-    private bool canMove = true;
+    
     private float movementX;
     private float movementY;
 
@@ -62,7 +72,20 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         controls.Player.Enable();
+
+        controls.Player.Move.started += context => OnMoveEnter(context); 
+        controls.Player.Move.performed += context => OnMoving(context); 
+        controls.Player.Move.canceled += context => OnMoveExit(context);
+
+        controls.Player.Run.started += context => OnRunEnter(context);
+        controls.Player.Run.performed += context => OnRunning(context);
+        controls.Player.Run.canceled += context => OnRunExit(context);
+
+        controls.Player.Jump.started += context => OnJumpEnter(context);
+        controls.Player.Jump.performed += context => OnJumping(context);
+        controls.Player.Jump.canceled += context => OnJumpExit(context);
     }
+
     private void OnDisable()
     {
         controls.Player.Disable();
@@ -80,6 +103,7 @@ public class PlayerController : MonoBehaviour
         // change sprite controller on start
         OnControlsChanged();
     }
+
     void getInventoryManager()
     {
         if (GameObject.FindGameObjectWithTag("InventoryManager") != null)
@@ -97,51 +121,13 @@ public class PlayerController : MonoBehaviour
         if (playerInput.devices.Count > 0)
         {
             int lastPluggedIn = playerInput.devices.Count - 1;
-            if (currentControls == inputControls.Keyboard)
+            if (currentControls == inputDevice.Keyboard)
             {
                 currentControls = interactor.UpdateIcons(playerInput.devices[lastPluggedIn].name);
                 interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.okay);
             }
         }
         menuActions.OnControlsChanged();
-    }
-
-    // Adding resetTrigger appears to resolve the floaty walking from idle. Can clean it up later.
-    private void OnMove(InputValue movementValue)
-    {
-        if (canMove)
-        {
-            Vector2 movementVector = movementValue.Get<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
-            if (running)
-            {
-                speed = 12;
-                if (animator != null)
-                {
-                    animator.SetTrigger("running");
-                }
-            }
-            else if (isJumping)
-            {
-                if (animator != null)
-                {
-                    animator.ResetTrigger("idle");
-                    animator.ResetTrigger("walking");
-                    animator.SetTrigger("jumping");
-                }
-            }
-            else // just walking
-            {
-                speed = 6;
-                if (animator != null)
-                {
-                    animator.ResetTrigger("idle");
-                    animator.ResetTrigger("jumping");
-                    animator.SetTrigger("walking");
-                }
-            }
-        }
     }
 
     private void OnLook(InputValue lookValue)
@@ -155,32 +141,160 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public float jumpHeight = 9f;
-    private void OnJump(InputValue inputValue)
-    {
-        if (canMove && !isJumping)
-        {
-            addJumpForce = true;
-
-            animator.ResetTrigger("idle");
-            animator.ResetTrigger("walking");
-            animator.SetTrigger("jumping");
-        }
-    }
-
-    private void OnRun(InputValue inputValue)
+    private void OnMoveEnter(InputAction.CallbackContext context)
     {
         if (canMove)
         {
-            if (inputValue.Get().Equals((System.Single)1)) // only way I can figure out pressing button down/up
+            Vector2 movementVector = context.ReadValue<Vector2>();
+            movementX = movementVector.x;
+            movementY = movementVector.y;
+            if (currentMovement == inputMovement.jumping)
             {
-                running = true;
+                speed = 4;
+                currentMovement = inputMovement.flying;
+                Animate();
+            }
+            else if (IsGrounded())
+            {
+                if (currentMovement == inputMovement.running) // starting to run
+                {
+                    speed = 12;
+                    currentMovement = inputMovement.running;
+                    Animate();
+                }
+                else // just walking
+                {
+                    speed = 6;
+                    currentMovement = inputMovement.walking;
+                    Animate();
+                }
+            }
+        }
+    }
+
+    private void OnMoving(InputAction.CallbackContext context)
+    {
+        if (canMove)
+        {
+            Vector2 movementVector = context.ReadValue<Vector2>();
+            movementX = movementVector.x;
+            movementY = movementVector.y;
+            if (IsGrounded())
+            {
+                if (currentMovement == inputMovement.running) // starting to run
+                {
+                    speed = 12;
+                    currentMovement = inputMovement.running;
+                    Animate();
+                }
+                else // just walking
+                {
+                    speed = 6;
+                    currentMovement = inputMovement.walking;
+                    Animate();
+                }
+            }
+        }
+    }
+
+    private void OnMoveExit(InputAction.CallbackContext context)
+    {
+        if (canMove)
+        {
+            Vector2 movementVector = context.ReadValue<Vector2>();
+            movementX = movementVector.x;
+            movementY = movementVector.y;
+            if (IsGrounded())
+            {
+                // just stopped
+                currentMovement = inputMovement.idle;
+                Animate();
+                
+            }
+        }
+    }
+
+    private void OnRunEnter(InputAction.CallbackContext context)
+    {
+        if (canMove)
+        {
+            if (currentMovement == inputMovement.jumping)
+            {
+                currentMovement = inputMovement.flying;
+                Animate();
+            }
+            else if (IsGrounded() && currentMovement == inputMovement.walking)
+            {
+                currentMovement = inputMovement.running;
+                Animate();
             }
             else
             {
-                running = false;
+                currentMovement = inputMovement.idle;
+                Animate();
             }
         }
+    }
+
+    private void OnRunning(InputAction.CallbackContext context)
+    {
+        if (canMove)
+        {
+            if (currentMovement == inputMovement.flying)
+            {
+                // you are flying
+            }
+            else if (currentMovement == inputMovement.running) {
+                // already running
+            }
+            else if (IsGrounded() && currentMovement == inputMovement.walking)
+            {
+                currentMovement = inputMovement.running;
+                Animate();
+            }
+            else
+            {
+                currentMovement = inputMovement.idle;
+                Animate();
+            }
+        }
+    }
+
+    private void OnRunExit(InputAction.CallbackContext context)
+    {
+        // done running
+        if (IsGrounded() && currentMovement != inputMovement.jumping && currentMovement != inputMovement.flying) {
+            if (currentMovement != inputMovement.walking)
+            {
+                currentMovement = inputMovement.idle;
+                Animate();
+            }
+        }
+    }
+
+    private void OnJumpEnter(InputAction.CallbackContext context)
+    {
+        if (canMove)
+        {
+            addJumpForce = true;
+            currentMovement = inputMovement.jumping;
+            Animate();
+        }
+    }
+
+    private void OnJumping(InputAction.CallbackContext context)
+    {
+        if (canMove)
+        {
+            addJumpForce = true;
+            currentMovement = inputMovement.jumping;
+            Animate();
+        }
+    }
+
+    private void OnJumpExit(InputAction.CallbackContext context)
+    {
+
     }
 
     private void OnCancel(InputValue inputValue)
@@ -233,26 +347,50 @@ public class PlayerController : MonoBehaviour
             //Destroy(other.gameObject);
         }
     }
-    void FixedUpdate()
+
+    void Animate()
     {
-        if (addJumpForce && IsGrounded())
+        if (animator != null)
         {
-            rb.AddForce(Vector3.up * 600, ForceMode.Impulse);
-            isJumping = true;
-        }
-        else if (!Mathf.Approximately(rb.velocity.y, 0) && rb.velocity.y < 0)
-        {
-            if (!IsGrounded())
+            if (currentMovement == inputMovement.flying)
             {
-                rb.AddForce(Vector3.down * 250);
+                animator.ResetTrigger("jumping");
+                animator.ResetTrigger("walking");
+                animator.ResetTrigger("running");
+                animator.SetTrigger("flying");
+            }
+            else if (currentMovement == inputMovement.jumping)
+            {
+                animator.ResetTrigger("flying");
+                animator.ResetTrigger("walking");
+                animator.ResetTrigger("running");
+                animator.SetTrigger("jumping");
+            }
+            else if (currentMovement == inputMovement.running)
+            {
+                animator.ResetTrigger("jumping");
+                animator.ResetTrigger("walking");
+                animator.ResetTrigger("flying");
+                animator.SetTrigger("running");
+            }
+            else if (currentMovement == inputMovement.walking)
+            {
+                animator.ResetTrigger("jumping");
+                animator.ResetTrigger("flying");
+                animator.ResetTrigger("running");
+                animator.SetTrigger("walking");
+            }
+            else if (currentMovement == inputMovement.idle)
+            {
+                animator.ResetTrigger("jumping");
+                animator.ResetTrigger("walking");
+                animator.ResetTrigger("running");
+                animator.SetTrigger("idle");
             }
         }
-
-        addJumpForce = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (GameObject.FindGameObjectWithTag("Dialog") != null ||
             GameObject.FindGameObjectWithTag("Selection") != null ||
@@ -260,13 +398,12 @@ public class PlayerController : MonoBehaviour
         {
             // make sure we are in idle
             canMove = false;
-            running = false;
-            isJumping = false;
+            currentMovement = inputMovement.idle;
 
             movementX = 0;
             movementY = 0;
 
-            animator.SetTrigger("idle");
+            Animate();
         }
         else
         {
@@ -277,10 +414,26 @@ public class PlayerController : MonoBehaviour
             getInventoryManager();
         }
 
+        if (addJumpForce && IsGrounded())
+        {
+            rb.AddForce(Vector3.up * 600, ForceMode.Impulse);
+        }
+        else if (!Mathf.Approximately(rb.velocity.y, 0) && rb.velocity.y < 0)
+        {
+            if (!IsGrounded())
+            {
+                if (currentMovement == inputMovement.flying)
+                {
+                    rb.AddForce(Vector3.down * 0.5f);
+                }
+                else {
+                    rb.AddForce(Vector3.down * 250f);
+                }
+            }
+        }
         if (canMove)
         {
             Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
-
             if (playerMovement.magnitude >= 0.1f)
             {
                 float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
@@ -292,11 +445,18 @@ public class PlayerController : MonoBehaviour
 
                 rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
             }
-            else if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0)))
+            else if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0))
+                && IsGrounded())
             {
-                animator.SetTrigger("idle");
+                if (!addJumpForce)
+                {
+                    currentMovement = inputMovement.idle;
+                    Animate();
+                }
             }
         }
+
+        addJumpForce = false;
     }
 
     // Check if the player is contacting the ground, or within the ground distance margin
@@ -305,15 +465,6 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(playerCollider.bounds.center, Vector3.down, out RaycastHit hitInfo, playerCollider.bounds.extents.y + groundDistanceMargin))
         {
             //has collided
-            if (isJumping) 
-            {
-                //Debug.Log(hitInfo.collider.name);
-
-                animator.ResetTrigger("jumping");
-                animator.SetTrigger("walking");
-
-                isJumping = false;
-            }
             return true;
         }
         return false;
