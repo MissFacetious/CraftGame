@@ -60,7 +60,7 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Run"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""d726e870-0d7e-4131-b33d-dbfee9a9f24f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
