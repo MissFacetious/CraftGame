@@ -64,7 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab417ff37a0e80149ba0a3fcc3ec9104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectible: {fileID: 0}
+  collectible: {fileID: 7850578535697209174, guid: cf54718959a285d47ab1a5625745a76f,
+    type: 3}
   particles: {fileID: 4043309183067919842}
   collectibleAmount: 3
   emitterSpeed: 3
@@ -170,17 +171,17 @@ PrefabInstance:
     - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 134.47
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 324.55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3136481161967828549, guid: c15c9e79d18d1444d95889743b77115f,
         type: 3}
