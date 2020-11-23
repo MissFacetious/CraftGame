@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-
+using System.Collections;
+using System;
 public class Collectible : MonoBehaviour
 {
     private Rigidbody rb;
@@ -8,10 +9,14 @@ public class Collectible : MonoBehaviour
     private float rotationAngle = 0f;
     public Recipes.RecipeEnum recipe;
 
+    protected float emitAnim;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.up, ForceMode.Impulse);
+        
+        // moved AddForce() to CollectibleEmitter.cs 
+        //rb.AddForce(Vector3.up, ForceMode.Impulse);
+        transform.Rotate(Vector3.up * 4f);
     }
 
     // Start is called before the first frame update
@@ -59,6 +64,14 @@ public class Collectible : MonoBehaviour
         {
             rb.inertiaTensorRotation = new Quaternion(0.01f, 0.01f, 0.01f, 1f);
             rb.AddTorque(-rb.angularVelocity);
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            rb.Sleep();
         }
     }
 

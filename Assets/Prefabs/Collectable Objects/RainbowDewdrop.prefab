@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3316160283551676608}
   - component: {fileID: 3316160283551676615}
   - component: {fileID: 3316160283551676614}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3316160283665778305}
   - component: {fileID: -440228590480032468}
   - component: {fileID: 8240576997243367944}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: RainbowDewdrop
   m_TagString: Collectible
   m_Icon: {fileID: 0}
@@ -304,6 +304,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5392594335026632644, guid: ad974503b794c4c4985cd80ab31d05fe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5392594335026632665, guid: ad974503b794c4c4985cd80ab31d05fe,
         type: 3}

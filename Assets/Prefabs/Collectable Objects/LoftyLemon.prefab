@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3915625141692125665}
   - component: {fileID: 3902231150738675400}
   - component: {fileID: 724851415081620268}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LemonSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,9 +103,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5950381759277082490}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LoftyLemon
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

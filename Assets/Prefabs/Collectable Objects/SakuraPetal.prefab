@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1241628803120477321}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8905652811279186160}
   - component: {fileID: -1682424785290187627}
   - component: {fileID: 5728849387496459266}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SakuraPetal
   m_TagString: Collectible
   m_Icon: {fileID: 0}
@@ -243,6 +243,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5392594335026632644, guid: ad974503b794c4c4985cd80ab31d05fe,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5392594335026632665, guid: ad974503b794c4c4985cd80ab31d05fe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -317,6 +322,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SakuraCube
+      objectReference: {fileID: 0}
+    - target: {fileID: 1131341867390591266, guid: e898e5bf7e599484489c0f9aa35a2694,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1131341867390591269, guid: e898e5bf7e599484489c0f9aa35a2694,
         type: 3}
