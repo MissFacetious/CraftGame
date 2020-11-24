@@ -44,7 +44,6 @@ public class Collectible : MonoBehaviour
         system.gameObject.SetActive(true);
         system.Play();
 
-
         GetComponent<Animator>().SetTrigger("collect");
     }
 
