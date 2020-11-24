@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 35
-  recipe: 13
+  recipe: 3
 --- !u!95 &8030046290372670513
 Animator:
   serializedVersion: 3
