@@ -39190,8 +39190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: Let's see...all I needed was two lumps of Mirror Celestine, two Rainbow
-    Dewdrops, and two Sakura Petals...
+  storyText: Let's see...all I needed was one lump of Mirror Celestine, one Rainbow
+    Dewdrop, and one Sakura Petal...
   description: 
   character: {fileID: 1058822635}
   portrait: {fileID: 0}
@@ -39456,7 +39456,7 @@ MonoBehaviour:
   scrollPos: {x: 0, y: 0}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
+  blockViewHeight: 280
   zoom: 1
   scrollViewRect:
     serializedVersion: 2
@@ -39465,10 +39465,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1351342063}
   - {fileID: 1351342064}
-  - {fileID: 1351342065}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1351342060}
   variables: []
   description: 
   stepPause: 0
@@ -72589,7 +72588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1268696509}
+  selectedFlowchart: {fileID: 1351342066}
 --- !u!4 &1990647167
 Transform:
   m_ObjectHideFlags: 1
