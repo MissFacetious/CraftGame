@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab417ff37a0e80149ba0a3fcc3ec9104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectible: {fileID: 5786793133208403768, guid: 770de0e1a3b6e52449307f930866a9cb,
+  collectible: {fileID: 2690513015607287240, guid: 21207b1a3167e564498b7d66d41c4286,
     type: 3}
   particles: {fileID: 6165298561370303372}
   collectibleAmount: 3
@@ -219,6 +219,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23510602405412594, guid: f371874061e9c874481abcdb897e9420,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0c5b7d7b2a1f52f4b9349b956274aade, type: 2}
     - target: {fileID: 64586551959287374, guid: f371874061e9c874481abcdb897e9420,
         type: 3}
       propertyPath: m_Enabled
