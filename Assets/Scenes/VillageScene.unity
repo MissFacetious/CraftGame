@@ -47715,7 +47715,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1074.3932
     y: 126.31267
-    width: 60
+    width: 61.92303
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -47803,7 +47803,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 230
     y: 73
-    width: 106.55166
+    width: 115.769135
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -47870,11 +47870,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 84.349396, y: -31.118626}
+  scrollPos: {x: 138.65958, y: 5.2871227}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 314
-  zoom: 0.5800004
+  zoom: 0.52000046
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -47882,7 +47882,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1425374361}
+  - {fileID: 1425374383}
   selectedCommands: []
   variables:
   - {fileID: 1425374360}
@@ -48425,7 +48425,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 477.4766
     y: 77.28807
-    width: 66.896515
+    width: 71.53841
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49071,7 +49071,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 799.7099
     y: 279.47723
-    width: 91.034424
+    width: 100.38454
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49100,7 +49100,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 785.7857
     y: 144.03413
-    width: 82.41374
+    width: 90.76916
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49128,7 +49128,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 581.98834
     y: 187.07214
-    width: 142.75853
+    width: 158.0768
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49450,7 +49450,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 442.58597
     y: 317.76917
-    width: 127.241295
+    width: 138.84604
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -51343,7 +51343,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 446.6925
     y: 609.09125
-    width: 94.4827
+    width: 102.30761
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -51371,7 +51371,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 477.35242
     y: 402.49887
-    width: 116.89648
+    width: 127.30759
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -51409,7 +51409,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 435.52704
     y: 230.71034
-    width: 97.93098
+    width: 108.076836
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -51455,7 +51455,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 506.73706
     y: 478.13928
-    width: 96.20684
+    width: 104.23069
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -67712,6 +67712,12 @@ GameObject:
   - component: {fileID: 1716251408}
   - component: {fileID: 1716251389}
   - component: {fileID: 1716251381}
+  - component: {fileID: 1716251417}
+  - component: {fileID: 1716251416}
+  - component: {fileID: 1716251415}
+  - component: {fileID: 1716251414}
+  - component: {fileID: 1716251413}
+  - component: {fileID: 1716251412}
   m_Layer: 0
   m_Name: HoshiFlowchart
   m_TagString: Untagged
@@ -67779,8 +67785,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1716251411}
-  selectedCommands: []
+  - {fileID: 1716251401}
+  selectedCommands:
+  - {fileID: 1716251416}
   variables:
   - {fileID: 1716251403}
   description: 
@@ -68100,7 +68107,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 426.46616
     y: 604.1043
-    width: 139.8734
+    width: 99.8734
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -68852,7 +68859,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 411.8999
     y: 415.10114
-    width: 163.92401
+    width: 123.92402
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -69259,7 +69266,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 402.58194
     y: 334.67554
-    width: 175.31642
+    width: 135.31642
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -69649,7 +69656,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 416.4469
     y: 270.4481
-    width: 142.40503
+    width: 102.40504
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -70192,7 +70199,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 851.55316
     y: 431.0868
-    width: 134.8101
+    width: 94.810104
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -70221,7 +70228,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 853.6806
     y: 339.59744
-    width: 125.94935
+    width: 85.94935
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -70328,7 +70335,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 634.2133
     y: 378.10773
-    width: 190.50629
+    width: 150.50629
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -70432,10 +70439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 109
   indentLevel: 0
-  storyText: "Once you\u2019ve gathered the materials, you\u2019ll have to use special
-    equipment to craft the lens. The alchemical lab is located on the east side of
-    town. It\u2019s a large building with a staircase, you can\u2019t miss it. You
-    should be able to craft there - no one\u2019s used it since we lost our inspiration."
+  storyText: That's the long and short of it.
   description: 
   character: {fileID: 1099387337}
   portrait: {fileID: 0}
@@ -70450,7 +70454,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1716251381
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -70665,7 +70669,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1716251389
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -71011,7 +71015,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 439.85117
     y: 180.02278
-    width: 110.759476
+    width: 70.759476
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -71020,6 +71024,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 0}
   commandList:
+  - {fileID: 1716251385}
   - {fileID: 1716251399}
   - {fileID: 1716251398}
   - {fileID: 1716251397}
@@ -71033,11 +71038,16 @@ MonoBehaviour:
   - {fileID: 1716251388}
   - {fileID: 1716251387}
   - {fileID: 1716251386}
-  - {fileID: 1716251385}
   - {fileID: 1716251384}
   - {fileID: 1716251383}
   - {fileID: 1716251382}
+  - {fileID: 1716251417}
+  - {fileID: 1716251415}
+  - {fileID: 1716251416}
+  - {fileID: 1716251413}
   - {fileID: 1716251380}
+  - {fileID: 1716251412}
+  - {fileID: 1716251414}
   - {fileID: 1716251379}
   - {fileID: 1716251378}
   - {fileID: 1716251370}
@@ -71316,7 +71326,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 222.79811
     y: 267.7331
-    width: 153.79744
+    width: 113.79744
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -71374,7 +71384,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1132.4059
     y: 245.98022
-    width: 99.36708
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -71401,7 +71411,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 78.14895
     y: 243.85258
-    width: 76.582275
+    width: 60
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -71414,7 +71424,7 @@ MonoBehaviour:
   suppressAllAutoSelections: 0
 --- !u!114 &1716251408
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -71442,7 +71452,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &1716251409
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -71463,7 +71473,7 @@ MonoBehaviour:
   callMode: 0
 --- !u!114 &1716251410
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -71706,7 +71716,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1716251411
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -71720,7 +71730,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 423.66547
     y: 507.92477
-    width: 139.8734
+    width: 99.8734
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -71733,6 +71743,173 @@ MonoBehaviour:
   - {fileID: 1716251389}
   - {fileID: 1716251381}
   suppressAllAutoSelections: 0
+--- !u!114 &1716251412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716251325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 173
+  indentLevel: 0
+  storyText: "Once you\u2019ve gathered the materials, you\u2019ll have to use special
+    equipment to craft the lens. The alchemical lab is located on the east side of
+    town.."
+  description: 
+  character: {fileID: 1099387337}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1716251413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716251325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 172
+  indentLevel: 0
+  storyText: So collecting the grey Chronocrystals will provide me more time to gather?
+  description: 
+  character: {fileID: 880061730}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1716251414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716251325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 171
+  indentLevel: 0
+  storyText: " It\u2019s a large building with a staircase, you can\u2019t miss it.
+    You should be able to craft there - no one\u2019s used it since we lost our inspiration"
+  description: 
+  character: {fileID: 1099387337}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1716251415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716251325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 170
+  indentLevel: 0
+  storyText: ' if you collect the grey Chronocrystals that tend to grow near areas
+    where materials can be gathered...'
+  description: 
+  character: {fileID: 1099387337}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1716251416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716251325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 169
+  indentLevel: 0
+  storyText: They should stay fresh for longer, providing you a bit more time to
+    gather enough and come back here.
+  description: 
+  character: {fileID: 1099387337}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &1716251417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716251325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 168
+  indentLevel: 0
+  storyText: Also...
+  description: 
+  character: {fileID: 1099387337}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &1716354007
 GameObject:
   m_ObjectHideFlags: 0
@@ -79566,7 +79743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1425374363}
+  selectedFlowchart: {fileID: 1716251328}
 --- !u!4 &1990647167
 Transform:
   m_ObjectHideFlags: 1
