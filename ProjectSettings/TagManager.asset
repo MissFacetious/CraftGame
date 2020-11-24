@@ -31,6 +31,7 @@ TagManager:
   - Menu
   - fox
   - TouchGround
+  - EventSystemExtra
   layers:
   - Default
   - TransparentFX

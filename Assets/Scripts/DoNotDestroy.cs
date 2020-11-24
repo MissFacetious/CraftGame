@@ -23,6 +23,7 @@ public class DoNotDestroy : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void Update()

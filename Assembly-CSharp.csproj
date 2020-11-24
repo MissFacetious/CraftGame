@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\CraftDoor.cs" />
     <Compile Include="Assets\Scripts\CraftingManager.cs" />
     <Compile Include="Assets\Scripts\DialogueInteractable.cs" />
+    <Compile Include="Assets\Scripts\DoDestroy.cs" />
     <Compile Include="Assets\Scripts\DoNotDestroy.cs" />
     <Compile Include="Assets\Scripts\HighlightedSelect.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
@@ -104,7 +105,6 @@
     <Compile Include="Assets\Scripts\Switcheroo.cs" />
     <Compile Include="Assets\Scripts\TimerCrystal.cs" />
     <Compile Include="Assets\Scripts\Tree.cs" />
-    <Compile Include="Assets\StopAndGo.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\3rd Party\Quantum Theory\Polyworld\Shaders\HDRP\PolyWorldSurface_Linear.shader" />
     <None Include="Assets\3rd Party\Quantum Theory\Polyworld\Shaders\PolyWorld_TerrainTree.shader" />
