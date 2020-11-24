@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
         DualShock4GamepadHID
     }
 
-    const float WALK_SPEED = 6f;
-    const float RUN_SPEED = 12f;
     public enum inputMovement
     {
         idle, // 0
@@ -27,10 +25,9 @@ public class PlayerController : MonoBehaviour
     public static inputDevice currentControls;
     public static inputMovement currentMovement;
 
-    public static controls currentControls;
+    //public static controls currentControls;
     public MenuActions menuActions;
     public Animator animator;
-    public float rotationSmoothing = 0.05f;
     public float groundDistanceMargin = 0.3f;
     public float rotationSmoothingVelocity;
     public float speed = 6f;
@@ -45,12 +42,9 @@ public class PlayerController : MonoBehaviour
     private InventoryManager inventoryManager;
     private bool addJumpForce = false;
     
-    private float movementX;
-    private float movementY;
-
     private Collider playerCollider;
 
-    public float rotationSpeed;
+    private Vector2 movementVector;
 
     private void Awake()
     {
@@ -137,24 +131,11 @@ public class PlayerController : MonoBehaviour
         menuActions.OnControlsChanged();
     }
 
-    private void OnLook(InputValue lookValue)
-    {
-        if (canMove)
-        {
-            if (cameraController != null)
-            {
-                cameraController.lookVector = lookValue.Get<Vector2>();
-            }
-        }
-    }
-
     private void OnMoveEnter(InputAction.CallbackContext context)
     {
         if (canMove)
         {
-            Vector2 movementVector = context.ReadValue<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
+            movementVector = context.ReadValue<Vector2>();
             if (currentMovement == inputMovement.jumping)
             {
                 speed = 4;
@@ -183,9 +164,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            Vector2 movementVector = context.ReadValue<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
+            movementVector = context.ReadValue<Vector2>();
             if (IsGrounded())
             {
                 if (currentMovement == inputMovement.running) // starting to run
@@ -208,9 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            Vector2 movementVector = context.ReadValue<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
+            movementVector = context.ReadValue<Vector2>();
             if (IsGrounded())
             {
                 // just stopped
@@ -407,9 +384,6 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             currentMovement = inputMovement.idle;
 
-            movementX = 0;
-            movementY = 0;
-
             Animate();
         }
         else
@@ -440,15 +414,14 @@ public class PlayerController : MonoBehaviour
         }
         if (canMove)
         {
-            Vector3 playerMovement = new Vector3(movementInput.x, 0f, movementInput.y);
+            Vector3 playerMovement = new Vector3(movementVector.x, 0f, movementVector.y);
             playerMovement = playerCamera.forward * playerMovement.z + playerCamera.right * playerMovement.x;
             if (playerMovement.magnitude >= 0.1f)
             {
                 const float turnSpeed = 3f;
-                float targetAngle = Mathf.Atan2(movementInput.x, movementInput.y) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
+                float targetAngle = Mathf.Atan2(movementVector.x, movementVector.y) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
                 Quaternion rot = Quaternion.Euler(0f, targetAngle, 0f);
 
-                //Animate();
                 rb.MovePosition(rb.position + playerMovement * Time.deltaTime * speed);
                 rb.MoveRotation(Quaternion.Lerp(rb.rotation, rot, Time.deltaTime * turnSpeed));
             }
@@ -475,23 +448,5 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    void Animate()
-    {
-        if (running) {
-            animator.SetTrigger("running");
-            speed = RUN_SPEED;
-        }
-        else if (jumping)
-        {
-            animator.SetTrigger("jumping");
-            speed = 0;
-        }
-        else
-        {
-            animator.SetTrigger("walking");
-            speed = WALK_SPEED;
-        }
     }
 }
