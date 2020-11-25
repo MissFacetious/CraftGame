@@ -45,6 +45,13 @@ public class Interactable : MonoBehaviour
                         audio.Play();
                     }
                 }
+                if (interactionTransform.gameObject.tag == "CraftCollider")
+                {
+                    if (audio != null)
+                    {
+                        audio.Play();
+                    }
+                }
                 OnInteraction.Invoke();
             }
         }
