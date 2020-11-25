@@ -19,7 +19,7 @@ public class StealableObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision c)
     {
-        if (c.gameObject.tag == "fox")
+        if (c.gameObject.tag == "fox" || c.gameObject.tag == "gnome")
         {
             Destroy(this.gameObject);
         }
