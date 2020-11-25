@@ -2,7 +2,7 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Camera), typeof(Interactor))]
+[RequireComponent(typeof(Interactor))]
 public class PlayerController : MonoBehaviour
 {
     public enum inputDevice
@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
     public static inputDevice currentControls;
     public static inputMovement currentMovement;
 
+    //public static controls currentControls;
     public MenuActions menuActions;
     public Animator animator;
-    public float rotationSmoothing = 0.05f;
     public float groundDistanceMargin = 0.3f;
     public float rotationSmoothingVelocity;
     public float speed = 6f;
@@ -35,30 +35,33 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove = true;
 
-    [SerializeField]
-    private Camera playerCamera;
-    private CameraController cameraController;
+    private Transform playerCamera;
     private Interactor interactor;
     private PlayerInput playerInput;
     private Rigidbody rb;
     private InventoryManager inventoryManager;
     private bool addJumpForce = false;
     
-    private float movementX;
-    private float movementY;
-
     private Collider playerCollider;
 
-    public float rotationSpeed;
+    private Vector2 movementVector;
 
     private void Awake()
     {
+        playerCamera = Camera.main.transform;
         controls = new CraftGame();
         
         if (playerCamera == null)
         {
-            Debug.Log("Camera not found.");
+            Debug.LogError("Camera not found.");
         }
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator not found!");
+        }
+
+
         if (inventoryManager == null)
         {
             getInventoryManager();
@@ -98,8 +101,6 @@ public class PlayerController : MonoBehaviour
         playerCollider = GetComponent<Collider>();
         playerInput = GetComponent<PlayerInput>();
         interactor = GetComponent<Interactor>();
-        cameraController = playerCamera.GetComponent<CameraController>();
-
         // change sprite controller on start
         OnControlsChanged();
     }
@@ -130,24 +131,11 @@ public class PlayerController : MonoBehaviour
         menuActions.OnControlsChanged();
     }
 
-    private void OnLook(InputValue lookValue)
-    {
-        if (canMove)
-        {
-            if (cameraController != null)
-            {
-                cameraController.lookVector = lookValue.Get<Vector2>();
-            }
-        }
-    }
-
     private void OnMoveEnter(InputAction.CallbackContext context)
     {
         if (canMove)
         {
-            Vector2 movementVector = context.ReadValue<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
+            movementVector = context.ReadValue<Vector2>();
             if (currentMovement == inputMovement.jumping)
             {
                 speed = 4;
@@ -176,9 +164,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            Vector2 movementVector = context.ReadValue<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
+            movementVector = context.ReadValue<Vector2>();
             if (IsGrounded())
             {
                 if (currentMovement == inputMovement.running) // starting to run
@@ -201,9 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canMove)
         {
-            Vector2 movementVector = context.ReadValue<Vector2>();
-            movementX = movementVector.x;
-            movementY = movementVector.y;
+            movementVector = context.ReadValue<Vector2>();
             if (IsGrounded())
             {
                 // just stopped
@@ -400,9 +384,6 @@ public class PlayerController : MonoBehaviour
             canMove = false;
             currentMovement = inputMovement.idle;
 
-            movementX = 0;
-            movementY = 0;
-
             Animate();
         }
         else
@@ -433,17 +414,16 @@ public class PlayerController : MonoBehaviour
         }
         if (canMove)
         {
-            Vector3 playerMovement = new Vector3(movementX, 0f, movementY);
+            Vector3 playerMovement = new Vector3(movementVector.x, 0f, movementVector.y);
+            playerMovement = playerCamera.forward * playerMovement.z + playerCamera.right * playerMovement.x;
             if (playerMovement.magnitude >= 0.1f)
             {
-                float targetAngle = Mathf.Atan2(playerMovement.x, playerMovement.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
-                float smoothedRotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSmoothingVelocity, rotationSmoothing);
+                const float turnSpeed = 3f;
+                float targetAngle = Mathf.Atan2(movementVector.x, movementVector.y) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
+                Quaternion rot = Quaternion.Euler(0f, targetAngle, 0f);
 
-                Vector3 movementDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-                rb.MovePosition(rb.position + movementDir * Time.deltaTime * speed);
-
-                rb.MoveRotation(Quaternion.Euler(0f, smoothedRotationAngle, 0f));
+                rb.MovePosition(rb.position + playerMovement * Time.deltaTime * speed);
+                rb.MoveRotation(Quaternion.Lerp(rb.rotation, rot, Time.deltaTime * turnSpeed));
             }
             else if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0))
                 && IsGrounded())

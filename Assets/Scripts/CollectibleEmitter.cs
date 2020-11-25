@@ -16,6 +16,9 @@ public class CollectibleEmitter : MonoBehaviour
     private float emitterSpeed = 3f;
     private float emitterTimeElapsed = 0f;
 
+    public float elevationAngle = 45f;
+    public float impulse = 20f;
+    public float emitAngle = 180f;
     private void Awake()
     {
         // Register interaction event
@@ -29,6 +32,7 @@ public class CollectibleEmitter : MonoBehaviour
         {
             Debug.LogError($"{name}: Must assign a collectible GameObject to be emitted.");
         }
+        Random.InitState(System.DateTime.Now.Millisecond);
     }
 
     // Start is called before the first frame update
@@ -55,6 +59,20 @@ public class CollectibleEmitter : MonoBehaviour
             for (int i = 0; i < collectibleAmount; i++)
             {
                 item = Instantiate(collectible, new Vector3(transform.position.x, transform.position.y+3f, transform.position.z), Quaternion.identity);
+                Collectible col = item.GetComponent<Collectible>();
+                if (col != null)
+                {
+                    // find player facing direction and emit objects in outward cone
+                    GameObject player = GameObject.FindGameObjectWithTag("Player");
+                    if (player != null)
+                    {
+                        Vector3 targetDir = player.transform.forward + new Vector3(0f, Random.Range(-emitAngle, emitAngle), Random.Range(10f, 25f));
+                        targetDir.Normalize();
+                        targetDir *= impulse;
+                        targetDir = Quaternion.AngleAxis(elevationAngle, Vector3.Cross(targetDir, Vector3.up))*targetDir; 
+                        item.GetComponent<Rigidbody>().AddForce(targetDir, ForceMode.Impulse);
+                    } 
+                }
                 item.AddComponent<StealableObject>();
             }
 

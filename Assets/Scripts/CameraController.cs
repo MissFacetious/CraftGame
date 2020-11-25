@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     // TODO (aoyeola): Unserialize private fields once ranges are finalized;
     [SerializeField]
-    public GameObject target;
+    public Transform target;
     
     [HideInInspector]
     public Vector2 lookVector;
@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour
     private Quaternion lookRotation;
     
 
-    [SerializeField, Range(1f, 20f)]
-    private float cameraDistance = 8f;
+    [SerializeField, Range(1f, 30f)]
+    private float cameraDistance = 15f;
 
     [SerializeField, Range(1f, 25f)]
     private float cameraPanRadius = 2f;
@@ -42,13 +42,22 @@ public class CameraController : MonoBehaviour
 
     // TODO (aoyeola): Expose these flags in an Options menu
     [SerializeField]
-    private bool invertXAxis, invertYAxis;
+    private bool invertXAxis = false, invertYAxis = false;
 
     [SerializeField]
     private LayerMask clippingMask = -1;
 
     private Transform obstruction;
     private float zoomSpeed = 2f;
+
+    Vector3 lookDir;
+    Vector3 lookPosition;
+
+    // Updated CameraController
+    public Vector3 offset;
+    public bool useOffset = true;
+    public float rotateSpeed = 4f;
+    public Transform pivot;
 
     public Vector3 CameraHalf
     {
@@ -71,7 +80,7 @@ public class CameraController : MonoBehaviour
 
         cameraOrbitAngle = new Vector2(45f, 0f);
         lookVector = Vector2.zero;
-        transform.localRotation = Quaternion.Euler(cameraOrbitAngle);
+        //transform.localRotation = Quaternion.Euler(cameraOrbitAngle);
         regularCamera = GetComponent<Camera>();
 
         // NOTE (aoyeola): Only for debugging/playtesting
@@ -84,42 +93,39 @@ public class CameraController : MonoBehaviour
         }
 
         #if !UNITY_EDITOR
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
         #endif
         
-        focusPoint = target.transform.position;
-        obstruction = target.transform;
+        focusPoint = target.position;
+        obstruction = target;
 
         // Ignore camera raycasts on Terrain and Player layer
         string[] maskNames = {"Player", "Terrain"};
-        //clippingMask ^= LayerMask.GetMask(maskNames);
+        clippingMask ^= LayerMask.GetMask(maskNames);
+
+    }
+
+    void Start()
+    {
+    }
+
+    void Update()
+    {
+        float horizontal = lookVector.x * rotateSpeed;
+        float vertical = lookVector.y * rotateSpeed;
     }
 
     private void LateUpdate()
     {
-
         UpdateCameraInput();
         UpdateCameraTracking();
+        
+        lookDir = lookRotation * Vector3.forward;
+        lookPosition = focusPoint - lookDir * cameraDistance;
+        UpdateCameraCollision();
         //ViewObstructed();
         
-        Vector3 lookDir = lookRotation * Vector3.forward;
-        Vector3 lookPosition = focusPoint - lookDir * cameraDistance;
-
-        Vector3 rectOffset = lookDir * regularCamera.nearClipPlane;
-        Vector3 rectPosition = lookPosition + rectOffset;
-        Vector3 castFrom = target.transform.position;
-        Vector3 castLine = rectPosition - castFrom;
-        float castDistance = castLine.magnitude;
-        Vector3 castDirection = castLine / castDistance;
-
-        // camera collision - cast a box from camera to the target. If a raycast hit is detected, 
-        // reposition the camera within distance to the near clipping plane
-        if (Physics.BoxCast(focusPoint, CameraHalf, castDirection, out RaycastHit hitinfo, lookRotation, castDistance, clippingMask))
-        {
-            rectPosition = castFrom + castDirection * hitinfo.distance;
-            lookPosition = rectPosition - rectOffset;
-        }
         transform.SetPositionAndRotation(lookPosition, lookRotation);
     }
 
@@ -133,7 +139,7 @@ public class CameraController : MonoBehaviour
 
     private void UpdateCameraTracking()
     {
-        Vector3 targetPosition = target.transform.position;
+        Vector3 targetPosition = target.position;
 
         if (cameraPanRadius > 0f)
         {
@@ -188,6 +194,24 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    private void UpdateCameraCollision()
+    {
+        Vector3 rectOffset = lookDir * regularCamera.nearClipPlane;
+        Vector3 rectPosition = lookPosition + rectOffset;
+        Vector3 castFrom = target.position;
+        Vector3 castLine = rectPosition - castFrom;
+        float castDistance = castLine.magnitude;
+        Vector3 castDirection = castLine / castDistance;
+
+        // camera collision - cast a box from camera to the target. If a raycast hit is detected, 
+        // reposition the camera within distance to the near clipping plane
+        if (Physics.BoxCast(focusPoint, CameraHalf, castDirection, out RaycastHit hitInfo, lookRotation, castDistance, clippingMask))
+        {
+            rectPosition = castFrom + castDirection * hitInfo.distance;
+            lookPosition = rectPosition - rectOffset;
+        }
+    }
+
     private bool ManualRotation()
     {
         // Flip x and y values for lookVector so lookVector.x defines the 
@@ -223,7 +247,7 @@ public class CameraController : MonoBehaviour
     private void ViewObstructed()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, target.transform.position - transform.position, out hit, 4.5f))
+        if (Physics.Raycast(transform.position, target.position - transform.position, out hit, 4.5f))
         {
             if (!hit.collider.gameObject.CompareTag("Player"))
             {
@@ -231,7 +255,7 @@ public class CameraController : MonoBehaviour
                 obstruction.gameObject.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
 
                 if ((Vector3.Distance(obstruction.position, transform.position) >= 3f)
-                  && ( Vector3.Distance(transform.position, target.transform.position) >= 1.5f))
+                  && ( Vector3.Distance(transform.position, target.position) >= 1.5f))
                 {
                     transform.Translate(Vector3.forward * zoomSpeed * Time.deltaTime);
                 }
@@ -239,7 +263,7 @@ public class CameraController : MonoBehaviour
                 {
                     MeshRenderer meshRenderer = obstruction.gameObject.GetComponent<MeshRenderer>();
                     meshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-                    if (Vector3.Distance(transform.position, target.transform.position) < 4.5f)
+                    if (Vector3.Distance(transform.position, target.position) < 4.5f)
                     {
                         transform.Translate(Vector3.back * zoomSpeed * Time.deltaTime);
                     }

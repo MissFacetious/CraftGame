@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Materials/Materials.meta
 guid: 7b2122aada818f64385e2b61dfc0055c
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 2c52f455bbc99114eadf83389e92d502
+PrefabImporter:
+>>>>>>> 3875a2d0ee749a2dd0d7d83c453631c3642f71fd:Assets/Prefabs/HoshiLeaveFall.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
