@@ -37,6 +37,8 @@ public class StartingPoint : MonoBehaviour
     private Recipes.RecipeEnum type2;
     private Recipes.RecipeEnum type3;
 
+    private AudioSource[] audio;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,7 @@ public class StartingPoint : MonoBehaviour
             topItem2.gameObject.SetActive(false);
             topItem3.gameObject.SetActive(false);
         }
+        audio = GetComponents<AudioSource>();
     }
 
     public void OnInteract()
@@ -147,10 +150,18 @@ public class StartingPoint : MonoBehaviour
             inventoryManager.getCount(type3) >= outOf3) {
             yes.SetActive(true);
             no.SetActive(false);
+            if (audio != null && audio.Length > 0)
+            {
+                audio[0].Play();
+            }
         }
         else {
             yes.SetActive(false);
             no.SetActive(true);
+            if (audio != null && audio.Length > 1)
+            {
+                audio[1].Play();
+            }
         }
         menu.GetComponent<Animator>().SetBool("gathering", true);
     }

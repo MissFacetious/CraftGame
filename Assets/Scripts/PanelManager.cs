@@ -193,7 +193,10 @@ public class PanelManager : MonoBehaviour
         bool success = craftingManager.Craft(type);
         if (success)
         {
-            audio[0].Play();
+            if (audio != null && audio.Length > 0)
+            {
+                audio[0].Play();
+            }
             resultPanel.GetComponent<ResultsDisplay>().ShowSuccess();
             // tell the flowchart to set a var
             if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
@@ -216,7 +219,10 @@ public class PanelManager : MonoBehaviour
         else
         {
             // failure panel
-            audio[1].Play();
+            if (audio != null && audio.Length > 1)
+            {
+                audio[1].Play();
+            }
             resultPanel.GetComponent<ResultsDisplay>().ShowFailure();
         }
         // show results panel
