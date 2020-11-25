@@ -255,7 +255,7 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""996ff7d1-720c-4f3b-a6b8-c38b4fba9d7e"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -321,7 +321,7 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6e678cb2-9297-40a2-b29f-23d1214e4519"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -364,6 +364,17 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ffb4603d-03d4-4cb5-9401-8b05c99c5031"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""582e5f8e-20ef-48a8-a2dc-0d3243e79bd4"",
                     ""path"": ""<DualShockGamepad>/buttonWest"",
                     ""interactions"": """",
@@ -387,7 +398,7 @@ public class @CraftGame : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2f4a5198-43bb-4daf-b4f1-be8388338a6b"",
-                    ""path"": ""<Keyboard>/delete"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

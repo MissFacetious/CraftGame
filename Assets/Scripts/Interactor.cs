@@ -55,11 +55,11 @@ public class Interactor : MonoBehaviour
         Sprite XB1_run = Resources.Load<Sprite>("Input/XboxOne_X");
         Sprite XB1_menu = Resources.Load<Sprite>("Input/XboxOne_Menu");
 
-        Sprite KB_okay = Resources.Load<Sprite>("Input/Keyboard_Black_Space");
+        Sprite KB_okay = Resources.Load<Sprite>("Input/Keyboard_Black_E");
         Sprite KB_cancel = Resources.Load<Sprite>("Input/Keyboard_Black_Esc");
-        Sprite KB_jump = Resources.Load<Sprite>("Input/Keyboard_Black_Ctrl");
-        Sprite KB_menu = Resources.Load<Sprite>("Input/Keyboard_Black_Del");
-        Sprite KB_run = Resources.Load<Sprite>("Input/Keyboard_Black_Alt");
+        Sprite KB_jump = Resources.Load<Sprite>("Input/Keyboard_Black_Space");
+        Sprite KB_menu = Resources.Load<Sprite>("Input/Keyboard_Black_Esc");
+        Sprite KB_run = Resources.Load<Sprite>("Input/Keyboard_Black_Shift");
         //Sprite Switch_sprite = Resources.Load<Sprite>("Input/Switch_B");
 
         Sprite[] PS4 = new Sprite[] { PS4_okay, PS4_cancel, PS4_jump, PS4_run, PS4_menu };
@@ -166,13 +166,24 @@ public class Interactor : MonoBehaviour
         return PlayerController.inputDevice.Keyboard;
     }
 
-    public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
+    public Sprite UpdateIconSprite(string deviceName, buttons buttonName, bool dialog)
     {
         if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
         if (interactSpriteDict.TryGetValue(deviceName, out Sprite[] deviceIcon))
         {
             if (buttonName.Equals(buttons.okay) && button != null)
             {
+                if (dialog)
+                {
+                    if (deviceName == "Keyboard")
+                    {
+                        buttonName = buttons.jump;
+                    }
+                    else
+                    {
+                        buttonName = buttons.okay;
+                    }
+                }
                 Image image = button.GetComponent<Image>();
                 image.sprite = deviceIcon[(int)buttonName];
             }

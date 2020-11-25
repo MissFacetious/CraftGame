@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
             if (currentControls == inputDevice.Keyboard)
             {
                 currentControls = interactor.UpdateIcons(playerInput.devices[lastPluggedIn].name);
-                interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.okay);
+                interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.okay, false);
             }
         }
         menuActions.OnControlsChanged();
