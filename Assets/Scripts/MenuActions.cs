@@ -141,23 +141,23 @@ public class MenuActions : MonoBehaviour
             // change sprites of the bottom menu
             if (selectIcon != null)
             {
-                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.okay);
+                selectIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.okay, false);
             }
             if (backIcon != null)
             {
-                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.cancel);
+                backIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.cancel, false);
             }
             if (jumpIcon != null)
             {
-                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.jump);
+                jumpIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.jump, false);
             }
             if (runIcon != null)
             {
-                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.run);
+                runIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.run, false);
             }
             if (menuIcon != null)
             {
-                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.menu);
+                menuIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(PlayerController.currentControls.ToString(), Interactor.buttons.menu, false);
             }
         }
     }
@@ -502,7 +502,8 @@ public class MenuActions : MonoBehaviour
         {
             bool menu = GetComponent<Animator>().GetBool("menu");
             GetComponent<Animator>().SetBool("menu", !menu);
-            if (menu && eventSystem != null)
+            if (eventSystem != null)
+            if (menu)
             {
                 eventSystem.SetSelectedGameObject(null);
                 // also start input from the player controller
@@ -540,7 +541,7 @@ public class MenuActions : MonoBehaviour
         {
             GameObject continueIcon = GameObject.FindGameObjectWithTag("Continue");
             // a fungus continue icon has popped up, set the sprite correctly
-            continueIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay);
+            continueIcon.GetComponent<Image>().sprite = interactor.UpdateIconSprite(playerInput.devices[0].name, Interactor.buttons.okay, true);
             continueAgain = false;
         }
         else if (GameObject.FindGameObjectWithTag("Continue") == null)
