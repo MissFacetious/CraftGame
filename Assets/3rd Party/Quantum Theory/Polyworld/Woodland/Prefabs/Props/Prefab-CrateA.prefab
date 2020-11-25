@@ -249,7 +249,6 @@ GameObject:
   m_Component:
   - component: {fileID: 400006}
   - component: {fileID: 6500002}
-  - component: {fileID: 11400000}
   m_Layer: 2
   m_Name: Trigger-Container
   m_TagString: Untagged
@@ -284,24 +283,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 0.5, z: 3}
   m_Center: {x: 0, y: -0.5, z: 0}
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e16e94897f8cf964892f752381ba7a5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ContainerTop: {fileID: 100002}
-  raycastObjects:
-  - {fileID: 100004}
-  - {fileID: 100002}
-  OpenText: '[Open Crate]'
-  CloseText: '[Close Crate]'
-  OpenClip: {fileID: 7400000, guid: dffbb0cb4daf52b4b9db7ea8d9eb7861, type: 2}
-  CloseClip: {fileID: 7400000, guid: d43fc85945ffe73489f27f14fc674363, type: 2}
-  uiCanvasText: {fileID: 0}
