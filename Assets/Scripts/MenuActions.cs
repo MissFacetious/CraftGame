@@ -40,7 +40,7 @@ public class MenuActions : MonoBehaviour
     public GameObject runIcon;
     public GameObject menuIcon;
 
-    private AudioSource audio;
+    private AudioSource[] audio;
     private bool countdown;
     private float timeLeft;
 
