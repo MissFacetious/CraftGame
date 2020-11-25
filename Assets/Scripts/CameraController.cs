@@ -15,8 +15,8 @@ public class CameraController : MonoBehaviour
     private Quaternion lookRotation;
     
 
-    [SerializeField, Range(1f, 20f)]
-    private float cameraDistance = 8f;
+    [SerializeField, Range(1f, 30f)]
+    private float cameraDistance = 15f;
 
     [SerializeField, Range(1f, 25f)]
     private float cameraPanRadius = 2f;
@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
 
     // TODO (aoyeola): Expose these flags in an Options menu
     [SerializeField]
-    private bool invertXAxis, invertYAxis;
+    private bool invertXAxis = false, invertYAxis = false;
 
     [SerializeField]
     private LayerMask clippingMask = -1;
