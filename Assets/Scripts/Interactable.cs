@@ -17,6 +17,8 @@ public class Interactable : MonoBehaviour
     private float interactRadius = 3f;
     private bool isFocused = false;
 
+    private AudioSource audio;
+
     private void Awake()
     {
         isReady = true;
@@ -25,13 +27,11 @@ public class Interactable : MonoBehaviour
         {
             interactionTransform = transform;
         }
+        audio = GetComponent<AudioSource>();
     }
 
     public void Interact()
     {
-        //Debug.Log("Base interaction method.");
-        //Debug.Log("OnInteraction:" + OnInteraction);
-        //Debug.Log("IsReady:" + isReady);
         if (OnInteraction != null)
         {
             if (isReady) // && withinRange
@@ -40,6 +40,17 @@ public class Interactable : MonoBehaviour
                 if (interactionTransform.gameObject.tag == "Interactable")
                 {
                     player.gameObject.GetComponent<PlayerController>().animator.SetTrigger("interact");
+                    if (audio != null)
+                    {
+                        audio.Play();
+                    }
+                }
+                if (interactionTransform.gameObject.tag == "CraftCollider")
+                {
+                    if (audio != null)
+                    {
+                        audio.Play();
+                    }
                 }
                 OnInteraction.Invoke();
             }

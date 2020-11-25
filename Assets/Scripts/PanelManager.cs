@@ -48,6 +48,7 @@ public class PanelManager : MonoBehaviour
     public Animator mix;
 
     public Flowchart flowchart;
+    private AudioSource[] audio;
 
     Stack<Action> lastAction = new Stack<Action>();
 
@@ -55,6 +56,7 @@ public class PanelManager : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        audio = GetComponents<AudioSource>();
     }
 
     public void ShowInventoryPanel()
@@ -191,6 +193,10 @@ public class PanelManager : MonoBehaviour
         bool success = craftingManager.Craft(type);
         if (success)
         {
+            if (audio != null && audio.Length > 0)
+            {
+                audio[0].Play();
+            }
             resultPanel.GetComponent<ResultsDisplay>().ShowSuccess();
             // tell the flowchart to set a var
             if (type == Recipes.RecipeEnum.RAINBOW_REFRACTOR)
@@ -213,6 +219,10 @@ public class PanelManager : MonoBehaviour
         else
         {
             // failure panel
+            if (audio != null && audio.Length > 1)
+            {
+                audio[1].Play();
+            }
             resultPanel.GetComponent<ResultsDisplay>().ShowFailure();
         }
         // show results panel
