@@ -40,6 +40,7 @@ public class MenuActions : MonoBehaviour
     public GameObject runIcon;
     public GameObject menuIcon;
 
+    private AudioSource audio;
     private bool countdown;
     private float timeLeft;
 
@@ -93,6 +94,8 @@ public class MenuActions : MonoBehaviour
         {
             GetComponent<Animator>().SetTrigger("endCredits");
         }
+
+        audio = GetComponents<AudioSource>();
     }
 
     void getEventSystem()
@@ -238,6 +241,9 @@ public class MenuActions : MonoBehaviour
                 minutesStr = "0" + minutesStr;
             }
             timer.text = minutesStr + ":" + secondsStr;
+            // if (audio != null && audio.Length > 0) {
+            //    audio[0].Play();
+            // }
         }
     }
 
