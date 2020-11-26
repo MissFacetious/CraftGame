@@ -32,6 +32,7 @@ TagManager:
   - fox
   - TouchGround
   - EventSystemExtra
+  - gnome
   layers:
   - Default
   - TransparentFX
