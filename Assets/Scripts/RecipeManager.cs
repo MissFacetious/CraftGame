@@ -66,8 +66,7 @@ public class RecipeManager : MonoBehaviour
             {
                 rs.Add(Recipes.RecipeEnum.GNOME_NET);
             }
-        }  
-
+        }
         for (int i = 0; i < rs.Count; i++) {
             if (!alreadyInThere((Recipes.RecipeEnum)rs[i]))
             {
@@ -85,9 +84,8 @@ public class RecipeManager : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             GameObject recipe = recipeContent.transform.GetChild(0).gameObject;
-            Destroy(recipe);
+            DestroyImmediate(recipe.gameObject);
         }
-
         // show recipes that are accessible at this point of the game
         createRecipesInPanel();
 
