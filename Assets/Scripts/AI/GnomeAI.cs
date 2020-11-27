@@ -87,5 +87,17 @@ public class GnomeAI : MonoBehaviour
         {
             agent.SetDestination(GameObject.FindWithTag("Player").transform.position);
         }
+        else
+        {
+            aiState = AIState.Idle;
+            StartCoroutine(WaitAMomentThenGo());
+        }
+    }
+
+    private IEnumerator WaitAMomentThenGo()
+    {
+        float time = Random.Range(1f, 10f);
+        yield return new WaitForSeconds(time);
+        aiState = AIState.ChasePlayer;
     }
 }
