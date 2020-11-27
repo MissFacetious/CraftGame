@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class StealAI : MonoBehaviour
@@ -14,11 +15,17 @@ public class StealAI : MonoBehaviour
     public float remainingDistance;
     public float followDistance = 3f;
 
+    private float CloseEnoughToTarget = 3f;
+    private float timer;
+    private float wanderRadius;
+    private float maxStateTime = 10f;
+    private Vector3 roamToLocation;
     public int currWaypoint;
 
     public enum AIState
     {
         StealObjects,
+        Roam,
         ChasePlayer
     };
 
@@ -27,20 +34,38 @@ public class StealAI : MonoBehaviour
     void Start ()
     {
         currWaypoint = -1;
+        CloseEnoughToTarget = 3f;
         aiState = AIState.StealObjects;
         anim = GetComponent<Animator>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.stoppingDistance = 3f;
+        roamToLocation = RandomMovement(agent.transform.position, 10f);
         goToObject();
     }
 
     void Update()
     {
+        timer += Time.deltaTime;
+
+        checkChangeStateTimer();
+
         anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
+
         switch (aiState)
         {
             case AIState.StealObjects:
-                agent.stoppingDistance = 0f;
                 goToObject();
+                break;
+
+            case AIState.Roam:
+                if (StealableObject.FindNearest(transform.position) != null)
+                {
+                    aiState = AIState.StealObjects;
+                }
+                else
+                {
+                    goToRandom(10f);
+                }
                 break;
 
             case AIState.ChasePlayer:
@@ -50,7 +75,6 @@ public class StealAI : MonoBehaviour
                 }
                 else
                 {
-                    agent.stoppingDistance = 3f;
                     goToPlayer();
                 }
                 break;
@@ -58,12 +82,17 @@ public class StealAI : MonoBehaviour
             default:
                 break;
         }
-
     }
 
+    // If a collectable is on the map, seek it out.
     private void goToObject()
     {
+        agent.stoppingDistance = 0f;
+
         var nearestObject = StealableObject.FindNearest(transform.position);
+        
+        anim.enabled = true;
+
         if (nearestObject != null)
         {
             remainingDistance = agent.remainingDistance;
@@ -77,10 +106,53 @@ public class StealAI : MonoBehaviour
 
     private void goToPlayer()
     {
-        var distance = Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position);
-        if (followDistance <= distance)
+        agent.stoppingDistance = 3f;
+
+        if (followDistance <= Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position))
         {
+            anim.enabled = true;
             agent.SetDestination(GameObject.FindWithTag("Player").transform.position);
+        }
+        else
+        {
+            anim.enabled = false;
+        }
+    }
+
+    private void goToRandom(float radius)
+    {
+
+        anim.enabled = true;
+        
+        // Pick another random location
+        if (Vector3.Distance(transform.position, roamToLocation) <= CloseEnoughToTarget)
+        {
+            roamToLocation = RandomMovement(transform.position, radius);
+        }
+
+        agent.SetDestination(roamToLocation);
+    }
+
+    // Find a location on the nav mesh within a radius of the agent
+    public Vector3 RandomMovement(Vector3 position, float radius)
+    {
+        NavMesh.SamplePosition(Random.insideUnitSphere * radius + position, out NavMeshHit hit, radius, -1);
+
+        return hit.position;
+    }
+
+    private void checkChangeStateTimer()
+    {
+        if (timer >= maxStateTime && aiState == AIState.ChasePlayer)
+        {
+            roamToLocation = RandomMovement(transform.position, 20f);
+            aiState = AIState.Roam;
+            timer = 0f;
+        }
+        else if (timer >= maxStateTime && aiState == AIState.Roam)
+        {
+            aiState = AIState.ChasePlayer;
+            timer = 0f;
         }
     }
 }
