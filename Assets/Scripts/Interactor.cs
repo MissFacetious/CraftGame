@@ -149,7 +149,7 @@ public class Interactor : MonoBehaviour
         button.transform.position = new Vector3(buttonPosition.x, buttonPosition.y+aboveCharacter, 0f);
     }
 
-    public PlayerController.inputDevice UpdateIcons(string deviceName)
+    public PlayerController.inputDevice getInputDevice(string deviceName)
     {
         if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
 
@@ -170,12 +170,16 @@ public class Interactor : MonoBehaviour
 
     public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
     {
-        if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
+        if (deviceName == PlayerController.inputDevice.TouchScreen.ToString() ||
+            deviceName == PlayerController.inputDevice.Mouse.ToString())
+        {
+            deviceName = PlayerController.inputDevice.Keyboard.ToString();
+        }
         if (interactSpriteDict.TryGetValue(deviceName, out Sprite[] deviceIcon))
         {
             if (buttonName.Equals(buttons.continue_button))
             {
-                if (deviceName == "Keyboard")
+                if (deviceName == PlayerController.inputDevice.Keyboard.ToString())
                 {
                     buttonName = buttons.jump;
                 }

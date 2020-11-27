@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public enum inputDevice
     {
         Keyboard,
+        TouchScreen,
+        Mouse,
         XInputControllerWindows,
         DualShock4GamepadHID
     }
@@ -119,12 +121,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnControlsChanged()
     {
+        Debug.Log(playerInput.devices.Count);
         if (playerInput.devices.Count > 0)
         {
-            //int lastPluggedIn = playerInput.devices.Count - 1;
             if (currentControls == inputDevice.Keyboard)
             {
-                currentControls = interactor.UpdateIcons(playerInput.devices[0].name);
+                string currentControlsStr = inputDevice.Keyboard.ToString();
+                for (int i=0; i < playerInput.devices.Count; i++)
+                {
+                    if (playerInput.devices[i].name != inputDevice.Keyboard.ToString() &&
+                        playerInput.devices[i].name != inputDevice.TouchScreen.ToString() &&
+                        playerInput.devices[i].name != inputDevice.Mouse.ToString())
+                    {
+                        currentControlsStr = playerInput.devices[i].name;
+                    }
+                }
+                currentControls = interactor.getInputDevice(currentControlsStr);
+                //Debug.Log(currentControls);
                 interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.billboard);
             }
         }
