@@ -87,5 +87,9 @@ public class GnomeAI : MonoBehaviour
         {
             agent.SetDestination(GameObject.FindWithTag("Player").transform.position);
         }
+        else
+        {
+            aiState = AIState.Idle;
+        }
     }
 }
