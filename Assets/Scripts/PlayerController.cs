@@ -121,11 +121,11 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInput.devices.Count > 0)
         {
-            int lastPluggedIn = playerInput.devices.Count - 1;
+            //int lastPluggedIn = playerInput.devices.Count - 1;
             if (currentControls == inputDevice.Keyboard)
             {
-                currentControls = interactor.UpdateIcons(playerInput.devices[lastPluggedIn].name);
-                interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.okay, false);
+                currentControls = interactor.UpdateIcons(playerInput.devices[0].name);
+                interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.billboard);
             }
         }
         menuActions.OnControlsChanged();

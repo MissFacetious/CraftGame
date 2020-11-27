@@ -27,6 +27,8 @@ public class Interactor : MonoBehaviour
         jump,
         run,
         menu,
+        continue_button,
+        billboard
     }
 
     private void Awake()
@@ -166,24 +168,25 @@ public class Interactor : MonoBehaviour
         return PlayerController.inputDevice.Keyboard;
     }
 
-    public Sprite UpdateIconSprite(string deviceName, buttons buttonName, bool dialog)
+    public Sprite UpdateIconSprite(string deviceName, buttons buttonName)
     {
         if (deviceName == "Touchscreen" || deviceName == "Mouse") deviceName = "Keyboard";
         if (interactSpriteDict.TryGetValue(deviceName, out Sprite[] deviceIcon))
         {
-            if (buttonName.Equals(buttons.okay) && button != null)
+            if (buttonName.Equals(buttons.continue_button))
             {
-                if (dialog)
+                if (deviceName == "Keyboard")
                 {
-                    if (deviceName == "Keyboard")
-                    {
-                        buttonName = buttons.jump;
-                    }
-                    else
-                    {
-                        buttonName = buttons.okay;
-                    }
+                    buttonName = buttons.jump;
                 }
+                else
+                {
+                    buttonName = buttons.okay;
+                }
+            }
+            if (buttonName.Equals(buttons.billboard) && button != null)
+            {
+                buttonName = buttons.okay;
                 Image image = button.GetComponent<Image>();
                 image.sprite = deviceIcon[(int)buttonName];
             }
