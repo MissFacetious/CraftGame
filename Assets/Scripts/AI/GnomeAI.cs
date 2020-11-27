@@ -90,6 +90,14 @@ public class GnomeAI : MonoBehaviour
         else
         {
             aiState = AIState.Idle;
+            StartCoroutine(WaitAMomentThenGo());
         }
+    }
+
+    private IEnumerator WaitAMomentThenGo()
+    {
+        float time = Random.Range(1f, 10f);
+        yield return new WaitForSeconds(time);
+        aiState = AIState.ChasePlayer;
     }
 }
