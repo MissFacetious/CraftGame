@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\AI\VelocityReporter.cs" />
     <Compile Include="Assets\Scripts\Apple.cs" />
     <Compile Include="Assets\Scripts\BillboardFX.cs" />
+    <Compile Include="Assets\Scripts\Bounce.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Collectible.cs" />
     <Compile Include="Assets\Scripts\CollectibleEmitter.cs" />
