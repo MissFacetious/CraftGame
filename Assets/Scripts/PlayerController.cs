@@ -121,25 +121,21 @@ public class PlayerController : MonoBehaviour
 
     private void OnControlsChanged()
     {
-        Debug.Log(playerInput.devices.Count);
         if (playerInput.devices.Count > 0)
         {
-            if (currentControls == inputDevice.Keyboard)
+            // we default to the keyboard, but if we have a joystick...
+            string currentControlsStr = inputDevice.Keyboard.ToString();
+            for (int i = 0; i < playerInput.devices.Count; i++)
             {
-                string currentControlsStr = inputDevice.Keyboard.ToString();
-                for (int i=0; i < playerInput.devices.Count; i++)
+                if (playerInput.devices[i].name != inputDevice.Keyboard.ToString() &&
+                    playerInput.devices[i].name != inputDevice.TouchScreen.ToString() &&
+                    playerInput.devices[i].name != inputDevice.Mouse.ToString())
                 {
-                    if (playerInput.devices[i].name != inputDevice.Keyboard.ToString() &&
-                        playerInput.devices[i].name != inputDevice.TouchScreen.ToString() &&
-                        playerInput.devices[i].name != inputDevice.Mouse.ToString())
-                    {
-                        currentControlsStr = playerInput.devices[i].name;
-                    }
+                    currentControlsStr = playerInput.devices[i].name;
                 }
-                currentControls = interactor.getInputDevice(currentControlsStr);
-                //Debug.Log(currentControls);
-                interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.billboard);
             }
+            currentControls = interactor.getInputDevice(currentControlsStr);
+            interactor.UpdateIconSprite(currentControls.ToString(), Interactor.buttons.billboard);
         }
         menuActions.OnControlsChanged();
     }

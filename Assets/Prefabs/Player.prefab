@@ -241,7 +241,7 @@ MonoBehaviour:
     m_ActionId: 286569d5-7f70-48f4-bef4-c860c971596e
     m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -259,12 +259,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuActions: {fileID: 0}
   animator: {fileID: 6028566139820530975}
-  rotationSmoothing: 0.1
   groundDistanceMargin: 0.3
   rotationSmoothingVelocity: 0
   speed: 6
-  playerCamera: {fileID: 0}
-  rotationSpeed: 0
   jumpHeight: 9
 --- !u!114 &6028566139291724059
 MonoBehaviour:
