@@ -8,7 +8,6 @@ public class DoDestroy : MonoBehaviour
     void Start()
     {
         GameObject[] obj1 = GameObject.FindGameObjectsWithTag("EventSystem");
-        Debug.Log(obj1);
         if (obj1.Length > 0)
         {
             // this is already loaded, destroy this backup!

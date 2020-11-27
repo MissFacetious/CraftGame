@@ -21,8 +21,6 @@ public class NPC : MonoBehaviour
 
     public void OnInteract()
     {
-        Debug.Log("Test!");
-        Debug.Log(name + "'s interaction method");
         playDialogue();
     }
 

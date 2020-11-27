@@ -64,10 +64,10 @@ public class Interactor : MonoBehaviour
         Sprite KB_run = Resources.Load<Sprite>("Input/Keyboard_Black_Shift");
         //Sprite Switch_sprite = Resources.Load<Sprite>("Input/Switch_B");
 
-        Sprite[] PS4 = new Sprite[] { PS4_okay, PS4_cancel, PS4_jump, PS4_run, PS4_menu };
-        Sprite[] XBOX = new Sprite[] { XB1_okay, XB1_cancel, XB1_jump, XB1_run, XB1_menu };
+        Sprite[] PS4 = new Sprite[] { PS4_okay, PS4_cancel, PS4_jump, PS4_run, PS4_menu, PS4_okay, PS4_okay };
+        Sprite[] XBOX = new Sprite[] { XB1_okay, XB1_cancel, XB1_jump, XB1_run, XB1_menu, XB1_okay, XB1_okay };
         //Sprite[] SWITCH = new Sprite[] { Switch_sprite, Switch_sprite };
-        Sprite[] KEYBOARD = new Sprite[] { KB_okay, KB_cancel, KB_jump, KB_run, KB_menu };
+        Sprite[] KEYBOARD = new Sprite[] { KB_okay, KB_cancel, KB_jump, KB_run, KB_menu, KB_jump, KB_okay };
 
         interactSpriteDict = new Dictionary<string, Sprite[]>
         {
