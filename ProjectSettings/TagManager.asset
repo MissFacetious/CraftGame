@@ -33,6 +33,7 @@ TagManager:
   - TouchGround
   - EventSystemExtra
   - gnome
+  - bear
   layers:
   - Default
   - TransparentFX
