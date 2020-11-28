@@ -6368,6 +6368,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7820891778017681163, guid: 17fdb8114dea1024abebfed40a2d850e,
+        type: 3}
+      propertyPath: collectibleAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7820891778017681164, guid: 17fdb8114dea1024abebfed40a2d850e,
         type: 3}
       propertyPath: interactionTransform
@@ -8610,8 +8615,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566094307}
-  m_LocalRotation: {x: 0.085268125, y: 0.00097029534, z: -0.00008303772, w: 0.9963576}
-  m_LocalPosition: {x: 109.084915, y: 12.515604, z: -114.74429}
+  m_LocalRotation: {x: 0.08526817, y: 0.0009703111, z: -0.000083039115, w: 0.9963576}
+  m_LocalPosition: {x: 109.084915, y: 12.515603, z: -114.744286}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1463269223}
@@ -14074,7 +14079,7 @@ MonoBehaviour:
   collectible: {fileID: 2690513015607287240, guid: 21207b1a3167e564498b7d66d41c4286,
     type: 3}
   particles: {fileID: 2127184883}
-  collectibleAmount: 3
+  collectibleAmount: 2
   emitterSpeed: 3
   elevationAngle: 45
   impulse: 20
@@ -14359,7 +14364,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087609691}
-  m_LocalRotation: {x: 0.06958162, y: 0.000000047399915, z: -0.000000003284603, w: 0.99757624}
+  m_LocalRotation: {x: 0.069581635, y: 0.0000000772588, z: -0.000000005573273, w: 0.9975763}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -15339,7 +15344,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160981586}
-  m_LocalRotation: {x: 0.105772614, y: 0.00000004628802, z: -0.0000000048867297, w: 0.99439037}
+  m_LocalRotation: {x: 0.10577263, y: 0.00000007370331, z: -0.000000007997612, w: 0.99439037}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -18797,7 +18802,7 @@ Transform:
   m_GameObject: {fileID: 1463269222}
   m_LocalRotation: {x: -0.082244635, y: -0.000000049996743, z: 0.000000004125013,
     w: 0.9966122}
-  m_LocalPosition: {x: 0.021575462, y: 0.08308184, z: -3.3967803}
+  m_LocalPosition: {x: 0.021575306, y: 0.083081245, z: -3.3967881}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1160981587}
@@ -18996,7 +19001,7 @@ MonoBehaviour:
   collectible: {fileID: 2690513015607287240, guid: 21207b1a3167e564498b7d66d41c4286,
     type: 3}
   particles: {fileID: 770617271}
-  collectibleAmount: 3
+  collectibleAmount: 2
   emitterSpeed: 3
   elevationAngle: 45
   impulse: 20
@@ -19266,6 +19271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820891778017681163, guid: 17fdb8114dea1024abebfed40a2d850e,
+        type: 3}
+      propertyPath: collectibleAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7820891778017681164, guid: 17fdb8114dea1024abebfed40a2d850e,
         type: 3}
@@ -21966,7 +21976,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754677600}
-  m_LocalRotation: {x: 0.08766766, y: 0.0000000539177, z: -0.000000004772447, w: 0.9961498}
+  m_LocalRotation: {x: 0.087667674, y: 0.000000088294286, z: -0.000000008017023, w: 0.9961498}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -24987,6 +24997,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820891778017681163, guid: 17fdb8114dea1024abebfed40a2d850e,
+        type: 3}
+      propertyPath: collectibleAmount
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7820891778017681164, guid: 17fdb8114dea1024abebfed40a2d850e,
         type: 3}
