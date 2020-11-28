@@ -568,6 +568,7 @@ public class MenuActions : MonoBehaviour
                 showCountdown();
             }
         }
+        /*
         if ((sceneName == scene.village ||
              sceneName == scene.summer ||
              sceneName == scene.spring ||
@@ -586,9 +587,6 @@ public class MenuActions : MonoBehaviour
         {
             SceneManager.LoadScene("CraftScene", LoadSceneMode.Single);
         }
-        if (Keyboard.current.qKey.wasPressedThisFrame)
-        {
-            CreditScene();
-        }
+        */
     }
 }
