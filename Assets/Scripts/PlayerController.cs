@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     CraftGame controls = null;
     public static inputDevice currentControls;
     public static inputMovement currentMovement;
+    public static inputMovement previousMovement;
 
     //public static controls currentControls;
     public MenuActions menuActions;
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private InventoryManager inventoryManager;
     private bool addJumpForce = false;
-    
+    private bool exitJumpFly = false;
     private Collider playerCollider;
     private AudioSource[] audio;
     private Vector2 movementVector;
@@ -201,10 +202,9 @@ public class PlayerController : MonoBehaviour
             movementVector = context.ReadValue<Vector2>();
             if (IsGrounded())
             {
-                // just stopped
+                // stopped
                 currentMovement = inputMovement.idle;
                 Animate();
-                
             }
         }
     }
@@ -259,9 +259,15 @@ public class PlayerController : MonoBehaviour
     {
         // done running
         if (IsGrounded() && currentMovement != inputMovement.jumping && currentMovement != inputMovement.flying) {
-            if (currentMovement != inputMovement.walking)
+            if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0)))
             {
                 currentMovement = inputMovement.idle;
+                Animate();
+            }
+            else
+            {
+                speed = 6;
+                currentMovement = inputMovement.walking;
                 Animate();
             }
         }
@@ -297,7 +303,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnJumpExit(InputAction.CallbackContext context)
     {
-
+        exitJumpFly = true;
     }
 
     private void OnCancel(InputValue inputValue)
@@ -459,9 +465,24 @@ public class PlayerController : MonoBehaviour
 
                 rb.MovePosition(rb.position + playerMovement * Time.deltaTime * speed);
                 rb.MoveRotation(Quaternion.Lerp(rb.rotation, rot, Time.deltaTime * turnSpeed));
+
+                if (IsGrounded() && exitJumpFly)
+                {
+                    exitJumpFly = false;
+                    if (speed == 12)
+                    {
+                        currentMovement = inputMovement.running;
+                    }
+                    else
+                    {
+                        currentMovement = inputMovement.walking;
+                    }
+                }
+
+                Animate();
             }
             else if ((Mathf.Approximately(rb.velocity.x, 0)) && (Mathf.Approximately(rb.velocity.y, 0)) && (Mathf.Approximately(rb.velocity.z, 0))
-                && IsGrounded())
+                && IsGrounded() && !addJumpForce)
             {
                 if (!addJumpForce)
                 {
