@@ -12706,8 +12706,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: I know the recipe by heart... one Lofty Lemon, one Tea Leaf, and one
-    Golden Apple.
+  storyText: I know the recipe by heart... 5 Lofty Lemons, 10 Tea Leaves, and 5 Golden
+    Apples.
   description: 
   character: {fileID: 1926841645}
   portrait: {fileID: 0}
@@ -12986,9 +12986,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 173492534}
+  - {fileID: 173492543}
   selectedCommands:
-  - {fileID: 173492549}
+  - {fileID: 173492537}
   variables: []
   description: 
   stepPause: 0
@@ -13019,7 +13019,7 @@ MonoBehaviour:
   waitUntilFinished: 1
 --- !u!114 &173492549
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -13036,7 +13036,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &173492550
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -22204,6 +22204,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c360bc75ba52342f1bc3898b4ebedcf3, type: 2}
+    - target: {fileID: 13700000, guid: 0fd56a24dc408ab42b54418680377b30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bffd1f7f6e741efa6fe77b3d6db7a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fd56a24dc408ab42b54418680377b30, type: 3}
 --- !u!4 &498124156 stripped
@@ -23708,6 +23712,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &529139101 stripped
@@ -25283,7 +25297,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591628562}
-  m_LocalRotation: {x: 0.08766767, y: 0.0000000860231, z: -0.000000007541579, w: 0.9961498}
+  m_LocalRotation: {x: 0.08766767, y: 0.000000009692164, z: -8.8342655e-10, w: 0.9961498}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -26222,7 +26236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 8
   indentLevel: 0
-  storyText: All you need is one Orange Powder, one Fresh Water, and one Pink Crystal
+  storyText: All you need is 8 Orange Powders, 8 Fresh Waters, and 8 Pink Crystals
     from Summer Shores.  And the aforementioned inspiration...
   description: 
   character: {fileID: 2130340384}
@@ -26447,9 +26461,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 626837900}
+  - {fileID: 626837907}
   selectedCommands:
-  - {fileID: 626837913}
+  - {fileID: 626837903}
   variables: []
   description: 
   stepPause: 0
@@ -26480,7 +26494,7 @@ MonoBehaviour:
   waitUntilFinished: 1
 --- !u!114 &626837913
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -26497,7 +26511,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &626837914
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -26578,6 +26592,14 @@ PrefabInstance:
     - target: {fileID: 400118, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
@@ -29749,6 +29771,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: faafcb7a578d7a2459b2e9880e2200ab, type: 2}
+    - target: {fileID: 13700000, guid: a0daa32ad8907834baf5ffa42abcc31a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f6bf4445d4d2437986cf66763cf3903, type: 2}
+    - target: {fileID: 13700002, guid: a0daa32ad8907834baf5ffa42abcc31a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f6bf4445d4d2437986cf66763cf3903, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0daa32ad8907834baf5ffa42abcc31a, type: 3}
 --- !u!4 &734004535 stripped
@@ -31799,6 +31829,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0624702dd02dc7142a8d0d45fb38e976, type: 2}
+    - target: {fileID: 13700000, guid: 04a5562f650d1e345b93a5a81204698f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1b32fd48d83724e7f9e3379d65002096, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04a5562f650d1e345b93a5a81204698f, type: 3}
 --- !u!1 &846810723 stripped
@@ -33800,7 +33834,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912354069}
-  m_LocalRotation: {x: 0.10577263, y: 0.000000016506702, z: -0.000000001780972, w: 0.99439037}
+  m_LocalRotation: {x: 0.10577262, y: 0.00000004556409, z: -0.0000000048490687, w: 0.99439037}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -36317,6 +36351,10 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: ba85f92ead1ed4142982b1dff9ff6a71, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f876a80c4c2144a4873b8f862ef8fc6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba85f92ead1ed4142982b1dff9ff6a71, type: 3}
 --- !u!1 &954878909
@@ -37856,7 +37894,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028643193}
-  m_LocalRotation: {x: 0.081859365, y: 0.000000025643388, z: -0.00000000210622, w: 0.99664396}
+  m_LocalRotation: {x: 0.081859365, y: -0.000000025620444, z: 0.0000000021043354,
+    w: 0.99664396}
   m_LocalPosition: {x: 47.5, y: 7.7126427, z: 48.8824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -47072,8 +47111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 9
   indentLevel: 0
-  storyText: Let's see...all I needed was one lump of Mirror Celestine, one Dewdrop
-    Prism, and one Sakura Petal...
+  storyText: Let's see...all I needed was 6  lumps of Mirror Celestine, 6 Dewdrop
+    Prisms, and 12 Sakura Petals...
   description: 
   character: {fileID: 1058822635}
   portrait: {fileID: 0}
@@ -47350,8 +47389,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1351342065}
-  selectedCommands: []
+  - {fileID: 1351342064}
+  selectedCommands:
+  - {fileID: 1351342056}
   variables: []
   description: 
   stepPause: 0
@@ -47382,7 +47422,7 @@ MonoBehaviour:
   waitUntilFinished: 1
 --- !u!114 &1351342068
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -47399,7 +47439,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1351342069
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -48997,6 +49037,7 @@ GameObject:
   - component: {fileID: 1425374457}
   - component: {fileID: 1425374456}
   - component: {fileID: 1425374455}
+  - component: {fileID: 1425374458}
   m_Layer: 0
   m_Name: IvyFlowchart
   m_TagString: Untagged
@@ -49465,7 +49506,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1074.3932
     y: 126.31267
-    width: 101.923035
+    width: 96.51158
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49476,6 +49517,7 @@ MonoBehaviour:
   commandList:
   - {fileID: 1425374455}
   - {fileID: 1425374356}
+  - {fileID: 1425374458}
   suppressAllAutoSelections: 0
 --- !u!114 &1425374358
 MonoBehaviour:
@@ -49493,7 +49535,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 518.69727
     y: 2.2620497
-    width: 94.23073
+    width: 91.86042
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49554,7 +49596,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 230
     y: 73
-    width: 155.76913
+    width: 152.32547
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49605,7 +49647,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 64.46835
     y: 71.26582
-    width: 76.92305
+    width: 77.90695
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -49630,11 +49672,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 138.65958, y: 5.2871227}
+  scrollPos: {x: 529.8407, y: 79.24863}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 314
-  zoom: 0.52000046
+  zoom: 0.43000045
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -49642,8 +49684,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1425374362}
-  selectedCommands: []
+  - {fileID: 1425374357}
+  selectedCommands:
+  - {fileID: 1425374458}
   variables:
   - {fileID: 1425374360}
   - {fileID: 1425374359}
@@ -50185,7 +50228,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 477.4766
     y: 77.28807
-    width: 111.53841
+    width: 112.790634
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -50831,7 +50874,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 799.7099
     y: 279.47723
-    width: 140.38454
+    width: 133.72084
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -50860,7 +50903,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 785.7857
     y: 144.03413
-    width: 130.76917
+    width: 124.418526
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -50889,7 +50932,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 581.98834
     y: 187.07214
-    width: 198.0768
+    width: 187.20915
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -51211,7 +51254,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 442.58597
     y: 317.76917
-    width: 178.84604
+    width: 168.60452
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -53165,7 +53208,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 446.6925
     y: 609.09125
-    width: 142.30762
+    width: 138.37201
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -53193,7 +53236,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 477.35242
     y: 402.49887
-    width: 167.30759
+    width: 159.30222
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -53232,7 +53275,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 435.52704
     y: 230.71034
-    width: 148.07684
+    width: 138.37201
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -53278,7 +53321,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 506.73706
     y: 478.13928
-    width: 144.23068
+    width: 136.04642
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -53734,7 +53777,7 @@ MonoBehaviour:
   waitUntilFinished: 1
 --- !u!114 &1425374455
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -53751,7 +53794,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1425374456
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -53768,7 +53811,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1425374457
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -53782,6 +53825,23 @@ MonoBehaviour:
   indentLevel: 0
   targetObject: {fileID: 1243747132}
   methodName: noPlayerControl
+  delay: 0
+--- !u!114 &1425374458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425374346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 146
+  indentLevel: 0
+  targetObject: {fileID: 1581040859}
+  methodName: MakeReady
   delay: 0
 --- !u!1001 &1431256055
 PrefabInstance:
@@ -59641,6 +59701,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5f73355e1f63ab142b3e9a4f856802be, type: 2}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28764d6d528fe4b9b8d1c63e2206710d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!1 &1460042278 stripped
@@ -60991,6 +61055,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1504746705 stripped
@@ -65610,6 +65684,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1523525133 stripped
@@ -66073,6 +66157,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051e3521bcbfa4d39aa238dee7771e8f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!1 &1545943569 stripped
@@ -66271,6 +66359,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1545954111 stripped
@@ -67212,8 +67310,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1570248590}
-  selectedCommands: []
+  - {fileID: 1570248597}
+  selectedCommands:
+  - {fileID: 1570248605}
   variables: []
   description: 
   stepPause: 0
@@ -67561,8 +67660,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 13
   indentLevel: 0
-  storyText: 'Like making Gnome Gnets, for example. One bundle of Vines, one sprig
-    of Lavender, and one Shiny Stone.  Have to draw them in somehow. '
+  storyText: 'Like making Gnome Gnets, for example. 8 bundles of Vines, 12 sprigs
+    of Lavender scent, and 8 Shiny Stones.  Have to draw them in somehow. '
   description: 
   character: {fileID: 2055517380}
   portrait: {fileID: 0}
@@ -67594,7 +67693,7 @@ MonoBehaviour:
   waitUntilFinished: 1
 --- !u!114 &1570248607
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -67611,7 +67710,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1570248608
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -70096,7 +70195,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677185865}
-  m_LocalRotation: {x: 0.069581635, y: 0.00000007466385, z: -0.0000000051878017, w: 0.9975763}
+  m_LocalRotation: {x: 0.069581635, y: 0.000000021171939, z: -0.0000000014982597,
+    w: 0.9975763}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -70663,9 +70763,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1716251429}
+  - {fileID: 1716251401}
   selectedCommands:
-  - {fileID: 1716251441}
+  - {fileID: 1716251414}
   variables:
   - {fileID: 1716251403}
   - {fileID: 1716251431}
@@ -74796,7 +74896,7 @@ MonoBehaviour:
   itemId: 171
   indentLevel: 0
   storyText: " It\u2019s a large building with a staircase, you can\u2019t miss it.
-    You should be able to craft there - no one\u2019s used it since we lost our inspiration"
+    You should be able to craft there - no one\u2019s used it since we lost our inspiration."
   description: 
   character: {fileID: 1099387337}
   portrait: {fileID: 0}
@@ -75618,7 +75718,7 @@ MonoBehaviour:
   waitUntilFinished: 1
 --- !u!114 &1716251441
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -75635,7 +75735,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1716251442
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -75652,7 +75752,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1716251443
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -75669,7 +75769,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1716251444
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -79321,6 +79421,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5f73355e1f63ab142b3e9a4f856802be, type: 2}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3856a809c3a1d45078426942fdb4bf73, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!1 &1824724642
@@ -81493,6 +81597,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1890113963 stripped
@@ -84003,7 +84117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 921813011}
+  selectedFlowchart: {fileID: 1716251328}
 --- !u!4 &1990647167
 Transform:
   m_ObjectHideFlags: 1
@@ -85043,6 +85157,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5f73355e1f63ab142b3e9a4f856802be, type: 2}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e96830861d21c4bbe805c7dec3e7b735, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!4 &2045364583 stripped
@@ -85350,6 +85468,10 @@ PrefabInstance:
       propertyPath: m_Animations.Array.data[1]
       value: 
       objectReference: {fileID: 7400000, guid: d53085dd76948b541a1328f2130d8e94, type: 3}
+    - target: {fileID: 13700000, guid: 3849f34931008de4cbce6ea658eb7245, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cb3175b40d384c078860746b53959c8, type: 2}
     - target: {fileID: 13700002, guid: 3849f34931008de4cbce6ea658eb7245, type: 3}
       propertyPath: m_Enabled
       value: 0
