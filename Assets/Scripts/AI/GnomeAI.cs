@@ -12,7 +12,8 @@ public class GnomeAI : MonoBehaviour
 
     public GameObject[] waypoints;
     public float remainingDistance;
-    public float followDistance = 3f;
+    public float followDistance; // = 3f;
+    public float detectionRadius; // = 10f;
 
     public int currWaypoint;
 
@@ -29,25 +30,25 @@ public class GnomeAI : MonoBehaviour
     void Start()
     {
         currWaypoint = -1;
-        //aiState = AIState.StealObjects;
+        aiState = AIState.FollowPath;
         anim = GetComponent<Animator>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        //goToObject();
     }
 
     void Update()
     {
-        anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
         switch (aiState)
         {
             case AIState.StealObjects:
                 anim.SetBool("isIdle", false);
+                anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
                 agent.stoppingDistance = 0f;
                 goToObject();
                 break;
 
             case AIState.ChasePlayer:
                 anim.SetBool("isIdle", false);
+                anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
                 if (StealableObject.FindNearest(transform.position) != null)
                 {
                     aiState = AIState.StealObjects;
@@ -58,12 +59,39 @@ public class GnomeAI : MonoBehaviour
                     goToPlayer();
                 }
                 break;
-            case AIState.Idle: // when a waypoint or player is reached
+            case AIState.Idle:
                 if (!anim.GetBool("isIdle"))
+                    anim.SetFloat("vely", 0f);
                 {
                     anim.SetBool("isIdle", true);
-                    // change state after 2 seconds
+                    // change state after 1 second
                     StartCoroutine(WaitAMomentThenGo());
+
+                    var nearestObject = StealableObject.FindNearest(transform.position);
+                    var playerDistance = Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position);
+
+
+                    // if there is an item nearby, steal it
+                    if (nearestObject != null)
+                    {
+                        aiState = AIState.StealObjects;
+                    }
+
+                    // if there is a player nearby and the gnome hasn't already been following them, follow them
+                    else if (playerDistance <= detectionRadius)
+                    {
+                        if (playerDistance > followDistance)
+                        {
+                            aiState = AIState.ChasePlayer;
+                        }
+                    }
+
+                    // otherwise, go to nearest waypoint
+                    else
+                    {
+                        setNextWaypoint();
+                        aiState = AIState.FollowPath;
+                    }
                 }
                 
                 break;
@@ -72,10 +100,12 @@ public class GnomeAI : MonoBehaviour
                 anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
                 if (!agent.pathPending && agent.remainingDistance == 0)
                 {
-                    //setNextWaypoint();
                     aiState = AIState.Idle;
                 }
-
+                else if (Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position) <= detectionRadius)
+                {
+                    aiState = AIState.ChasePlayer;
+                }
                 break;
             default:
                 break;
@@ -115,28 +145,7 @@ public class GnomeAI : MonoBehaviour
     {
         float time = Random.Range(1f, 10f);
         yield return new WaitForSeconds(time);
-        // if there is an item nearby, steal it
-        var nearestObject = StealableObject.FindNearest(transform.position);
-        var playerDistance = Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position);
-
-
-        if (nearestObject != null)
-        {
-            aiState = AIState.StealObjects;
-        }
-
-        // if there is a player nearby, follow them
-        else if (followDistance <= playerDistance) {
-            aiState = AIState.ChasePlayer;
-        }
-
-        // otherwise, go to nearest waypoint
-        else
-        {
-            aiState = AIState.FollowPath;
-            setNextWaypoint();
-
-        }
+        
     }
 
     private void setNextWaypoint()
