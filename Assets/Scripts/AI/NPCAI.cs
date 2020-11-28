@@ -43,54 +43,14 @@ public class NPCAI : MonoBehaviour
         {
             case AIState.ChaseStationaryWaypoints:
                 anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
-                //if (currWaypoint == waypoints.Length)
-                //{
-                //    aiState = AIState.ChaseMovingWaypoint;
-
-                //    // initializes destination so agent.pathPending is true
-                //    agent.SetDestination(movingWaypoint.transform.position);
-                //}
-                //else if (!agent.pathPending && agent.remainingDistance == 0)
-                //{
-                //    setNextWaypoint();
-                //}
                 if (!agent.pathPending && agent.remainingDistance == 0)
                 {
                     setNextWaypoint();
                 }
                 break;
             case AIState.ChaseMovingWaypoint:
-                //if (!agent.pathPending && agent.remainingDistance - agent.stoppingDistance < 0.3)
-                //{
-                //    aiState = AIState.ChaseStationaryWaypoints;
-                //    currWaypoint = -1;
-                //}
-                //else
-                //{
-                //    float dist = (movingWaypoint.transform.position - agent.transform.position).magnitude;
-
-                //    float lookAheadT = dist / agent.speed;
-
-                //    Vector3 futureTarget = movingWaypoint.transform.position + lookAheadT * movingWaypoint.GetComponent<VelocityReporter>().velocity;
-                //    agent.SetDestination(futureTarget);
-                //}
                 break;
             case AIState.StopAndTalk:
-                
-                //if (!agent.pathPending && agent.remainingDistance - agent.stoppingDistance < 0.3)
-                //{
-                //    aiState = AIState.ChaseStationaryWaypoints;
-                //    currWaypoint = -1;
-                //}
-                //else
-                //{
-                //    float dist = (movingWaypoint.transform.position - agent.transform.position).magnitude;
-
-                //    float lookAheadT = dist / agent.speed;
-
-                //    Vector3 futureTarget = movingWaypoint.transform.position + lookAheadT * movingWaypoint.GetComponent<VelocityReporter>().velocity;
-                //    agent.SetDestination(futureTarget);
-                //}
                 break;
             default:
                 break;
