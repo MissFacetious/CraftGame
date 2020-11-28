@@ -220,6 +220,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (IsGrounded() && currentMovement == inputMovement.walking)
             {
+                speed = 12;
                 currentMovement = inputMovement.running;
                 Animate();
             }
