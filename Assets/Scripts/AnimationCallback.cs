@@ -33,22 +33,11 @@ public class AnimationCallback : MonoBehaviour
         }
     }
 
-    public void PlayJumpSound()
+    public void PlayLandSound()
     {
         if (audio != null && audio.Length > 2)
         {
-            if (!audio[2].isPlaying)
-            {
-                audio[2].Play();
-            }
-        }
-    }
-
-    public void PlayLandSound()
-    {
-        if (audio != null && audio.Length > 3)
-        {
-            audio[3].Play();
+            audio[2].Play();
         }
     }
 

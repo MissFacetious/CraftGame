@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private bool addJumpForce = false;
     
     private Collider playerCollider;
-
+    private AudioSource[] audio;
     private Vector2 movementVector;
 
     private void Awake()
@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
         // we should be able to place the character in the right spot based on 
         // where they currently are, and where they've currently been
 
+        audio = GetComponents<AudioSource>();
     }
 
     private void OnEnable()
@@ -271,6 +272,14 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             addJumpForce = true;
+
+            if (audio != null && audio.Length > 0)
+            {
+                if (!audio[0].isPlaying)
+                {
+                    audio[0].Play();
+                }
+            }
             currentMovement = inputMovement.jumping;
             Animate();
         }
