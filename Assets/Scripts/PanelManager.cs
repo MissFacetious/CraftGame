@@ -276,10 +276,4 @@ public class PanelManager : MonoBehaviour
         }
         //craftingManager.UpdateValues();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

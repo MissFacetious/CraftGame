@@ -28,6 +28,7 @@ public class DoNotDestroy : MonoBehaviour
 
     public void Update()
     {
+        /*
         if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             SceneManager.LoadScene("CraftScene", LoadSceneMode.Single);
@@ -52,5 +53,6 @@ public class DoNotDestroy : MonoBehaviour
         {
             SceneManager.LoadScene("GreeneGardensScene", LoadSceneMode.Single);
         }
+        */
     }
 }
