@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 6f;
     public float jumpHeight = 9f;
 
-    private bool canMove = true;
+    public bool canMove = true;
+    private bool fromCallback = false;
 
     private Transform playerCamera;
     private Interactor interactor;
@@ -383,6 +384,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void noPlayerControl()
+    {
+        fromCallback = true;
+        canMove = false;
+    }
+
+    public void playerControlOkay()
+    {
+        fromCallback = false;
+        canMove = true;
+    }
+
     void FixedUpdate()
     {
         if (GameObject.FindGameObjectWithTag("Dialog") != null ||
@@ -397,8 +410,12 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            canMove = true;
+            if (!fromCallback)
+            {
+                canMove = true;
+            }
         }
+
         if (inventoryManager == null)
         {
             getInventoryManager();
