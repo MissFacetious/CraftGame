@@ -242,15 +242,13 @@ public class PanelManager : MonoBehaviour
         if (lastAction.Count > 0)
         {
             Action thisAction = lastAction.Pop();
-
             if (thisAction.actionTaken.Equals(ActionTaken.OPEN_RECIPE))
             {
                 craftPanel.SetActive(false);
                 recipePanel.SetActive(true);
             }
-            if (thisAction.actionTaken.Equals(ActionTaken.ADDED_ITEM))
+            else if (thisAction.actionTaken.Equals(ActionTaken.ADDED_ITEM))
             {
-
                 for (int i = 0; i < thisAction.itemSlot.transform.childCount; i++)
                 {
                     Transform t = thisAction.itemSlot.transform.GetChild(i);
@@ -260,18 +258,29 @@ public class PanelManager : MonoBehaviour
                     {
                         if (thisAction.item.GetComponent<Item>().Equals(itemChild))
                         {
-                            //itemChild.originalRef.GetComponent<Item>().available = true;
-                            Destroy(itemChild.gameObject);
+                            t.parent = filteredInventoryContent.transform;
+                            int count = thisAction.itemSlot.GetComponent<Item>().count - itemChild.count;
+                            thisAction.itemSlot.GetComponent<Item>().count = count;
+
+                            if (eventSystem != null)
+                            {
+                                eventSystem.SetSelectedGameObject(recipeManager.item1.gameObject);
+                            }
                         }
                     }
                 }
                 // then open inventory with the last touched slot
-                inventoryPanel.gameObject.SetActive(true);
+                smallInventoryPanel.SetActive(true);
                 craftingManager.ShowFilteredInventory(thisAction.itemSlot);
             }
-            if (thisAction.actionTaken.Equals(ActionTaken.OPEN_ITEM))
+            else if (thisAction.actionTaken.Equals(ActionTaken.OPEN_ITEM))
             {
-                inventoryPanel.SetActive(false);
+                smallInventoryPanel.SetActive(false);
+                // set the current button to the first item1slot
+                if (eventSystem != null)
+                {
+                    eventSystem.SetSelectedGameObject(recipeManager.item1.gameObject);
+                }
             }
         }
         //craftingManager.UpdateValues();

@@ -475,10 +475,14 @@ public class MenuActions : MonoBehaviour
 
     public void OnCancel(InputValue inputValue)
     {
-        Debug.Log("hit cancel");
+        if (sceneName == scene.craft)
+        {
+            panelManager.UndoPanel();
+        }
 
         // if in inventory, to the menu
-        if (GameObject.FindGameObjectWithTag("InventoryPanel") != null && GameObject.FindGameObjectWithTag("InventoryPanel").activeInHierarchy) { 
+        if (GameObject.FindGameObjectWithTag("InventoryPanel") != null && GameObject.FindGameObjectWithTag("InventoryPanel").activeInHierarchy)
+        {
             Inventory();
             if (eventSystem != null)
             {
