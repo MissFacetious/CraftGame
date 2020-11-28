@@ -19,40 +19,52 @@ public class AnimationCallback : MonoBehaviour
 
     public void PlayWalkSound()
     {
-        audio[0].Play();
+        if (audio != null && audio.Length > 0)
+        {
+            audio[0].Play();
+        }
     }
 
     public void PlayFlySound()
     {
-        audio[1].Play();
+        if (audio != null && audio.Length > 1)
+        {
+            audio[1].Play();
+        }
     }
 
     public void PlayJumpSound()
     {
-        if (!audio[2].isPlaying)
+        if (audio != null && audio.Length > 2)
         {
-            audio[2].Play();
+            if (!audio[2].isPlaying)
+            {
+                audio[2].Play();
+            }
         }
     }
 
     public void PlayLandSound()
     {
-        audio[3].Play();
+        if (audio != null && audio.Length > 3)
+        {
+            audio[3].Play();
+        }
     }
 
     public void noPlayerControl()
     {
-        pc.noPlayerControl();
+        if (pc != null)
+        {
+            pc.noPlayerControl();
+        }
     }
 
     public void playerControlOkay()
     {
-        pc.playerControlOkay();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (pc != null)
+        {
+            pc.playerControlOkay();
+        }
     }
 }
