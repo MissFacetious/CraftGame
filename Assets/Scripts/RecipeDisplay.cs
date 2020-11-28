@@ -46,17 +46,23 @@ public class RecipeDisplay : MonoBehaviour
         }
         if (recipeTypeCount.Length > 0 && recipeTypeCount[0].count > 0)
         {
-            item1percent = (0.333333f * item1.count / recipeTypeCount[0].count);
+            int itemCount = item1.count;
+            if (itemCount > recipeTypeCount[0].count) itemCount = recipeTypeCount[0].count;
+            item1percent = (0.333333f * itemCount / recipeTypeCount[0].count);
             image1.GetComponent<Image>().fillAmount = item1percent;
         }
         if (recipeTypeCount.Length > 1 && recipeTypeCount[1].count > 0)
         {
-            item2percent = (0.333333f * item2.count / recipeTypeCount[1].count);
+            int itemCount = item2.count;
+            if (itemCount > recipeTypeCount[1].count) itemCount = recipeTypeCount[1].count;
+            item2percent = (0.333333f * itemCount / recipeTypeCount[1].count);
             image2.GetComponent<Image>().fillAmount = item2percent;
         }
         if (recipeTypeCount.Length > 2 && recipeTypeCount[2].count > 0)
         {
-            item3percent = (0.333333f * item3.count / recipeTypeCount[2].count);
+            int itemCount = item3.count;
+            if (itemCount > recipeTypeCount[2].count) itemCount = recipeTypeCount[2].count;
+            item3percent = (0.333333f * itemCount / recipeTypeCount[2].count);
             image3.GetComponent<Image>().fillAmount = item3percent;
         }
     }
