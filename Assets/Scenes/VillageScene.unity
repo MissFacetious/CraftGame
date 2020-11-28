@@ -22204,6 +22204,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c360bc75ba52342f1bc3898b4ebedcf3, type: 2}
+    - target: {fileID: 13700000, guid: 0fd56a24dc408ab42b54418680377b30, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b7bffd1f7f6e741efa6fe77b3d6db7a1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fd56a24dc408ab42b54418680377b30, type: 3}
 --- !u!4 &498124156 stripped
@@ -23708,6 +23712,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &529139101 stripped
@@ -26578,6 +26592,14 @@ PrefabInstance:
     - target: {fileID: 400118, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9303979624d948e42ac59c0eca408fdd, type: 3}
@@ -29749,6 +29771,14 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: faafcb7a578d7a2459b2e9880e2200ab, type: 2}
+    - target: {fileID: 13700000, guid: a0daa32ad8907834baf5ffa42abcc31a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f6bf4445d4d2437986cf66763cf3903, type: 2}
+    - target: {fileID: 13700002, guid: a0daa32ad8907834baf5ffa42abcc31a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2f6bf4445d4d2437986cf66763cf3903, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0daa32ad8907834baf5ffa42abcc31a, type: 3}
 --- !u!4 &734004535 stripped
@@ -31799,6 +31829,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0624702dd02dc7142a8d0d45fb38e976, type: 2}
+    - target: {fileID: 13700000, guid: 04a5562f650d1e345b93a5a81204698f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1b32fd48d83724e7f9e3379d65002096, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04a5562f650d1e345b93a5a81204698f, type: 3}
 --- !u!1 &846810723 stripped
@@ -33800,7 +33834,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912354069}
-  m_LocalRotation: {x: 0.10577263, y: 0.00000009067115, z: -0.000000009611811, w: 0.99439037}
+  m_LocalRotation: {x: 0.10577262, y: 0.00000004556409, z: -0.0000000048490687, w: 0.99439037}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -36317,6 +36351,10 @@ PrefabInstance:
       propertyPath: m_UpdateMode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: ba85f92ead1ed4142982b1dff9ff6a71, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5f876a80c4c2144a4873b8f862ef8fc6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba85f92ead1ed4142982b1dff9ff6a71, type: 3}
 --- !u!1 &954878909
@@ -59663,6 +59701,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5f73355e1f63ab142b3e9a4f856802be, type: 2}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 28764d6d528fe4b9b8d1c63e2206710d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!1 &1460042278 stripped
@@ -61013,6 +61055,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1504746705 stripped
@@ -65632,6 +65684,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1523525133 stripped
@@ -66095,6 +66157,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 051e3521bcbfa4d39aa238dee7771e8f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!1 &1545943569 stripped
@@ -66293,6 +66359,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1545954111 stripped
@@ -79345,6 +79421,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5f73355e1f63ab142b3e9a4f856802be, type: 2}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3856a809c3a1d45078426942fdb4bf73, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!1 &1824724642
@@ -81517,6 +81597,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gnome (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4114150838786763595, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
+    - target: {fileID: 5154617039920388520, guid: 57ed07aca309d44a4ab60e884bff5d2d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c2874532c20d944a38c07200012958ae, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57ed07aca309d44a4ab60e884bff5d2d, type: 3}
 --- !u!4 &1890113963 stripped
@@ -85067,6 +85157,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5f73355e1f63ab142b3e9a4f856802be, type: 2}
+    - target: {fileID: 13700000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e96830861d21c4bbe805c7dec3e7b735, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9857b0e7dbcc03a4eb095c5837100f33, type: 3}
 --- !u!4 &2045364583 stripped
@@ -85374,6 +85468,10 @@ PrefabInstance:
       propertyPath: m_Animations.Array.data[1]
       value: 
       objectReference: {fileID: 7400000, guid: d53085dd76948b541a1328f2130d8e94, type: 3}
+    - target: {fileID: 13700000, guid: 3849f34931008de4cbce6ea658eb7245, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5cb3175b40d384c078860746b53959c8, type: 2}
     - target: {fileID: 13700002, guid: 3849f34931008de4cbce6ea658eb7245, type: 3}
       propertyPath: m_Enabled
       value: 0
