@@ -4120,7 +4120,7 @@ PrefabInstance:
     - target: {fileID: 8843686653241638604, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0067443848
+      value: 0.006713867
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4608ce8f78e0504489b1dff1bffac3ef, type: 3}
@@ -28455,7 +28455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 252879411}
+  selectedFlowchart: {fileID: 1899504474}
 --- !u!4 &1746255742
 Transform:
   m_ObjectHideFlags: 1
@@ -31214,9 +31214,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 234
-    y: 150
-    width: 60
+    x: 240
+    y: 154
+    width: 77
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -31252,8 +31252,7 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1899504477}
+  selectedBlocks: []
   selectedCommands: []
   variables: []
   description: 
@@ -31316,7 +31315,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 381
     y: 151
-    width: 60
+    width: 100
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
