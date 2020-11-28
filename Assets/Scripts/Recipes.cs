@@ -145,36 +145,36 @@ public class Recipes : MonoBehaviour
             type1 = Recipes.RecipeEnum.MIRROR_CELESTINE;
             type2 = Recipes.RecipeEnum.SAKURA_BLOSSOMS;
             type3 = Recipes.RecipeEnum.RAINBOW_DEWDROP;
-            count1 = 1;
-            count2 = 1;
-            count3 = 1;
+            count1 = 6;
+            count2 = 12;
+            count3 = 6;
         }
         if (recipe == Recipes.RecipeEnum.APPLEBLOSSOM_TEA)
         {
             type1 = Recipes.RecipeEnum.GOLDEN_APPLE;
             type2 = Recipes.RecipeEnum.TEA_LEAF;
             type3 = Recipes.RecipeEnum.LOFTY_LEMON;
-            count1 = 1;
-            count2 = 1;
-            count3 = 1;
+            count1 = 5;
+            count2 = 10;
+            count3 = 5;
         }
         if (recipe == Recipes.RecipeEnum.TRANSFORMATIONAL_POTION)
         {
             type1 = Recipes.RecipeEnum.FRESH_STREAM_WATER;
             type2 = Recipes.RecipeEnum.ORANGE_POWDER;
             type3 = Recipes.RecipeEnum.PINK_CRYSTAL;
-            count1 = 1;
-            count2 = 1;
-            count3 = 1;
+            count1 = 8;
+            count2 = 8;
+            count3 = 8;
         }
         if (recipe == Recipes.RecipeEnum.GNOME_NET)
         {
             type1 = Recipes.RecipeEnum.VINES;
             type2 = Recipes.RecipeEnum.SHINY_STONE;
             type3 = Recipes.RecipeEnum.LAVENDER_SCENT;
-            count1 = 1;
-            count2 = 1;
-            count3 = 1;
+            count1 = 8;
+            count2 = 8;
+            count3 = 12;
         }
 
         typeCount1.type = type1;

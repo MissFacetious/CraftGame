@@ -22,6 +22,7 @@ public class InventoryManager : MonoBehaviour, IComparer
     // Start is called before the first frame update
     void Start()
     {
+        /*
         // TODO TAKE OUT THIS FAKE INVENTORY
         Recipes.RecipeEnum[] array = new Recipes.RecipeEnum[] {
             //Recipes.RecipeEnum.APPLEBLOSSOM_TEA,
@@ -51,6 +52,7 @@ public class InventoryManager : MonoBehaviour, IComparer
             myItem2.setItem(array[i], false);
             myItem2.gameObject.transform.parent = gameObject.transform;
         }
+        */
     }
 
     public Item CreateNewItem(Recipes.RecipeEnum type, bool bundle)
