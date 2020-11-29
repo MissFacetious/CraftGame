@@ -421,7 +421,6 @@ public class PlayerController : MonoBehaviour
             // make sure we are in idle
             canMove = false;
             currentMovement = inputMovement.idle;
-
             Animate();
         }
         else

@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class GnomeAI : MonoBehaviour
 {
     private AudioSource[] audio;
     private Animator anim;
 
-    private UnityEngine.AI.NavMeshAgent agent;
+    private NavMeshAgent agent;
 
+    public PlayerController playerController;
     public GameObject[] waypoints;
     public float remainingDistance;
     public float followDistance; // = 3f;
@@ -33,61 +35,75 @@ public class GnomeAI : MonoBehaviour
         currWaypoint = -1;
         aiState = AIState.FollowPath;
         anim = GetComponent<Animator>();
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        switch (aiState)
+        if (playerController != null && playerController.canMove)
         {
-            case AIState.StealObjects:
-                anim.SetBool("isIdle", false);
-                anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
-                agent.stoppingDistance = 0f;
-                goToObject();
-                break;
+            switch (aiState)
+            {
+                case AIState.StealObjects:
+                    anim.SetBool("isIdle", false);
+                    anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
+                    agent.stoppingDistance = 0f;
+                    goToObject();
+                    break;
 
-            case AIState.ChasePlayer:
-                anim.SetBool("isIdle", false);
-                anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
-                if (StealableObject.FindNearest(transform.position) != null)
-                {
-                    aiState = AIState.StealObjects;
-                }
-                else
-                {
-                    agent.stoppingDistance = 3f;
-                    goToPlayer();
-                }
-                break;
-            case AIState.Idle:
-                if (!anim.GetBool("isIdle"))
-                    anim.SetFloat("vely", 0f);
-                {
-                    anim.SetBool("isIdle", true);
-                    // change state after 1 second
-                    StartCoroutine(WaitAMomentThenGo());
-
-                    var nearestObject = StealableObject.FindNearest(transform.position);
-                    var playerDistance = Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position);
-
-
-                    // if there is an item nearby, steal it
-                    if (nearestObject != null)
+                case AIState.ChasePlayer:
+                    anim.SetBool("isIdle", false);
+                    anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
+                    if (StealableObject.FindNearest(transform.position) != null)
                     {
                         aiState = AIState.StealObjects;
-                        if (audio != null && audio.Length > 0)
-                        {
-                            audio[0].Stop();
-                        }
                     }
-
-                    // if there is a player nearby and the gnome hasn't already been following them, follow them
-                    else if (playerDistance <= detectionRadius)
+                    else
                     {
-                        if (playerDistance > followDistance)
+                        agent.stoppingDistance = 3f;
+                        goToPlayer();
+                    }
+                    break;
+                case AIState.Idle:
+                    if (!anim.GetBool("isIdle"))
+                        anim.SetFloat("vely", 0f);
+                    {
+                        anim.SetBool("isIdle", true);
+                        // change state after 1 second
+                        StartCoroutine(WaitAMomentThenGo());
+
+                        var nearestObject = StealableObject.FindNearest(transform.position);
+                        var playerDistance = Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position);
+
+
+                        // if there is an item nearby, steal it
+                        if (nearestObject != null)
                         {
-                            aiState = AIState.ChasePlayer;
+                            aiState = AIState.StealObjects;
+                            if (audio != null && audio.Length > 0)
+                            {
+                                audio[0].Stop();
+                            }
+                        }
+
+                        // if there is a player nearby and the gnome hasn't already been following them, follow them
+                        else if (playerDistance <= detectionRadius)
+                        {
+                            if (playerDistance > followDistance)
+                            {
+                                aiState = AIState.ChasePlayer;
+                                if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
+                                {
+                                    audio[0].Play();
+                                }
+                            }
+                        }
+
+                        // otherwise, go to nearest waypoint
+                        else
+                        {
+                            setNextWaypoint();
+                            aiState = AIState.FollowPath;
                             if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
                             {
                                 audio[0].Play();
@@ -95,43 +111,31 @@ public class GnomeAI : MonoBehaviour
                         }
                     }
 
-                    // otherwise, go to nearest waypoint
-                    else
+                    break;
+                case AIState.FollowPath:
+                    anim.SetBool("isIdle", false);
+                    anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
+                    if (!agent.pathPending && agent.remainingDistance == 0)
                     {
-                        setNextWaypoint();
-                        aiState = AIState.FollowPath;
+                        aiState = AIState.Idle;
+                        if (audio != null && audio.Length > 0)
+                        {
+                            audio[0].Stop();
+                        }
+                    }
+                    else if (Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position) <= detectionRadius)
+                    {
+                        aiState = AIState.ChasePlayer;
                         if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
                         {
                             audio[0].Play();
                         }
                     }
-                }
-                
-                break;
-            case AIState.FollowPath:
-                anim.SetBool("isIdle", false);
-                anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
-                if (!agent.pathPending && agent.remainingDistance == 0)
-                {
-                    aiState = AIState.Idle;
-                    if (audio != null && audio.Length > 0)
-                    {
-                        audio[0].Stop();
-                    }
-                }
-                else if (Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position) <= detectionRadius)
-                {
-                    aiState = AIState.ChasePlayer;
-                    if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
-                    {
-                        audio[0].Play();
-                    }
-                }
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
         }
-
     }
 
     private void goToObject()

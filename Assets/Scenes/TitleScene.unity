@@ -1791,6 +1791,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 93435515}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &93724791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6028566139291724057, guid: ae6dd6c60ee0d6d4a89f9987641481f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 471133037}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ee4a2d30cc85d43bf449cc715dc093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &97446542
 GameObject:
   m_ObjectHideFlags: 0
@@ -22847,6 +22859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 0
+  playerController: {fileID: 93724791}
   eventSystem: {fileID: 0}
   panelManager: {fileID: 0}
   firstButton: {fileID: 1559854658}
