@@ -5421,7 +5421,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 205088331}
-  m_LocalRotation: {x: 0.08766768, y: 0.000000031137333, z: -0.0000000026223987, w: 0.99614984}
+  m_LocalRotation: {x: 0.08766751, y: 0.000000030550044, z: -0.0000000025832474, w: 0.99614984}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14072,7 +14072,7 @@ GameObject:
   m_Name: BaseWater
   m_TagString: Water
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!114 &520646734
@@ -15446,8 +15446,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592585937}
-  m_LocalRotation: {x: 0.069581635, y: 0.000000018895031, z: -0.0000000011251206,
-    w: 0.9975763}
+  m_LocalRotation: {x: 0.06958147, y: 0.00000002982979, z: -0.0000000019894963, w: 0.9975763}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -29004,6 +29003,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walkway-Bridge_A (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7829373512960835157, guid: 8da275b6caa00df49a8941c6e3469d02,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7829373512961122933, guid: 8da275b6caa00df49a8941c6e3469d02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37876,7 +37880,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374063262}
-  m_LocalRotation: {x: 0.10577263, y: 0.00000007440782, z: -0.000000008041685, w: 0.9943904}
+  m_LocalRotation: {x: 0.10577246, y: 0.000000033852736, z: -0.000000003532909, w: 0.9943904}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -43148,6 +43152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Walkway-Bridge_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 7829373512960835157, guid: 8da275b6caa00df49a8941c6e3469d02,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7829373512961122933, guid: 8da275b6caa00df49a8941c6e3469d02,
         type: 3}
@@ -53682,8 +53691,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971646776}
-  m_LocalRotation: {x: 0.08529922, y: 0.0018196143, z: -0.0001557797, w: 0.99635375}
-  m_LocalPosition: {x: 107.31039, y: 11.590028, z: -112.37021}
+  m_LocalRotation: {x: 0.08529903, y: 0.001819623, z: -0.00015578012, w: 0.99635375}
+  m_LocalPosition: {x: 107.31039, y: 11.590026, z: -112.37021}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 325193120}
