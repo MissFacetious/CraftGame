@@ -6,7 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class StealAI : MonoBehaviour
 {
-
+    private AudioSource[] audio;
     private Animator anim;
 
     private UnityEngine.AI.NavMeshAgent agent;
@@ -33,6 +33,7 @@ public class StealAI : MonoBehaviour
 
     void Start ()
     {
+        audio = GetComponents<AudioSource>();
         currWaypoint = -1;
         CloseEnoughToTarget = 3f;
         aiState = AIState.StealObjects;
@@ -111,11 +112,19 @@ public class StealAI : MonoBehaviour
         if (followDistance <= Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position))
         {
             anim.enabled = true;
+            if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
+            {
+                audio[0].Play();
+            }
             agent.SetDestination(GameObject.FindWithTag("Player").transform.position);
         }
         else
         {
             anim.enabled = false;
+            if (audio != null && audio.Length > 0)
+            {
+                audio[0].Stop();
+            }
         }
     }
 

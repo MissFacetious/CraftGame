@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 public class GnomeAI : MonoBehaviour
 {
-
+    private AudioSource[] audio;
     private Animator anim;
 
     private UnityEngine.AI.NavMeshAgent agent;
@@ -29,6 +29,7 @@ public class GnomeAI : MonoBehaviour
 
     void Start()
     {
+        audio = GetComponents<AudioSource>();
         currWaypoint = -1;
         aiState = AIState.FollowPath;
         anim = GetComponent<Animator>();
@@ -75,6 +76,10 @@ public class GnomeAI : MonoBehaviour
                     if (nearestObject != null)
                     {
                         aiState = AIState.StealObjects;
+                        if (audio != null && audio.Length > 0)
+                        {
+                            audio[0].Stop();
+                        }
                     }
 
                     // if there is a player nearby and the gnome hasn't already been following them, follow them
@@ -83,6 +88,10 @@ public class GnomeAI : MonoBehaviour
                         if (playerDistance > followDistance)
                         {
                             aiState = AIState.ChasePlayer;
+                            if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
+                            {
+                                audio[0].Play();
+                            }
                         }
                     }
 
@@ -91,6 +100,10 @@ public class GnomeAI : MonoBehaviour
                     {
                         setNextWaypoint();
                         aiState = AIState.FollowPath;
+                        if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
+                        {
+                            audio[0].Play();
+                        }
                     }
                 }
                 
@@ -101,10 +114,18 @@ public class GnomeAI : MonoBehaviour
                 if (!agent.pathPending && agent.remainingDistance == 0)
                 {
                     aiState = AIState.Idle;
+                    if (audio != null && audio.Length > 0)
+                    {
+                        audio[0].Stop();
+                    }
                 }
                 else if (Vector3.Distance(transform.position, GameObject.FindWithTag("Player").transform.position) <= detectionRadius)
                 {
                     aiState = AIState.ChasePlayer;
+                    if (audio != null && audio.Length > 0 && !audio[0].isPlaying)
+                    {
+                        audio[0].Play();
+                    }
                 }
                 break;
             default:
