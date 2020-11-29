@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class StealAI : MonoBehaviour
 {
     private AudioSource[] audio;
     private Animator anim;
 
-    private UnityEngine.AI.NavMeshAgent agent;
+    private NavMeshAgent agent;
 
+    public PlayerController playerController;
     public GameObject[] waypoints;
     public float remainingDistance;
     public float followDistance = 3f;
@@ -38,7 +39,7 @@ public class StealAI : MonoBehaviour
         CloseEnoughToTarget = 3f;
         aiState = AIState.StealObjects;
         anim = GetComponent<Animator>();
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 3f;
         roamToLocation = RandomMovement(agent.transform.position, 10f);
         goToObject();
@@ -46,42 +47,45 @@ public class StealAI : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-
-        checkChangeStateTimer();
-
-        anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
-
-        switch (aiState)
+        if (playerController != null && playerController.canMove)
         {
-            case AIState.StealObjects:
-                goToObject();
-                break;
+            timer += Time.deltaTime;
 
-            case AIState.Roam:
-                if (StealableObject.FindNearest(transform.position) != null)
-                {
-                    aiState = AIState.StealObjects;
-                }
-                else
-                {
-                    goToRandom(10f);
-                }
-                break;
+            checkChangeStateTimer();
 
-            case AIState.ChasePlayer:
-                if (StealableObject.FindNearest(transform.position) != null)
-                {
-                    aiState = AIState.StealObjects;
-                }
-                else
-                {
-                    goToPlayer();
-                }
-                break;
+            anim.SetFloat("vely", agent.velocity.magnitude / agent.speed);
 
-            default:
-                break;
+            switch (aiState)
+            {
+                case AIState.StealObjects:
+                    goToObject();
+                    break;
+
+                case AIState.Roam:
+                    if (StealableObject.FindNearest(transform.position) != null)
+                    {
+                        aiState = AIState.StealObjects;
+                    }
+                    else
+                    {
+                        goToRandom(10f);
+                    }
+                    break;
+
+                case AIState.ChasePlayer:
+                    if (StealableObject.FindNearest(transform.position) != null)
+                    {
+                        aiState = AIState.StealObjects;
+                    }
+                    else
+                    {
+                        goToPlayer();
+                    }
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 

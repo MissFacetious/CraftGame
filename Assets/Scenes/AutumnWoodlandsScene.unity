@@ -793,6 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4ba9880af75f34fadeeac61d6b4100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints: []
   remainingDistance: 0
   followDistance: 3
@@ -808,7 +809,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -3656,6 +3657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4ba9880af75f34fadeeac61d6b4100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints: []
   remainingDistance: 0
   followDistance: 3
@@ -3671,7 +3673,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -4595,6 +4597,11 @@ PrefabInstance:
       propertyPath: startingPoint
       value: 
       objectReference: {fileID: 506922288}
+    - target: {fileID: 1744229863850423523, guid: 4608ce8f78e0504489b1dff1bffac3ef,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 613435700}
     - target: {fileID: 1744229863850423525, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5855,7 +5862,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 179346303}
-  m_LocalRotation: {x: 0.08766766, y: 0.000000009156014, z: -8.366611e-10, w: 0.9961498}
+  m_LocalRotation: {x: 0.08766766, y: 0.000000086545334, z: -0.000000007587129, w: 0.9961498}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -8017,7 +8024,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258022514}
-  m_LocalRotation: {x: 0.08185935, y: -0.000000026186475, z: 0.0000000021508262, w: 0.99664396}
+  m_LocalRotation: {x: 0.08185935, y: 0.000000026207829, z: -0.0000000021525801, w: 0.99664396}
   m_LocalPosition: {x: 109.1, y: 13.524642, z: -118.0776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -13650,7 +13657,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480093344}
-  m_LocalRotation: {x: 0.10577262, y: 0.000000058379626, z: -0.0000000062022285, w: 0.99439037}
+  m_LocalRotation: {x: 0.10577262, y: 0.000000012179358, z: -0.0000000013240599, w: 0.99439037}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17786,6 +17793,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 613435698}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &613435700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6028566139291724057, guid: ae6dd6c60ee0d6d4a89f9987641481f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 613435698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ee4a2d30cc85d43bf449cc715dc093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &616129423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7501044024484825179, guid: 660cea38ad8eb5d4e902389632d2499b,
@@ -27236,7 +27255,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052475553}
-  m_LocalRotation: {x: 0.069581635, y: 0.000000020608349, z: -0.0000000014593879,
+  m_LocalRotation: {x: 0.069581635, y: 0.000000075214444, z: -0.0000000052257776,
     w: 0.9975763}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -45038,6 +45057,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4ba9880af75f34fadeeac61d6b4100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints: []
   remainingDistance: 0
   followDistance: 3
@@ -45053,7 +45073,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -53942,7 +53962,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -53966,6 +53986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4ba9880af75f34fadeeac61d6b4100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints: []
   remainingDistance: 0
   followDistance: 3
