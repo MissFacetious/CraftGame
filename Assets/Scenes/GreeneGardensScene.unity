@@ -3850,6 +3850,11 @@ PrefabInstance:
       propertyPath: startingPoint
       value: 
       objectReference: {fileID: 506922288}
+    - target: {fileID: 1744229863850423523, guid: 4608ce8f78e0504489b1dff1bffac3ef,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 613435700}
     - target: {fileID: 1744229863850423525, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6865,6 +6870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9911d8c2a4542ae9f17878b6cefc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints:
   - {fileID: 704280387}
   - {fileID: 341973232}
@@ -14293,6 +14299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9911d8c2a4542ae9f17878b6cefc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints:
   - {fileID: 1652618728}
   - {fileID: 1061815135}
@@ -15011,7 +15018,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582433263}
-  m_LocalRotation: {x: 0.10577262, y: 0.00000008418798, z: -0.000000008927269, w: 0.99439037}
+  m_LocalRotation: {x: 0.105772614, y: 0.0000000510206, z: -0.000000005425208, w: 0.99439037}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -16663,6 +16670,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 613435698}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &613435700 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6028566139291724057, guid: ae6dd6c60ee0d6d4a89f9987641481f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 613435698}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ee4a2d30cc85d43bf449cc715dc093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &619501630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4077570778562278, guid: c2cdea0710f55cb4b8be00312c82e839,
@@ -19925,6 +19944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9911d8c2a4542ae9f17878b6cefc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints:
   - {fileID: 976999733}
   - {fileID: 1157730878}
@@ -22756,6 +22776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9911d8c2a4542ae9f17878b6cefc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints:
   - {fileID: 1325212492}
   - {fileID: 976999733}
@@ -24858,7 +24879,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976656827}
-  m_LocalRotation: {x: 0.08766766, y: 0.00000009383962, z: -0.000000008223393, w: 0.9961498}
+  m_LocalRotation: {x: 0.08766766, y: 0.000000008980048, z: -8.2131224e-10, w: 0.9961498}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -35712,7 +35733,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444628054}
-  m_LocalRotation: {x: 0.069581635, y: 0.000000072646934, z: -0.0000000050486872,
+  m_LocalRotation: {x: 0.069581635, y: 0.000000020533774, z: -0.0000000014542445,
     w: 0.9975763}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -42267,6 +42288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d9911d8c2a4542ae9f17878b6cefc64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 613435700}
   waypoints:
   - {fileID: 1157730878}
   - {fileID: 1488302166}
@@ -47192,7 +47214,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868372015}
-  m_LocalRotation: {x: 0.08185935, y: 0.000000021877238, z: -0.0000000017968869, w: 0.99664396}
+  m_LocalRotation: {x: 0.08185935, y: -0.000000026222212, z: 0.0000000021537612, w: 0.99664396}
   m_LocalPosition: {x: 109.1, y: 12.774642, z: -118.0776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
