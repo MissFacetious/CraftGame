@@ -25,6 +25,7 @@ public class MenuActions : MonoBehaviour
     }
     
     public scene sceneName;
+    public PlayerController playerController;
     public EventSystem eventSystem;
     public PanelManager panelManager;
     public GameObject firstButton;
@@ -568,8 +569,11 @@ public class MenuActions : MonoBehaviour
                 MenuEnd();
             } else
             {
-                timeLeft -= Time.deltaTime;
-                showCountdown();
+                if (playerController != null && playerController.canMove)
+                {
+                    timeLeft -= Time.deltaTime;
+                    showCountdown();
+                }
             }
         }
         /*

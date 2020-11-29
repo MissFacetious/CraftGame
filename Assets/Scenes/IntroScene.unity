@@ -3982,6 +3982,11 @@ PrefabInstance:
       propertyPath: sceneName
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1744229863850423523, guid: 4608ce8f78e0504489b1dff1bffac3ef,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1929558260}
     - target: {fileID: 1744229863850423525, guid: 4608ce8f78e0504489b1dff1bffac3ef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32336,6 +32341,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae6dd6c60ee0d6d4a89f9987641481f8, type: 3}
+--- !u!114 &1929558260 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6028566139291724057, guid: ae6dd6c60ee0d6d4a89f9987641481f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1929558259}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35ee4a2d30cc85d43bf449cc715dc093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1934158878
 PrefabInstance:
   m_ObjectHideFlags: 0
